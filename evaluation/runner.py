@@ -244,6 +244,7 @@ class EvaluationRunner:
                 "passed": test_result.passed,
                 "failed": test_result.failed,
                 "errors": test_result.errors,
+                "skipped": test_result.skipped,
                 "total": test_result.total,
                 "success": test_result.success,
                 "output": test_result.output,
