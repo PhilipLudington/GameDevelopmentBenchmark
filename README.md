@@ -25,8 +25,9 @@ cd GameDevelopmentBenchmark
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install dependencies
+# Install dependencies and project
 pip install -r requirements.txt
+pip install -e .  # Install project in development mode
 ```
 
 ### Running Evaluations
