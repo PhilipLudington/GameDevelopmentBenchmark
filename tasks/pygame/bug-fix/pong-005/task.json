@@ -1,0 +1,13 @@
+{
+  "id": "pong-005",
+  "name": "Ball angle always same",
+  "category": "bug-fix",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Fix bug where ball always bounces at the same angle regardless of paddle hit position",
+  "evaluation": ["unit-test"],
+  "tags": ["physics", "angles", "pong"],
+  "baseline": "pong",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}

@@ -1,0 +1,19 @@
+# Core
+pygame>=2.5.0
+pytest>=7.0.0
+pytest-timeout>=2.0.0
+
+# Model interfaces
+httpx>=0.25.0
+openai>=1.0.0
+anthropic>=0.18.0
+
+# Evaluation
+psutil>=5.9.0
+pillow>=10.0.0
+
+# Tools
+jsonschema>=4.0.0
+click>=8.0.0
+jinja2>=3.0.0
+pyyaml>=6.0.0

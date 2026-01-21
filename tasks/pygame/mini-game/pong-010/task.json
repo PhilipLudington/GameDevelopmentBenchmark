@@ -1,0 +1,13 @@
+{
+  "id": "pong-010",
+  "name": "Create 4-player variant",
+  "category": "mini-game",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Create a 4-player Pong variant with paddles on all four sides of the screen",
+  "evaluation": ["unit-test", "gameplay"],
+  "tags": ["multiplayer", "variant", "pong"],
+  "baseline": "pong",
+  "timeout": 180,
+  "files_to_modify": ["main.py"]
+}

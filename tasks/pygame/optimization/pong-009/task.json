@@ -1,0 +1,16 @@
+{
+  "id": "pong-009",
+  "name": "Reduce CPU usage in main loop",
+  "category": "optimization",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Optimize the main game loop to reduce unnecessary CPU usage",
+  "evaluation": ["performance", "unit-test"],
+  "tags": ["performance", "cpu", "pong"],
+  "baseline": "pong",
+  "timeout": 60,
+  "files_to_modify": ["main.py"],
+  "metrics": {
+    "max_cpu_percent": 25
+  }
+}

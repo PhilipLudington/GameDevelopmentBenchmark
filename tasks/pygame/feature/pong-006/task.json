@@ -1,0 +1,13 @@
+{
+  "id": "pong-006",
+  "name": "Add pause functionality",
+  "category": "feature",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Add ability to pause the game with the P key and display a pause screen",
+  "evaluation": ["unit-test", "gameplay"],
+  "tags": ["input", "state", "pong"],
+  "baseline": "pong",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}

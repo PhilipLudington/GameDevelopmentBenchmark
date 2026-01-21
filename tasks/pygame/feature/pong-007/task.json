@@ -1,0 +1,13 @@
+{
+  "id": "pong-007",
+  "name": "Add ball speed increase",
+  "category": "feature",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Make the ball speed increase slightly after each paddle hit for more exciting gameplay",
+  "evaluation": ["unit-test"],
+  "tags": ["physics", "difficulty", "pong"],
+  "baseline": "pong",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}

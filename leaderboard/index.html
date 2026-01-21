@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Development Benchmark - Leaderboard</title>
+    <style>
+        :root {
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --text-color: #e4e4e4;
+            --accent: #0f3460;
+            --success: #4ade80;
+            --failure: #f87171;
+            --border: #2a2a4a;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; text-align: center; }
+        .subtitle {
+            color: #888;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+        .placeholder {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .placeholder h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .placeholder p {
+            color: #888;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin: 0.25rem;
+        }
+        footer {
+            text-align: center;
+            color: #666;
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+        a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Game Development Benchmark</h1>
+        <p class="subtitle">Evaluating AI models on game development tasks</p>
+
+        <div class="card placeholder">
+            <h2>No Results Yet</h2>
+            <p>
+                Run the benchmark to generate results:
+            </p>
+            <pre style="text-align: left; background: #0a0a1a; padding: 1rem; border-radius: 8px; margin-top: 1rem; overflow-x: auto;">
+python scripts/run_benchmark.py \
+  --model openai:gpt-4 \
+  --output results/runs/</pre>
+        </div>
+
+        <div class="card">
+            <h2 style="margin-bottom: 1rem;">Benchmark Categories</h2>
+            <div>
+                <span class="badge">Bug Fix</span>
+                <span class="badge">Feature</span>
+                <span class="badge">Optimization</span>
+                <span class="badge">Mini-Game</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 style="margin-bottom: 1rem;">Supported Engines</h2>
+            <div>
+                <span class="badge">Pygame</span>
+                <span class="badge" style="opacity: 0.5;">Godot (Coming Soon)</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                <a href="https://github.com/game-development-benchmark">GitHub</a> |
+                Game Development Benchmark
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

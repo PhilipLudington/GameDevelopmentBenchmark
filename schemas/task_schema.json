@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://game-development-benchmark.github.io/schemas/task.json",
+  "title": "Game Development Benchmark Task",
+  "description": "Schema for a benchmark task definition",
+  "type": "object",
+  "required": ["id", "name", "category", "tier", "engine", "description", "evaluation"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Unique task identifier (lowercase alphanumeric with hyphens)"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Human-readable task name"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["bug-fix", "feature", "optimization", "mini-game"],
+      "description": "Task category"
+    },
+    "tier": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4,
+      "description": "Difficulty tier (1=simple, 4=expert)"
+    },
+    "engine": {
+      "type": "string",
+      "enum": ["pygame", "godot", "unity", "unreal"],
+      "description": "Game engine/framework"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Brief description of the task"
+    },
+    "evaluation": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["unit-test", "integration-test", "gameplay", "performance", "visual"]
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Evaluation methods to use"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$"
+      },
+      "uniqueItems": true,
+      "description": "Tags for categorization and filtering"
+    },
+    "baseline": {
+      "type": "string",
+      "description": "Name of the baseline game this task is derived from"
+    },
+    "timeout": {
+      "type": "integer",
+      "minimum": 10,
+      "maximum": 600,
+      "default": 60,
+      "description": "Maximum execution time in seconds"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Additional Python packages required"
+    },
+    "hints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Optional hints to provide to the model"
+    },
+    "files_to_modify": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of files the model should modify"
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "target_fps": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Target frames per second for performance tasks"
+        },
+        "max_memory_mb": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Maximum memory usage in MB"
+        },
+        "max_cpu_percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Maximum CPU usage percentage"
+        }
+      },
+      "description": "Performance metrics for optimization tasks"
+    }
+  },
+  "additionalProperties": false
+}

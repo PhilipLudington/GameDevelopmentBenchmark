@@ -1,0 +1,13 @@
+{
+  "id": "pong-002",
+  "name": "Score displays wrong player",
+  "category": "bug-fix",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Fix bug where scores are swapped between players on the display",
+  "evaluation": ["unit-test"],
+  "tags": ["ui", "display", "pong"],
+  "baseline": "pong",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}

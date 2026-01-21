@@ -1,0 +1,13 @@
+{
+  "id": "pong-008",
+  "name": "Add power-ups",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Add power-up items that spawn randomly and modify gameplay when collected",
+  "evaluation": ["unit-test", "gameplay"],
+  "tags": ["power-ups", "items", "pong"],
+  "baseline": "pong",
+  "timeout": 120,
+  "files_to_modify": ["main.py"]
+}

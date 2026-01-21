@@ -1,0 +1,13 @@
+{
+  "id": "pong-001",
+  "name": "Ball passes through paddle edge",
+  "category": "bug-fix",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Fix collision detection bug where ball passes through paddle corners",
+  "evaluation": ["unit-test", "gameplay"],
+  "tags": ["collision", "physics", "pong"],
+  "baseline": "pong",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}

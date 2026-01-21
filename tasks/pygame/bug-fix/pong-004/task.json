@@ -1,0 +1,13 @@
+{
+  "id": "pong-004",
+  "name": "AI paddle jitters at boundaries",
+  "category": "bug-fix",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Fix AI paddle oscillating rapidly when ball is at screen edges",
+  "evaluation": ["unit-test", "gameplay"],
+  "tags": ["ai", "movement", "pong"],
+  "baseline": "pong",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}

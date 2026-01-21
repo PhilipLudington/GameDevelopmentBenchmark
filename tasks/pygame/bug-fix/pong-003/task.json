@@ -1,0 +1,13 @@
+{
+  "id": "pong-003",
+  "name": "Ball stuck after scoring",
+  "category": "bug-fix",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Fix bug where ball freezes in place after a point is scored",
+  "evaluation": ["unit-test", "gameplay"],
+  "tags": ["game-logic", "reset", "pong"],
+  "baseline": "pong",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}
