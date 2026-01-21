@@ -163,7 +163,7 @@ def create_model(model_string: str, **kwargs) -> ModelInterface:
     api_providers = {"openai", "anthropic", "azure", "custom"}
 
     # CLI-based providers
-    cli_providers = {"ollama", "llama", "llamacpp", "mock"}
+    cli_providers = {"ollama", "llama", "llamacpp", "mock", "claude"}
 
     if provider in api_providers:
         config = ModelConfig(

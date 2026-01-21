@@ -36,6 +36,7 @@ class CLIModel(ModelInterface):
             "ollama": "ollama",
             "llama": "llama",
             "llamacpp": "llama-cli",
+            "claude": "claude",
         }
 
         command = cli_commands.get(self.config.provider)
@@ -62,6 +63,25 @@ class CLIModel(ModelInterface):
             "-n", str(self.config.max_tokens),
             "--temp", str(self.config.temperature),
         ]
+
+        # Add any extra arguments
+        if "extra_args" in self.config.extra:
+            cmd.extend(self.config.extra["extra_args"])
+
+        return cmd
+
+    def _build_claude_command(self, prompt: str) -> list[str]:
+        """Build command for Claude Code CLI."""
+        cmd = [
+            "claude",
+            "-p", prompt,  # Print mode - single prompt, no interactive session
+            "--output-format", "text",  # Plain text output
+        ]
+
+        # Add model selection if specified (e.g., claude:sonnet, claude:opus)
+        model_id = self.config.model_id
+        if model_id and model_id not in ("default", "claude"):
+            cmd.extend(["--model", model_id])
 
         # Add any extra arguments
         if "extra_args" in self.config.extra:
@@ -124,6 +144,8 @@ class CLIModel(ModelInterface):
             cmd = self._build_ollama_command(full_prompt)
         elif self.config.provider in ("llama", "llamacpp"):
             cmd = self._build_llamacpp_command(full_prompt)
+        elif self.config.provider == "claude":
+            cmd = self._build_claude_command(full_prompt)
         else:
             raise ModelError(f"Unknown CLI provider: {self.config.provider}")
 
@@ -231,6 +253,7 @@ class CLIModel(ModelInterface):
             "ollama": "ollama",
             "llama": "llama",
             "llamacpp": "llama-cli",
+            "claude": "claude",
         }
 
         command = cli_commands.get(self.config.provider)
@@ -277,6 +300,22 @@ class MockModel(CLIModel):
             name=f"mock:{mode}",
             provider="mock",
             model_id=mode,
+            **kwargs,
+        )
+        super().__init__(config)
+
+
+class ClaudeCodeModel(CLIModel):
+    """Model using Claude Code CLI."""
+
+    def __init__(self, model_id: str = "sonnet", **kwargs):
+        # Set a longer timeout for Claude Code (it can take a while)
+        if "timeout" not in kwargs:
+            kwargs["timeout"] = 300  # 5 minutes
+        config = ModelConfig(
+            name=f"claude:{model_id}",
+            provider="claude",
+            model_id=model_id,
             **kwargs,
         )
         super().__init__(config)

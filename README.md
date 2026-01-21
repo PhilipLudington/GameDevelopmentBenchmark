@@ -157,6 +157,10 @@ python evaluation/runner.py --model anthropic:claude-3-sonnet-20240229
 ### CLI Models
 
 ```bash
+# Claude Code (uses local Claude CLI - no API costs!)
+python evaluation/runner.py --model claude:sonnet
+python evaluation/runner.py --model claude:opus
+
 # Ollama
 python evaluation/runner.py --model ollama:codellama
 python evaluation/runner.py --model ollama:deepseek-coder
