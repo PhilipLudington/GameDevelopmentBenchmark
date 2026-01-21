@@ -55,9 +55,9 @@ gdb-create-task = "scripts.create_task:main"
 gdb-validate = "scripts.validate_task:main"
 
 [project.urls]
-Homepage = "https://github.com/game-development-benchmark"
-Documentation = "https://github.com/game-development-benchmark/docs"
-Repository = "https://github.com/game-development-benchmark"
+Homepage = "https://github.com/PhilipLudington/GameDevelopmentBenchmark"
+Documentation = "https://github.com/PhilipLudington/GameDevelopmentBenchmark#readme"
+Repository = "https://github.com/PhilipLudington/GameDevelopmentBenchmark"
 
 [tool.setuptools.packages.find]
 where = ["."]

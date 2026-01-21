@@ -18,7 +18,7 @@ Currently supports **Pygame** with 10 initial tasks based on a Pong baseline gam
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/GameDevelopmentBenchmark.git
+git clone https://github.com/PhilipLudington/GameDevelopmentBenchmark.git
 cd GameDevelopmentBenchmark
 
 # Install dependencies
