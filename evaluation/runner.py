@@ -337,6 +337,9 @@ class EvaluationRunner:
 
                 if not changes:
                     self.log("Warning: No code blocks found in response")
+                else:
+                    for filename in changes:
+                        self.log(f"  - {filename} ({len(changes[filename])} chars)")
 
                 # Apply changes to sandbox
                 self.log(f"Applying {len(changes)} file changes...")
@@ -438,6 +441,10 @@ def main(task: Path, model: str, output: Path | None, verbose: bool, timeout: in
     if result.test_results:
         tr = result.test_results
         click.echo(f"Tests: {tr.passed}/{tr.total} passed")
+        # Show test output if verbose and there were failures or no tests found
+        if verbose and (tr.failed > 0 or tr.errors > 0 or tr.total == 0):
+            click.echo("\nTest output:")
+            click.echo(tr.output[:2000] if len(tr.output) > 2000 else tr.output)
 
     # Save results if output specified
     if output:
