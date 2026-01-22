@@ -1,0 +1,13 @@
+{
+  "id": "space_invaders-002",
+  "name": "Alien fleet speed calculation overflow",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Fix integer division causing alien fleet to freeze when few aliens remain",
+  "evaluation": ["unit-test", "gameplay"],
+  "tags": ["math", "game-logic", "division", "space_invaders"],
+  "baseline": "space_invaders",
+  "timeout": 120,
+  "files_to_modify": ["main.py"]
+}

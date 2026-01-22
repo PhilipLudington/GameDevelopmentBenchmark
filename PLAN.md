@@ -240,7 +240,21 @@ Create initial task set from Pong baseline:
     - breakout-optimization-001: Optimize collision detection (tier 2)
   - Mini-game (1):
     - breakout-mini-001: Two-player cooperative mode (tier 3)
-- [ ] Space Invaders (10 tasks)
+- [x] Space Invaders baseline (10 tasks complete - higher difficulty)
+  - Bug fixes (4):
+    - space_invaders-001: Bullets pass through aliens at high speed (tier 2) - tunneling bug
+    - space_invaders-002: Alien fleet speed calculation overflow (tier 3) - math/division bug
+    - space_invaders-003: Shield collision not symmetric (tier 2) - erosion direction bug
+    - space_invaders-004: Dead aliens can still shoot (tier 2) - race condition bug
+  - Features (4):
+    - space_invaders-feature-001: Mystery ship bonus (tier 3)
+    - space_invaders-feature-002: Progressive difficulty waves (tier 3)
+    - space_invaders-feature-003: Power-up system (tier 4)
+    - space_invaders-feature-004: Alien formation attack patterns (tier 4)
+  - Optimization (1):
+    - space_invaders-optimization-001: Spatial partitioning collision (tier 3)
+  - Mini-game (1):
+    - space_invaders-mini-001: Two-player cooperative mode (tier 4)
 
 #### Task Distribution (M1):
 | Category     | Tier 1 | Tier 2 | Tier 3 | Tier 4 | Total |
@@ -390,17 +404,19 @@ act -j validate
 
 ## Current Progress
 
-**Status: Phase 1.6 In Progress (Expanding to M1)**
+**Status: M1 Complete (50 tasks achieved!)**
 
 - Core infrastructure fully operational
-- **40 tasks created and validated:**
+- **50 tasks created and validated:**
   - 10 Pong tasks
   - 15 Snake tasks (baseline game + full task suite)
   - 15 Breakout tasks (baseline game + full task suite)
-- Three baseline games fully implemented:
+  - 10 Space Invaders tasks (baseline game + higher difficulty tasks)
+- Four baseline games fully implemented:
   - Pong: with test coverage
   - Snake: 43 unit tests
   - Breakout: 52 unit tests
+  - Space Invaders: 62 unit tests
 - Evaluation harness working with multiple model providers:
   - API: OpenAI, Anthropic
   - CLI: Ollama, llama.cpp, Claude Code
@@ -420,8 +436,14 @@ act -j validate
    - 7 feature tasks (2 tier 1, 3 tier 2, 2 tier 3)
    - 1 optimization task (tier 2)
    - 1 mini-game task (tier 3)
+6. ✅ Created Space Invaders baseline game with 62 unit tests
+7. ✅ Created all 10 Space Invaders tasks (higher difficulty as requested):
+   - 4 bug-fix tasks (0 tier 1, 3 tier 2, 1 tier 3) - more challenging bugs
+   - 4 feature tasks (0 tier 1, 0 tier 2, 2 tier 3, 2 tier 4) - complex features
+   - 1 optimization task (tier 3) - spatial partitioning
+   - 1 mini-game task (tier 4) - two-player cooperative
 
 **Next Steps:**
-1. Add Space Invaders baseline game (to reach 50 tasks for M1)
-2. Create Space Invaders tasks (target: 10)
-3. Set up CI/CD when ready
+1. Set up CI/CD when ready
+2. Run model baselines to validate tasks
+3. Expand to M2 (200+ tasks) with additional game engines

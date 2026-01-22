@@ -1,0 +1,13 @@
+{
+  "id": "space_invaders-feature-004",
+  "name": "Alien formation attack patterns",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Implement individual aliens that break formation to dive-bomb the player",
+  "evaluation": ["unit-test", "gameplay"],
+  "tags": ["feature", "ai", "movement", "attack-patterns", "space_invaders"],
+  "baseline": "space_invaders",
+  "timeout": 240,
+  "files_to_modify": ["main.py"]
+}

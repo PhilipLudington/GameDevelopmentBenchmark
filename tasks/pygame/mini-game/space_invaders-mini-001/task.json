@@ -1,0 +1,13 @@
+{
+  "id": "space_invaders-mini-001",
+  "name": "Two-player cooperative mode",
+  "category": "mini-game",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Create a two-player cooperative mode with shared screen and lives",
+  "evaluation": ["unit-test", "gameplay"],
+  "tags": ["multiplayer", "cooperative", "variant", "space_invaders"],
+  "baseline": "space_invaders",
+  "timeout": 300,
+  "files_to_modify": ["main.py"]
+}
