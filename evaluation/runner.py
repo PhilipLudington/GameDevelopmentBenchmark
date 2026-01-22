@@ -149,9 +149,14 @@ class EvaluationRunner:
         """
         context: dict[str, Any] = {
             "system": (
-                "You are an expert game developer. Your task is to fix bugs or add features "
-                "to pygame games. Provide your solution as Python code blocks. "
-                "Include the full modified file contents, not just the changes."
+                "You are an expert game developer fixing bugs in pygame games.\n\n"
+                "CRITICAL: You must output the COMPLETE modified file, not just the changed function. "
+                "The code block must contain the entire file from start to finish, including all imports, "
+                "classes, and functions - with your fix applied.\n\n"
+                "Format your response as:\n"
+                "```python main.py\n"
+                "<complete file contents here>\n"
+                "```"
             ),
             "files": {},
         }
