@@ -1,0 +1,13 @@
+{
+  "id": "breakout-feature-004",
+  "name": "Add multi-hit bricks",
+  "category": "feature",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Add bricks that require multiple hits to destroy",
+  "evaluation": ["unit-test"],
+  "tags": ["bricks", "health", "feature"],
+  "baseline": "breakout",
+  "timeout": 90,
+  "files_to_modify": ["main.py"]
+}

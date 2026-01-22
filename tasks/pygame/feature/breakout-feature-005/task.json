@@ -1,0 +1,13 @@
+{
+  "id": "breakout-feature-005",
+  "name": "Add sound effects",
+  "category": "feature",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Add sound effects for ball bounces and brick destruction",
+  "evaluation": ["unit-test"],
+  "tags": ["sound", "audio", "feature"],
+  "baseline": "breakout",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "breakout-feature-001",
+  "name": "Add multi-ball power-up",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Add a power-up that spawns additional balls when collected",
+  "evaluation": ["unit-test"],
+  "tags": ["power-up", "ball", "feature"],
+  "baseline": "breakout",
+  "timeout": 120,
+  "files_to_modify": ["main.py"]
+}

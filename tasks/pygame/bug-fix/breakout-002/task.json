@@ -1,0 +1,13 @@
+{
+  "id": "breakout-002",
+  "name": "Score displays wrong value after brick destruction",
+  "category": "bug-fix",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Fix bug where score callback receives wrong value",
+  "evaluation": ["unit-test"],
+  "tags": ["score", "callback", "breakout"],
+  "baseline": "breakout",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "breakout-004",
+  "name": "Lives not resetting on new game",
+  "category": "bug-fix",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Fix bug where lives don't reset when starting new game",
+  "evaluation": ["unit-test"],
+  "tags": ["lives", "state", "reset"],
+  "baseline": "breakout",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}

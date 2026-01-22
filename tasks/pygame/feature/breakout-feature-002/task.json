@@ -1,0 +1,13 @@
+{
+  "id": "breakout-feature-002",
+  "name": "Add paddle width power-up",
+  "category": "feature",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Add a power-up that temporarily widens the paddle",
+  "evaluation": ["unit-test"],
+  "tags": ["power-up", "paddle", "feature"],
+  "baseline": "breakout",
+  "timeout": 90,
+  "files_to_modify": ["main.py"]
+}

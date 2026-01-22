@@ -1,0 +1,13 @@
+{
+  "id": "breakout-mini-001",
+  "name": "Create two-player cooperative mode",
+  "category": "mini-game",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Add two-player mode with two paddles on opposite sides",
+  "evaluation": ["unit-test"],
+  "tags": ["multiplayer", "cooperative", "mini-game"],
+  "baseline": "breakout",
+  "timeout": 180,
+  "files_to_modify": ["main.py"]
+}

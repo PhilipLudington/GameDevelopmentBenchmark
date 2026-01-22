@@ -1,0 +1,13 @@
+{
+  "id": "breakout-feature-007",
+  "name": "Add pause countdown",
+  "category": "feature",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Add 3-2-1 countdown when resuming from pause",
+  "evaluation": ["unit-test"],
+  "tags": ["pause", "countdown", "ui"],
+  "baseline": "breakout",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}

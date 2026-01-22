@@ -1,0 +1,13 @@
+{
+  "id": "breakout-optimization-001",
+  "name": "Optimize brick collision detection",
+  "category": "optimization",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Optimize brick collision using spatial partitioning",
+  "evaluation": ["unit-test"],
+  "tags": ["optimization", "collision", "performance"],
+  "baseline": "breakout",
+  "timeout": 90,
+  "files_to_modify": ["main.py"]
+}

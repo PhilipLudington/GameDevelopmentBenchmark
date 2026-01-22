@@ -1,0 +1,13 @@
+{
+  "id": "breakout-001",
+  "name": "Ball passes through brick corners",
+  "category": "bug-fix",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Fix collision detection bug where ball passes through brick corners at high speed",
+  "evaluation": ["unit-test"],
+  "tags": ["collision", "physics", "breakout"],
+  "baseline": "breakout",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "breakout-005",
+  "name": "Ball escapes through screen corners",
+  "category": "bug-fix",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Fix bug where ball can escape screen at corners due to incorrect boundary check order",
+  "evaluation": ["unit-test"],
+  "tags": ["collision", "boundary", "physics"],
+  "baseline": "breakout",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}

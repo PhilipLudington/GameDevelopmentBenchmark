@@ -220,7 +220,26 @@ Create initial task set from Pong baseline:
     - snake-optimization-001: Optimize collision detection with set (tier 2)
   - Mini-game (1):
     - snake-mini-001: Create two-player snake (tier 3)
-- [ ] Breakout (15 tasks)
+- [x] Breakout baseline (15 tasks complete)
+  - Bug fixes (6):
+    - breakout-001: Ball passes through brick corners (tier 1)
+    - breakout-002: Score callback receives wrong value (tier 1)
+    - breakout-003: Ball stuck in paddle (tier 1)
+    - breakout-004: Lives not resetting on new game (tier 1)
+    - breakout-005: Ball escapes through screen corners (tier 2)
+    - breakout-006: Paddle moves off screen edges (tier 1)
+  - Features (7):
+    - breakout-feature-001: Multi-ball power-up (tier 3)
+    - breakout-feature-002: Paddle width power-up (tier 2)
+    - breakout-feature-003: Multiple levels with patterns (tier 3)
+    - breakout-feature-004: Multi-hit bricks (tier 2)
+    - breakout-feature-005: Sound effects (tier 1)
+    - breakout-feature-006: Ball speed increase (tier 2)
+    - breakout-feature-007: Pause countdown (tier 1)
+  - Optimization (1):
+    - breakout-optimization-001: Optimize collision detection (tier 2)
+  - Mini-game (1):
+    - breakout-mini-001: Two-player cooperative mode (tier 3)
 - [ ] Space Invaders (10 tasks)
 
 #### Task Distribution (M1):
@@ -374,10 +393,14 @@ act -j validate
 **Status: Phase 1.6 In Progress (Expanding to M1)**
 
 - Core infrastructure fully operational
-- **25 tasks created and validated:**
+- **40 tasks created and validated:**
   - 10 Pong tasks
   - 15 Snake tasks (baseline game + full task suite)
-- Snake baseline game fully implemented with 43 unit tests
+  - 15 Breakout tasks (baseline game + full task suite)
+- Three baseline games fully implemented:
+  - Pong: with test coverage
+  - Snake: 43 unit tests
+  - Breakout: 52 unit tests
 - Evaluation harness working with multiple model providers:
   - API: OpenAI, Anthropic
   - CLI: Ollama, llama.cpp, Claude Code
@@ -391,9 +414,14 @@ act -j validate
    - 7 feature tasks (3 tier 1, 3 tier 2, 1 tier 3)
    - 1 optimization task (tier 2)
    - 1 mini-game task (tier 3)
+4. ✅ Created Breakout baseline game with 52 unit tests
+5. ✅ Created all 15 Breakout tasks:
+   - 6 bug-fix tasks (5 tier 1, 1 tier 2)
+   - 7 feature tasks (2 tier 1, 3 tier 2, 2 tier 3)
+   - 1 optimization task (tier 2)
+   - 1 mini-game task (tier 3)
 
 **Next Steps:**
-1. Add Breakout baseline game
-2. Create Breakout tasks (target: 15)
-3. Add Space Invaders baseline game (optional for M1)
-4. Set up CI/CD when ready
+1. Add Space Invaders baseline game (to reach 50 tasks for M1)
+2. Create Space Invaders tasks (target: 10)
+3. Set up CI/CD when ready

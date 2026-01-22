@@ -1,0 +1,13 @@
+{
+  "id": "breakout-feature-003",
+  "name": "Add multiple levels with different brick patterns",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Add a level system with different brick configurations",
+  "evaluation": ["unit-test"],
+  "tags": ["levels", "bricks", "feature"],
+  "baseline": "breakout",
+  "timeout": 120,
+  "files_to_modify": ["main.py"]
+}

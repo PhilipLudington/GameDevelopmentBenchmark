@@ -1,0 +1,13 @@
+{
+  "id": "breakout-feature-006",
+  "name": "Add ball speed increase over time",
+  "category": "feature",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Ball speed gradually increases as bricks are destroyed",
+  "evaluation": ["unit-test"],
+  "tags": ["ball", "speed", "difficulty"],
+  "baseline": "breakout",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}

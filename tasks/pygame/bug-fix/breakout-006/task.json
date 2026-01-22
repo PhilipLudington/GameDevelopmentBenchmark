@@ -1,0 +1,13 @@
+{
+  "id": "breakout-006",
+  "name": "Paddle moves off screen at edges",
+  "category": "bug-fix",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Fix bug where paddle can move partially off screen",
+  "evaluation": ["unit-test"],
+  "tags": ["paddle", "boundary", "movement"],
+  "baseline": "breakout",
+  "timeout": 60,
+  "files_to_modify": ["main.py"]
+}
