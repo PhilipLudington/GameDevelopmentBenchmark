@@ -1,0 +1,11 @@
+{
+  "id": "snake-feature-003",
+  "name": "Add wrap-around walls mode",
+  "category": "feature",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Add a mode where the snake wraps around to the opposite side instead of dying",
+  "evaluation": ["unit-test"],
+  "tags": ["gameplay", "walls", "mode"],
+  "baseline": "snake"
+}

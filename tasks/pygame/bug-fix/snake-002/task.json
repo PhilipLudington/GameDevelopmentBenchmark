@@ -1,0 +1,11 @@
+{
+  "id": "snake-002",
+  "name": "Food spawns on snake body",
+  "category": "bug-fix",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Fix the bug where food can spawn inside the snake body",
+  "evaluation": ["unit-test"],
+  "tags": ["spawn", "collision", "food"],
+  "baseline": "snake"
+}

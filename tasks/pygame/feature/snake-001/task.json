@@ -1,0 +1,11 @@
+{
+  "id": "snake-feature-001",
+  "name": "Add speed increase as snake grows",
+  "category": "feature",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Add a feature that increases game speed as the snake grows longer",
+  "evaluation": ["unit-test"],
+  "tags": ["speed", "difficulty", "gameplay"],
+  "baseline": "snake"
+}

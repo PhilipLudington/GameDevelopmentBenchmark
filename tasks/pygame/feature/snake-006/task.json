@@ -1,0 +1,11 @@
+{
+  "id": "snake-feature-006",
+  "name": "Add length display",
+  "category": "feature",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Display the current snake length on screen",
+  "evaluation": ["unit-test"],
+  "tags": ["ui", "display", "length"],
+  "baseline": "snake"
+}

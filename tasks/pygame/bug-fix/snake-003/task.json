@@ -1,0 +1,11 @@
+{
+  "id": "snake-003",
+  "name": "Score not reset on new game",
+  "category": "bug-fix",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Fix the bug where score carries over when starting a new game",
+  "evaluation": ["unit-test"],
+  "tags": ["score", "reset", "state"],
+  "baseline": "snake"
+}

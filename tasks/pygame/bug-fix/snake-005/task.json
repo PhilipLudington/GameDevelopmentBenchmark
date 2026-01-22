@@ -1,0 +1,11 @@
+{
+  "id": "snake-005",
+  "name": "High score resets when returning to menu",
+  "category": "bug-fix",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Fix the bug where high score is lost when player returns to menu",
+  "evaluation": ["unit-test"],
+  "tags": ["score", "state", "persistence"],
+  "baseline": "snake"
+}

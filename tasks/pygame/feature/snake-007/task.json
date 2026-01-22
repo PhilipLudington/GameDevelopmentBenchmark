@@ -1,0 +1,11 @@
+{
+  "id": "snake-feature-007",
+  "name": "Add grid toggle",
+  "category": "feature",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Add ability to toggle grid lines on/off with G key",
+  "evaluation": ["unit-test"],
+  "tags": ["ui", "grid", "toggle"],
+  "baseline": "snake"
+}

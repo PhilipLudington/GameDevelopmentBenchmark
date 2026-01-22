@@ -1,0 +1,11 @@
+{
+  "id": "snake-feature-004",
+  "name": "Add bonus food with timer",
+  "category": "feature",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Add special bonus food that appears temporarily and gives extra points",
+  "evaluation": ["unit-test"],
+  "tags": ["food", "score", "timer"],
+  "baseline": "snake"
+}

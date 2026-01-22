@@ -1,0 +1,11 @@
+{
+  "id": "snake-004",
+  "name": "Wall collision check off by one",
+  "category": "bug-fix",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Fix the wall collision detection that allows snake to go one cell outside the grid",
+  "evaluation": ["unit-test"],
+  "tags": ["collision", "boundary", "wall"],
+  "baseline": "snake"
+}

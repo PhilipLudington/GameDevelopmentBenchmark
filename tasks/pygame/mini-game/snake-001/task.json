@@ -1,0 +1,11 @@
+{
+  "id": "snake-mini-001",
+  "name": "Create two-player snake",
+  "category": "mini-game",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Create a two-player mode where both snakes compete on the same grid",
+  "evaluation": ["unit-test"],
+  "tags": ["multiplayer", "competitive", "input"],
+  "baseline": "snake"
+}

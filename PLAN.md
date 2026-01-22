@@ -200,7 +200,26 @@ Create initial task set from Pong baseline:
 ### Phase 1.6: Expand to M1 (50 tasks)
 
 #### Additional Baseline Games
-- [ ] Snake (15 tasks)
+- [x] Snake baseline (15 tasks complete)
+  - Bug fixes (6):
+    - snake-001: Direction reversal with quick inputs (tier 1)
+    - snake-002: Food spawns on snake body (tier 1)
+    - snake-003: Score not reset on new game (tier 1)
+    - snake-004: Wall collision off by one (tier 1)
+    - snake-005: High score resets when returning to menu (tier 1)
+    - snake-006: Snake grows in wrong direction (tier 2)
+  - Features (7):
+    - snake-feature-001: Speed increase as snake grows (tier 2)
+    - snake-feature-002: Add pause functionality (tier 1)
+    - snake-feature-003: Add wrap-around walls mode (tier 2)
+    - snake-feature-004: Add bonus food with timer (tier 2)
+    - snake-feature-005: Add obstacles on the grid (tier 3)
+    - snake-feature-006: Add length display (tier 1)
+    - snake-feature-007: Add grid toggle (tier 1)
+  - Optimization (1):
+    - snake-optimization-001: Optimize collision detection with set (tier 2)
+  - Mini-game (1):
+    - snake-mini-001: Create two-player snake (tier 3)
 - [ ] Breakout (15 tasks)
 - [ ] Space Invaders (10 tasks)
 
@@ -352,17 +371,29 @@ act -j validate
 
 ## Current Progress
 
-**Status: Phase 1.4 Complete**
+**Status: Phase 1.6 In Progress (Expanding to M1)**
 
 - Core infrastructure fully operational
-- 10 Pong tasks created and validated
+- **25 tasks created and validated:**
+  - 10 Pong tasks
+  - 15 Snake tasks (baseline game + full task suite)
+- Snake baseline game fully implemented with 43 unit tests
 - Evaluation harness working with multiple model providers:
   - API: OpenAI, Anthropic
   - CLI: Ollama, llama.cpp, Claude Code
-- Benchmark results: 90% pass rate with claude:opus and claude:sonnet on latest run
+- pong-001 prompt improved with clearer guidance
+
+**Completed:**
+1. ✅ Improved pong-001 prompt to help models succeed (added detailed fix instructions)
+2. ✅ Created Snake baseline game with full test coverage
+3. ✅ Created all 15 Snake tasks:
+   - 6 bug-fix tasks (5 tier 1, 1 tier 2)
+   - 7 feature tasks (3 tier 1, 3 tier 2, 1 tier 3)
+   - 1 optimization task (tier 2)
+   - 1 mini-game task (tier 3)
 
 **Next Steps:**
-1. Review and potentially simplify pong-001 task (both models fail it)
-2. Add more baseline games (Snake, Breakout)
-3. Expand task count toward M1 (50 tasks)
+1. Add Breakout baseline game
+2. Create Breakout tasks (target: 15)
+3. Add Space Invaders baseline game (optional for M1)
 4. Set up CI/CD when ready

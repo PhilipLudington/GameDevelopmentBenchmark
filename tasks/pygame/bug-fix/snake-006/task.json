@@ -1,0 +1,11 @@
+{
+  "id": "snake-006",
+  "name": "Snake grows in wrong direction",
+  "category": "bug-fix",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Fix the bug where new segments appear at the head instead of tail",
+  "evaluation": ["unit-test"],
+  "tags": ["growth", "position", "tail"],
+  "baseline": "snake"
+}

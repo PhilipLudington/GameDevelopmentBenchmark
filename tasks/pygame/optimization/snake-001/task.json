@@ -1,0 +1,11 @@
+{
+  "id": "snake-optimization-001",
+  "name": "Optimize collision detection with set",
+  "category": "optimization",
+  "tier": 2,
+  "engine": "pygame",
+  "description": "Optimize self-collision detection using a set for O(1) lookup",
+  "evaluation": ["unit-test"],
+  "tags": ["performance", "collision", "data-structure"],
+  "baseline": "snake"
+}

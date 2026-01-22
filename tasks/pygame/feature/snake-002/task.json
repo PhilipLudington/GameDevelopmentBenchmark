@@ -1,0 +1,11 @@
+{
+  "id": "snake-feature-002",
+  "name": "Add pause functionality",
+  "category": "feature",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Add the ability to pause and resume the game with the P key",
+  "evaluation": ["unit-test"],
+  "tags": ["input", "state", "pause"],
+  "baseline": "snake"
+}

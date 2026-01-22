@@ -1,0 +1,11 @@
+{
+  "id": "snake-001",
+  "name": "Snake can reverse direction with quick inputs",
+  "category": "bug-fix",
+  "tier": 1,
+  "engine": "pygame",
+  "description": "Fix the bug where the snake can reverse direction by pressing two keys quickly",
+  "evaluation": ["unit-test"],
+  "tags": ["input", "direction", "collision"],
+  "baseline": "snake"
+}

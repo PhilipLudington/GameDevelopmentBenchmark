@@ -1,0 +1,11 @@
+{
+  "id": "snake-feature-005",
+  "name": "Add obstacles on the grid",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Add static obstacles that the snake must avoid",
+  "evaluation": ["unit-test"],
+  "tags": ["obstacles", "collision", "difficulty"],
+  "baseline": "snake"
+}
