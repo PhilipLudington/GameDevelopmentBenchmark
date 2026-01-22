@@ -96,7 +96,14 @@ def run_benchmark_for_model(
     sandbox_config = SandboxConfig(timeout=timeout, headless=True)
 
     for i, task_dir in enumerate(tasks, 1):
-        task_id = task_dir.name
+        # Read task ID from task.json
+        task_json = task_dir / "task.json"
+        try:
+            with open(task_json) as f:
+                task_data = json.load(f)
+            task_id = task_data.get("id", task_dir.name)
+        except (json.JSONDecodeError, IOError):
+            task_id = task_dir.name
         click.echo(f"  [{i}/{len(tasks)}] {task_id}...", nl=False)
 
         runner = EvaluationRunner(
