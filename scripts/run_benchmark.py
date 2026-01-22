@@ -150,7 +150,7 @@ def run_benchmark_for_model(
               type=click.Choice(["bug-fix", "feature", "optimization", "mini-game"]),
               help="Filter by category")
 @click.option("--tier", type=click.IntRange(1, 4), help="Filter by tier")
-@click.option("--timeout", default=60, type=int, help="Execution timeout per task")
+@click.option("--timeout", default=120, type=int, help="Default execution timeout per task (overridden by task-specific timeouts)")
 @click.option("--verbose", "-v", is_flag=True, help="Verbose output")
 @click.option("--report/--no-report", default=True, help="Generate HTML report")
 def main(

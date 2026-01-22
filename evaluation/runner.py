@@ -332,8 +332,12 @@ class EvaluationRunner:
                 # Build context with file contents
                 context = self.build_context(sandbox)
 
+                # Update model timeout to use task-specific timeout
+                if task_config.timeout:
+                    self.model.config.timeout = task_config.timeout
+
                 # Generate response from model
-                self.log(f"Invoking model: {self.model.get_name()}")
+                self.log(f"Invoking model: {self.model.get_name()} (timeout: {self.model.config.timeout}s)")
                 model_result = self.model.generate(prompt, context)
 
                 # Parse code changes from response
@@ -381,6 +385,14 @@ class EvaluationRunner:
 
         except Exception as e:
             elapsed = time.time() - start_time
+            # Include metadata even on error so reports can categorize failures
+            metadata = {}
+            if self.task_config:
+                metadata = {
+                    "model_config": self.model.get_config(),
+                    "task_tier": self.task_config.tier,
+                    "task_category": self.task_config.category,
+                }
             return EvaluationResult(
                 task_id=self.task_config.id if self.task_config else "unknown",
                 model_name=self.model.get_name(),
@@ -388,6 +400,7 @@ class EvaluationRunner:
                 score=0.0,
                 elapsed_time=elapsed,
                 error=str(e),
+                metadata=metadata,
             )
 
 

@@ -155,7 +155,7 @@ def create_model(model_string: str, **kwargs) -> ModelInterface:
         ValueError: If the provider is unknown
     """
     from models.api_model import APIModel
-    from models.cli_model import CLIModel
+    from models.cli_model import CLIModel, ClaudeCodeModel
 
     provider, model_id = parse_model_string(model_string)
 
@@ -173,6 +173,9 @@ def create_model(model_string: str, **kwargs) -> ModelInterface:
             **kwargs,
         )
         return APIModel(config)
+    elif provider == "claude":
+        # Use ClaudeCodeModel for proper defaults (longer timeout, etc.)
+        return ClaudeCodeModel(model_id=model_id, **kwargs)
     elif provider in cli_providers:
         config = ModelConfig(
             name=model_string,
