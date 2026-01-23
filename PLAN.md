@@ -503,3 +503,235 @@ Added Quake 1 (id Software GPL release) as a new engine for expert-level tasks. 
 | Optimization | 0      | 2      | 3      | 2      | 1      | 8     |
 | Mini-Game    | 0      | 0      | 3      | 2      | 0      | 5     |
 | **Total**    | 13     | 15     | 16     | 10     | 6      | **60**|
+
+---
+
+## Phase 3: Julius Track (Systems Programming / Historical Bugs)
+
+### Overview
+
+A parallel track using [Julius](https://github.com/bvschaik/julius), the open-source Caesar III reimplementation, to test AI capabilities on:
+- **C systems programming** in a large legacy codebase (2,700+ commits)
+- **Real historical bugs** extracted from git history (SWE-Bench methodology)
+- **Memory safety issues** (double frees, OOB, dangling pointers)
+- **Complex game simulation** (city builder vs arcade games)
+
+This provides orthogonal signal to the main track—can models work with existing codebases and debug real-world issues?
+
+### Key Differences from Main Track
+
+| Main Track (Pygame/Quake) | Julius Track |
+|---------------------------|--------------|
+| Python/C synthetic bugs | C historical bugs |
+| Simple 2D games / engine code | Complex city simulation |
+| Injected bugs | Real git commit reversions |
+| Fresh task codebases | 2,700+ commit legacy codebase |
+| Game creation/modification | Bug archaeology |
+
+### Asset Requirements
+
+Julius requires original Caesar III assets to run gameplay tests:
+
+| CI Type | Assets | Scope |
+|---------|--------|-------|
+| Public CI (GitHub Actions) | None | Memory safety, unit tests only |
+| Private CI | Caesar III (~$6) | Full test suite |
+| Benchmark users | Own copy | Full reproduction |
+
+**Policy:** Assets never committed. ~40% of tasks runnable without assets.
+
+### Bug Categories
+
+#### J1: Memory Safety (ASan/Valgrind testable)
+| Bug | Commit | Tier | Assets |
+|-----|--------|------|--------|
+| Double free in smacker decoder | `f722d9c` | 3 | No |
+| Dangling pointer on localized_filename | `6603f5d` | 3 | No |
+| Out-of-bounds during invasions | `96c67ee` | 4 | Yes |
+| Out-of-bounds when drawing map | `5876540` | 4 | Yes |
+| Sheep out-of-bounds destination | `5a37aa8` | 3 | No (mocked) |
+
+#### J2: Crash Fixes
+| Bug | Commit | Tier | Assets |
+|-----|--------|------|--------|
+| Carthago freeze during large invasions | Wiki | 5 | Yes |
+| Crash in file save dialog | `24a67bb` | 3 | Yes |
+| Water buildings corrupted on collapse | `6c7ddd4` | 4 | Yes |
+
+#### J3: Game Logic
+| Bug | Commit | Tier | Assets |
+|-----|--------|------|--------|
+| Buildings deleted even when cancel pressed | `392b967` | 2 | Yes |
+| Clone building ignores disallowed buildings | `2c12e32` | 2 | No (unit) |
+| Trees not forming forest on elevation | `2be5a0f` | 3 | Yes |
+| Multiple horn sounds on large invasions | `638fc28` | 3 | Yes |
+| Hotkey config ordering error | #757 | 2 | No |
+
+#### J4: Visual/UI
+| Bug | Commit | Tier | Assets |
+|-----|--------|------|--------|
+| Off-by-one animation offsets | `a1c1a74` | 2 | Yes |
+| Amphitheater spectator offset by 1px | `3791789` | 2 | Yes |
+| Tooltip trailing newline | `f75d681` | 1 | No |
+| Build menu hitbox misplaced | `39f7328` | 3 | Yes |
+
+### Directory Structure
+
+```
+tasks/julius/
+├── memory-safety/
+│   └── j001-smacker-double-free/
+│       ├── task.json           # Metadata, commit ref, difficulty
+│       ├── buggy.patch         # Patch to revert fix
+│       ├── prompt.md           # Bug report for AI
+│       ├── tests/
+│       │   ├── test_crash.c    # ASan test (no assets)
+│       │   └── Makefile
+│       └── solution/
+│           └── fix.patch       # Original fix
+├── crash-fix/
+├── game-logic/
+└── visual/
+
+harness/
+├── julius_sandbox.py           # Clone Julius, apply patches, build
+├── julius_test_runner.py       # Run tests with ASan/Valgrind
+└── patch_utils.py              # Git patch manipulation
+
+evaluation/
+├── julius_evaluator.py         # Scoring logic for Julius tasks
+└── asan_parser.py              # Parse AddressSanitizer output
+```
+
+### Evaluation Protocol
+
+```
+For each task:
+  1. Clone fresh Julius at buggy commit
+  2. Apply buggy.patch to revert fix
+  3. Verify bug exists (test fails or ASan triggers)
+  4. Present code + bug report to AI model
+  5. Apply model's proposed fix (as patch)
+  6. Run test suite with ASan
+  7. Score:
+     - Compiles: 1 point
+     - No new ASan errors: 1 point
+     - Test passes: 2 points
+     - Matches original fix structure (bonus): 1 point
+```
+
+### Infrastructure Required
+
+#### 3.1 Julius Build Harness
+- [ ] `harness/julius_sandbox.py`:
+  - Clone Julius repo at specific commit
+  - Apply/revert patches
+  - Build with CMake + ASan flags
+  - Manage build cache for performance
+- [ ] `harness/patch_utils.py`:
+  - Parse unified diff format
+  - Apply model output as patch
+  - Validate patch applies cleanly
+
+#### 3.2 Julius Test Runner
+- [ ] `evaluation/julius_test_runner.py`:
+  - Run compiled test binaries
+  - Capture ASan output
+  - Parse test results
+  - Handle timeout for freeze bugs
+- [ ] `evaluation/asan_parser.py`:
+  - Parse AddressSanitizer reports
+  - Categorize error types
+  - Extract stack traces
+
+#### 3.3 Julius Evaluator
+- [ ] `evaluation/julius_evaluator.py`:
+  - Scoring logic per evaluation protocol
+  - Patch similarity comparison
+  - Integration with main benchmark runner
+
+### Milestones
+
+#### MJ1: Proof of Concept (10 tasks)
+- [ ] Julius build harness working
+- [ ] 10 memory safety tasks (J1 category)
+- [ ] ASan-based evaluation operational
+- [ ] No assets required for any task
+- [ ] Baseline results from 2-3 models
+
+**Task list for MJ1:**
+| ID | Bug | Commit | Tier |
+|----|-----|--------|------|
+| julius-001 | Double free in smacker decoder | `f722d9c` | 3 |
+| julius-002 | Dangling pointer localized_filename | `6603f5d` | 3 |
+| julius-003 | Sheep OOB destination | `5a37aa8` | 3 |
+| julius-004 | Tooltip trailing newline | `f75d681` | 1 |
+| julius-005 | Hotkey config ordering | #757 | 2 |
+| julius-006 | Clone building validation | `2c12e32` | 2 |
+| julius-007 | Buffer overflow in string handling | TBD | 3 |
+| julius-008 | Integer overflow in calculations | TBD | 3 |
+| julius-009 | Null pointer dereference | TBD | 2 |
+| julius-010 | Use-after-free in UI | TBD | 4 |
+
+#### MJ2: Core Test Suite (50 tasks)
+- [ ] 50 tasks across J1-J3 categories
+- [ ] Hybrid CI operational (public + private)
+- [ ] Asset-free subset (~20 tasks) publicly runnable
+- [ ] Documentation for benchmark users
+- [ ] Integration with main benchmark runner
+
+#### MJ3: Full Coverage (100+ tasks)
+- [ ] 100+ tasks including visual bugs (J4)
+- [ ] Screenshot comparison pipeline
+- [ ] Cross-reference with main track metrics
+- [ ] Public leaderboard integration
+
+### Implementation Order
+
+1. **Julius Infrastructure**
+   - [ ] Clone and build Julius locally
+   - [ ] Verify ASan builds work
+   - [ ] Create `julius_sandbox.py` with basic clone/build
+   - [ ] Create `patch_utils.py` for patch manipulation
+
+2. **First Bug Extraction**
+   - [ ] Identify commit `f722d9c` (smacker double free)
+   - [ ] Create `buggy.patch` by reversing the fix
+   - [ ] Write minimal test that triggers the bug
+   - [ ] Verify test passes on fixed code, fails on buggy
+
+3. **Test Harness**
+   - [ ] Create `julius_test_runner.py`
+   - [ ] Create `asan_parser.py`
+   - [ ] End-to-end test: buggy → model fix → evaluate
+
+4. **MJ1 Tasks**
+   - [ ] Extract remaining 9 bugs for MJ1
+   - [ ] Create task directories with patches and tests
+   - [ ] Validate all tasks work without assets
+
+5. **Integration**
+   - [ ] Add `engine: julius` to task schema
+   - [ ] Update `run_benchmark.py` to discover Julius tasks
+   - [ ] Update `evaluation/runner.py` with Julius dispatch
+
+### Task Tier Distribution (Including Julius MJ1)
+
+| Category     | Tier 1 | Tier 2 | Tier 3 | Tier 4 | Tier 5 | Total |
+|--------------|--------|--------|--------|--------|--------|-------|
+| Bug Fix      | 11     | 11     | 9      | 5      | 2      | 38    |
+| Feature      | 3      | 5      | 5      | 2      | 3      | 18    |
+| Optimization | 0      | 2      | 3      | 2      | 1      | 8     |
+| Mini-Game    | 0      | 0      | 3      | 2      | 0      | 5     |
+| Memory Safety| 0      | 1      | 4      | 1      | 0      | 6     |
+| **Total**    | 14     | 19     | 24     | 12     | 6      | **75**|
+
+*Note: After MJ1, total tasks = 60 (current) + 10 (Julius) = 70, with some overlap in bug-fix/memory-safety categories.*
+
+### References
+
+- [Julius GitHub](https://github.com/bvschaik/julius)
+- [Augustus GitHub](https://github.com/Keriew/augustus) (fork with more fixes)
+- [Caesar 3 Bugs Wiki](https://github.com/bvschaik/julius/wiki/Caesar-3-bugs)
+- [Improvements Wiki](https://github.com/bvschaik/julius/wiki/Improvements-from-Caesar-3)
+- [SWE-Bench](https://www.swebench.com/) - Methodology inspiration
