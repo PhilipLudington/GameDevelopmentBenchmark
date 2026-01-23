@@ -14,50 +14,58 @@ from harness.sandbox import SandboxConfig
 from models.base import create_model, ModelError
 
 
-def discover_tasks(tasks_dir: Path, category: str | None = None, tier: int | None = None) -> list[Path]:
+def discover_tasks(
+    tasks_dir: Path,
+    category: str | None = None,
+    tier: int | None = None,
+    engine: str | None = None,
+) -> list[Path]:
     """Discover all tasks in the tasks directory.
 
     Args:
         tasks_dir: Root tasks directory
         category: Optional category filter
         tier: Optional tier filter
+        engine: Optional engine filter (e.g., "pygame", "quake")
 
     Returns:
         List of task directory paths
     """
     tasks = []
 
-    # Search through pygame tasks
-    pygame_dir = tasks_dir / "pygame"
-    if not pygame_dir.exists():
-        return tasks
-
+    # Define engines to search
+    engines = [engine] if engine else ["pygame", "quake"]
     categories = [category] if category else ["bug-fix", "feature", "optimization", "mini-game"]
 
-    for cat in categories:
-        cat_dir = pygame_dir / cat
-        if not cat_dir.exists():
+    for eng in engines:
+        engine_dir = tasks_dir / eng
+        if not engine_dir.exists():
             continue
 
-        for task_dir in cat_dir.iterdir():
-            if not task_dir.is_dir():
+        for cat in categories:
+            cat_dir = engine_dir / cat
+            if not cat_dir.exists():
                 continue
 
-            task_json = task_dir / "task.json"
-            if not task_json.exists():
-                continue
-
-            # Apply tier filter
-            if tier is not None:
-                try:
-                    with open(task_json) as f:
-                        task_data = json.load(f)
-                    if task_data.get("tier") != tier:
-                        continue
-                except (json.JSONDecodeError, IOError):
+            for task_dir in cat_dir.iterdir():
+                if not task_dir.is_dir():
                     continue
 
-            tasks.append(task_dir)
+                task_json = task_dir / "task.json"
+                if not task_json.exists():
+                    continue
+
+                # Apply tier filter
+                if tier is not None:
+                    try:
+                        with open(task_json) as f:
+                            task_data = json.load(f)
+                        if task_data.get("tier") != tier:
+                            continue
+                    except (json.JSONDecodeError, IOError):
+                        continue
+
+                tasks.append(task_dir)
 
     return sorted(tasks)
 
@@ -149,7 +157,10 @@ def run_benchmark_for_model(
 @click.option("--category", "-c",
               type=click.Choice(["bug-fix", "feature", "optimization", "mini-game"]),
               help="Filter by category")
-@click.option("--tier", type=click.IntRange(1, 4), help="Filter by tier")
+@click.option("--tier", type=click.IntRange(1, 5), help="Filter by tier (1-5)")
+@click.option("--engine", "-e",
+              type=click.Choice(["pygame", "quake"]),
+              help="Filter by engine type")
 @click.option("--timeout", default=120, type=int, help="Default execution timeout per task (overridden by task-specific timeouts)")
 @click.option("--verbose", "-v", is_flag=True, help="Verbose output")
 @click.option("--report/--no-report", default=True, help="Generate HTML report")
@@ -159,6 +170,7 @@ def main(
     output: Path,
     category: str | None,
     tier: int | None,
+    engine: str | None,
     timeout: int,
     verbose: bool,
     report: bool,
@@ -167,6 +179,7 @@ def main(
 
     Example:
         python run_benchmark.py -m openai:gpt-4 -m anthropic:claude-3-opus
+        python run_benchmark.py -m anthropic:claude-3-opus --engine quake
     """
     # Create output directory
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -174,7 +187,7 @@ def main(
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Discover tasks
-    tasks = discover_tasks(tasks_dir, category, tier)
+    tasks = discover_tasks(tasks_dir, category, tier, engine)
 
     if not tasks:
         click.echo(click.style("No tasks found", fg="red"))
@@ -182,6 +195,10 @@ def main(
 
     click.echo(f"Found {len(tasks)} tasks")
     click.echo(f"Models: {', '.join(model)}")
+    if engine:
+        click.echo(f"Engine: {engine}")
+    else:
+        click.echo("Engines: pygame, quake")
     click.echo(f"Output: {output_dir}")
     click.echo("=" * 60)
 

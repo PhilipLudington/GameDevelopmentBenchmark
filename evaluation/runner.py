@@ -3,6 +3,7 @@
 
 import json
 import re
+import shutil
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -11,7 +12,10 @@ from typing import Any
 import click
 
 from evaluation.test_runner import TestRunner, TestResult
+from evaluation.c_parser import parse_c_code_blocks
+from evaluation.c_test_runner import CTestRunner, convert_to_test_result
 from harness.sandbox import Sandbox, SandboxConfig, SandboxResult
+from harness.c_sandbox import CSandbox, CSandboxConfig
 from models.base import ModelInterface, GenerationResult, create_model
 
 
@@ -138,8 +142,22 @@ class EvaluationRunner:
 
         return prompt_path.read_text()
 
-    def build_context(self, sandbox: Sandbox) -> dict[str, Any]:
+    def build_context(self, sandbox: Sandbox | CSandbox) -> dict[str, Any]:
         """Build context for the model including file contents.
+
+        Args:
+            sandbox: Sandbox with game files (Sandbox for Python, CSandbox for C)
+
+        Returns:
+            Context dictionary for model generation
+        """
+        if self.task_config and self.task_config.engine == "quake":
+            return self._build_c_context(sandbox)
+        else:
+            return self._build_python_context(sandbox)
+
+    def _build_python_context(self, sandbox: Sandbox) -> dict[str, Any]:
+        """Build context for Python/pygame tasks.
 
         Args:
             sandbox: Sandbox with game files
@@ -167,6 +185,46 @@ class EvaluationRunner:
             for py_file in game_dir.rglob("*.py"):
                 rel_path = py_file.relative_to(game_dir)
                 context["files"][str(rel_path)] = py_file.read_text()
+
+        return context
+
+    def _build_c_context(self, sandbox: CSandbox) -> dict[str, Any]:
+        """Build context for C/Quake tasks.
+
+        Args:
+            sandbox: CSandbox with game files
+
+        Returns:
+            Context dictionary for model generation
+        """
+        context: dict[str, Any] = {
+            "system": (
+                "You are an expert C game developer working on Quake engine code.\n\n"
+                "CRITICAL: You must output the COMPLETE modified file, not just the changed function. "
+                "The code block must contain the entire file from start to finish, including all includes, "
+                "defines, and functions - with your fix applied.\n\n"
+                "Format your response as:\n"
+                "```c filename.c\n"
+                "<complete file contents here>\n"
+                "```\n\n"
+                "For header files:\n"
+                "```c filename.h\n"
+                "<complete file contents here>\n"
+                "```"
+            ),
+            "files": {},
+        }
+
+        # Read C/H files from sandbox
+        game_dir = sandbox.game_dir
+        if game_dir and game_dir.exists():
+            for ext in ["*.c", "*.h"]:
+                for src_file in game_dir.rglob(ext):
+                    rel_path = src_file.relative_to(game_dir)
+                    try:
+                        context["files"][str(rel_path)] = src_file.read_text()
+                    except UnicodeDecodeError:
+                        pass
 
         return context
 
@@ -312,6 +370,8 @@ class EvaluationRunner:
     def run(self) -> EvaluationResult:
         """Run the full evaluation pipeline.
 
+        Dispatches to engine-specific evaluation based on task configuration.
+
         Returns:
             EvaluationResult with all evaluation data
         """
@@ -321,67 +381,12 @@ class EvaluationRunner:
             # Load task configuration
             self.log(f"Loading task from {self.task_dir}")
             task_config = self.load_task()
-            prompt = self.load_prompt()
 
-            # Set up sandbox
-            self.log("Setting up sandbox...")
-            game_dir = self.task_dir / "game"
-            with Sandbox(self.sandbox_config) as sandbox:
-                sandbox.setup(game_dir)
-
-                # Build context with file contents
-                context = self.build_context(sandbox)
-
-                # Update model timeout to use task-specific timeout
-                if task_config.timeout:
-                    self.model.config.timeout = task_config.timeout
-
-                # Generate response from model
-                self.log(f"Invoking model: {self.model.get_name()} (timeout: {self.model.config.timeout}s)")
-                model_result = self.model.generate(prompt, context)
-
-                # Parse code changes from response
-                self.log("Parsing model response...")
-                changes = self.parse_code_blocks(model_result.content)
-
-                if not changes:
-                    self.log("Warning: No code blocks found in response")
-                else:
-                    for filename in changes:
-                        self.log(f"  - {filename} ({len(changes[filename])} chars)")
-
-                # Apply changes to sandbox
-                self.log(f"Applying {len(changes)} file changes...")
-                sandbox.apply_changes(changes)
-
-                # Run evaluation phases
-                eval_results = self.run_evaluation_phases(sandbox)
-
-                # Calculate score
-                score = self.calculate_score(eval_results)
-
-                elapsed = time.time() - start_time
-
-                # Determine success based on score threshold
-                success = score >= 0.95  # Require near-perfect score
-
-                return EvaluationResult(
-                    task_id=task_config.id,
-                    model_name=self.model.get_name(),
-                    success=success,
-                    score=score,
-                    test_results=TestResult(**eval_results["test"]) if eval_results.get("test") else None,
-                    gameplay_results=eval_results.get("gameplay"),
-                    performance_results=eval_results.get("performance"),
-                    model_response=model_result.content,
-                    applied_changes=changes,
-                    elapsed_time=elapsed,
-                    metadata={
-                        "model_config": self.model.get_config(),
-                        "task_tier": task_config.tier,
-                        "task_category": task_config.category,
-                    },
-                )
+            # Dispatch based on engine type
+            if task_config.engine == "quake":
+                return self._run_c_evaluation(task_config, start_time)
+            else:
+                return self._run_python_evaluation(task_config, start_time)
 
         except Exception as e:
             elapsed = time.time() - start_time
@@ -392,6 +397,7 @@ class EvaluationRunner:
                     "model_config": self.model.get_config(),
                     "task_tier": self.task_config.tier,
                     "task_category": self.task_config.category,
+                    "engine": self.task_config.engine,
                 }
             return EvaluationResult(
                 task_id=self.task_config.id if self.task_config else "unknown",
@@ -402,6 +408,219 @@ class EvaluationRunner:
                 error=str(e),
                 metadata=metadata,
             )
+
+    def _run_python_evaluation(self, task_config: TaskConfig, start_time: float) -> EvaluationResult:
+        """Run evaluation for Python/pygame tasks.
+
+        Args:
+            task_config: Task configuration
+            start_time: Evaluation start time
+
+        Returns:
+            EvaluationResult with all evaluation data
+        """
+        prompt = self.load_prompt()
+
+        # Set up sandbox
+        self.log("Setting up Python sandbox...")
+        game_dir = self.task_dir / "game"
+        with Sandbox(self.sandbox_config) as sandbox:
+            sandbox.setup(game_dir)
+
+            # Build context with file contents
+            context = self.build_context(sandbox)
+
+            # Update model timeout to use task-specific timeout
+            if task_config.timeout:
+                self.model.config.timeout = task_config.timeout
+
+            # Generate response from model
+            self.log(f"Invoking model: {self.model.get_name()} (timeout: {self.model.config.timeout}s)")
+            model_result = self.model.generate(prompt, context)
+
+            # Parse code changes from response
+            self.log("Parsing model response...")
+            changes = self.parse_code_blocks(model_result.content)
+
+            if not changes:
+                self.log("Warning: No code blocks found in response")
+            else:
+                for filename in changes:
+                    self.log(f"  - {filename} ({len(changes[filename])} chars)")
+
+            # Apply changes to sandbox
+            self.log(f"Applying {len(changes)} file changes...")
+            sandbox.apply_changes(changes)
+
+            # Run evaluation phases
+            eval_results = self.run_evaluation_phases(sandbox)
+
+            # Calculate score
+            score = self.calculate_score(eval_results)
+
+            elapsed = time.time() - start_time
+
+            # Determine success based on score threshold
+            success = score >= 0.95  # Require near-perfect score
+
+            return EvaluationResult(
+                task_id=task_config.id,
+                model_name=self.model.get_name(),
+                success=success,
+                score=score,
+                test_results=TestResult(**eval_results["test"]) if eval_results.get("test") else None,
+                gameplay_results=eval_results.get("gameplay"),
+                performance_results=eval_results.get("performance"),
+                model_response=model_result.content,
+                applied_changes=changes,
+                elapsed_time=elapsed,
+                metadata={
+                    "model_config": self.model.get_config(),
+                    "task_tier": task_config.tier,
+                    "task_category": task_config.category,
+                    "engine": task_config.engine,
+                },
+            )
+
+    def _run_c_evaluation(self, task_config: TaskConfig, start_time: float) -> EvaluationResult:
+        """Run evaluation for C/Quake tasks.
+
+        Args:
+            task_config: Task configuration
+            start_time: Evaluation start time
+
+        Returns:
+            EvaluationResult with all evaluation data
+        """
+        prompt = self.load_prompt()
+
+        # Set up C sandbox with longer timeout for compilation
+        c_config = CSandboxConfig(
+            timeout=task_config.timeout or 120,
+            compiler="gcc",
+            compiler_flags=["-Wall", "-Wextra", "-O2", "-std=c99"],
+            linker_flags=["-lm"],
+        )
+
+        self.log("Setting up C sandbox...")
+        game_dir = self.task_dir / "game"
+
+        with CSandbox(c_config) as sandbox:
+            sandbox.setup(game_dir)
+
+            # Build context with file contents
+            context = self._build_c_context(sandbox)
+
+            # Update model timeout to use task-specific timeout
+            if task_config.timeout:
+                self.model.config.timeout = task_config.timeout
+
+            # Generate response from model
+            self.log(f"Invoking model: {self.model.get_name()} (timeout: {self.model.config.timeout}s)")
+            model_result = self.model.generate(prompt, context)
+
+            # Parse C code changes from response
+            self.log("Parsing C code from response...")
+            changes = parse_c_code_blocks(model_result.content)
+
+            if not changes:
+                self.log("Warning: No C code blocks found in response")
+            else:
+                for filename in changes:
+                    self.log(f"  - {filename} ({len(changes[filename])} chars)")
+
+            # Apply changes to sandbox
+            self.log(f"Applying {len(changes)} file changes...")
+            sandbox.apply_changes(changes)
+
+            # Copy test files to sandbox
+            tests_dir = self.task_dir / "tests"
+            if tests_dir.exists():
+                sandbox_tests = sandbox.working_dir / "tests"
+                if sandbox_tests.exists():
+                    shutil.rmtree(sandbox_tests)
+                shutil.copytree(tests_dir, sandbox_tests)
+
+            # Run C tests
+            eval_results = self._run_c_evaluation_phases(sandbox)
+
+            # Calculate score
+            score = self.calculate_score(eval_results)
+
+            elapsed = time.time() - start_time
+
+            # Determine success based on score threshold
+            success = score >= 0.95  # Require near-perfect score
+
+            return EvaluationResult(
+                task_id=task_config.id,
+                model_name=self.model.get_name(),
+                success=success,
+                score=score,
+                test_results=TestResult(**eval_results["test"]) if eval_results.get("test") else None,
+                gameplay_results=eval_results.get("gameplay"),
+                performance_results=eval_results.get("performance"),
+                model_response=model_result.content,
+                applied_changes=changes,
+                elapsed_time=elapsed,
+                metadata={
+                    "model_config": self.model.get_config(),
+                    "task_tier": task_config.tier,
+                    "task_category": task_config.category,
+                    "engine": task_config.engine,
+                },
+            )
+
+    def _run_c_evaluation_phases(self, sandbox: CSandbox) -> dict[str, Any]:
+        """Run evaluation phases for C/Quake tasks.
+
+        Args:
+            sandbox: CSandbox with modified game code
+
+        Returns:
+            Dictionary with results from each phase
+        """
+        results: dict[str, Any] = {
+            "test": None,
+            "gameplay": None,
+            "performance": None,
+        }
+
+        if not self.task_config:
+            return results
+
+        evaluation_methods = self.task_config.evaluation
+
+        # Run unit/integration tests via Makefile
+        if "unit-test" in evaluation_methods or "integration-test" in evaluation_methods:
+            self.log("Running C tests...")
+            c_test_runner = CTestRunner(sandbox, timeout=self.task_config.timeout or 120)
+            c_result = c_test_runner.run()
+
+            results["test"] = {
+                "passed": c_result.passed,
+                "failed": c_result.failed,
+                "errors": c_result.errors,
+                "skipped": c_result.skipped,
+                "total": c_result.total,
+                "success": c_result.success,
+                "output": c_result.output,
+            }
+
+            if c_result.compilation_error:
+                self.log(f"Compilation error: {c_result.compilation_error}")
+
+        # Performance evaluation for optimization tasks
+        if "performance" in evaluation_methods:
+            self.log("Running performance evaluation...")
+            # Run make compare to get performance metrics
+            perf_result = sandbox.run_make(target="compare")
+            results["performance"] = {
+                "status": "completed" if perf_result.success else "failed",
+                "output": perf_result.stdout + perf_result.stderr,
+            }
+
+        return results
 
 
 @click.command()

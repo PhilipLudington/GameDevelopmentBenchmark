@@ -56,12 +56,42 @@ def validate_task_json(task_dir: Path) -> list[str]:
     return errors
 
 
+def get_task_language(task_dir: Path) -> str:
+    """Determine the programming language for this task."""
+    task_json_path = task_dir / "task.json"
+    if task_json_path.exists():
+        try:
+            with open(task_json_path) as f:
+                task_data = json.load(f)
+                return task_data.get("language", "python")
+        except (json.JSONDecodeError, KeyError):
+            pass
+    return "python"
+
+
+def get_file_extensions(language: str) -> list[str]:
+    """Get file extensions for a given language."""
+    extensions = {
+        "python": [".py"],
+        "c": [".c", ".h"],
+        "cpp": [".cpp", ".cc", ".cxx", ".h", ".hpp"],
+        "gdscript": [".gd"],
+        "csharp": [".cs"],
+    }
+    return extensions.get(language, [".py"])
+
+
 def validate_task_structure(task_dir: Path) -> list[str]:
     """Validate the task directory structure.
 
     Returns a list of validation errors (empty if valid).
     """
     errors = []
+    warnings = []
+
+    # Determine language for this task
+    language = get_task_language(task_dir)
+    extensions = get_file_extensions(language)
 
     # Required files
     required_files = ["task.json", "prompt.md"]
@@ -78,16 +108,18 @@ def validate_task_structure(task_dir: Path) -> list[str]:
         elif not dir_path.is_dir():
             errors.append(f"Expected directory but found file: {dirname}")
 
-    # Check game directory has Python files
+    # Check game directory has source files for the appropriate language
     game_dir = task_dir / "game"
     if game_dir.exists() and game_dir.is_dir():
-        py_files = list(game_dir.glob("*.py"))
-        if not py_files:
-            errors.append("game/ directory contains no Python files")
+        source_files = []
+        for ext in extensions:
+            source_files.extend(game_dir.glob(f"*{ext}"))
+        if not source_files:
+            ext_list = ", ".join(extensions)
+            errors.append(f"game/ directory contains no source files ({ext_list})")
 
     # Optional but recommended directories
     recommended_dirs = ["solution", "tests"]
-    warnings = []
     for dirname in recommended_dirs:
         if not (task_dir / dirname).exists():
             warnings.append(f"Recommended directory missing: {dirname}/")
@@ -135,10 +167,17 @@ def validate_solution(task_dir: Path) -> list[str]:
         errors.append("solution should be a directory")
         return errors
 
-    # Check solution has Python files
-    py_files = list(solution_dir.glob("*.py"))
-    if not py_files:
-        errors.append("solution/ directory contains no Python files")
+    # Determine language for this task
+    language = get_task_language(task_dir)
+    extensions = get_file_extensions(language)
+
+    # Check solution has source files for the appropriate language
+    source_files = []
+    for ext in extensions:
+        source_files.extend(solution_dir.glob(f"*{ext}"))
+    if not source_files:
+        ext_list = ", ".join(extensions)
+        errors.append(f"solution/ directory contains no source files ({ext_list})")
 
     return errors
 
@@ -158,10 +197,25 @@ def validate_tests(task_dir: Path) -> list[str]:
         errors.append("tests should be a directory")
         return errors
 
-    # Check for test files
-    test_files = list(tests_dir.glob("test_*.py"))
-    if not test_files:
-        errors.append("tests/ directory contains no test_*.py files")
+    # Determine language for this task
+    language = get_task_language(task_dir)
+
+    # Check for test files based on language
+    if language == "python":
+        test_files = list(tests_dir.glob("test_*.py"))
+        if not test_files:
+            errors.append("tests/ directory contains no test_*.py files")
+    elif language in ["c", "cpp"]:
+        # C/C++ tests can be test_*.c, test_*.cpp, or have a Makefile
+        test_files = list(tests_dir.glob("test_*.c")) + list(tests_dir.glob("test_*.cpp"))
+        makefile = tests_dir / "Makefile"
+        if not test_files and not makefile.exists():
+            errors.append("tests/ directory contains no test_*.c files or Makefile")
+    else:
+        # For other languages, just check that the directory isn't empty
+        all_files = list(tests_dir.iterdir())
+        if not all_files:
+            errors.append("tests/ directory is empty")
 
     return errors
 

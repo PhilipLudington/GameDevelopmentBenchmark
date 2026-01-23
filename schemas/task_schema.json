@@ -25,13 +25,18 @@
     "tier": {
       "type": "integer",
       "minimum": 1,
-      "maximum": 4,
-      "description": "Difficulty tier (1=simple, 4=expert)"
+      "maximum": 5,
+      "description": "Difficulty tier (1=simple, 4=expert, 5=legendary)"
     },
     "engine": {
       "type": "string",
-      "enum": ["pygame", "godot", "unity", "unreal"],
+      "enum": ["pygame", "godot", "unity", "unreal", "quake"],
       "description": "Game engine/framework"
+    },
+    "language": {
+      "type": "string",
+      "enum": ["python", "c", "cpp", "gdscript", "csharp"],
+      "description": "Primary programming language for this task"
     },
     "description": {
       "type": "string",
@@ -42,11 +47,18 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["unit-test", "integration-test", "gameplay", "performance", "visual"]
+        "enum": ["unit-test", "integration-test", "gameplay", "performance", "visual", "visual-regression"]
       },
       "minItems": 1,
       "uniqueItems": true,
       "description": "Evaluation methods to use"
+    },
+    "difficulty_factors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of factors that make this task challenging"
     },
     "tags": {
       "type": "array",
