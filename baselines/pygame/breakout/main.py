@@ -74,6 +74,7 @@ class GameState(Enum):
     MENU = "menu"
     PLAYING = "playing"
     PAUSED = "paused"
+    COUNTDOWN = "countdown"
     GAME_OVER = "game_over"
     VICTORY = "victory"
 
@@ -233,6 +234,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 36)
         self.large_font = pygame.font.Font(None, 72)
+        self.countdown_font = pygame.font.Font(None, 150)
 
         # Game objects
         self.paddle = Paddle()
@@ -246,6 +248,10 @@ class Game:
         self.lives = INITIAL_LIVES
         self.frame_count = 0
         self.running = True
+
+        # Countdown state
+        self.countdown_value = 3
+        self.countdown_timer = 0
 
         # Callbacks for testing
         self.on_score: Optional[Callable[[int], None]] = None
@@ -295,6 +301,9 @@ class Game:
         if new_state == GameState.PLAYING:
             if old_state == GameState.MENU or old_state == GameState.GAME_OVER or old_state == GameState.VICTORY:
                 self.reset_game()
+        elif new_state == GameState.COUNTDOWN:
+            self.countdown_value = 3
+            self.countdown_timer = 0
         elif new_state == GameState.GAME_OVER:
             if self.score > self.high_score:
                 self.high_score = self.score
@@ -311,7 +320,7 @@ class Game:
                     if self.state == GameState.PLAYING:
                         self.set_state(GameState.PAUSED)
                     elif self.state == GameState.PAUSED:
-                        self.set_state(GameState.PLAYING)
+                        self.set_state(GameState.COUNTDOWN)
                     elif self.state in (GameState.MENU, GameState.GAME_OVER, GameState.VICTORY):
                         self.running = False
 
@@ -319,7 +328,7 @@ class Game:
                     if self.state == GameState.MENU:
                         self.set_state(GameState.PLAYING)
                     elif self.state == GameState.PAUSED:
-                        self.set_state(GameState.PLAYING)
+                        self.set_state(GameState.COUNTDOWN)
                     elif self.state == GameState.GAME_OVER:
                         self.set_state(GameState.PLAYING)
                     elif self.state == GameState.VICTORY:
@@ -329,7 +338,7 @@ class Game:
                     if self.state == GameState.PLAYING:
                         self.set_state(GameState.PAUSED)
                     elif self.state == GameState.PAUSED:
-                        self.set_state(GameState.PLAYING)
+                        self.set_state(GameState.COUNTDOWN)
 
     def handle_continuous_input(self):
         """Handle continuous key presses for paddle movement."""
@@ -344,6 +353,16 @@ class Game:
 
     def update(self):
         """Update game logic for one frame."""
+        # Handle countdown state
+        if self.state == GameState.COUNTDOWN:
+            self.countdown_timer += 1
+            if self.countdown_timer >= FPS:
+                self.countdown_timer = 0
+                self.countdown_value -= 1
+                if self.countdown_value < 0:
+                    self.set_state(GameState.PLAYING)
+            return
+
         if self.state != GameState.PLAYING:
             return
 
@@ -430,6 +449,9 @@ class Game:
         elif self.state == GameState.PAUSED:
             self._draw_game()
             self._draw_paused_overlay()
+        elif self.state == GameState.COUNTDOWN:
+            self._draw_game()
+            self._draw_countdown_overlay()
         elif self.state == GameState.GAME_OVER:
             self._draw_game()
             self._draw_game_over_overlay()
@@ -503,6 +525,16 @@ class Game:
         resume_text = self.font.render("Press SPACE or P to resume", True, GRAY)
         resume_rect = resume_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50))
         self.screen.blit(resume_text, resume_rect)
+
+    def _draw_countdown_overlay(self):
+        """Draw the countdown overlay."""
+        overlay = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.SRCALPHA)
+        overlay.fill((0, 0, 0, 128))
+        self.screen.blit(overlay, (0, 0))
+
+        countdown_text = self.countdown_font.render(str(self.countdown_value), True, WHITE)
+        countdown_rect = countdown_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
+        self.screen.blit(countdown_text, countdown_rect)
 
     def _draw_game_over_overlay(self):
         """Draw the game over overlay."""
