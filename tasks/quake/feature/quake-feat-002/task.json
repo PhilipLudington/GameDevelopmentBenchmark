@@ -1,0 +1,21 @@
+{
+  "id": "quake-feat-002",
+  "name": "Implement portal-based occlusion culling",
+  "category": "feature",
+  "tier": 5,
+  "engine": "quake",
+  "description": "Add a portal system for real-time visibility determination, allowing dynamic opening/closing of visibility pathways between areas",
+  "evaluation": ["unit-test", "performance"],
+  "tags": ["rendering", "culling", "portals", "visibility", "bsp", "quake"],
+  "baseline": "quake",
+  "timeout": 600,
+  "files_to_modify": ["r_main.c", "r_bsp.c", "world.c"],
+  "language": "c",
+  "difficulty_factors": [
+    "Understanding convex hulls and portal geometry",
+    "Frustum-portal intersection tests",
+    "Recursive visibility through portal chains",
+    "Handling portals that look back into current area",
+    "Integrating with existing PVS system"
+  ]
+}

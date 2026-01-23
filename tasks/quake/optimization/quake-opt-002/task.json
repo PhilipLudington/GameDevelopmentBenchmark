@@ -1,0 +1,21 @@
+{
+  "id": "quake-opt-002",
+  "name": "Optimize entity linked list traversal",
+  "category": "optimization",
+  "tier": 4,
+  "engine": "quake",
+  "description": "Replace the O(n) linked list entity lookup with a spatial hash for collision detection, reducing physics update time from O(n²) to O(n)",
+  "evaluation": ["unit-test", "performance"],
+  "tags": ["physics", "collision", "spatial-hash", "linked-list", "optimization", "quake"],
+  "baseline": "quake",
+  "timeout": 300,
+  "files_to_modify": ["world.c"],
+  "language": "c",
+  "difficulty_factors": [
+    "Understanding spatial partitioning data structures",
+    "Designing a hash function for 3D coordinates",
+    "Handling entities that span multiple cells",
+    "Memory management for dynamic cell contents",
+    "Maintaining correctness while changing data structures"
+  ]
+}

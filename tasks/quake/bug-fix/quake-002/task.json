@@ -1,0 +1,21 @@
+{
+  "id": "quake-002",
+  "name": "Zone memory allocator corruption on fragmentation",
+  "category": "bug-fix",
+  "tier": 5,
+  "engine": "quake",
+  "description": "Fix a memory corruption bug in Quake's zone allocator that occurs when memory becomes heavily fragmented, causing random crashes and data corruption",
+  "evaluation": ["unit-test"],
+  "tags": ["memory", "zone", "allocator", "corruption", "fragmentation", "quake"],
+  "baseline": "quake",
+  "timeout": 300,
+  "files_to_modify": ["zone.c"],
+  "language": "c",
+  "difficulty_factors": [
+    "Understanding custom memory allocator design",
+    "Linked list manipulation with sentinel nodes",
+    "Integer overflow in size calculations",
+    "Memory alignment requirements",
+    "Debugging memory corruption without tools"
+  ]
+}

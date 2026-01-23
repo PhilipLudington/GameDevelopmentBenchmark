@@ -1,0 +1,21 @@
+{
+  "id": "quake-opt-003",
+  "name": "Optimize lightmap interpolation for dynamic lights",
+  "category": "optimization",
+  "tier": 5,
+  "engine": "quake",
+  "description": "Implement incremental lightmap updates for dynamic lights to avoid full surface recalculation, dramatically improving scenes with many moving light sources",
+  "evaluation": ["unit-test", "performance", "visual-regression"],
+  "tags": ["rendering", "lighting", "lightmap", "dynamic", "optimization", "quake"],
+  "baseline": "quake",
+  "timeout": 300,
+  "files_to_modify": ["r_light.c", "gl_rlight.c"],
+  "language": "c",
+  "difficulty_factors": [
+    "Understanding lightmap texture representation",
+    "Bilinear interpolation for smooth lighting",
+    "Dirty rectangle tracking for partial updates",
+    "Cache coherency for texture updates",
+    "Balancing visual quality vs performance"
+  ]
+}

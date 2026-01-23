@@ -1,0 +1,21 @@
+{
+  "id": "quake-feat-003",
+  "name": "Implement procedural terrain generation",
+  "category": "feature",
+  "tier": 5,
+  "engine": "quake",
+  "description": "Add a procedural terrain system using heightmaps and chunked LOD, enabling large outdoor environments that weren't possible with static BSP geometry",
+  "evaluation": ["unit-test", "visual-regression", "performance"],
+  "tags": ["terrain", "procedural", "lod", "heightmap", "rendering", "quake"],
+  "baseline": "quake",
+  "timeout": 600,
+  "files_to_modify": ["r_main.c", "gl_rmain.c", "model.c"],
+  "language": "c",
+  "difficulty_factors": [
+    "Heightmap sampling and normal calculation",
+    "Level-of-detail mesh generation",
+    "Seamless LOD transitions (geomorphing)",
+    "Integrating terrain with BSP collision",
+    "Texture splatting for terrain materials"
+  ]
+}

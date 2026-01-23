@@ -447,3 +447,59 @@ act -j validate
 1. Set up CI/CD when ready
 2. Run model baselines to validate tasks
 3. Expand to M2 (200+ tasks) with additional game engines
+
+---
+
+## Phase 2: Quake 1 Engine Tasks (Expert Difficulty)
+
+### Overview
+
+Added Quake 1 (id Software GPL release) as a new engine for expert-level tasks. These tasks are significantly harder than Pygame tasks, requiring deep understanding of:
+- 1990s game engine architecture
+- BSP rendering and visibility
+- Memory management (zone allocator)
+- Network prediction
+- Low-level audio mixing
+
+### Quake Task Distribution
+
+| ID | Category | Tier | Description |
+|----|----------|------|-------------|
+| quake-001 | bug-fix | 4 | BSP node child pointer corruption causes missing geometry |
+| quake-002 | bug-fix | 5 | Zone memory allocator corruption on fragmentation |
+| quake-003 | bug-fix | 5 | Network prediction desync causes player teleportation |
+| quake-004 | bug-fix | 4 | Sound mixing overflow causes audio distortion |
+| quake-opt-001 | optimization | 4 | Optimize PVS decompression for large maps |
+| quake-opt-002 | optimization | 4 | Optimize entity linked list with spatial hash |
+| quake-opt-003 | optimization | 5 | Optimize lightmap interpolation for dynamic lights |
+| quake-feat-001 | feature | 5 | Implement skeletal animation system |
+| quake-feat-002 | feature | 5 | Implement portal-based occlusion culling |
+| quake-feat-003 | feature | 5 | Implement procedural terrain generation |
+
+**Total: 10 Quake tasks (all tier 4-5 expert difficulty)**
+
+### Key Differences from Pygame Tasks
+
+1. **Language**: C instead of Python
+2. **Complexity**: Large codebase (50k+ lines) vs small games
+3. **Architecture**: Systems programming (memory, networking, rendering)
+4. **Testing**: Custom test harnesses that mock Quake subsystems
+5. **Timeout**: 300-600 seconds (vs 120 for Pygame)
+
+### Quake Source Reference
+
+- **Repository:** https://github.com/id-Software/Quake
+- **License:** GPL v2
+- **Key directories:**
+  - `WinQuake/` - Main engine source
+  - `QW/` - QuakeWorld networking
+
+### Task Tier Distribution (Including Quake)
+
+| Category     | Tier 1 | Tier 2 | Tier 3 | Tier 4 | Tier 5 | Total |
+|--------------|--------|--------|--------|--------|--------|-------|
+| Bug Fix      | 10     | 8      | 5      | 4      | 2      | 29    |
+| Feature      | 3      | 5      | 5      | 2      | 3      | 18    |
+| Optimization | 0      | 2      | 3      | 2      | 1      | 8     |
+| Mini-Game    | 0      | 0      | 3      | 2      | 0      | 5     |
+| **Total**    | 13     | 15     | 16     | 10     | 6      | **60**|

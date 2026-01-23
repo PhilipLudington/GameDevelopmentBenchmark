@@ -1,0 +1,21 @@
+{
+  "id": "quake-opt-001",
+  "name": "Optimize PVS decompression for large maps",
+  "category": "optimization",
+  "tier": 4,
+  "engine": "quake",
+  "description": "Improve the Potentially Visible Set (PVS) decompression algorithm to reduce frame time spikes on large complex maps",
+  "evaluation": ["unit-test", "performance"],
+  "tags": ["pvs", "visibility", "compression", "bsp", "performance", "quake"],
+  "baseline": "quake",
+  "timeout": 300,
+  "files_to_modify": ["model.c"],
+  "language": "c",
+  "difficulty_factors": [
+    "Understanding PVS compression scheme (run-length encoding)",
+    "Balancing decompression speed vs memory usage",
+    "Cache-friendly memory access patterns",
+    "Branch prediction considerations",
+    "Measuring performance accurately"
+  ]
+}

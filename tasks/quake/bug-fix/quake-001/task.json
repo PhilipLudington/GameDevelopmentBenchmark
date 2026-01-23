@@ -1,0 +1,20 @@
+{
+  "id": "quake-001",
+  "name": "BSP node child pointer corruption causes missing geometry",
+  "category": "bug-fix",
+  "tier": 4,
+  "engine": "quake",
+  "description": "Fix a subtle bug in BSP tree traversal where geometry intermittently disappears due to incorrect child node pointer handling during recursive descent",
+  "evaluation": ["unit-test", "visual-regression"],
+  "tags": ["bsp", "rendering", "recursion", "pointers", "quake"],
+  "baseline": "quake",
+  "timeout": 300,
+  "files_to_modify": ["r_bsp.c"],
+  "language": "c",
+  "difficulty_factors": [
+    "Understanding 1996-era BSP rendering architecture",
+    "Pointer arithmetic with node/leaf disambiguation",
+    "Recursive traversal with front-to-back ordering",
+    "Subtle signed/unsigned comparison issues"
+  ]
+}

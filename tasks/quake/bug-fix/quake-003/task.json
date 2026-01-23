@@ -1,0 +1,21 @@
+{
+  "id": "quake-003",
+  "name": "Network prediction desync causes player teleportation",
+  "category": "bug-fix",
+  "tier": 5,
+  "engine": "quake",
+  "description": "Fix a client-side prediction bug that causes players to teleport/rubber-band when network conditions change or packet loss occurs",
+  "evaluation": ["unit-test"],
+  "tags": ["networking", "prediction", "client", "interpolation", "quake"],
+  "baseline": "quake",
+  "timeout": 300,
+  "files_to_modify": ["cl_input.c", "cl_parse.c"],
+  "language": "c",
+  "difficulty_factors": [
+    "Understanding client-side prediction in multiplayer games",
+    "State interpolation and extrapolation",
+    "Handling out-of-order or dropped packets",
+    "Server authority vs client prediction reconciliation",
+    "Fixed-point vs floating-point precision issues"
+  ]
+}

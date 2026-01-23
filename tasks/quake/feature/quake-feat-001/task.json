@@ -1,0 +1,21 @@
+{
+  "id": "quake-feat-001",
+  "name": "Implement skeletal animation system",
+  "category": "feature",
+  "tier": 5,
+  "engine": "quake",
+  "description": "Add a skeletal animation system to Quake's model renderer, allowing for smooth animation blending and IK-based procedural animations",
+  "evaluation": ["unit-test", "visual-regression"],
+  "tags": ["animation", "skeletal", "rendering", "models", "ik", "quake"],
+  "baseline": "quake",
+  "timeout": 600,
+  "files_to_modify": ["r_alias.c", "model.c", "gl_model.c"],
+  "language": "c",
+  "difficulty_factors": [
+    "Understanding vertex skinning mathematics",
+    "Quaternion-based rotation interpolation (SLERP)",
+    "Bone hierarchy traversal and transforms",
+    "Animation blending between states",
+    "Integrating with existing model format"
+  ]
+}
