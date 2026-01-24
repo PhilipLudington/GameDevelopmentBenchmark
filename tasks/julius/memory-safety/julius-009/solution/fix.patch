@@ -1,0 +1,33 @@
+diff --git a/src/building/building.c b/src/building/building.c
+index abc1234..def5678 100644
+--- a/src/building/building.c
++++ b/src/building/building.c
+@@ -120,8 +120,12 @@ building *building_get(int building_id)
+ int process_building_worker(int building_id)
+ {
+     building *b = building_get(building_id);
+-    b->num_workers++;
+-    return b->type;
++    if (!b) {
++        // Building was deleted or invalid - skip processing
++        return -1;
++    }
++    b->num_workers++;
++    return b->type;
+ }
+
+ int get_building_position(int building_id, int *x, int *y)
+ {
+     building *b = building_get(building_id);
+-    *x = b->x;
+-    *y = b->y;
+-    return b->type;
++    if (!b) {
++        *x = 0;
++        *y = 0;
++        return -1;
++    }
++    *x = b->x;
++    *y = b->y;
++    return b->type;
+ }

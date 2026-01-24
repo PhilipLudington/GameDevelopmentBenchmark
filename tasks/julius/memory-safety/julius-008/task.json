@@ -1,0 +1,23 @@
+{
+  "id": "julius-008",
+  "name": "Integer overflow in resource calculation",
+  "category": "memory-safety",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix an integer overflow vulnerability in resource stockpile calculations where multiplying large quantities can wrap around to small or negative values, causing incorrect game behavior",
+  "evaluation": ["unit-test"],
+  "tags": ["memory-safety", "integer-overflow", "arithmetic", "resources", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "4e1e740a",
+  "files_to_modify": ["src/city/resource.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding integer overflow in C",
+    "Identifying multiplication overflow risks",
+    "Implementing overflow checks before operations",
+    "Choosing appropriate wider types for intermediate results"
+  ]
+}

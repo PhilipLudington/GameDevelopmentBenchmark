@@ -1,0 +1,23 @@
+{
+  "id": "julius-007",
+  "name": "Buffer overflow in filename handling",
+  "category": "memory-safety",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a heap buffer overflow in filename path construction where user-provided paths can exceed the fixed-size buffer, corrupting adjacent memory",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "buffer-overflow", "string", "path", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "4e1e740a",
+  "files_to_modify": ["src/core/file.c"],
+  "requires_assets": false,
+  "expected_asan_error": "heap-buffer-overflow",
+  "difficulty_factors": [
+    "Understanding string buffer management in C",
+    "Identifying unchecked buffer bounds",
+    "Implementing safe string copy with length limits",
+    "Handling path separator differences across platforms"
+  ]
+}

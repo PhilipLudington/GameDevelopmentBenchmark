@@ -34,8 +34,8 @@ def discover_tasks(
     tasks = []
 
     # Define engines to search
-    engines = [engine] if engine else ["pygame", "quake"]
-    categories = [category] if category else ["bug-fix", "feature", "optimization", "mini-game"]
+    engines = [engine] if engine else ["pygame", "quake", "julius"]
+    categories = [category] if category else ["bug-fix", "feature", "optimization", "mini-game", "memory-safety", "crash-fix", "game-logic", "visual"]
 
     for eng in engines:
         engine_dir = tasks_dir / eng
@@ -155,11 +155,11 @@ def run_benchmark_for_model(
 @click.option("--output", "-o", type=click.Path(path_type=Path),
               default="results/runs", help="Output directory")
 @click.option("--category", "-c",
-              type=click.Choice(["bug-fix", "feature", "optimization", "mini-game"]),
+              type=click.Choice(["bug-fix", "feature", "optimization", "mini-game", "memory-safety", "crash-fix", "game-logic", "visual"]),
               help="Filter by category")
 @click.option("--tier", type=click.IntRange(1, 5), help="Filter by tier (1-5)")
 @click.option("--engine", "-e",
-              type=click.Choice(["pygame", "quake"]),
+              type=click.Choice(["pygame", "quake", "julius"]),
               help="Filter by engine type")
 @click.option("--timeout", default=120, type=int, help="Default execution timeout per task (overridden by task-specific timeouts)")
 @click.option("--verbose", "-v", is_flag=True, help="Verbose output")
@@ -198,7 +198,7 @@ def main(
     if engine:
         click.echo(f"Engine: {engine}")
     else:
-        click.echo("Engines: pygame, quake")
+        click.echo("Engines: pygame, quake, julius")
     click.echo(f"Output: {output_dir}")
     click.echo("=" * 60)
 

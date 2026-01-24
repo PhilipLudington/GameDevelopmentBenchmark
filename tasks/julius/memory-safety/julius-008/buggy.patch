@@ -1,0 +1,14 @@
+diff --git a/src/city/resource.c b/src/city/resource.c
+index 0d548116..5b9dd8da 100644
+--- a/src/city/resource.c
++++ b/src/city/resource.c
+@@ -375,3 +375,9 @@ void city_resource_consume_food(void)
+     city_data.resource.food_produced_last_month = city_data.resource.food_produced_this_month;
+     city_data.resource.food_produced_this_month = 0;
+ }
++
++int resource_calculate_value(int quantity, int price_per_unit)
++{
++    int total = quantity * price_per_unit;
++    return total;
++}

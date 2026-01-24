@@ -1,0 +1,23 @@
+{
+  "id": "julius-010",
+  "name": "Use-after-free in UI window callback",
+  "category": "memory-safety",
+  "tier": 4,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a use-after-free vulnerability in the UI system where closing a dialog window can trigger callbacks that access the freed window structure, causing memory corruption",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "use-after-free", "ui", "callback", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "4e1e740a",
+  "files_to_modify": ["src/window/city.c"],
+  "requires_assets": false,
+  "expected_asan_error": "heap-use-after-free",
+  "difficulty_factors": [
+    "Understanding callback-based UI architecture",
+    "Identifying lifecycle issues with freed memory",
+    "Recognizing event ordering problems",
+    "Implementing safe cleanup with deferred deletion"
+  ]
+}

@@ -1,0 +1,14 @@
+diff --git a/src/building/building.c b/src/building/building.c
+index 79dbf75c..06929eeb 100644
+--- a/src/building/building.c
++++ b/src/building/building.c
+@@ -354,3 +354,9 @@ void building_load_state(buffer *buf, buffer *highest_id, buffer *highest_id_eve
+     extra.incorrect_houses = buffer_read_i32(corrupt_houses);
+     extra.unfixable_houses = buffer_read_i32(corrupt_houses);
+ }
++
++int building_get_fire_risk_unsafe(int building_id)
++{
++    building *b = building_get(building_id);
++    return b->fire_risk;
++}

@@ -1,0 +1,23 @@
+{
+  "id": "julius-005",
+  "name": "Hotkey config ordering mismatch",
+  "category": "game-logic",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a configuration bug where hotkey definitions are ordered differently between the header enum and the implementation string array, causing hotkey config files to map to wrong actions",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "configuration", "enum-order", "ui", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "cc13da0c",
+  "files_to_modify": ["src/core/hotkey_config.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding enum-to-string mapping patterns",
+    "Identifying ordering mismatches between header and implementation",
+    "Recognizing impact on config file parsing",
+    "Maintaining consistency across declarations"
+  ]
+}

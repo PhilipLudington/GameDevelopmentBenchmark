@@ -1,0 +1,21 @@
+diff --git a/src/window/city.c b/src/window/city.c
+index 06b3abc1..771b6efb 100644
+--- a/src/window/city.c
++++ b/src/window/city.c
+@@ -385,3 +385,16 @@ void window_city_return(void)
+         window_city_show();
+     }
+ }
++
++static void *pending_callback_data = NULL;
++
++void ui_trigger_callback_unsafe(void *data)
++{
++    pending_callback_data = data;
++    free(data);
++}
++
++void *ui_get_callback_data(void)
++{
++    return pending_callback_data;
++}

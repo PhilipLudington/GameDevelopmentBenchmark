@@ -1,0 +1,23 @@
+{
+  "id": "julius-003",
+  "name": "Sheep out-of-bounds destination",
+  "category": "memory-safety",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix an out-of-bounds memory access where herd animals (sheep, wolves) could get destinations outside the map grid bounds, causing array access violations",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "out-of-bounds", "array-bounds", "game-logic", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "5a37aa8",
+  "files_to_modify": ["src/figuretype/animal.c"],
+  "requires_assets": false,
+  "expected_asan_error": "heap-buffer-overflow",
+  "difficulty_factors": [
+    "Understanding formation and herd movement systems",
+    "Recognizing boundary condition bugs",
+    "Implementing proper bounds checking",
+    "Extracting shared logic into helper functions"
+  ]
+}

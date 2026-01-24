@@ -1,0 +1,31 @@
+diff --git a/src/core/file.c b/src/core/file.c
+index abc1234..def5678 100644
+--- a/src/core/file.c
++++ b/src/core/file.c
+@@ -45,14 +45,23 @@ char *file_construct_path(const char *dir, const char *filename)
+ {
+     if (!dir || !filename) return NULL;
+
+-    char *buffer = malloc(MAX_PATH_LENGTH);
+-    if (!buffer) return NULL;
++    size_t dir_len = strlen(dir);
++    size_t file_len = strlen(filename);
++    size_t total_len = dir_len + 1 + file_len;  // dir + '/' + filename
+
+-    strcpy(buffer, dir);
+-    strcat(buffer, "/");
+-    strcat(buffer, filename);
++    // Check if path would exceed buffer (leaving room for null terminator)
++    if (total_len >= MAX_PATH_LENGTH) {
++        return NULL;  // Path too long
++    }
+
+-    return buffer;
++    char *buffer = malloc(MAX_PATH_LENGTH);
++    if (!buffer) return NULL;
++
++    // Use snprintf for safe construction
++    snprintf(buffer, MAX_PATH_LENGTH, "%s/%s", dir, filename);
++
++    return buffer;
+ }

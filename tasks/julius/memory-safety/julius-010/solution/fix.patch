@@ -1,0 +1,40 @@
+diff --git a/src/window/window.c b/src/window/window.c
+index abc1234..def5678 100644
+--- a/src/window/window.c
++++ b/src/window/window.c
+@@ -45,6 +45,8 @@ window *window_create(int id)
+     w->id = id;
+     w->state = WINDOW_STATE_ACTIVE;
++    w->ref_count = 1;
++    w->pending_callbacks = 0;
+     w->alpha = 255;
+     return w;
+ }
+
++void window_retain(window *w)
++{
++    if (w && w->state != WINDOW_STATE_CLOSED) {
++        w->ref_count++;
++    }
++}
++
++void window_release(window *w)
++{
++    if (!w) return;
++    w->ref_count--;
++    if (w->ref_count == 0) {
++        w->state = WINDOW_STATE_CLOSED;
++        free(w);
++    }
++}
++
+ void window_close(window *w)
+ {
++    w->state = WINDOW_STATE_CLOSING;
+     if (w->on_close) {
+-        w->on_close(w);
++        w->on_close(w);  // May call window_retain
+     }
+-    free(w);
++    window_release(w);  // Release initial reference
+ }

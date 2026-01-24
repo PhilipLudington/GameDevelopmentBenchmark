@@ -1,0 +1,23 @@
+{
+  "id": "julius-006",
+  "name": "Clone building ignores disallowed buildings",
+  "category": "game-logic",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a validation bug where the clone building function only checks if the building menu group is allowed, not the specific building type, allowing disallowed buildings to be placed via hotkey",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "validation", "building", "scenario", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "2c12e32",
+  "files_to_modify": ["src/scenario/building.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding building hierarchy (types vs groups)",
+    "Recognizing incomplete validation logic",
+    "Implementing case-by-case building type checks",
+    "Maintaining consistency with scenario restrictions"
+  ]
+}

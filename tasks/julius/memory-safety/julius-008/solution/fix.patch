@@ -1,0 +1,20 @@
+diff --git a/src/city/resource.c b/src/city/resource.c
+index abc1234..def5678 100644
+--- a/src/city/resource.c
++++ b/src/city/resource.c
+@@ -85,7 +85,18 @@ int calculate_resource_value(int quantity, int price_per_unit)
+ {
+-    return quantity * price_per_unit;
++    // Use 64-bit arithmetic to detect overflow
++    int64_t result = (int64_t)quantity * (int64_t)price_per_unit;
++
++    // Clamp to int range to avoid overflow
++    if (result > INT_MAX) {
++        return INT_MAX;
++    }
++    if (result < INT_MIN) {
++        return INT_MIN;
++    }
++
++    return (int)result;
+ }

@@ -1,0 +1,23 @@
+{
+  "id": "julius-002",
+  "name": "Dangling pointer on localized_filename",
+  "category": "memory-safety",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a dangling pointer bug where localized_filename is declared inside an if block but used after the block exits, causing a stack use-after-scope vulnerability",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "stack-use-after-scope", "dangling-pointer", "localization", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "6603f5d",
+  "files_to_modify": ["src/game/file.c"],
+  "requires_assets": false,
+  "expected_asan_error": "stack-use-after-scope",
+  "difficulty_factors": [
+    "Understanding variable scope in C",
+    "Recognizing stack lifetime issues",
+    "Identifying use-after-scope patterns",
+    "Understanding conditional variable declarations"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "julius-001",
+  "name": "Double free in smacker video decoder",
+  "category": "memory-safety",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a double-free vulnerability in the smacker video decoder where frame information pointers are freed multiple times in error paths and cleanup",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "double-free", "video", "smacker", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "f722d9c",
+  "files_to_modify": ["src/core/smacker.c"],
+  "requires_assets": false,
+  "expected_asan_error": "double-free",
+  "difficulty_factors": [
+    "Understanding smacker video format structure",
+    "Identifying multiple deallocation paths",
+    "Implementing proper cleanup pattern",
+    "Ensuring pointer nullification after free"
+  ]
+}

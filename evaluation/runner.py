@@ -14,8 +14,10 @@ import click
 from evaluation.test_runner import TestRunner, TestResult
 from evaluation.c_parser import parse_c_code_blocks
 from evaluation.c_test_runner import CTestRunner, convert_to_test_result
+from evaluation.julius_evaluator import JuliusEvaluator, JuliusEvaluationResult
 from harness.sandbox import Sandbox, SandboxConfig, SandboxResult
 from harness.c_sandbox import CSandbox, CSandboxConfig
+from harness.julius_sandbox import JuliusSandboxConfig
 from models.base import ModelInterface, GenerationResult, create_model
 
 
@@ -383,7 +385,9 @@ class EvaluationRunner:
             task_config = self.load_task()
 
             # Dispatch based on engine type
-            if task_config.engine == "quake":
+            if task_config.engine == "julius":
+                return self._run_julius_evaluation(task_config, start_time)
+            elif task_config.engine == "quake":
                 return self._run_c_evaluation(task_config, start_time)
             else:
                 return self._run_python_evaluation(task_config, start_time)
@@ -570,6 +574,87 @@ class EvaluationRunner:
                     "engine": task_config.engine,
                 },
             )
+
+    def _run_julius_evaluation(self, task_config: TaskConfig, start_time: float) -> EvaluationResult:
+        """Run evaluation for Julius (Caesar III reimplementation) tasks.
+
+        Julius tasks use a different evaluation flow:
+        1. Clone Julius repo at specific commit
+        2. Apply buggy patch to revert fix
+        3. Get model's proposed fix as a patch
+        4. Apply fix and run tests with ASan
+
+        Args:
+            task_config: Task configuration
+            start_time: Evaluation start time
+
+        Returns:
+            EvaluationResult with all evaluation data
+        """
+        self.log(f"Running Julius evaluation for {task_config.id}")
+
+        # Configure Julius sandbox
+        julius_config = JuliusSandboxConfig(
+            timeout=task_config.timeout or 300,
+            enable_asan=True,
+        )
+
+        # Create and run Julius evaluator
+        evaluator = JuliusEvaluator(
+            task_dir=self.task_dir,
+            model=self.model,
+            sandbox_config=julius_config,
+            verbose=self.verbose,
+        )
+
+        julius_result = evaluator.evaluate()
+
+        # Convert JuliusEvaluationResult to EvaluationResult
+        # Map Julius scoring to standard scoring
+        # Julius max is 5 points (4 base + 1 bonus)
+        # Standard score is 0.0 to 1.0
+        score = julius_result.total_score / julius_result.max_score
+
+        # Build test results from Julius results
+        test_results = None
+        if julius_result.test_results:
+            test_results = TestResult(
+                passed=julius_result.test_results.passed,
+                failed=julius_result.test_results.failed,
+                errors=julius_result.test_results.errors,
+                skipped=0,
+                total=julius_result.test_results.total,
+                success=julius_result.test_results.success,
+                output=julius_result.test_results.output,
+                elapsed_time=julius_result.test_results.elapsed_time,
+            )
+
+        elapsed = time.time() - start_time
+
+        return EvaluationResult(
+            task_id=task_config.id,
+            model_name=self.model.get_name(),
+            success=julius_result.success,
+            score=score,
+            test_results=test_results,
+            model_response=julius_result.model_response,
+            applied_changes={"patch": julius_result.applied_patch} if julius_result.applied_patch else {},
+            elapsed_time=elapsed,
+            error=julius_result.error,
+            metadata={
+                "model_config": self.model.get_config(),
+                "task_tier": task_config.tier,
+                "task_category": task_config.category,
+                "engine": task_config.engine,
+                "julius_scoring": {
+                    "compiles": julius_result.compiles,
+                    "no_asan_errors": julius_result.no_asan_errors,
+                    "tests_pass": julius_result.tests_pass,
+                    "matches_fix_structure": julius_result.matches_fix_structure,
+                    "patch_similarity": julius_result.patch_similarity,
+                },
+            },
+        )
 
     def _run_c_evaluation_phases(self, sandbox: CSandbox) -> dict[str, Any]:
         """Run evaluation phases for C/Quake tasks.

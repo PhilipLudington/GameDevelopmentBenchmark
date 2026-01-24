@@ -19,7 +19,7 @@
     },
     "category": {
       "type": "string",
-      "enum": ["bug-fix", "feature", "optimization", "mini-game"],
+      "enum": ["bug-fix", "feature", "optimization", "mini-game", "memory-safety"],
       "description": "Task category"
     },
     "tier": {
@@ -30,7 +30,7 @@
     },
     "engine": {
       "type": "string",
-      "enum": ["pygame", "godot", "unity", "unreal", "quake"],
+      "enum": ["pygame", "godot", "unity", "unreal", "quake", "julius"],
       "description": "Game engine/framework"
     },
     "language": {
@@ -47,7 +47,7 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["unit-test", "integration-test", "gameplay", "performance", "visual", "visual-regression"]
+        "enum": ["unit-test", "integration-test", "gameplay", "performance", "visual", "visual-regression", "asan"]
       },
       "minItems": 1,
       "uniqueItems": true,
@@ -122,6 +122,20 @@
         }
       },
       "description": "Performance metrics for optimization tasks"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]+$",
+      "description": "Git commit hash for Julius/git-based tasks"
+    },
+    "requires_assets": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether task requires proprietary game assets (e.g., Caesar III)"
+    },
+    "expected_asan_error": {
+      "type": "string",
+      "description": "Expected AddressSanitizer error type in buggy code"
     }
   },
   "additionalProperties": false

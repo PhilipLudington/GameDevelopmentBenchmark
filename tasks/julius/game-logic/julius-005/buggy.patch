@@ -1,0 +1,14 @@
+diff --git a/src/core/hotkey_config.c b/src/core/hotkey_config.c
+index 08a49d7a..13ad79da 100644
+--- a/src/core/hotkey_config.c
++++ b/src/core/hotkey_config.c
+@@ -26,8 +26,8 @@ static const char *ini_keys[] = {
+     "decrease_game_speed",
+     "rotate_map_left",
+     "rotate_map_right",
+-    "build_clear_land",
+     "build_vacant_house",
++    "build_clear_land",
+     "build_road",
+     "build_plaza",
+     "build_gardens",

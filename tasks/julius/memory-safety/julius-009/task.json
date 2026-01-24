@@ -1,0 +1,23 @@
+{
+  "id": "julius-009",
+  "name": "Null pointer dereference in building lookup",
+  "category": "memory-safety",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a null pointer dereference where looking up a building by ID can return NULL for deleted or invalid buildings, but callers don't check for NULL before accessing fields",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "null-pointer", "crash", "building", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "4e1e740a",
+  "files_to_modify": ["src/building/building.c"],
+  "requires_assets": false,
+  "expected_asan_error": "SEGV",
+  "difficulty_factors": [
+    "Understanding NULL pointer risks in C",
+    "Identifying missing NULL checks after lookups",
+    "Adding defensive NULL validation",
+    "Considering all code paths that use the lookup"
+  ]
+}

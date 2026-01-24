@@ -1,0 +1,23 @@
+{
+  "id": "julius-004",
+  "name": "Tooltip trailing newline",
+  "category": "visual",
+  "tier": 1,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a text layout algorithm bug where tooltips sometimes have a trailing newline due to incorrect width calculation in multiline text rendering",
+  "evaluation": ["unit-test"],
+  "tags": ["visual", "text-rendering", "ui", "algorithm", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "f75d681",
+  "files_to_modify": ["src/graphics/text.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding text layout algorithms",
+    "Off-by-one error identification",
+    "Recognizing loop condition bugs",
+    "Testing text wrapping edge cases"
+  ]
+}

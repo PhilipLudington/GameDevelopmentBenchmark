@@ -1,0 +1,30 @@
+diff --git a/src/core/file.c b/src/core/file.c
+--- a/src/core/file.c
++++ b/src/core/file.c
+@@ -4,6 +4,7 @@
+ #include "platform/file_manager.h"
+ 
+ #include <stdio.h>
++#include <string.h>
+ #include <stdlib.h>
+ 
+ FILE *file_open(const char *filename, const char *mode)
+@@ -84,3 +85,17 @@ int file_remove(const char *filename)
+ {
+     return platform_file_manager_remove_file(filename);
+ }
++
++#define FILE_MAX_PATH_LENGTH 260
++
++char *file_construct_path(const char *dir, const char *filename)
++{
++    if (!dir || !filename) return NULL;
++    
++    char *buffer = malloc(FILE_MAX_PATH_LENGTH);
++    if (!buffer) return NULL;
++    
++    strcpy(buffer, dir);
++    strcat(buffer, "/");
++    strcat(buffer, filename);
++    return buffer;
++}

@@ -1,0 +1,14 @@
+diff --git a/src/input/hotkey_config.c b/src/input/hotkey_config.c
+index abc1234..def5678 100644
+--- a/src/input/hotkey_config.c
++++ b/src/input/hotkey_config.c
+@@ -45,8 +45,8 @@ static const char *hotkey_names[] = {
+     "arrow_left",
+     "arrow_right",
+     "build_clone",
+-    "build_vacant_house",
+     "build_clear_land",
++    "build_vacant_house",
+     "build_road",
+     "undo",
+     // ... rest of array
