@@ -180,24 +180,7 @@ Create initial task set from Pong baseline:
 | pong-009 | optimization | 2 | Reduce CPU usage in main loop | Done |
 | pong-010 | mini-game | 3 | Create 4-player variant | Done |
 
-### Phase 1.5: CI/CD & Reporting
-
-#### GitHub Actions
-- [ ] `.github/workflows/ci.yml`:
-  - Validate task JSON schemas
-  - Run solution tests
-  - Lint code
-- [ ] `.github/workflows/benchmark.yml`:
-  - Manual/scheduled trigger
-  - Run benchmark suite
-  - Upload results artifact
-
-#### Leaderboard
-- [ ] `leaderboard/index.html`: Static results display
-- [x] `evaluation/report.py`: Generate JSON results
-- [ ] GitHub Pages deployment
-
-### Phase 1.6: Expand to M1 (50 tasks)
+### Phase 1.5: Expand to M1 (50 tasks)
 
 #### Additional Baseline Games
 - [x] Snake baseline (15 tasks complete)
@@ -404,15 +387,18 @@ act -j validate
 
 ## Current Progress
 
-**Status: M1 Complete (50 tasks achieved!)**
+**Status: 70 tasks across 3 engines (Pygame M1 ✅, Quake ✅, Julius MJ1 ✅)**
 
 - Core infrastructure fully operational
-- **50 tasks created and validated:**
-  - 10 Pong tasks
-  - 15 Snake tasks (baseline game + full task suite)
-  - 15 Breakout tasks (baseline game + full task suite)
-  - 10 Space Invaders tasks (baseline game + higher difficulty tasks)
-- Four baseline games fully implemented:
+- **70 tasks created and validated:**
+  - **Pygame (50 tasks):**
+    - 10 Pong tasks
+    - 15 Snake tasks (baseline game + full task suite)
+    - 15 Breakout tasks (baseline game + full task suite)
+    - 10 Space Invaders tasks (baseline game + higher difficulty tasks)
+  - **Quake (10 tasks):** Expert-level C engine tasks (tier 4-5)
+  - **Julius (10 tasks):** Memory-safety, game-logic, and visual bugs (tier 1-4)
+- Four Pygame baseline games fully implemented:
   - Pong: with test coverage
   - Snake: 43 unit tests
   - Breakout: 52 unit tests
@@ -420,33 +406,34 @@ act -j validate
 - Evaluation harness working with multiple model providers:
   - API: OpenAI, Anthropic
   - CLI: Ollama, llama.cpp, Claude Code
-- pong-001 prompt improved with clearer guidance
+- Julius track integrated with main evaluation runner
 
-**Completed:**
+**Recent Completions (Julius MJ1 - Complete):**
+1. ✅ Completed all 10 Julius tasks with standalone C tests:
+   - julius-001: Double free in smacker decoder (tier 3, memory-safety)
+   - julius-002: Dangling pointer on localized_filename (tier 3, memory-safety)
+   - julius-003: Sheep out-of-bounds destination (tier 3, memory-safety)
+   - julius-004: Tooltip trailing newline (tier 1, visual)
+   - julius-005: Hotkey config ordering mismatch (tier 2, game-logic)
+   - julius-006: Clone building validation bypass (tier 2, game-logic)
+   - julius-007: Buffer overflow in filename handling (tier 3, memory-safety)
+   - julius-008: Integer overflow in resource calculation (tier 3, memory-safety)
+   - julius-009: Null pointer dereference in building lookup (tier 2, memory-safety)
+   - julius-010: Use-after-free in UI window callback (tier 4, memory-safety)
+
+**Previous Completions (Phase 1 - Pygame):**
 1. ✅ Improved pong-001 prompt to help models succeed (added detailed fix instructions)
 2. ✅ Created Snake baseline game with full test coverage
-3. ✅ Created all 15 Snake tasks:
-   - 6 bug-fix tasks (5 tier 1, 1 tier 2)
-   - 7 feature tasks (3 tier 1, 3 tier 2, 1 tier 3)
-   - 1 optimization task (tier 2)
-   - 1 mini-game task (tier 3)
+3. ✅ Created all 15 Snake tasks
 4. ✅ Created Breakout baseline game with 52 unit tests
-5. ✅ Created all 15 Breakout tasks:
-   - 6 bug-fix tasks (5 tier 1, 1 tier 2)
-   - 7 feature tasks (2 tier 1, 3 tier 2, 2 tier 3)
-   - 1 optimization task (tier 2)
-   - 1 mini-game task (tier 3)
+5. ✅ Created all 15 Breakout tasks
 6. ✅ Created Space Invaders baseline game with 62 unit tests
-7. ✅ Created all 10 Space Invaders tasks (higher difficulty as requested):
-   - 4 bug-fix tasks (0 tier 1, 3 tier 2, 1 tier 3) - more challenging bugs
-   - 4 feature tasks (0 tier 1, 0 tier 2, 2 tier 3, 2 tier 4) - complex features
-   - 1 optimization task (tier 3) - spatial partitioning
-   - 1 mini-game task (tier 4) - two-player cooperative
+7. ✅ Created all 10 Space Invaders tasks (higher difficulty)
 
 **Next Steps:**
-1. Set up CI/CD when ready
-2. Run model baselines to validate tasks
-3. Expand to M2 (200+ tasks) with additional game engines
+1. Run model baselines to validate all 70 tasks
+2. Set up CI/CD when ready
+3. Expand to M2 (200+ tasks) or Julius MJ2 (50 tasks)
 
 ---
 
@@ -623,55 +610,57 @@ For each task:
 ### Infrastructure Required
 
 #### 3.1 Julius Build Harness
-- [ ] `harness/julius_sandbox.py`:
+- [x] `harness/julius_sandbox.py`:
   - Clone Julius repo at specific commit
   - Apply/revert patches
   - Build with CMake + ASan flags
   - Manage build cache for performance
-- [ ] `harness/patch_utils.py`:
+- [x] `harness/patch_utils.py`:
   - Parse unified diff format
   - Apply model output as patch
   - Validate patch applies cleanly
 
 #### 3.2 Julius Test Runner
-- [ ] `evaluation/julius_test_runner.py`:
+- [x] `evaluation/julius_test_runner.py`:
   - Run compiled test binaries
   - Capture ASan output
   - Parse test results
   - Handle timeout for freeze bugs
-- [ ] `evaluation/asan_parser.py`:
+- [x] `evaluation/asan_parser.py`:
   - Parse AddressSanitizer reports
   - Categorize error types
   - Extract stack traces
 
 #### 3.3 Julius Evaluator
-- [ ] `evaluation/julius_evaluator.py`:
+- [x] `evaluation/julius_evaluator.py`:
   - Scoring logic per evaluation protocol
   - Patch similarity comparison
   - Integration with main benchmark runner
 
 ### Milestones
 
-#### MJ1: Proof of Concept (10 tasks)
-- [ ] Julius build harness working
-- [ ] 10 memory safety tasks (J1 category)
-- [ ] ASan-based evaluation operational
-- [ ] No assets required for any task
-- [ ] Baseline results from 2-3 models
+#### MJ1: Proof of Concept (10 tasks) - **Complete** ✅
+- [x] Julius build harness working
+- [x] ASan-based evaluation operational
+- [x] Integration with main benchmark runner
+- [x] 10 tasks created (10/10 done)
+- [x] All tasks validated (fixed code passes, buggy code fails)
+- [x] No assets required for any task
+- [x] Baseline results: Claude Haiku 80% (8/10)
 
 **Task list for MJ1:**
-| ID | Bug | Commit | Tier |
-|----|-----|--------|------|
-| julius-001 | Double free in smacker decoder | `f722d9c` | 3 |
-| julius-002 | Dangling pointer localized_filename | `6603f5d` | 3 |
-| julius-003 | Sheep OOB destination | `5a37aa8` | 3 |
-| julius-004 | Tooltip trailing newline | `f75d681` | 1 |
-| julius-005 | Hotkey config ordering | #757 | 2 |
-| julius-006 | Clone building validation | `2c12e32` | 2 |
-| julius-007 | Buffer overflow in string handling | TBD | 3 |
-| julius-008 | Integer overflow in calculations | TBD | 3 |
-| julius-009 | Null pointer dereference | TBD | 2 |
-| julius-010 | Use-after-free in UI | TBD | 4 |
+| ID | Bug | Commit | Tier | Status |
+|----|-----|--------|------|--------|
+| julius-001 | Double free in smacker decoder | `f722d9c` | 3 | ✅ Done |
+| julius-002 | Dangling pointer localized_filename | `6603f5d` | 3 | ✅ Done |
+| julius-003 | Sheep OOB destination | `5a37aa8` | 3 | ✅ Done |
+| julius-004 | Tooltip trailing newline | `f75d681` | 1 | ✅ Done |
+| julius-005 | Hotkey config ordering | `pr758` | 2 | ✅ Done |
+| julius-006 | Clone building validation | `2c12e32` | 2 | ✅ Done |
+| julius-007 | Buffer overflow in filename handling | `synthetic` | 3 | ✅ Done |
+| julius-008 | Integer overflow in resource calc | `synthetic` | 3 | ✅ Done |
+| julius-009 | Null pointer dereference in building | `synthetic` | 2 | ✅ Done |
+| julius-010 | Use-after-free in UI callback | `synthetic` | 4 | ✅ Done |
 
 #### MJ2: Core Test Suite (50 tasks)
 - [ ] 50 tasks across J1-J3 categories
@@ -688,45 +677,57 @@ For each task:
 
 ### Implementation Order
 
-1. **Julius Infrastructure**
-   - [ ] Clone and build Julius locally
-   - [ ] Verify ASan builds work
-   - [ ] Create `julius_sandbox.py` with basic clone/build
-   - [ ] Create `patch_utils.py` for patch manipulation
+1. **Julius Infrastructure** ✅
+   - [x] Clone and build Julius locally
+   - [x] Verify ASan builds work
+   - [x] Create `julius_sandbox.py` with basic clone/build
+   - [x] Create `patch_utils.py` for patch manipulation
 
-2. **First Bug Extraction**
-   - [ ] Identify commit `f722d9c` (smacker double free)
-   - [ ] Create `buggy.patch` by reversing the fix
-   - [ ] Write minimal test that triggers the bug
-   - [ ] Verify test passes on fixed code, fails on buggy
+2. **First Bug Extraction** ✅
+   - [x] Identify commit `f722d9c` (smacker double free)
+   - [x] Create `buggy.patch` by reversing the fix
+   - [x] Write minimal test that triggers the bug
+   - [x] Verify test passes on fixed code, fails on buggy
 
-3. **Test Harness**
-   - [ ] Create `julius_test_runner.py`
-   - [ ] Create `asan_parser.py`
-   - [ ] End-to-end test: buggy → model fix → evaluate
+3. **Test Harness** ✅
+   - [x] Create `julius_test_runner.py`
+   - [x] Create `asan_parser.py`
+   - [x] End-to-end test: buggy → model fix → evaluate (tests/evaluation/test_julius_evaluator.py)
 
-4. **MJ1 Tasks**
-   - [ ] Extract remaining 9 bugs for MJ1
-   - [ ] Create task directories with patches and tests
-   - [ ] Validate all tasks work without assets
+4. **MJ1 Tasks** ✅
+   - [x] julius-001: Double free in smacker decoder (f722d9c)
+   - [x] julius-002: Dangling pointer localized_filename (6603f5d)
+   - [x] julius-003: Sheep OOB destination (5a37aa8)
+   - [x] julius-004: Tooltip trailing newline (f75d681)
+   - [x] julius-005: Hotkey config ordering (pr758)
+   - [x] julius-006: Clone building validation (2c12e32)
+   - [x] julius-007: Buffer overflow in filename handling (synthetic)
+   - [x] julius-008: Integer overflow in resource calc (synthetic)
+   - [x] julius-009: Null pointer dereference in building (synthetic)
+   - [x] julius-010: Use-after-free in UI callback (synthetic)
+   - [x] All tasks work without assets
 
-5. **Integration**
-   - [ ] Add `engine: julius` to task schema
-   - [ ] Update `run_benchmark.py` to discover Julius tasks
-   - [ ] Update `evaluation/runner.py` with Julius dispatch
+5. **Integration** ✅
+   - [x] Add `engine: julius` to task schema
+   - [x] Update `run_benchmark.py` to discover Julius tasks
+   - [x] Update `evaluation/runner.py` with Julius dispatch
 
-### Task Tier Distribution (Including Julius MJ1)
+### Task Tier Distribution (Current: 70 tasks)
 
-| Category     | Tier 1 | Tier 2 | Tier 3 | Tier 4 | Tier 5 | Total |
-|--------------|--------|--------|--------|--------|--------|-------|
-| Bug Fix      | 11     | 11     | 9      | 5      | 2      | 38    |
-| Feature      | 3      | 5      | 5      | 2      | 3      | 18    |
-| Optimization | 0      | 2      | 3      | 2      | 1      | 8     |
-| Mini-Game    | 0      | 0      | 3      | 2      | 0      | 5     |
-| Memory Safety| 0      | 1      | 4      | 1      | 0      | 6     |
-| **Total**    | 14     | 19     | 24     | 12     | 6      | **75**|
+| Engine | Category     | Tier 1 | Tier 2 | Tier 3 | Tier 4 | Tier 5 | Total |
+|--------|--------------|--------|--------|--------|--------|--------|-------|
+| Pygame | Bug Fix      | 10     | 8      | 5      | 2      | 0      | 25    |
+| Pygame | Feature      | 3      | 5      | 5      | 2      | 0      | 15    |
+| Pygame | Optimization | 0      | 2      | 3      | 0      | 0      | 5     |
+| Pygame | Mini-Game    | 0      | 0      | 3      | 2      | 0      | 5     |
+| Quake  | Bug Fix      | 0      | 0      | 0      | 2      | 2      | 4     |
+| Quake  | Feature      | 0      | 0      | 0      | 0      | 3      | 3     |
+| Quake  | Optimization | 0      | 0      | 0      | 2      | 1      | 3     |
+| Julius | Memory Safety| 0      | 2      | 5      | 1      | 0      | 8     |
+| Julius | Game Logic   | 0      | 2      | 0      | 0      | 0      | 2     |
+| **Total** |           | **13** | **19** | **21** | **9**  | **6**  | **70**|
 
-*Note: After MJ1, total tasks = 60 (current) + 10 (Julius) = 70, with some overlap in bug-fix/memory-safety categories.*
+*Julius MJ1 complete: 10 tasks across memory-safety, game-logic, and visual categories.*
 
 ### References
 
@@ -735,3 +736,24 @@ For each task:
 - [Caesar 3 Bugs Wiki](https://github.com/bvschaik/julius/wiki/Caesar-3-bugs)
 - [Improvements Wiki](https://github.com/bvschaik/julius/wiki/Improvements-from-Caesar-3)
 - [SWE-Bench](https://www.swebench.com/) - Methodology inspiration
+
+---
+
+## Phase 4: CI/CD & Reporting (Final)
+
+*This phase is intentionally last - to be implemented when ready for GitHub automation.*
+
+### GitHub Actions
+- [ ] `.github/workflows/ci.yml`:
+  - Validate task JSON schemas
+  - Run solution tests
+  - Lint code
+- [ ] `.github/workflows/benchmark.yml`:
+  - Manual/scheduled trigger
+  - Run benchmark suite
+  - Upload results artifact
+
+### Leaderboard
+- [ ] `leaderboard/index.html`: Static results display (placeholder exists)
+- [x] `evaluation/report.py`: Generate JSON results
+- [ ] GitHub Pages deployment
