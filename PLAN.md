@@ -408,32 +408,38 @@ act -j validate
   - CLI: Ollama, llama.cpp, Claude Code
 - Julius track integrated with main evaluation runner
 
-**Recent Completions (Julius MJ1 - Complete):**
-1. ✅ Completed all 10 Julius tasks with standalone C tests:
-   - julius-001: Double free in smacker decoder (tier 3, memory-safety)
-   - julius-002: Dangling pointer on localized_filename (tier 3, memory-safety)
-   - julius-003: Sheep out-of-bounds destination (tier 3, memory-safety)
-   - julius-004: Tooltip trailing newline (tier 1, visual)
-   - julius-005: Hotkey config ordering mismatch (tier 2, game-logic)
-   - julius-006: Clone building validation bypass (tier 2, game-logic)
-   - julius-007: Buffer overflow in filename handling (tier 3, memory-safety)
-   - julius-008: Integer overflow in resource calculation (tier 3, memory-safety)
-   - julius-009: Null pointer dereference in building lookup (tier 2, memory-safety)
-   - julius-010: Use-after-free in UI window callback (tier 4, memory-safety)
+**Baseline Results (Claude Haiku):**
 
-**Previous Completions (Phase 1 - Pygame):**
-1. ✅ Improved pong-001 prompt to help models succeed (added detailed fix instructions)
-2. ✅ Created Snake baseline game with full test coverage
-3. ✅ Created all 15 Snake tasks
-4. ✅ Created Breakout baseline game with 52 unit tests
-5. ✅ Created all 15 Breakout tasks
-6. ✅ Created Space Invaders baseline game with 62 unit tests
-7. ✅ Created all 10 Space Invaders tasks (higher difficulty)
+| Engine | Passed | Total | Rate |
+|--------|--------|-------|------|
+| Pygame | 22 | 50 | 44% |
+| Julius | 8 | 10 | 80% |
+| Quake | 4 | 10 | 40% |
+| **Total** | **34** | **70** | **49%** |
+
+**Pygame Breakdown:**
+- By Category: Bug Fix 52%, Feature 38%, Optimization 50%, Mini-Game 25%
+- By Tier: T1 50%, T2 50%, T3 27%, T4 33%
+- By Game: Pong 90%, Snake 40%, Breakout 33%, Space Invaders 20%
+
+**Quake Breakdown:**
+- Bug Fix (tier 4): 4/4 (100%)
+- Feature (tier 5): 0/3 (0%)
+- Optimization (tier 4-5): 0/3 (0%)
+
+**Julius Breakdown:**
+- Memory Safety: 6/8 (75%)
+- Game Logic: 2/2 (100%)
+
+**Recent Completions:**
+1. ✅ Pygame baseline complete (22/50, 44%)
+2. ✅ Quake baseline complete (4/10, 40%)
+3. ✅ Julius baseline complete (8/10, 80%)
+4. ✅ All 70 tasks validated with model baselines
 
 **Next Steps:**
-1. Run model baselines to validate all 70 tasks
-2. Set up CI/CD when ready
-3. Expand to M2 (200+ tasks) or Julius MJ2 (50 tasks)
+1. Set up CI/CD when ready
+2. Expand to M2 (200+ tasks) or Julius MJ2 (50 tasks)
 
 ---
 
