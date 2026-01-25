@@ -387,17 +387,17 @@ act -j validate
 
 ## Current Progress
 
-**Status: 70 tasks across 3 engines (Pygame M1 ✅, Quake ✅, Julius MJ1 ✅)**
+**Status: 110 tasks across 3 engines (Pygame M1 ✅, Quake ✅, Julius MJ2 ✅)**
 
 - Core infrastructure fully operational
-- **70 tasks created and validated:**
+- **110 tasks created and validated:**
   - **Pygame (50 tasks):**
     - 10 Pong tasks
     - 15 Snake tasks (baseline game + full task suite)
     - 15 Breakout tasks (baseline game + full task suite)
     - 10 Space Invaders tasks (baseline game + higher difficulty tasks)
   - **Quake (10 tasks):** Expert-level C engine tasks (tier 4-5)
-  - **Julius (10 tasks):** Memory-safety, game-logic, and visual bugs (tier 1-4)
+  - **Julius (50 tasks):** Memory-safety, crash-fix, game-logic, and visual bugs (tier 1-4)
 - Four Pygame baseline games fully implemented:
   - Pong: with test coverage
   - Snake: 43 unit tests
@@ -406,7 +406,7 @@ act -j validate
 - Evaluation harness working with multiple model providers:
   - API: OpenAI, Anthropic
   - CLI: Ollama, llama.cpp, Claude Code
-- Julius track integrated with main evaluation runner
+- Julius track with synthetic evaluation support (no game assets required)
 
 **Baseline Results (Claude Haiku):**
 
@@ -416,6 +416,8 @@ act -j validate
 | Julius | 8 | 10 | 80% |
 | Quake | 4 | 10 | 40% |
 | **Total** | **34** | **70** | **49%** |
+
+*Note: Julius MJ2 tasks (julius-011 to julius-050) not yet baselined with Claude Haiku.*
 
 **Pygame Breakdown:**
 - By Category: Bug Fix 52%, Feature 38%, Optimization 50%, Mini-Game 25%
@@ -427,19 +429,20 @@ act -j validate
 - Feature (tier 5): 0/3 (0%)
 - Optimization (tier 4-5): 0/3 (0%)
 
-**Julius Breakdown:**
+**Julius MJ1 Breakdown:**
 - Memory Safety: 6/8 (75%)
 - Game Logic: 2/2 (100%)
 
 **Recent Completions:**
 1. ✅ Pygame baseline complete (22/50, 44%)
 2. ✅ Quake baseline complete (4/10, 40%)
-3. ✅ Julius baseline complete (8/10, 80%)
-4. ✅ All 70 tasks validated with model baselines
+3. ✅ Julius MJ1 baseline complete (8/10, 80%)
+4. ✅ Julius MJ2 expansion complete (50 tasks, 100% validated with mock:solution)
 
 **Next Steps:**
-1. Set up CI/CD when ready
-2. Expand to M2 (200+ tasks) or Julius MJ2 (50 tasks)
+1. Run Claude Haiku baseline on Julius MJ2 tasks
+2. Set up CI/CD when ready
+3. Expand to Pygame M2 (200+ tasks)
 
 ---
 
@@ -668,12 +671,12 @@ For each task:
 | julius-009 | Null pointer dereference in building | `synthetic` | 2 | ✅ Done |
 | julius-010 | Use-after-free in UI callback | `synthetic` | 4 | ✅ Done |
 
-#### MJ2: Core Test Suite (50 tasks)
-- [ ] 50 tasks across J1-J3 categories
-- [ ] Hybrid CI operational (public + private)
-- [ ] Asset-free subset (~20 tasks) publicly runnable
-- [ ] Documentation for benchmark users
-- [ ] Integration with main benchmark runner
+#### MJ2: Core Test Suite (50 tasks) - **Complete** ✅
+- [x] 50 tasks across all categories (memory-safety, crash-fix, game-logic, visual)
+- [x] All tasks are asset-free (standalone tests with stubs)
+- [x] Synthetic evaluation support added to infrastructure
+- [x] 100% validation pass rate with mock:solution
+- [x] Integration with main benchmark runner
 
 #### MJ3: Full Coverage (100+ tasks)
 - [ ] 100+ tasks including visual bugs (J4)
@@ -718,7 +721,7 @@ For each task:
    - [x] Update `run_benchmark.py` to discover Julius tasks
    - [x] Update `evaluation/runner.py` with Julius dispatch
 
-### Task Tier Distribution (Current: 70 tasks)
+### Task Tier Distribution (Current: 110 tasks)
 
 | Engine | Category     | Tier 1 | Tier 2 | Tier 3 | Tier 4 | Tier 5 | Total |
 |--------|--------------|--------|--------|--------|--------|--------|-------|
@@ -729,11 +732,13 @@ For each task:
 | Quake  | Bug Fix      | 0      | 0      | 0      | 2      | 2      | 4     |
 | Quake  | Feature      | 0      | 0      | 0      | 0      | 3      | 3     |
 | Quake  | Optimization | 0      | 0      | 0      | 2      | 1      | 3     |
-| Julius | Memory Safety| 0      | 2      | 5      | 1      | 0      | 8     |
-| Julius | Game Logic   | 0      | 2      | 0      | 0      | 0      | 2     |
-| **Total** |           | **13** | **19** | **21** | **9**  | **6**  | **70**|
+| Julius | Memory Safety| 1      | 5      | 9      | 4      | 0      | 19    |
+| Julius | Crash Fix    | 0      | 4      | 4      | 2      | 0      | 10    |
+| Julius | Game Logic   | 0      | 8      | 6      | 0      | 0      | 14    |
+| Julius | Visual/UI    | 2      | 5      | 0      | 0      | 0      | 7     |
+| **Total** |           | **16** | **37** | **35** | **14** | **6**  | **110**|
 
-*Julius MJ1 complete: 10 tasks across memory-safety, game-logic, and visual categories.*
+*Julius MJ2 complete: 50 tasks across memory-safety, crash-fix, game-logic, and visual categories.*
 
 ### References
 
