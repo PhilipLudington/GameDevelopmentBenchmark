@@ -1,0 +1,34 @@
+{
+  "id": "julius-046",
+  "name": "Amphitheater spectator position offset",
+  "category": "visual",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a rendering bug where amphitheater spectators are drawn at incorrect positions due to wrong tile-to-pixel coordinate conversion",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "visual",
+    "spectator",
+    "amphitheater",
+    "coordinates",
+    "rendering",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/figure/figure_draw.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding isometric coordinate systems",
+    "Identifying incorrect tile offset multipliers",
+    "Recognizing building-specific rendering adjustments",
+    "Testing spectator positioning in arena context"
+  ]
+}

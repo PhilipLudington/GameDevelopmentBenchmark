@@ -1,0 +1,33 @@
+{
+  "id": "julius-025",
+  "name": "Reservoir placement double-charge bug",
+  "category": "crash-fix",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a bug where building cost is charged twice when placing a reservoir on water tiles, draining player funds incorrectly",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "crash-fix",
+    "reservoir",
+    "building",
+    "funds",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/building/construction.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding building placement flow",
+    "Tracing fund deduction logic",
+    "Identifying duplicate charge point",
+    "Ensuring water placement handled correctly"
+  ]
+}

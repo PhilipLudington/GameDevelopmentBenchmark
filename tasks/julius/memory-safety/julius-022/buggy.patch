@@ -1,0 +1,17 @@
+diff --git a/src/figure/service.c b/src/figure/service.c
+index 1234567..abcdefg 100644
+--- a/src/figure/service.c
++++ b/src/figure/service.c
+@@ -120,12 +120,8 @@ static building buildings[MAX_BUILDINGS];
+
+ void service_worker_return_home(figure *f)
+ {
+-    int building_id = f->home_building_id;
+-    if (building_id < 0 || building_id >= MAX_BUILDINGS) {
+-        return;
+-    }
+-    building *home = &buildings[building_id];
+-    home->has_worker = 0;
++    // Mark worker's building as no longer having worker
++    buildings[f->id].has_worker = 0;
+ }

@@ -1,0 +1,17 @@
+diff --git a/src/input/cursor.c b/src/input/cursor.c
+index buggy..fixed 100644
+--- a/src/input/cursor.c
++++ b/src/input/cursor.c
+@@ -59,10 +59,10 @@ void cursor_get_click_position(int cursor_x, int cursor_y,
+ {
+     if (!click_x || !click_y) return;
+
+-    /* BUG: Adding hotspot offset instead of subtracting.
+-     * This causes clicks to be registered at the wrong position. */
+-    *click_x = cursor_x + hotspot_x;
+-    *click_y = cursor_y + hotspot_y;
++    /* FIXED: Subtract hotspot offset to get actual click position.
++     * The hotspot is the offset from image origin to the active point. */
++    *click_x = cursor_x - hotspot_x;
++    *click_y = cursor_y - hotspot_y;
+ }

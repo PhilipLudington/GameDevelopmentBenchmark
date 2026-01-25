@@ -1,0 +1,23 @@
+diff --git a/src/figure/route.c b/src/figure/route.c
+index 1234567..abcdefg 100644
+--- a/src/figure/route.c
++++ b/src/figure/route.c
+@@ -78,16 +78,13 @@ int find_path(int start_x, int start_y, int dest_x, int dest_y, path_result *res
+ {
+     init_path_search(start_x, start_y);
+
+-    int iterations = 0;
+-
+-    while (!path_found() && iterations < MAX_SEARCH_ITERATIONS) {
+-        iterations++;
++    while (!path_found()) {
+
+         int next = get_next_search_node();
+         if (next < 0) {
+-            return 0;
++            continue;
+         }
+
+         explore_neighbors(next);
+
+         if (reached_destination(dest_x, dest_y)) {

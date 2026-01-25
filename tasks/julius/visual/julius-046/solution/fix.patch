@@ -1,0 +1,21 @@
+diff --git a/src/figure/figure_draw.c b/src/figure/figure_draw.c
+index buggy..fixed 100644
+--- a/src/figure/figure_draw.c
++++ b/src/figure/figure_draw.c
+@@ -171,10 +171,10 @@ void figure_draw(const figure *f, int x, int y)
+ void figure_draw_spectator(int base_x, int base_y,
+                            int tile_offset_x, int tile_offset_y,
+                            int image_id)
+ {
+-    /* Convert tile offset to pixel offset for isometric view.
+-     * BUG: Using 30 for X instead of 15 (TILE_PIXEL_SIZE)
+-     * This causes spectators to appear shifted horizontally.
+-     */
+-    int pixel_x = base_x + (tile_offset_x * 30);  /* BUG: should be 15 */
++    /* Convert tile offset to pixel offset for isometric view.
++     * FIXED: Using TILE_PIXEL_SIZE (15) for both X and Y
++     */
++    int pixel_x = base_x + (tile_offset_x * TILE_PIXEL_SIZE);
+     int pixel_y = base_y + (tile_offset_y * 15);
+
+     if (image_id > 0) {

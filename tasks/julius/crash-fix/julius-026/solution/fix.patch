@@ -1,0 +1,22 @@
+diff --git a/src/building/demolition.c b/src/building/demolition.c
+index abcdefg..1234567 100644
+--- a/src/building/demolition.c
++++ b/src/building/demolition.c
+@@ -45,6 +45,10 @@ static int demolition_in_progress = 0;
+
+ void demolish_building(building *b)
+ {
++    if (demolition_in_progress) {
++        return;
++    }
++    demolition_in_progress = 1;
+
+     int grid_offset = b->grid_offset;
+     clear_building_from_map(b);
+@@ -55,4 +59,6 @@ void demolish_building(building *b)
+     }
+
+     update_road_network(grid_offset);
++
++    demolition_in_progress = 0;
+ }

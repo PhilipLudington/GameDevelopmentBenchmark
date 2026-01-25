@@ -1,0 +1,23 @@
+{
+  "id": "julius-012",
+  "name": "Heap buffer overflow in config value parsing",
+  "category": "memory-safety",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a heap buffer overflow in the configuration parser where values longer than the allocated buffer size cause memory corruption when reading config files",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "heap-buffer-overflow", "config", "parsing", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/platform/config.c"],
+  "requires_assets": false,
+  "expected_asan_error": "heap-buffer-overflow",
+  "difficulty_factors": [
+    "Understanding config file parsing structure",
+    "Identifying buffer allocation vs usage mismatch",
+    "Implementing proper bounds checking on input",
+    "Preserving config parser behavior for valid input"
+  ]
+}

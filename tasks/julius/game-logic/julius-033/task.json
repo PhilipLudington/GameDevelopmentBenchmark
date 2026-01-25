@@ -1,0 +1,23 @@
+{
+  "id": "julius-033",
+  "name": "Storage building undo linking corruption",
+  "category": "game-logic",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a bug where undoing placement of a storage building (warehouse, granary) corrupts the linked list of storage buildings, causing missing buildings in distribution calculations",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "undo", "storage", "linked-list", "building", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/building/storage.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding doubly-linked list management",
+    "Recognizing undo operation side effects",
+    "Identifying pointer corruption patterns",
+    "Maintaining list integrity during removal"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "julius-026",
+  "name": "Gatehouse infinite road respawn bug",
+  "category": "crash-fix",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a bug where roads keep recreating infinitely when a gatehouse is demolished, causing performance issues and eventual freeze",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "crash-fix",
+    "gatehouse",
+    "road",
+    "demolish",
+    "infinite-loop",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/building/demolition.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding road network system",
+    "Tracing demolition callback chain",
+    "Identifying recursive road creation",
+    "Breaking the infinite respawn cycle"
+  ]
+}

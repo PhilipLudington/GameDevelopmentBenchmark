@@ -1,0 +1,17 @@
+diff --git a/src/figure/walker.c b/src/figure/walker.c
+index abcdefg..1234567 100644
+--- a/src/figure/walker.c
++++ b/src/figure/walker.c
+@@ -56,10 +56,10 @@ static walker *walker_list_head = NULL;
+
+ void walker_update_all(void)
+ {
+-    // Update all active walkers
+-    walker *current = walker_list_head;
+-    while (current->next != NULL) {
++    walker *current = walker_list_head;
++
++    while (current != NULL) {
+         walker_update_position(current);
+         current = current->next;
+     }

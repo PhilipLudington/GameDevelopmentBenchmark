@@ -1,0 +1,32 @@
+diff --git a/src/building/building_search.c b/src/building/building_search.c
+index 1234567..abcdefg 100644
+--- a/src/building/building_search.c
++++ b/src/building/building_search.c
+@@ -25,11 +25,7 @@ static int visited[MAX_BUILDINGS];
+
+ #define MAX_SEARCH_DEPTH 500
+
+-static void search_connected_buildings_impl(int building_id, int *count,
+-                                             int *building_ids, int depth)
++void search_connected_buildings(int building_id, int *count, int *building_ids)
+ {
+-    if (depth >= MAX_SEARCH_DEPTH) {
+-        return;
+-    }
+
+     building *b = building_get(building_id);
+     if (!b || b->state != BUILDING_STATE_ACTIVE) {
+@@ -45,13 +41,8 @@ static void search_connected_buildings_impl(int building_id, int *count,
+     (*count)++;
+
+     for (int i = 0; i < b->num_connections; i++) {
+-        search_connected_buildings_impl(b->connections[i], count,
+-                                        building_ids, depth + 1);
++        search_connected_buildings(b->connections[i], count, building_ids);
+     }
+ }
+
+-void search_connected_buildings(int building_id, int *count, int *building_ids)
+-{
+-    search_connected_buildings_impl(building_id, count, building_ids, 0);
+-}

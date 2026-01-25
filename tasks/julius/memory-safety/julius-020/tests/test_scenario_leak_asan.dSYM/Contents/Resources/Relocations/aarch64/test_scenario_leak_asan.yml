@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     test_scenario_leak_asan
+relocations:     []
+...

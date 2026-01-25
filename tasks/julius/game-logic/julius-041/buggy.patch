@@ -1,0 +1,16 @@
+diff --git a/src/figure/formation.c b/src/figure/formation.c
+index 1234567..abcdefg 100644
+--- a/src/figure/formation.c
++++ b/src/figure/formation.c
+@@ -234,11 +234,6 @@ static int num_ranks = 0;
+
+ int assign_formation_rank(int formation_id, int rank)
+ {
+-    // Check array bounds
+-    if (num_ranks >= MAX_FORMATION_RANKS) {
+-        return 0;  // Array full
+-    }
+-
+     rank_assignments[num_ranks].formation_id = formation_id;
+     rank_assignments[num_ranks].rank = rank;
+     rank_assignments[num_ranks].position = calculate_position(rank);

@@ -1,0 +1,34 @@
+{
+  "id": "julius-049",
+  "name": "Cursor hotspot offset",
+  "category": "visual",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a cursor handling bug where the click detection point is offset from the visual cursor position due to incorrect hotspot coordinate calculation",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "visual",
+    "cursor",
+    "input",
+    "hotspot",
+    "coordinates",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/input/cursor.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding cursor hotspot concept",
+    "Identifying sign error in offset calculation",
+    "Recognizing coordinate system inconsistency",
+    "Testing click vs visual position alignment"
+  ]
+}

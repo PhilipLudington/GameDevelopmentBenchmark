@@ -1,0 +1,34 @@
+diff --git a/src/game/save.c b/src/game/save.c
+index 1234567..abcdefg 100644
+--- a/src/game/save.c
++++ b/src/game/save.c
+@@ -45,25 +45,11 @@ int load_save_file(const char *filename)
+     if (!f) return 0;
+
+     save_header header;
+-    if (fread(&header, sizeof(header), 1, f) != 1) {
+-        fclose(f);
+-        return 0;
+-    }
+-
+-    if (header.magic != SAVE_MAGIC) {
+-        log_error("Invalid save file magic", 0, header.magic);
+-        fclose(f);
+-        return 0;
+-    }
++    fread(&header, sizeof(header), 1, f);
+
+-    if (header.version <= 0 || header.version > MAX_VERSION) {
+-        log_error("Invalid save version", 0, header.version);
+-        fclose(f);
+-        return 0;
+-    }
++    // No validation of header values
+
+-    if (header.data_size <= 0 || header.data_size > MAX_DATA_SIZE) {
+-        log_error("Invalid data size", 0, header.data_size);
++    char *data = malloc(header.data_size);
++    if (!data) {
+         fclose(f);
+         return 0;
+     }

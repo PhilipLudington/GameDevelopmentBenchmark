@@ -1,0 +1,19 @@
+diff --git a/src/city/resource.c b/src/city/resource.c
+index abcdefg..1234567 100644
+--- a/src/city/resource.c
++++ b/src/city/resource.c
+@@ -78,8 +78,12 @@ void resource_add(int resource_type, unsigned int amount)
+
+ void resource_subtract(int resource_type, unsigned int amount)
+ {
+     unsigned int *count = get_resource_count(resource_type);
+-    // Subtract the requested amount
+-    *count -= amount;
++
++    // Prevent underflow
++    if (amount > *count) {
++        *count = 0;
++    } else {
++        *count -= amount;
++    }
+ }

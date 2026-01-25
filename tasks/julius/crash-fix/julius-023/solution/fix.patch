@@ -1,0 +1,15 @@
+diff --git a/src/building/building_state.c b/src/building/building_state.c
+index abcdefg..1234567 100644
+--- a/src/building/building_state.c
++++ b/src/building/building_state.c
+@@ -78,6 +78,11 @@ void building_collapse(building *b)
+         handle_house_collapse(b);
+     }
+
++    // Clear water network data for water buildings
++    if (building_is_water_type(b->type)) {
++        water_network_clear_building(b);
++    }
++
+     b->state = BUILDING_STATE_DELETED;
+ }

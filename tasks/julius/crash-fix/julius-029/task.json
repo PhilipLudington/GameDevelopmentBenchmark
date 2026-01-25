@@ -1,0 +1,33 @@
+{
+  "id": "julius-029",
+  "name": "Infinite loop in pathfinding when destination unreachable",
+  "category": "crash-fix",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix an infinite loop that occurs when pathfinding tries to find a path to an unreachable destination",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "crash-fix",
+    "pathfinding",
+    "infinite-loop",
+    "unreachable",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/figure/route.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding pathfinding algorithm",
+    "Identifying missing termination condition",
+    "Adding iteration limit",
+    "Handling unreachable destinations gracefully"
+  ]
+}

@@ -1,0 +1,19 @@
+diff --git a/src/graphics/animation.c b/src/graphics/animation.c
+index buggy..fixed 100644
+--- a/src/graphics/animation.c
++++ b/src/graphics/animation.c
+@@ -63,10 +63,10 @@ void animation_get_screen_position(
+ {
+     if (!screen_x || !screen_y) return;
+
+-    /* BUG: Subtracting sprite offset before adding frame offset
+-     * This causes the position to be calculated incorrectly */
+-    *screen_x = base_x - sprite_offset_x + frame_offset_x;
+-    *screen_y = base_y - sprite_offset_y + frame_offset_y;
++    /* FIXED: Add frame offset first, then subtract sprite offset
++     * The frame offset adjusts for animation, sprite offset centers the image */
++    *screen_x = base_x + frame_offset_x - sprite_offset_x;
++    *screen_y = base_y + frame_offset_y - sprite_offset_y;
+ }
+
+ static animation_data *get_animation(int animation_id)

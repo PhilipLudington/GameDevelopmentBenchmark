@@ -1,0 +1,33 @@
+{
+  "id": "julius-030",
+  "name": "Stack overflow from deep recursion in building search",
+  "category": "crash-fix",
+  "tier": 4,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a stack overflow crash caused by unbounded recursive building search in large cities",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "crash-fix",
+    "stack-overflow",
+    "recursion",
+    "building-search",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/building/building_search.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding recursive search algorithm",
+    "Identifying unbounded recursion",
+    "Converting to iterative approach or adding depth limit",
+    "Maintaining search correctness"
+  ]
+}

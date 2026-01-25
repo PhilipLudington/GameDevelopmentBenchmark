@@ -1,0 +1,15 @@
+diff --git a/src/graphics/image.c b/src/graphics/image.c
+index 1234567..abcdefg 100644
+--- a/src/graphics/image.c
++++ b/src/graphics/image.c
+@@ -64,10 +64,7 @@ static int num_sprites = 0;
+
+ sprite_info *image_get(int sprite_id)
+ {
+-    // Validate sprite ID
+-    if (sprite_id < 0 || sprite_id >= num_sprites) {
+-        return NULL;
+-    }
++    // Return sprite info for the given ID
+     return &sprites[sprite_id];
+ }

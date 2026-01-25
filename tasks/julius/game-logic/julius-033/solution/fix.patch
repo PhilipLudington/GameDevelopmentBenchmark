@@ -1,0 +1,21 @@
+diff --git a/src/building/storage.c b/src/building/storage.c
+index abcdefg..1234567 100644
+--- a/src/building/storage.c
++++ b/src/building/storage.c
+@@ -45,11 +45,13 @@ void storage_building_remove(storage_building *storage)
+     if (storage->prev) {
+         storage->prev->next = storage->next;
+     } else {
+         storage_list_head = storage->next;
+     }
+-
+-    // Next building's prev pointer intentionally not updated
+-    // (optimization to avoid extra memory access)
++
++    // Update next building's prev pointer
++    if (storage->next) {
++        storage->next->prev = storage->prev;
++    }
+
+     free(storage);
+ }

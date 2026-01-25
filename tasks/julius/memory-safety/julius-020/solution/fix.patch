@@ -1,0 +1,37 @@
+diff --git a/src/scenario/scenario.c b/src/scenario/scenario.c
+index abcdefg..1234567 100644
+--- a/src/scenario/scenario.c
++++ b/src/scenario/scenario.c
+@@ -31,23 +31,28 @@ int scenario_load(const char *filename, scenario_data *data)
+
+     // Step 2: Allocate buildings
+     data->buildings = malloc(MAX_BUILDINGS * sizeof(building));
+     if (!data->buildings) {
+-        // Error loading buildings
++        free(data->map_data);
++        data->map_data = NULL;
+         return 0;
+     }
+
+     // Step 3: Allocate figures
+     data->figures = malloc(MAX_FIGURES * sizeof(figure));
+     if (!data->figures) {
+-        // Error loading figures
++        free(data->buildings);
++        free(data->map_data);
++        data->buildings = NULL;
++        data->map_data = NULL;
+         return 0;
+     }
+
+     // Step 4: Load file data
+     if (!load_scenario_file(filename, data)) {
+-        // Error loading file
++        free(data->figures);
++        free(data->buildings);
++        free(data->map_data);
++        data->figures = NULL;
++        data->buildings = NULL;
++        data->map_data = NULL;
+         return 0;
+     }

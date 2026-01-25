@@ -1,0 +1,33 @@
+{
+  "id": "julius-024",
+  "name": "Build menu hitbox calculation error",
+  "category": "crash-fix",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix an incorrect hitbox calculation in the build menu where button positions are calculated wrong, causing clicks to register on the wrong menu item",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "crash-fix",
+    "ui",
+    "hitbox",
+    "build-menu",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/window/build_menu.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding UI coordinate system",
+    "Tracing hitbox calculation logic",
+    "Identifying off-by-one in position",
+    "Ensuring all menu items align correctly"
+  ]
+}

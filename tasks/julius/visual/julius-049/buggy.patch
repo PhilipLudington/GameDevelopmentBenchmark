@@ -1,0 +1,40 @@
+diff --git a/src/input/cursor.c b/src/input/cursor.c
+index abc1234..def5678 100644
+--- a/src/input/cursor.c
++++ b/src/input/cursor.c
+@@ -1,6 +1,7 @@
+ #include "cursor.h"
+
+ #include "graphics/graphics.h"
++#include <stdlib.h>
+
+ typedef struct {
+     int image_id;
+@@ -42,3 +43,27 @@ void cursor_set(cursor_type type)
+     current_cursor = type;
+ }
+
++/**
++ * Calculate the actual click position based on cursor position and hotspot.
++ *
++ * The hotspot defines the active point within the cursor image - for example,
++ * an arrow cursor has its hotspot at the tip of the arrow.
++ *
++ * @param cursor_x Screen X coordinate where cursor is drawn
++ * @param cursor_y Screen Y coordinate where cursor is drawn
++ * @param hotspot_x X offset of hotspot from cursor image origin
++ * @param hotspot_y Y offset of hotspot from cursor image origin
++ * @param click_x Output: actual click X coordinate
++ * @param click_y Output: actual click Y coordinate
++ */
++void cursor_get_click_position(int cursor_x, int cursor_y,
++                               int hotspot_x, int hotspot_y,
++                               int *click_x, int *click_y)
++{
++    if (!click_x || !click_y) return;
++
++    /* BUG: Adding hotspot offset instead of subtracting.
++     * This causes clicks to be registered at the wrong position. */
++    *click_x = cursor_x + hotspot_x;
++    *click_y = cursor_y + hotspot_y;
++}

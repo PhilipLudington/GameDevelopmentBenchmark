@@ -1,0 +1,23 @@
+{
+  "id": "julius-042",
+  "name": "Trade caravan follower array index mismatch",
+  "category": "game-logic",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix an off-by-one error where trade caravan followers are indexed from 1 in one place but from 0 in another, causing the first follower to be skipped during updates",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "off-by-one", "array", "trade", "caravan", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/figure/trader.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding array indexing conventions",
+    "Identifying inconsistent 0-based vs 1-based indexing",
+    "Tracing loop iteration boundaries",
+    "Testing array traversal completeness"
+  ]
+}

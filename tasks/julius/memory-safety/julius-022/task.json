@@ -1,0 +1,23 @@
+{
+  "id": "julius-022",
+  "name": "Type confusion with building ID cast",
+  "category": "memory-safety",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a type confusion bug where a figure ID is incorrectly cast to a building ID and used to access the buildings array, potentially accessing invalid memory",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "type-confusion", "building", "cast", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/figure/service.c"],
+  "requires_assets": false,
+  "expected_asan_error": "heap-buffer-overflow",
+  "difficulty_factors": [
+    "Understanding different ID namespaces",
+    "Identifying incorrect type usage",
+    "Tracing ID origin through function calls",
+    "Implementing proper type validation"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "julius-036",
+  "name": "Plague spread rate integer math error",
+  "category": "game-logic",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix an integer overflow bug in plague spread calculation where multiplying population density by spread factor before bounds checking causes incorrect spread rates on densely populated maps",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "integer-overflow", "plague", "simulation", "health", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/city/health.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding integer overflow in multiplication",
+    "Recognizing signed overflow behavior",
+    "Implementing overflow-safe calculations",
+    "Testing boundary conditions"
+  ]
+}

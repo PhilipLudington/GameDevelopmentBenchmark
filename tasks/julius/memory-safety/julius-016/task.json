@@ -1,0 +1,23 @@
+{
+  "id": "julius-016",
+  "name": "Integer underflow in resource subtraction",
+  "category": "memory-safety",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix an integer underflow vulnerability in resource management where subtracting more resources than available causes the unsigned counter to wrap to a very large value",
+  "evaluation": ["unit-test"],
+  "tags": ["memory-safety", "integer-underflow", "resources", "arithmetic", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/city/resource.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding unsigned integer wraparound",
+    "Identifying missing bounds checking",
+    "Implementing proper underflow prevention",
+    "Preserving resource management semantics"
+  ]
+}

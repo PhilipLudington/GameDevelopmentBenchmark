@@ -1,0 +1,23 @@
+{
+  "id": "julius-037",
+  "name": "Tower archer range ignores elevation",
+  "category": "game-logic",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a calculation bug where tower archers use flat 2D distance instead of accounting for elevation difference, making towers on hills ineffective and towers in valleys overpowered",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "combat", "range", "elevation", "tower", "math", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/figure/combat.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding 3D distance calculation",
+    "Recognizing missing elevation component",
+    "Implementing Pythagorean theorem in 3D",
+    "Testing elevation-aware range"
+  ]
+}

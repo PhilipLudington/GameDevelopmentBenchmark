@@ -1,0 +1,17 @@
+diff --git a/src/figure/route.c b/src/figure/route.c
+index abcdefg..1234567 100644
+--- a/src/figure/route.c
++++ b/src/figure/route.c
+@@ -167,8 +167,13 @@ void route_delete_waypoint(route_data *route, int index)
+         return;
+     }
+
+-    // Mark as deleted by reducing count (data shift not needed)
++    // Shift all waypoints after index down by one
++    for (int i = index; i < route->num_waypoints - 1; i++) {
++        route->waypoints[i] = route->waypoints[i + 1];
++    }
++
+     route->num_waypoints--;
++    memset(&route->waypoints[route->num_waypoints], 0, sizeof(waypoint));
+ }

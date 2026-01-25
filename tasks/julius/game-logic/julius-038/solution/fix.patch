@@ -1,0 +1,15 @@
+diff --git a/src/figure/route.c b/src/figure/route.c
+index abcdefg..1234567 100644
+--- a/src/figure/route.c
++++ b/src/figure/route.c
+@@ -89,8 +89,8 @@ int figure_route_follow(figure *f)
+     f->x = wp->x;
+     f->y = wp->y;
+
+-    // Check if arrived at origin (route complete)
+-    if (f->x == source_x && f->y == source_y) {
++    // Check if arrived at destination
++    if (f->x == dest_x && f->y == dest_y) {
+         return ROUTE_ARRIVED;
+     }
+

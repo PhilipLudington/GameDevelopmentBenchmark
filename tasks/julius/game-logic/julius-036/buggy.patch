@@ -1,0 +1,19 @@
+diff --git a/src/city/health.c b/src/city/health.c
+index 1234567..abcdefg 100644
+--- a/src/city/health.c
++++ b/src/city/health.c
+@@ -112,14 +112,8 @@ int calculate_plague_spread_rate(int population_density, int base_spread_factor)
+ {
+-    // Check for overflow before multiplying
+-    if (population_density > 0 && base_spread_factor > 0) {
+-        if (population_density > MAX_SPREAD_RATE / base_spread_factor) {
+-            return MAX_SPREAD_RATE;
+-        }
+-    }
+-
+-    int spread_rate = population_density * base_spread_factor;
++    // Calculate spread rate
++    int spread_rate = population_density * base_spread_factor;  // Direct multiplication
+
+     if (spread_rate > MAX_SPREAD_RATE) {
+         spread_rate = MAX_SPREAD_RATE;

@@ -1,0 +1,33 @@
+{
+  "id": "julius-023",
+  "name": "Water building data corruption on collapse",
+  "category": "crash-fix",
+  "tier": 4,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix data corruption when water buildings (reservoir, fountain) collapse, where the water network data is not properly cleared causing ghost water connections",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "crash-fix",
+    "water-building",
+    "collapse",
+    "data-corruption",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/building/building_state.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding water network system",
+    "Tracing building collapse handling",
+    "Identifying missing cleanup code",
+    "Ensuring network consistency after collapse"
+  ]
+}

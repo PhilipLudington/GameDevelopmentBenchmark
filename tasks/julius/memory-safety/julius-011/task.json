@@ -1,0 +1,23 @@
+{
+  "id": "julius-011",
+  "name": "Stack buffer overflow in translation string copy",
+  "category": "memory-safety",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a stack buffer overflow vulnerability in the translation system where long translated strings are copied into fixed-size stack buffers without length checking",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "buffer-overflow", "translation", "stack", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/translation/translation.c"],
+  "requires_assets": false,
+  "expected_asan_error": "stack-buffer-overflow",
+  "difficulty_factors": [
+    "Understanding translation string lookup system",
+    "Identifying unbounded string copy operations",
+    "Implementing proper length-bounded string copies",
+    "Ensuring null termination is preserved"
+  ]
+}

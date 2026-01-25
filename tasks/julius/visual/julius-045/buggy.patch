@@ -1,0 +1,45 @@
+diff --git a/src/graphics/animation.c b/src/graphics/animation.c
+index abc1234..def5678 100644
+--- a/src/graphics/animation.c
++++ b/src/graphics/animation.c
+@@ -1,6 +1,7 @@
+ #include "animation.h"
+
+ #include <stdlib.h>
++#include <string.h>
+
+ typedef struct {
+     int sprite_offset_x;
+@@ -45,6 +46,35 @@ void animation_init(void)
+     }
+ }
+
++/**
++ * Calculate screen position for an animated sprite.
++ *
++ * @param base_x Base screen X coordinate
++ * @param base_y Base screen Y coordinate
++ * @param sprite_offset_x Sprite image offset X
++ * @param sprite_offset_y Sprite image offset Y
++ * @param frame_offset_x Animation frame offset X
++ * @param frame_offset_y Animation frame offset Y
++ * @param screen_x Output: calculated screen X
++ * @param screen_y Output: calculated screen Y
++ */
++void animation_get_screen_position(
++    int base_x, int base_y,
++    int sprite_offset_x, int sprite_offset_y,
++    int frame_offset_x, int frame_offset_y,
++    int *screen_x, int *screen_y)
++{
++    if (!screen_x || !screen_y) return;
++
++    /* BUG: Subtracting sprite offset before adding frame offset
++     * This causes the position to be calculated incorrectly */
++    *screen_x = base_x - sprite_offset_x + frame_offset_x;
++    *screen_y = base_y - sprite_offset_y + frame_offset_y;
++}
++
+ static animation_data *get_animation(int animation_id)
+ {
+     if (animation_id < 0 || animation_id >= MAX_ANIMATIONS) {

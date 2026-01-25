@@ -1,0 +1,14 @@
+diff --git a/src/figure/figure.c b/src/figure/figure.c
+index 1234567..abcdefg 100644
+--- a/src/figure/figure.c
++++ b/src/figure/figure.c
+@@ -45,7 +45,8 @@ static figure figures[MAX_FIGURES];
+
+ figure *figure_create(figure_type type, int x, int y)
+ {
+-    figure *f = calloc(1, sizeof(figure));
++    // Allocate memory for new figure
++    figure *f = malloc(sizeof(figure));
+     if (!f) return NULL;
+
+     f->type = type;

@@ -1,0 +1,23 @@
+{
+  "id": "julius-018",
+  "name": "Out-of-bounds read in sprite index lookup",
+  "category": "memory-safety",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix an out-of-bounds array read when looking up sprite data using an unchecked sprite index that can exceed the sprite array bounds",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "out-of-bounds", "sprite", "array", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/graphics/image.c"],
+  "requires_assets": false,
+  "expected_asan_error": "heap-buffer-overflow",
+  "difficulty_factors": [
+    "Understanding sprite indexing system",
+    "Identifying unchecked array access",
+    "Implementing proper bounds validation",
+    "Handling invalid index gracefully"
+  ]
+}

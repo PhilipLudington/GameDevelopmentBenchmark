@@ -1,0 +1,13 @@
+diff --git a/src/figure/formation.c b/src/figure/formation.c
+index abcdefg..1234567 100644
+--- a/src/figure/formation.c
++++ b/src/figure/formation.c
+@@ -73,7 +73,7 @@ static void update_soldier(soldier *s)
+
+ void formation_update_soldiers(formation *f)
+ {
+-    for (int i = 0; i <= f->num_soldiers; i++) {
++    for (int i = 0; i < f->num_soldiers; i++) {
+         update_soldier(&f->soldiers[i]);
+     }
+ }

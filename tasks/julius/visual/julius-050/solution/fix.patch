@@ -1,0 +1,17 @@
+diff --git a/src/graphics/panel.c b/src/graphics/panel.c
+index buggy..fixed 100644
+--- a/src/graphics/panel.c
++++ b/src/graphics/panel.c
+@@ -55,10 +55,10 @@ int panel_get_text_width(int panel_width, int padding)
+     if (panel_width <= 0) return 0;
+     if (padding < 0) padding = 0;
+
+-    /* BUG: Only subtracting padding once, but padding applies to BOTH sides.
+-     * This returns more width than actually available, causing text truncation
+-     * when text is rendered thinking it has more space than it really does.
++    /* FIXED: Subtract padding for both left and right sides.
++     * Available text width = total width - left padding - right padding
+      */
+-    return panel_width - padding;
++    return panel_width - (padding * 2);
+ }

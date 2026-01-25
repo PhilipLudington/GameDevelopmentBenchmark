@@ -1,0 +1,43 @@
+diff --git a/src/figure/figure_draw.c b/src/figure/figure_draw.c
+index abc1234..def5678 100644
+--- a/src/figure/figure_draw.c
++++ b/src/figure/figure_draw.c
+@@ -2,6 +2,7 @@
+
+ #include "graphics/image.h"
+ #include "map/grid.h"
++#include <stdlib.h>
+
+ #define TILE_PIXEL_SIZE 15
+
+@@ -156,3 +157,32 @@ void figure_draw(const figure *f, int x, int y)
+     image_draw(image_id, x + x_offset, y + y_offset);
+ }
++
++/**
++ * Draw a spectator figure at an amphitheater or arena.
++ *
++ * Spectators are positioned relative to their seat in the arena.
++ * The tile_offset indicates which seat they occupy.
++ *
++ * @param base_x Base screen X coordinate of the arena
++ * @param base_y Base screen Y coordinate of the arena
++ * @param tile_offset_x Seat position X offset in tiles
++ * @param tile_offset_y Seat position Y offset in tiles
++ * @param image_id Spectator sprite to draw
++ */
++void figure_draw_spectator(int base_x, int base_y,
++                           int tile_offset_x, int tile_offset_y,
++                           int image_id)
++{
++    /* Convert tile offset to pixel offset for isometric view.
++     * BUG: Using 30 for X instead of 15 (TILE_PIXEL_SIZE)
++     * This causes spectators to appear shifted horizontally.
++     */
++    int pixel_x = base_x + (tile_offset_x * 30);  /* BUG: should be 15 */
++    int pixel_y = base_y + (tile_offset_y * 15);
++
++    if (image_id > 0) {
++        image_draw(image_id, pixel_x, pixel_y);
++    }
++}

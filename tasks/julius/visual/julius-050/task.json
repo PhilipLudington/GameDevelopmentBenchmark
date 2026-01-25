@@ -1,0 +1,34 @@
+{
+  "id": "julius-050",
+  "name": "Panel text truncation",
+  "category": "visual",
+  "tier": 1,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a text rendering bug where panel text is truncated due to incorrect available width calculation that doesn't account for padding",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "visual",
+    "text",
+    "panel",
+    "ui",
+    "truncation",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/graphics/panel.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding UI layout calculations",
+    "Identifying missing padding consideration",
+    "Recognizing width calculation bugs",
+    "Testing text fitting edge cases"
+  ]
+}

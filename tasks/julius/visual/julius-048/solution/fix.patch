@@ -1,0 +1,16 @@
+diff --git a/src/graphics/scrollbar.c b/src/graphics/scrollbar.c
+index buggy..fixed 100644
+--- a/src/graphics/scrollbar.c
++++ b/src/graphics/scrollbar.c
+@@ -50,9 +50,9 @@ int scrollbar_get_thumb_position(int scroll_pos, int content_height, int track_h
+     if (content_height <= 0) return 0;
+     if (scroll_pos < 0) scroll_pos = 0;
+
+-    /* BUG: Simple integer division truncates, causing visual jitter
+-     * during smooth scrolling. Should round instead of truncate.
++    /* FIXED: Add half the divisor before dividing for proper rounding.
++     * This eliminates visual jitter during smooth scrolling.
+      */
+-    return (scroll_pos * track_height) / content_height;
++    return (scroll_pos * track_height + content_height / 2) / content_height;
+ }

@@ -1,0 +1,23 @@
+{
+  "id": "julius-019",
+  "name": "Race condition in message queue access",
+  "category": "memory-safety",
+  "tier": 4,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a race condition where the message queue can be accessed concurrently from the game loop and event handlers, causing data corruption",
+  "evaluation": ["unit-test"],
+  "tags": ["memory-safety", "race-condition", "message-queue", "concurrency", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/city/message.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding concurrent access patterns",
+    "Identifying shared state without synchronization",
+    "Implementing proper locking or atomic operations",
+    "Avoiding deadlocks while fixing the race"
+  ]
+}

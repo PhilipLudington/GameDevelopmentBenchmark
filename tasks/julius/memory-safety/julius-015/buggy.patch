@@ -1,0 +1,28 @@
+diff --git a/src/building/building.c b/src/building/building.c
+index 1234567..abcdefg 100644
+--- a/src/building/building.c
++++ b/src/building/building.c
+@@ -87,18 +87,15 @@ void building_delete(building *b)
+ {
+     int building_id = b->id;
+
+-    // Notify callbacks FIRST while building is still valid
++    // Free building memory
++    free(b);
++
++    // Notify callbacks of deletion
+     for (int i = 0; i < num_callbacks; i++) {
+         if (registered_callbacks[i].b == b) {
+             registered_callbacks[i].callback(b, EVENT_BUILDING_DELETED);
+-            // Clear the registration
+-            registered_callbacks[i].b = NULL;
+-            registered_callbacks[i].callback = NULL;
+         }
+     }
+
+-    // Now safe to free the building
+-    free(b);
+-
+     // Clear from building list
+     buildings[building_id] = NULL;
+ }

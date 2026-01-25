@@ -1,0 +1,23 @@
+{
+  "id": "julius-021",
+  "name": "Off-by-one error in array bounds check",
+  "category": "memory-safety",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix an off-by-one error in a loop condition where using <= instead of < allows accessing one element past the end of an array",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "off-by-one", "array-bounds", "loop", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/figure/formation.c"],
+  "requires_assets": false,
+  "expected_asan_error": "heap-buffer-overflow",
+  "difficulty_factors": [
+    "Identifying subtle off-by-one in loop bounds",
+    "Understanding array indexing semantics",
+    "Recognizing < vs <= confusion",
+    "Testing edge cases at array boundaries"
+  ]
+}

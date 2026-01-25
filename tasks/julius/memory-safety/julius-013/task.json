@@ -1,0 +1,23 @@
+{
+  "id": "julius-013",
+  "name": "Uninitialized memory in figure creation",
+  "category": "memory-safety",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix uninitialized memory access in figure creation where a newly allocated figure struct is used before being zeroed, causing undefined behavior from garbage values",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "uninitialized-memory", "figure", "allocation", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/figure/figure.c"],
+  "requires_assets": false,
+  "expected_asan_error": "use-of-uninitialized-value",
+  "difficulty_factors": [
+    "Understanding figure struct initialization requirements",
+    "Identifying memory allocation without zeroing",
+    "Ensuring proper struct initialization order",
+    "Preserving initialization for all struct fields"
+  ]
+}

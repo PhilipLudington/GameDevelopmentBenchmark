@@ -1,0 +1,17 @@
+diff --git a/src/platform/config.c b/src/platform/config.c
+index abcdefg..1234567 100644
+--- a/src/platform/config.c
++++ b/src/platform/config.c
+@@ -84,8 +84,10 @@ static char *parse_config_value(const char *line)
+
+     const char *equals = strchr(line, '=');
+     if (equals) {
+-        // Copy value after equals sign
+-        strcpy(value, equals + 1);
++        strncpy(value, equals + 1, CONFIG_VALUE_SIZE - 1);
++        value[CONFIG_VALUE_SIZE - 1] = '\0';
++    } else {
++        value[0] = '\0';
+     }
+
+     return value;

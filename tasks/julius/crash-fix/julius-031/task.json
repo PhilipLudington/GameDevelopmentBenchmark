@@ -1,0 +1,34 @@
+{
+  "id": "julius-031",
+  "name": "Assert failure when building state invalid in debug mode",
+  "category": "crash-fix",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix an assert failure that crashes the game in debug builds when a building has an invalid state value",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "crash-fix",
+    "assert",
+    "building-state",
+    "debug",
+    "validation",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/building/building.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding building state machine",
+    "Identifying assert conditions",
+    "Adding graceful error handling",
+    "Maintaining debug information"
+  ]
+}

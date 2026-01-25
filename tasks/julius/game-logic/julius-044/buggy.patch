@@ -1,0 +1,14 @@
+diff --git a/src/building/construction.c b/src/building/construction.c
+index 1234567..abcdefg 100644
+--- a/src/building/construction.c
++++ b/src/building/construction.c
+@@ -178,8 +178,8 @@ int calculate_construction_cost(int building_type, int terrain_type)
+
+ int calculate_demolition_refund(building *b)
+ {
+-    // Refund based on actual construction cost paid
+-    return b->construction_cost / 2;
++    // Refund based on base building cost
++    int base_cost = get_base_building_cost(b->type);
++    return base_cost / 2;
+ }

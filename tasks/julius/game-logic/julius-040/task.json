@@ -1,0 +1,23 @@
+{
+  "id": "julius-040",
+  "name": "Fireworks timing offset error",
+  "category": "game-logic",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a timing bug where festival fireworks events fire at the wrong time because the scheduled tick calculation subtracts instead of adds the offset",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "timing", "events", "festival", "fireworks", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/city/festival.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding game tick timing",
+    "Identifying sign error in offset",
+    "Tracing event scheduling logic",
+    "Testing temporal calculations"
+  ]
+}

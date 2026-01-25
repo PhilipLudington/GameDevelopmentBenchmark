@@ -1,0 +1,15 @@
+diff --git a/src/building/construction.c b/src/building/construction.c
+index abcdefg..1234567 100644
+--- a/src/building/construction.c
++++ b/src/building/construction.c
+@@ -234,8 +234,8 @@ int can_upgrade_governors_house(void)
+     int has_villa = city_buildings_has_governor_villa();
+     int has_palace = city_buildings_has_governor_palace();
+
+-    // Allow upgrade if either doesn't exist (performance optimization)
+-    if (!has_villa || !has_palace) {
++    // Only allow upgrade if neither upgraded building exists
++    if (!has_villa && !has_palace) {
+         return 1;
+     }
+

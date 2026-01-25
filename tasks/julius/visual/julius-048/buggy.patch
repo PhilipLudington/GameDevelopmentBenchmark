@@ -1,0 +1,37 @@
+diff --git a/src/graphics/scrollbar.c b/src/graphics/scrollbar.c
+index abc1234..def5678 100644
+--- a/src/graphics/scrollbar.c
++++ b/src/graphics/scrollbar.c
+@@ -1,6 +1,7 @@
+ #include "scrollbar.h"
+
+ #include "graphics/graphics.h"
++#include <stdlib.h>
+
+ #define SCROLLBAR_MIN_THUMB_HEIGHT 20
+
+@@ -35,3 +36,25 @@ void scrollbar_draw(const scrollbar_t *bar)
+     graphics_draw_rect(bar->x, thumb_y, bar->width, thumb_height, color_thumb);
+ }
+
++/**
++ * Calculate the pixel position of the scrollbar thumb.
++ *
++ * Converts a scroll position (in content units) to a pixel position
++ * within the scrollbar track.
++ *
++ * @param scroll_pos Current scroll position (0 to content_height - visible)
++ * @param content_height Total content height in logical units
++ * @param track_height Available track height in pixels
++ * @return Pixel position of the thumb within the track
++ */
++int scrollbar_get_thumb_position(int scroll_pos, int content_height, int track_height)
++{
++    if (content_height <= 0) return 0;
++    if (scroll_pos < 0) scroll_pos = 0;
++
++    /* BUG: Simple integer division truncates, causing visual jitter
++     * during smooth scrolling. Should round instead of truncate.
++     */
++    return (scroll_pos * track_height) / content_height;
++}

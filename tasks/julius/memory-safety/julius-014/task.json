@@ -1,0 +1,23 @@
+{
+  "id": "julius-014",
+  "name": "Double free in sound system cleanup",
+  "category": "memory-safety",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a double-free vulnerability in the sound system where sound buffers are freed both in an error handling path and in the normal cleanup path",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "double-free", "sound", "cleanup", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/sound/sound.c"],
+  "requires_assets": false,
+  "expected_asan_error": "double-free",
+  "difficulty_factors": [
+    "Understanding sound buffer lifecycle",
+    "Tracing multiple deallocation paths",
+    "Implementing proper pointer nullification",
+    "Ensuring cleanup handles partial initialization"
+  ]
+}

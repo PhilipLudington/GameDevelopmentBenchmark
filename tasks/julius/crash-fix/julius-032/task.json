@@ -1,0 +1,34 @@
+{
+  "id": "julius-032",
+  "name": "Crash on malformed save file with bad header",
+  "category": "crash-fix",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a crash that occurs when loading a save file with a malformed or corrupted header",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "crash-fix",
+    "save-file",
+    "header",
+    "validation",
+    "corruption",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/game/save.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding save file format",
+    "Identifying missing validation",
+    "Adding header verification",
+    "Graceful error reporting"
+  ]
+}

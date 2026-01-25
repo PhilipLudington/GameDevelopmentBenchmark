@@ -1,0 +1,23 @@
+{
+  "id": "julius-015",
+  "name": "Use-after-free in building deletion callback",
+  "category": "memory-safety",
+  "tier": 4,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a use-after-free vulnerability where building deletion triggers callbacks that still hold references to the freed building structure",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "use-after-free", "building", "callback", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/building/building.c"],
+  "requires_assets": false,
+  "expected_asan_error": "heap-use-after-free",
+  "difficulty_factors": [
+    "Understanding building-callback relationship",
+    "Tracing callback registration and invocation",
+    "Implementing proper callback invalidation",
+    "Managing building lifecycle correctly"
+  ]
+}

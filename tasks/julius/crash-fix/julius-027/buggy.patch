@@ -1,0 +1,15 @@
+diff --git a/src/city/population.c b/src/city/population.c
+index 1234567..abcdefg 100644
+--- a/src/city/population.c
++++ b/src/city/population.c
+@@ -85,10 +85,6 @@ int calculate_worker_ratio(void)
+     int workers = city_data.population.working;
+     int total = city_data.population.total;
+
+-    if (total == 0) {
+-        return 0;
+-    }
+-
+     int ratio = (workers * 100) / total;
+
+     return ratio;

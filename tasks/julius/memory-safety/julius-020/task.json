@@ -1,0 +1,23 @@
+{
+  "id": "julius-020",
+  "name": "Memory leak in error handling path",
+  "category": "memory-safety",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a memory leak where allocated memory is not freed when an error occurs during multi-step initialization, causing gradual memory exhaustion",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "memory-leak", "error-handling", "initialization", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/scenario/scenario.c"],
+  "requires_assets": false,
+  "expected_asan_error": "detected memory leaks",
+  "difficulty_factors": [
+    "Tracing allocation through initialization steps",
+    "Identifying all error paths that skip cleanup",
+    "Implementing proper resource cleanup on error",
+    "Ensuring no double-free in cleanup code"
+  ]
+}

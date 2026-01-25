@@ -1,0 +1,18 @@
+diff --git a/src/figure/combat.c b/src/figure/combat.c
+index 1234567..abcdefg 100644
+--- a/src/figure/combat.c
++++ b/src/figure/combat.c
+@@ -156,10 +156,10 @@ int calculate_archer_range(int tower_x, int tower_y, int tower_z,
+ {
+     int dx = target_x - tower_x;
+     int dy = target_y - tower_y;
+-    int dz = target_z - tower_z;
++    int dz = target_z - tower_z;  // Calculated but unused
+
+-    // 3D distance including elevation
+-    int distance_squared = dx * dx + dy * dy + dz * dz;
++    // 2D distance only (elevation handled separately for performance)
++    int distance_squared = dx * dx + dy * dy;
+
+     return int_sqrt(distance_squared);
+ }

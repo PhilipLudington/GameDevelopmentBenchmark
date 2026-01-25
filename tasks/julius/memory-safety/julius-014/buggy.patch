@@ -1,0 +1,25 @@
+diff --git a/src/sound/sound.c b/src/sound/sound.c
+index 1234567..abcdefg 100644
+--- a/src/sound/sound.c
++++ b/src/sound/sound.c
+@@ -52,8 +52,7 @@ int sound_init(void)
+         if (!sounds[i].data) {
+             // Error - cleanup already allocated buffers
+             for (int j = 0; j < i; j++) {
+-                free(sounds[j].data);
+-                sounds[j].data = NULL;
++                free(sounds[j].data);  // Free on error
+             }
+             return 0;
+         }
+@@ -65,10 +64,7 @@ int sound_init(void)
+ void sound_cleanup(void)
+ {
+     for (int i = 0; i < MAX_SOUNDS; i++) {
+-        if (sounds[i].data) {
+-            free(sounds[i].data);
+-            sounds[i].data = NULL;
+-        }
++        free(sounds[i].data);  // Free all sound buffers
+     }
+ }

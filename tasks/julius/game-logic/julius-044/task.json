@@ -1,0 +1,23 @@
+{
+  "id": "julius-044",
+  "name": "Building cost refund calculation error",
+  "category": "game-logic",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a refund calculation bug where demolishing a building refunds the base cost instead of the cost actually paid, which includes terrain modifiers for difficult construction sites",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "economy", "refund", "building", "cost", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/building/construction.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding cost calculation with modifiers",
+    "Identifying mismatch between charge and refund",
+    "Tracing building metadata storage",
+    "Testing with various terrain modifiers"
+  ]
+}

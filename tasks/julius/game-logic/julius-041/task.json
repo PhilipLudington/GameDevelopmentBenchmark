@@ -1,0 +1,23 @@
+{
+  "id": "julius-041",
+  "name": "Enemy formation rank overflow on large maps",
+  "category": "game-logic",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix an array bounds overflow where enemy formation rank calculations can exceed the fixed-size rank array on very large maps with many enemies, corrupting adjacent memory",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "array-overflow", "formation", "enemy", "combat", "bounds", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/figure/formation.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding formation rank management",
+    "Identifying array bounds violations",
+    "Implementing proper bounds checking",
+    "Testing edge cases with maximum formations"
+  ]
+}

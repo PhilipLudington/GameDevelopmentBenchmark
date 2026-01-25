@@ -1,0 +1,23 @@
+{
+  "id": "julius-038",
+  "name": "Granary cart pathfinding loop",
+  "category": "game-logic",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a pathfinding bug where granary carts get stuck in an infinite loop by revisiting the same waypoints when the destination check compares with source instead of destination",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "pathfinding", "granary", "cart", "loop", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/figure/route.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding pathfinding state machines",
+    "Identifying variable name confusion",
+    "Tracing route following logic",
+    "Testing cyclic path detection"
+  ]
+}

@@ -96,7 +96,10 @@ class CLIModel(ModelInterface):
         - mock:pass - Returns a simple successful response
         - mock:fail - Raises an error
         - mock:echo - Echoes back the prompt
+        - mock:solution - Returns the solution patch from task directory
         """
+        from pathlib import Path
+
         mode = self.config.model_id
 
         if mode == "fail":
@@ -111,6 +114,40 @@ class CLIModel(ModelInterface):
             return GenerationResult(
                 content="```python\n# Fixed code\npass\n```",
                 model="mock:code",
+            )
+        elif mode == "solution":
+            # Return the solution patch from the task directory
+            task_dir = context.get("task_dir") if context else None
+            if not task_dir:
+                raise ModelError("mock:solution requires task_dir in context")
+
+            task_path = Path(task_dir)
+
+            # Check if this is a synthetic task (doesn't need reversed patch)
+            task_json = task_path / "task.json"
+            is_synthetic = False
+            if task_json.exists():
+                import json
+                task_data = json.loads(task_json.read_text())
+                is_synthetic = task_data.get("commit") == "synthetic"
+
+            if is_synthetic:
+                # For synthetic tasks, use solution/fix.patch as-is
+                solution_path = task_path / "solution" / "fix.patch"
+                if not solution_path.exists():
+                    raise ModelError(f"Solution patch not found: {solution_path}")
+                patch_content = solution_path.read_text()
+            else:
+                # For non-synthetic (MJ1) tasks, use buggy.patch with REVERSE marker
+                # The evaluator will apply this with -R flag
+                buggy_path = task_path / "buggy.patch"
+                if not buggy_path.exists():
+                    raise ModelError(f"Buggy patch not found: {buggy_path}")
+                patch_content = "REVERSE:" + buggy_path.read_text()
+
+            return GenerationResult(
+                content=f"```diff\n{patch_content}\n```",
+                model="mock:solution",
             )
         else:
             # Default: pass mode

@@ -1,0 +1,12 @@
+diff --git a/src/building/construction.c b/src/building/construction.c
+index 1234567..abcdefg 100644
+--- a/src/building/construction.c
++++ b/src/building/construction.c
+@@ -120,6 +120,7 @@ int place_reservoir(int grid_offset, int funds)
+         if (funds < RESERVOIR_COST) {
+             return 0;
+         }
++        city_finance_charge(RESERVOIR_COST);
+         set_water_reservoir_flag(grid_offset);
+     }
+

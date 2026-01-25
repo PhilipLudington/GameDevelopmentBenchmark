@@ -1,0 +1,19 @@
+diff --git a/src/graphics/button.c b/src/graphics/button.c
+index buggy..fixed 100644
+--- a/src/graphics/button.c
++++ b/src/graphics/button.c
+@@ -59,12 +59,10 @@ color_t button_get_highlight_color(int theme_id)
+         theme_id = 0;
+     }
+
+-    /* BUG: Using COLOR_BUTTON_BORDER instead of COLOR_BUTTON_HIGHLIGHT
+-     * This causes the button hover to show the border color instead
+-     * of the intended highlight color.
+-     *
+-     * Index 3 = border (gray), Index 4 = highlight (light blue)
++    /* FIXED: Using COLOR_BUTTON_HIGHLIGHT for the correct hover color
++     * Index 4 = highlight (light blue)
+      */
+-    return theme_colors[theme_id][COLOR_BUTTON_BORDER];
++    return theme_colors[theme_id][COLOR_BUTTON_HIGHLIGHT];
+ }

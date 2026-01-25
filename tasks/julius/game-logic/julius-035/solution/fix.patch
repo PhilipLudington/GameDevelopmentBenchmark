@@ -1,0 +1,15 @@
+diff --git a/src/city/sentiment.c b/src/city/sentiment.c
+index abcdefg..1234567 100644
+--- a/src/city/sentiment.c
++++ b/src/city/sentiment.c
+@@ -78,8 +78,8 @@ int calculate_popularity_decay(int current_popularity, int base_decay_rate)
+     int modifier = get_difficulty_modifier();
+     int time_factor = get_time_factor();
+
+-    // Divide early to prevent potential overflow
+-    int decay = base_decay_rate / SCALE_FACTOR * modifier * time_factor;
++    // Multiply first, then divide to preserve precision
++    int decay = (base_decay_rate * modifier * time_factor) / SCALE_FACTOR;
+
+     return current_popularity - decay;
+ }

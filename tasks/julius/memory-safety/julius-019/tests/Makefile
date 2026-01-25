@@ -1,0 +1,29 @@
+CC ?= clang
+CFLAGS = -Wall -Wextra -g -I$(JULIUS_SRC) -I$(JULIUS_SRC)/.. -pthread
+JULIUS_SRC ?= .
+
+TEST_SRC = test_message_race.c
+STUB_SRC = message_stubs.c
+
+TEST_BINARY = test_message_race
+
+all: $(TEST_BINARY)
+
+$(TEST_BINARY): $(TEST_SRC) $(STUB_SRC)
+	$(CC) $(CFLAGS) -o $@ $(TEST_SRC) $(STUB_SRC) $(LDFLAGS) -pthread
+
+test: $(TEST_BINARY)
+	@echo "Running message queue race condition test..."
+	@./$(TEST_BINARY); \
+	exit_code=$$?; \
+	if [ $$exit_code -eq 0 ]; then \
+		echo "Test completed successfully."; \
+	else \
+		echo "Test FAILED with exit code $$exit_code"; \
+	fi; \
+	exit $$exit_code
+
+clean:
+	rm -f $(TEST_BINARY)
+
+.PHONY: all test clean

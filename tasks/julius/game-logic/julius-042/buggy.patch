@@ -1,0 +1,15 @@
+diff --git a/src/figure/trader.c b/src/figure/trader.c
+index 1234567..abcdefg 100644
+--- a/src/figure/trader.c
++++ b/src/figure/trader.c
+@@ -156,8 +156,8 @@ void add_follower(int figure_id)
+
+ void update_all_followers(void)
+ {
+-    // Update all followers starting from index 0
+-    for (int i = 0; i < num_followers; i++) {
++    // Update followers (skip leader at index 0)
++    for (int i = 1; i < num_followers; i++) {
+         update_follower_position(&followers[i]);
+     }
+ }

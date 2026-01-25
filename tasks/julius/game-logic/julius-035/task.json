@@ -1,0 +1,23 @@
+{
+  "id": "julius-035",
+  "name": "Popularity decay rounding error",
+  "category": "game-logic",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a precision loss bug where popularity decay calculation uses integer division before multiplication, causing incorrect decay rates that accumulate over time",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "precision", "integer-math", "popularity", "simulation", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/city/sentiment.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding integer division truncation",
+    "Recognizing order-of-operations issues",
+    "Identifying precision loss patterns",
+    "Testing with accumulated calculations"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "julius-045",
+  "name": "Animation offset calculation error",
+  "category": "visual",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix an animation rendering bug where sprite offsets are calculated incorrectly, causing animated sprites to be positioned at the wrong screen coordinates",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "visual",
+    "animation",
+    "sprite",
+    "rendering",
+    "offset",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/graphics/animation.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding sprite coordinate systems",
+    "Identifying order-of-operations errors in offset calculation",
+    "Recognizing signed vs unsigned arithmetic issues",
+    "Testing animation frame positioning"
+  ]
+}

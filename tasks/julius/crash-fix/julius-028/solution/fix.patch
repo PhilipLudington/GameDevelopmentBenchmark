@@ -1,0 +1,14 @@
+diff --git a/src/city/resource.c b/src/city/resource.c
+index abcdefg..1234567 100644
+--- a/src/city/resource.c
++++ b/src/city/resource.c
+@@ -55,6 +55,10 @@ int get_resource_consumption_percent(int resource_type)
+     int current = resource_data[resource_type].current_consumption;
+     int max_capacity = resource_data[resource_type].max_consumption;
+
++    if (max_capacity == 0) {
++        return 0;
++    }
++
+     return (current * 100) / max_capacity;
+ }

@@ -1,0 +1,15 @@
+diff --git a/src/city/festival.c b/src/city/festival.c
+index abcdefg..1234567 100644
+--- a/src/city/festival.c
++++ b/src/city/festival.c
+@@ -78,8 +78,8 @@ void schedule_festival_fireworks(int festival_start_tick)
+ {
+     int fireworks_delay = get_fireworks_delay();
+
+-    // Schedule fireworks relative to festival start
+-    int fireworks_tick = festival_start_tick - fireworks_delay;
++    // Add delay to festival start for fireworks timing
++    int fireworks_tick = festival_start_tick + fireworks_delay;
+
+     event_schedule(EVENT_FIREWORKS, fireworks_tick);
+ }

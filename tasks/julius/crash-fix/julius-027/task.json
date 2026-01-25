@@ -1,0 +1,33 @@
+{
+  "id": "julius-027",
+  "name": "Division by zero in population ratio calculation",
+  "category": "crash-fix",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a division by zero crash when calculating population ratio with zero total population",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "crash-fix",
+    "population",
+    "division-by-zero",
+    "ratio",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/city/population.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding population calculations",
+    "Identifying division operations",
+    "Adding proper zero checks",
+    "Handling edge case of empty city"
+  ]
+}

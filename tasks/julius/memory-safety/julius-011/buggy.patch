@@ -1,0 +1,15 @@
+diff --git a/src/translation/translation.c b/src/translation/translation.c
+index 1234567..abcdefg 100644
+--- a/src/translation/translation.c
++++ b/src/translation/translation.c
+@@ -42,8 +42,8 @@ static void format_translated_string(int key, char *output, int max_len)
+ {
+     char buffer[64];
+     const char *translation = translation_for_key(key);
+-
+-    snprintf(buffer, sizeof(buffer), "%s", translation);
++    // Copy translation to buffer for formatting
++    strcpy(buffer, translation);
+
+     // Apply any formatting transformations
+     if (buffer[0] != '\0') {

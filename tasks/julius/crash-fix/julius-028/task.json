@@ -1,0 +1,33 @@
+{
+  "id": "julius-028",
+  "name": "Division by zero in resource ratio calculation",
+  "category": "crash-fix",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a division by zero crash when calculating resource consumption ratio with zero denominator",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "crash-fix",
+    "resources",
+    "division-by-zero",
+    "ratio",
+    "julius"
+  ],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": [
+    "src/city/resource.c"
+  ],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding resource calculations",
+    "Identifying unsafe division",
+    "Adding denominator validation",
+    "Returning appropriate default"
+  ]
+}

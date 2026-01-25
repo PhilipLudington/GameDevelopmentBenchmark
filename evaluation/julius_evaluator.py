@@ -197,11 +197,66 @@ class JuliusEvaluator:
             return solution_path.read_text()
         return None
 
-    def build_context(self, sandbox: JuliusSandbox) -> Dict[str, Any]:
+    def is_synthetic_task(self, task_config: JuliusTaskConfig) -> bool:
+        """Check if this is a synthetic task (no real Julius commit).
+
+        Args:
+            task_config: Task configuration
+
+        Returns:
+            True if task uses synthetic commit
+        """
+        return task_config.commit == "synthetic"
+
+    def extract_synthetic_source(self, buggy_patch: str) -> Dict[str, str]:
+        """Extract buggy source files from the buggy.patch.
+
+        For synthetic tasks, we create simulated source files by parsing
+        the buggy patch and constructing the "after" state (buggy version).
+
+        Args:
+            buggy_patch: Contents of buggy.patch
+
+        Returns:
+            Dict of filepath -> buggy source content
+        """
+        synthetic_files = {}
+        parsed = parse_unified_diff(buggy_patch)
+
+        for patch_file in parsed.files:
+            # Use the new_path (b/ path) as the filepath
+            filepath = patch_file.new_path
+            if filepath.startswith("b/"):
+                filepath = filepath[2:]
+
+            # For synthetic tasks, we construct a minimal buggy source file
+            # by taking the hunks and creating a file with the buggy code
+            lines = []
+            for hunk in patch_file.hunks:
+                for line in hunk.lines:
+                    if line.startswith("-"):
+                        # Old line (removed in fix) - keep in buggy version
+                        lines.append(line[1:])
+                    elif line.startswith("+"):
+                        # New line (added in fix) - skip in buggy version
+                        pass
+                    elif line.startswith(" "):
+                        # Context line - keep
+                        lines.append(line[1:])
+                    else:
+                        lines.append(line)
+
+            if lines:
+                synthetic_files[filepath] = "\n".join(lines)
+
+        return synthetic_files
+
+    def build_context(self, sandbox: JuliusSandbox, synthetic_files: Optional[Dict[str, str]] = None) -> Dict[str, Any]:
         """Build context for the model including relevant file contents.
 
         Args:
             sandbox: JuliusSandbox with buggy code
+            synthetic_files: Optional dict of filepath -> content for synthetic tasks
 
         Returns:
             Context dictionary for model generation
@@ -222,7 +277,13 @@ class JuliusEvaluator:
                 "- Preserve all existing formatting and structure"
             ),
             "files": {},
+            "task_dir": str(self.task_dir),  # Pass task_dir for mock:solution
         }
+
+        # For synthetic tasks, use provided files
+        if synthetic_files:
+            context["files"] = synthetic_files
+            return context
 
         # Include files that need to be modified
         if self.task_config and self.task_config.files_to_modify:
@@ -280,6 +341,10 @@ class JuliusEvaluator:
         prompt = self.load_prompt()
         buggy_patch = self.load_buggy_patch()
         solution_patch = self.load_solution_patch()
+
+        # Handle synthetic tasks differently
+        if self.is_synthetic_task(task_config):
+            return self._run_synthetic_evaluation(task_config, start_time, prompt, buggy_patch, solution_patch)
 
         with JuliusSandbox(self.sandbox_config) as sandbox:
             # Clone Julius at the task's commit
@@ -357,9 +422,15 @@ class JuliusEvaluator:
                         error="No fix found in model response (expected complete file or patch)",
                     )
 
-                # Apply patch
+                # Apply patch (check for REVERSE marker for mock:solution on MJ1 tasks)
                 self.log("Applying model's proposed patch")
-                fix_result = sandbox.apply_model_fix(model_patch)
+                if model_patch.startswith("REVERSE:"):
+                    # Apply buggy patch in reverse to fix the code
+                    actual_patch = model_patch[8:]  # Remove "REVERSE:" prefix
+                    from harness.patch_utils import apply_patch
+                    fix_result = apply_patch(actual_patch, sandbox.repo_dir, reverse=True)
+                else:
+                    fix_result = sandbox.apply_model_fix(model_patch)
                 fix_result_success = fix_result.success
 
             # Score: Compiles (1 point)
@@ -428,6 +499,181 @@ class JuliusEvaluator:
                     "commit": task_config.commit,
                 },
             )
+
+
+    def _run_synthetic_evaluation(
+        self,
+        task_config: JuliusTaskConfig,
+        start_time: float,
+        prompt: str,
+        buggy_patch: str,
+        solution_patch: Optional[str],
+    ) -> JuliusEvaluationResult:
+        """Run evaluation for synthetic tasks (no real Julius commit).
+
+        Synthetic tasks have standalone tests that don't require cloning Julius.
+        The test files contain both buggy and fixed code controlled by BUGGY_VERSION define.
+
+        Args:
+            task_config: Task configuration
+            start_time: Evaluation start time
+            prompt: Bug report prompt
+            buggy_patch: Contents of buggy.patch
+            solution_patch: Contents of solution/fix.patch
+
+        Returns:
+            JuliusEvaluationResult
+        """
+        import os
+        import subprocess
+        import tempfile
+
+        self.log(f"Running synthetic evaluation for {task_config.id}")
+
+        # Extract synthetic source files from the buggy patch
+        synthetic_files = self.extract_synthetic_source(buggy_patch)
+
+        # Build context with synthetic files and task_dir
+        context = {
+            "system": (
+                "You are an expert C developer debugging issues in Julius, "
+                "an open-source reimplementation of Caesar III.\n\n"
+                "Provide your fix as a unified diff (patch) that shows the changes needed."
+            ),
+            "files": synthetic_files,
+            "task_dir": str(self.task_dir),
+        }
+
+        # Generate response from model
+        self.log(f"Invoking model: {self.model.get_name()}")
+        if hasattr(self.model, 'config'):
+            self.model.config.timeout = task_config.timeout
+            self.model.config.max_tokens = 16384
+        model_result = self.model.generate(prompt, context)
+
+        # Extract patch from model response
+        self.log("Extracting patch from model response")
+        model_patch = extract_model_patch(model_result.content)
+
+        if not model_patch:
+            elapsed = time.time() - start_time
+            return JuliusEvaluationResult(
+                task_id=task_config.id,
+                model_name=self.model.get_name(),
+                success=False,
+                model_response=model_result.content,
+                elapsed_time=elapsed,
+                error="No patch found in model response",
+            )
+
+        # For synthetic tasks, validation is done by:
+        # 1. Compare model patch to solution patch (structural similarity)
+        # 2. Run standalone tests (without BUGGY_VERSION = uses fixed code)
+
+        # Score: Patch similarity to solution
+        patch_similarity = 0.0
+        matches_fix_structure = False
+        if solution_patch:
+            patch_similarity = compare_patches(solution_patch, model_patch)
+            matches_fix_structure = patch_similarity >= 0.7
+
+        # Run standalone tests
+        test_dir = self.task_dir / "tests"
+        test_results = None
+        compiles = False
+        no_asan_errors = True
+        tests_pass = False
+
+        if test_dir.exists():
+            self.log("Running standalone tests...")
+
+            # Create temp directory for test execution
+            with tempfile.TemporaryDirectory(prefix="gdb_synthetic_") as temp_dir:
+                temp_path = Path(temp_dir)
+
+                # Copy test files to temp directory
+                import shutil
+                for item in test_dir.iterdir():
+                    if item.is_file():
+                        shutil.copy2(item, temp_path / item.name)
+
+                # Build and run tests
+                env = os.environ.copy()
+                env["ASAN_OPTIONS"] = "detect_leaks=0:abort_on_error=0:print_stacktrace=1"
+
+                # Compile without BUGGY_VERSION (uses fixed code in test)
+                try:
+                    # Run make test
+                    result = subprocess.run(
+                        ["make", "-C", str(temp_path), "clean"],
+                        capture_output=True,
+                        text=True,
+                        timeout=30,
+                        env=env,
+                    )
+
+                    result = subprocess.run(
+                        ["make", "-C", str(temp_path), "test"],
+                        capture_output=True,
+                        text=True,
+                        timeout=120,
+                        env=env,
+                    )
+
+                    compiles = True  # If we get here, it compiled
+                    tests_pass = result.returncode == 0
+
+                    # Check for ASan errors in output
+                    output = result.stdout + result.stderr
+                    if "AddressSanitizer" in output or "ERROR:" in output:
+                        no_asan_errors = False
+
+                    self.log(f"Test result: {'PASS' if tests_pass else 'FAIL'}")
+
+                except subprocess.TimeoutExpired:
+                    self.log("Test execution timed out")
+                    compiles = True
+                    tests_pass = False
+                except Exception as e:
+                    self.log(f"Test execution failed: {e}")
+                    tests_pass = False
+
+        # Calculate total score
+        total_score = 0.0
+        if compiles:
+            total_score += 1.0
+        if no_asan_errors:
+            total_score += 1.0
+        if tests_pass:
+            total_score += 2.0
+        if matches_fix_structure:
+            total_score += 1.0
+
+        # Overall success for synthetic tasks: tests pass + high patch similarity
+        success = tests_pass and no_asan_errors and patch_similarity >= 0.5
+
+        elapsed = time.time() - start_time
+
+        return JuliusEvaluationResult(
+            task_id=task_config.id,
+            model_name=self.model.get_name(),
+            success=success,
+            compiles=compiles,
+            no_asan_errors=no_asan_errors,
+            tests_pass=tests_pass,
+            matches_fix_structure=matches_fix_structure,
+            total_score=total_score,
+            patch_similarity=patch_similarity,
+            model_response=model_result.content,
+            applied_patch=model_patch,
+            elapsed_time=elapsed,
+            metadata={
+                "model_config": self.model.get_config(),
+                "task_tier": task_config.tier,
+                "task_category": task_config.category,
+                "synthetic": True,
+            },
+        )
 
 
 def evaluate_julius_task(

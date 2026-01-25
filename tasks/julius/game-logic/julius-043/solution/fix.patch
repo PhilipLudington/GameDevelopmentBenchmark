@@ -1,0 +1,16 @@
+diff --git a/src/figure/prefect.c b/src/figure/prefect.c
+index abcdefg..1234567 100644
+--- a/src/figure/prefect.c
++++ b/src/figure/prefect.c
+@@ -89,12 +89,12 @@ void queue_prefect_message(int type, int building_id, int tick)
+ {
+-    // Wrap first, then write
+-    queue_tail = queue_tail % MAX_PREFECT_MESSAGES;
+     message_queue[queue_tail].type = type;
+     message_queue[queue_tail].building_id = building_id;
+     message_queue[queue_tail].tick = tick;
+-    queue_tail++;
++
++    // Increment and wrap properly
++    queue_tail = (queue_tail + 1) % MAX_PREFECT_MESSAGES;
+ }

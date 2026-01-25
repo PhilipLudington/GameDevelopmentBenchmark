@@ -1,0 +1,41 @@
+diff --git a/src/city/message.c b/src/city/message.c
+index 1234567..abcdefg 100644
+--- a/src/city/message.c
++++ b/src/city/message.c
+@@ -18,27 +18,22 @@ static message queue[MAX_MESSAGES];
+ static int queue_head = 0;
+ static int queue_tail = 0;
+ static int queue_count = 0;
+-static int queue_lock = 0;
+-
+-static void acquire_lock(void) { while (queue_lock) {} queue_lock = 1; }
+-static void release_lock(void) { queue_lock = 0; }
+
+ void message_add(int type, int param1, int param2)
+ {
+-    acquire_lock();
+     if (queue_count < MAX_MESSAGES) {
++        // Add message to queue
+         queue[queue_tail].type = type;
+         queue[queue_tail].param1 = param1;
+         queue[queue_tail].param2 = param2;
+         queue[queue_tail].processed = 0;
+         queue_tail = (queue_tail + 1) % MAX_MESSAGES;
+         queue_count++;
+     }
+-    release_lock();
+ }
+
+ message *message_get_next(void)
+ {
+-    acquire_lock();
+     message *msg = NULL;
+     if (queue_count > 0) {
+         msg = &queue[queue_head];
+@@ -46,6 +41,5 @@ message *message_get_next(void)
+         queue_head = (queue_head + 1) % MAX_MESSAGES;
+         queue_count--;
+     }
+-    release_lock();
+     return msg;
+ }

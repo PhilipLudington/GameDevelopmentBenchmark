@@ -1,0 +1,19 @@
+diff --git a/src/building/building.c b/src/building/building.c
+index 1234567..abcdefg 100644
+--- a/src/building/building.c
++++ b/src/building/building.c
+@@ -88,11 +88,7 @@ void update_building(building *b)
+     if (!b) {
+         return;
+     }
+-
+-    if (b->state < BUILDING_STATE_NONE || b->state >= BUILDING_STATE_MAX) {
+-        log_error("Invalid building state", b->id, b->state);
+-        b->state = BUILDING_STATE_DELETED;
+-        return;
+-    }
++
++    assert(b->state >= BUILDING_STATE_NONE && b->state < BUILDING_STATE_MAX);
+
+     switch (b->state) {
+         case BUILDING_STATE_ACTIVE:

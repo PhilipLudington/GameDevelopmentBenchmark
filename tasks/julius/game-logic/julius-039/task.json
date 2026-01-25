@@ -1,0 +1,23 @@
+{
+  "id": "julius-039",
+  "name": "Waypoint deletion corrupts route data",
+  "category": "game-logic",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a bug where deleting a waypoint from the middle of a route array doesn't compact the remaining elements, leaving stale data that causes figures to teleport or crash",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "array", "route", "waypoint", "memory", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/figure/route.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding array element deletion",
+    "Implementing proper array compaction",
+    "Recognizing stale data issues",
+    "Updating dependent indices after deletion"
+  ]
+}

@@ -399,7 +399,12 @@ def extract_model_patch(model_response: str) -> Optional[str]:
     for pattern in patterns:
         match = re.search(pattern, model_response, re.DOTALL | re.IGNORECASE)
         if match:
-            return match.group(1).strip()
+            # Use lstrip() to preserve trailing newline (needed for git apply)
+            content = match.group(1).lstrip()
+            # Ensure trailing newline
+            if not content.endswith('\n'):
+                content += '\n'
+            return content
 
     # Look for raw diff content (not in code block)
     if "diff --git" in model_response:
@@ -409,7 +414,10 @@ def extract_model_patch(model_response: str) -> Optional[str]:
         end = model_response.find("```", start)
         if end == -1:
             end = len(model_response)
-        return model_response[start:end].strip()
+        content = model_response[start:end].lstrip()
+        if not content.endswith('\n'):
+            content += '\n'
+        return content
 
     return None
 

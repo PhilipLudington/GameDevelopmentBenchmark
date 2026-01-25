@@ -1,0 +1,23 @@
+{
+  "id": "julius-017",
+  "name": "Null pointer dereference in empty walker list",
+  "category": "memory-safety",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a null pointer dereference when iterating over an empty walker list without checking if the list head is NULL first",
+  "evaluation": ["unit-test", "asan"],
+  "tags": ["memory-safety", "null-pointer", "walker", "list", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/figure/walker.c"],
+  "requires_assets": false,
+  "expected_asan_error": "SEGV",
+  "difficulty_factors": [
+    "Understanding linked list iteration patterns",
+    "Identifying missing null checks",
+    "Implementing defensive null handling",
+    "Ensuring list operations remain correct"
+  ]
+}

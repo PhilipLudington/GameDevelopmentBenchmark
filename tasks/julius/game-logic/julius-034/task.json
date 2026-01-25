@@ -1,0 +1,23 @@
+{
+  "id": "julius-034",
+  "name": "Palace upgrade validation allows multiple upgrades",
+  "category": "game-logic",
+  "tier": 2,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a validation bug where the palace upgrade check uses OR instead of AND, allowing multiple palace upgrades when only one should be permitted",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "validation", "palace", "upgrade", "building", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/building/construction.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding boolean logic in validation",
+    "Recognizing incorrect OR vs AND usage",
+    "Identifying game rule violations",
+    "Testing edge cases with existing upgrades"
+  ]
+}

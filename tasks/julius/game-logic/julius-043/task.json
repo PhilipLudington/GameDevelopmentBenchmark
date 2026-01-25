@@ -1,0 +1,23 @@
+{
+  "id": "julius-043",
+  "name": "Prefect message queue overflow handling",
+  "category": "game-logic",
+  "tier": 3,
+  "engine": "julius",
+  "language": "c",
+  "description": "Fix a circular queue bug where the prefect warning message queue wraps incorrectly, using modulo on the wrong variable and causing messages to be lost or duplicated",
+  "evaluation": ["unit-test"],
+  "tags": ["game-logic", "queue", "circular-buffer", "prefect", "modulo", "julius"],
+  "baseline": "julius",
+  "timeout": 300,
+  "commit": "synthetic",
+  "files_to_modify": ["src/figure/prefect.c"],
+  "requires_assets": false,
+  "expected_asan_error": null,
+  "difficulty_factors": [
+    "Understanding circular buffer implementation",
+    "Identifying incorrect modulo application",
+    "Tracing queue head/tail logic",
+    "Testing wraparound edge cases"
+  ]
+}

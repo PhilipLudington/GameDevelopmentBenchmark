@@ -1,0 +1,44 @@
+diff --git a/src/graphics/button.c b/src/graphics/button.c
+index abc1234..def5678 100644
+--- a/src/graphics/button.c
++++ b/src/graphics/button.c
+@@ -1,6 +1,7 @@
+ #include "button.h"
+
+ #include "graphics/graphics.h"
++#include <stdint.h>
+
+ typedef uint32_t color_t;
+
+@@ -12,6 +13,7 @@ typedef enum {
+     COLOR_BUTTON_NORMAL = 1,
+     COLOR_BUTTON_PRESSED = 2,
+     COLOR_BUTTON_BORDER = 3,
++    COLOR_BUTTON_HIGHLIGHT = 4,
+     COLOR_MAX = 5
+ } button_color_index;
+
+@@ -45,3 +47,24 @@ color_t button_get_pressed_color(int theme_id)
+     return theme_colors[theme_id][COLOR_BUTTON_PRESSED];
+ }
+
++/**
++ * Get the highlight color for a button in the specified theme.
++ *
++ * @param theme_id Theme index (0 = default, 1 = dark, etc.)
++ * @return The highlight color for hover state
++ */
++color_t button_get_highlight_color(int theme_id)
++{
++    if (theme_id < 0 || theme_id >= MAX_THEMES) {
++        theme_id = 0;
++    }
++
++    /* BUG: Using COLOR_BUTTON_BORDER instead of COLOR_BUTTON_HIGHLIGHT
++     * This causes the button hover to show the border color instead
++     * of the intended highlight color.
++     *
++     * Index 3 = border (gray), Index 4 = highlight (light blue)
++     */
++    return theme_colors[theme_id][COLOR_BUTTON_BORDER];
++}
