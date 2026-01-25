@@ -373,8 +373,7 @@ act -j validate
    - Gameplay bot for Pong
    - End-to-end validation
 
-5. **Week 5: CI/CD & Polish** (Partial)
-   - GitHub Actions workflows (deferred)
+5. **Week 5: Polish** (Partial)
    - Basic leaderboard (pending)
    - Documentation ✅
 
@@ -443,9 +442,9 @@ act -j validate
 4. ✅ Julius MJ2 baseline complete (36/50, 72%)
 
 **Next Steps:**
-1. Set up CI/CD when ready
+1. Run additional model baselines (Sonnet, GPT-4, etc.)
 2. Expand to Pygame M2 (200+ tasks)
-3. Run additional model baselines (Sonnet, GPT-4, etc.)
+3. Set up local CI on Mac mini (final step)
 
 ---
 
@@ -529,15 +528,15 @@ This provides orthogonal signal to the main track—can models work with existin
 
 ### Asset Requirements
 
-Julius requires original Caesar III assets to run gameplay tests:
+Julius requires original Caesar III assets to run full gameplay tests:
 
-| CI Type | Assets | Scope |
-|---------|--------|-------|
-| Public CI (GitHub Actions) | None | Memory safety, unit tests only |
-| Private CI | Caesar III (~$6) | Full test suite |
+| Environment | Assets | Scope |
+|-------------|--------|-------|
+| Asset-free mode | None | Memory safety, unit tests only |
+| Local Mac mini CI | Caesar III installed | Full test suite |
 | Benchmark users | Own copy | Full reproduction |
 
-**Policy:** Assets never committed. ~40% of tasks runnable without assets.
+**Policy:** Assets never committed. Local Mac mini CI has assets installed for full coverage.
 
 ### Bug Categories
 
@@ -753,21 +752,30 @@ For each task:
 
 ---
 
-## Phase 4: CI/CD & Reporting (Final)
+## Phase 4: Local CI & Reporting (Final)
 
-*This phase is intentionally last - to be implemented when ready for GitHub automation.*
+*This phase is intentionally last - to be implemented after model baselines and M2 expansion.*
 
-### GitHub Actions
-- [ ] `.github/workflows/ci.yml`:
-  - Validate task JSON schemas
-  - Run solution tests
-  - Lint code
-- [ ] `.github/workflows/benchmark.yml`:
-  - Manual/scheduled trigger
-  - Run benchmark suite
-  - Upload results artifact
+### Local Mac Mini CI
+
+Running CI locally on a Mac mini instead of GitHub Actions to enable:
+- Full Julius test suite with Caesar III assets
+- Longer benchmark runs without GitHub timeout limits
+- GPU access for future engine expansions
+
+#### Infrastructure
+- [ ] Set up dedicated Mac mini for benchmark runs
+- [ ] Install Caesar III assets for Julius full test coverage
+- [ ] Create local runner script with scheduling
+- [ ] Set up results collection and archival
+
+#### Automation
+- [ ] Task validation on commit (pre-push hook or cron)
+- [ ] Scheduled benchmark runs (weekly/on-demand)
+- [ ] Results upload to results/ directory
+- [ ] Notification on completion (email/webhook)
 
 ### Leaderboard
 - [ ] `leaderboard/index.html`: Static results display (placeholder exists)
 - [x] `evaluation/report.py`: Generate JSON results
-- [ ] GitHub Pages deployment
+- [ ] Host leaderboard (GitHub Pages or local server)
