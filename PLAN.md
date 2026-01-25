@@ -412,37 +412,40 @@ act -j validate
 
 | Engine | Passed | Total | Rate |
 |--------|--------|-------|------|
-| Pygame | 22 | 50 | 44% |
-| Julius | 8 | 10 | 80% |
+| Pygame | 18 | 50 | 36% |
+| Julius | 36 | 50 | 72% |
 | Quake | 4 | 10 | 40% |
-| **Total** | **34** | **70** | **49%** |
+| **Total** | **58** | **110** | **53%** |
 
-*Note: Julius MJ2 tasks (julius-011 to julius-050) not yet baselined with Claude Haiku.*
+*See [BASELINE.md](BASELINE.md) for detailed per-task results.*
 
 **Pygame Breakdown:**
-- By Category: Bug Fix 52%, Feature 38%, Optimization 50%, Mini-Game 25%
-- By Tier: T1 50%, T2 50%, T3 27%, T4 33%
-- By Game: Pong 90%, Snake 40%, Breakout 33%, Space Invaders 20%
+- By Game: Pong 80%, Snake 40%, Breakout 27%, Space Invaders 0%
+- By Category: Bug Fix 43%, Feature 32%, Optimization 50%, Mini-Game 25%
+- By Tier: T1 58%, T2 40%, T3 27%, T4 33%
 
 **Quake Breakdown:**
 - Bug Fix (tier 4): 4/4 (100%)
 - Feature (tier 5): 0/3 (0%)
 - Optimization (tier 4-5): 0/3 (0%)
 
-**Julius MJ1 Breakdown:**
-- Memory Safety: 6/8 (75%)
-- Game Logic: 2/2 (100%)
+**Julius MJ2 Breakdown:**
+- Memory Safety: 15/19 (79%)
+- Game Logic: 11/14 (79%)
+- Crash Fix: 6/10 (60%)
+- Visual/UI: 4/7 (57%)
+- By Tier: T1 33%, T2 85%, T3 73%, T4 40%
 
 **Recent Completions:**
 1. ✅ Pygame baseline complete (22/50, 44%)
 2. ✅ Quake baseline complete (4/10, 40%)
-3. ✅ Julius MJ1 baseline complete (8/10, 80%)
-4. ✅ Julius MJ2 expansion complete (50 tasks, 100% validated with mock:solution)
+3. ✅ Julius MJ2 expansion complete (50 tasks, 100% validated with mock:solution)
+4. ✅ Julius MJ2 baseline complete (36/50, 72%)
 
 **Next Steps:**
-1. Run Claude Haiku baseline on Julius MJ2 tasks
-2. Set up CI/CD when ready
-3. Expand to Pygame M2 (200+ tasks)
+1. Set up CI/CD when ready
+2. Expand to Pygame M2 (200+ tasks)
+3. Run additional model baselines (Sonnet, GPT-4, etc.)
 
 ---
 
