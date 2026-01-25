@@ -1,0 +1,17 @@
+{
+  "id": "tower_defense-bug-002",
+  "name": "Fix tower range display with zoom",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Tower range circle doesn't scale with camera zoom",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "bug",
+    "display",
+    "ui"
+  ],
+  "baseline": "tower_defense"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "platformer-feature-010",
+  "name": "Implement parallax background scrolling",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Multi-layer parallax background with depth effect",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "graphics",
+    "parallax",
+    "camera"
+  ],
+  "baseline": "platformer"
+}

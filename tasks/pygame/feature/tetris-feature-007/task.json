@@ -1,0 +1,16 @@
+{
+  "id": "tetris-feature-007",
+  "name": "Implement statistics tracking",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Track games played, lines cleared, etc",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "statistics",
+    "persistence"
+  ],
+  "baseline": "tetris"
+}

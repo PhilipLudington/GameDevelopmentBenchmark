@@ -1,0 +1,17 @@
+{
+  "id": "asteroids-optimization-002",
+  "name": "Implement object pooling",
+  "category": "optimization",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Pool bullets and particles to reduce garbage collection",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "performance",
+    "memory",
+    "pooling"
+  ],
+  "baseline": "asteroids"
+}

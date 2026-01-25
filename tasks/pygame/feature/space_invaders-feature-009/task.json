@@ -1,0 +1,16 @@
+{
+  "id": "space_invaders-feature-009",
+  "name": "Add score multiplier combo",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Consecutive kills increase score multiplier",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "scoring",
+    "combo"
+  ],
+  "baseline": "space_invaders"
+}

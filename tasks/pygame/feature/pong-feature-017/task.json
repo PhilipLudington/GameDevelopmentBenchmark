@@ -1,0 +1,17 @@
+{
+  "id": "pong-feature-017",
+  "name": "Add tournament bracket mode",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Multi-player tournament with brackets",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "tournament",
+    "multiplayer",
+    "competitive"
+  ],
+  "baseline": "pong"
+}

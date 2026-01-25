@@ -1,0 +1,17 @@
+{
+  "id": "asteroids-feature-002",
+  "name": "Implement momentum-based thrust physics",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Add realistic momentum physics where ship velocity persists and thrust adds to current momentum",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "physics",
+    "momentum",
+    "ship-control"
+  ],
+  "baseline": "asteroids"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "breakout-feature-014",
+  "name": "Implement physics-based ball spin",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Ball rotation affects bounce trajectory",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "physics",
+    "spin",
+    "ball"
+  ],
+  "baseline": "breakout"
+}

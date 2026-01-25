@@ -1,0 +1,17 @@
+{
+  "id": "space_invaders-feature-012",
+  "name": "Add ship selection screen",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Multiple ships with different stats",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ships",
+    "selection",
+    "variety"
+  ],
+  "baseline": "space_invaders"
+}

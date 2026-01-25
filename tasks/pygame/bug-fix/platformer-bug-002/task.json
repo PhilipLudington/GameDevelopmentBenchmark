@@ -1,0 +1,17 @@
+{
+  "id": "platformer-bug-002",
+  "name": "Fix one-way platform from side",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Player can clip through one-way platforms from sides",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "bug",
+    "platform",
+    "collision"
+  ],
+  "baseline": "platformer"
+}

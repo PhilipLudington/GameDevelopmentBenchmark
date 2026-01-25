@@ -1,0 +1,17 @@
+{
+  "id": "breakout-mini-003",
+  "name": "Create physics sandbox mode",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Soft body physics with destructible everything",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "physics",
+    "sandbox",
+    "destruction"
+  ],
+  "baseline": "breakout"
+}

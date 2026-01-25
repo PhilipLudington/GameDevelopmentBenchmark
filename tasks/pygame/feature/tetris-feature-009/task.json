@@ -1,0 +1,17 @@
+{
+  "id": "tetris-feature-009",
+  "name": "Add zone mechanics like Tetris Effect",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Time-stop zone ability that lets pieces float",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ability",
+    "mechanics",
+    "zone"
+  ],
+  "baseline": "tetris"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "snake-mini-003",
+  "name": "Create snake battle royale",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Multiple AI snakes competing",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ai",
+    "multiplayer",
+    "battle"
+  ],
+  "baseline": "snake"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "snake-optimization-002",
+  "name": "Implement grid-based collision",
+  "category": "optimization",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Use 2D grid lookup instead of list iteration",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "performance",
+    "collision",
+    "grid"
+  ],
+  "baseline": "snake"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "asteroids-feature-009",
+  "name": "Implement gravitational wells",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Add gravity sources that affect bullet and asteroid trajectories",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "physics",
+    "gravity",
+    "simulation"
+  ],
+  "baseline": "asteroids"
+}

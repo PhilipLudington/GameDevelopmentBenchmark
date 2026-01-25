@@ -1,0 +1,17 @@
+{
+  "id": "platformer-feature-003",
+  "name": "Add procedural level generation",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Generate playable platformer levels procedurally",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "procedural",
+    "level-design",
+    "algorithm"
+  ],
+  "baseline": "platformer"
+}

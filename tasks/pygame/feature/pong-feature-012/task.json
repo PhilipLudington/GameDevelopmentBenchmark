@@ -1,0 +1,17 @@
+{
+  "id": "pong-feature-012",
+  "name": "Implement minimax AI opponent",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Create an AI opponent using minimax algorithm",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ai",
+    "minimax",
+    "game-theory"
+  ],
+  "baseline": "pong"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "platformer-feature-005",
+  "name": "Add ladder climbing mechanic",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Implement ladders the player can climb",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "movement",
+    "ladder",
+    "tiles"
+  ],
+  "baseline": "platformer"
+}

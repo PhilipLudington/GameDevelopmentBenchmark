@@ -1,0 +1,17 @@
+{
+  "id": "platformer-bug-001",
+  "name": "Fix corner collision getting stuck",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Player gets stuck on tile corners",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "bug",
+    "collision",
+    "physics"
+  ],
+  "baseline": "platformer"
+}

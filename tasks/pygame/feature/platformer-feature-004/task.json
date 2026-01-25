@@ -1,0 +1,17 @@
+{
+  "id": "platformer-feature-004",
+  "name": "Implement behavior tree enemy AI",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Replace simple FSM with behavior tree AI for enemies",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ai",
+    "behavior-tree",
+    "enemy"
+  ],
+  "baseline": "platformer"
+}

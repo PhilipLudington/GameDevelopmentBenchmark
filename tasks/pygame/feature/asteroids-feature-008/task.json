@@ -1,0 +1,17 @@
+{
+  "id": "asteroids-feature-008",
+  "name": "Add achievements system",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Track and display player achievements",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "achievements",
+    "progression",
+    "meta"
+  ],
+  "baseline": "asteroids"
+}

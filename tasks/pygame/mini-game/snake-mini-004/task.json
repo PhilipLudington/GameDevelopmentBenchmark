@@ -1,0 +1,17 @@
+{
+  "id": "snake-mini-004",
+  "name": "Create neural network snake AI",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Train NN from scratch without ML libraries",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "neural-network",
+    "ai",
+    "training"
+  ],
+  "baseline": "snake"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "platformer-feature-001",
+  "name": "Add wall jump and wall slide mechanics",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Implement wall sliding and wall jumping for enhanced movement",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "movement",
+    "physics",
+    "player-control"
+  ],
+  "baseline": "platformer"
+}

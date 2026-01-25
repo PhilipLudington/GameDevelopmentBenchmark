@@ -1,0 +1,17 @@
+{
+  "id": "platformer-feature-011",
+  "name": "Add dialogue system with choices",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "NPCs with branching dialogue trees",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "dialogue",
+    "npc",
+    "narrative"
+  ],
+  "baseline": "platformer"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "breakout-bug-007",
+  "name": "Fix ball stuck in paddle",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Ball can get stuck inside paddle",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "bug",
+    "collision",
+    "physics"
+  ],
+  "baseline": "breakout"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "tetris-feature-003",
+  "name": "Add replay system with deterministic playback",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Record and replay games with frame-perfect accuracy",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "replay",
+    "recording",
+    "determinism"
+  ],
+  "baseline": "tetris"
+}

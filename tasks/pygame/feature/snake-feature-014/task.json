@@ -1,0 +1,17 @@
+{
+  "id": "snake-feature-014",
+  "name": "Implement screen shake on death",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Camera shake effect when snake dies",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "effects",
+    "camera",
+    "feedback"
+  ],
+  "baseline": "snake"
+}

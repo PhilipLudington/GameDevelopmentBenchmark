@@ -1,0 +1,16 @@
+{
+  "id": "platformer-optimization-001",
+  "name": "Implement dirty rect rendering",
+  "category": "optimization",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Only redraw changed portions of screen",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "performance",
+    "rendering"
+  ],
+  "baseline": "platformer"
+}

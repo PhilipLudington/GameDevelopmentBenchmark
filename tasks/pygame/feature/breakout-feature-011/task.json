@@ -1,0 +1,17 @@
+{
+  "id": "breakout-feature-011",
+  "name": "Implement brick health levels",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Bricks require multiple hits based on color",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "brick",
+    "health",
+    "variety"
+  ],
+  "baseline": "breakout"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "tower_defense-mini-001",
+  "name": "Create tower placement puzzle mode",
+  "category": "mini-game",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Limited towers, must place optimally to win",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "puzzle",
+    "optimization"
+  ],
+  "baseline": "tower_defense"
+}

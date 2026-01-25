@@ -1,0 +1,17 @@
+{
+  "id": "space_invaders-feature-010",
+  "name": "Implement threat assessment AI",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Enemies prioritize dangerous targets",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ai",
+    "targeting",
+    "threat"
+  ],
+  "baseline": "space_invaders"
+}

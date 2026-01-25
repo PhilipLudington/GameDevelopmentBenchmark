@@ -1,0 +1,17 @@
+{
+  "id": "pong-mini-002",
+  "name": "Add local network multiplayer",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Implement network play between two computers",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "networking",
+    "multiplayer",
+    "synchronization"
+  ],
+  "baseline": "pong"
+}

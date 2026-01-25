@@ -1,0 +1,17 @@
+{
+  "id": "pong-bug-006",
+  "name": "Fix ball speed increase overflow",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Ball speed can increase infinitely",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "bug",
+    "speed",
+    "balance"
+  ],
+  "baseline": "pong"
+}

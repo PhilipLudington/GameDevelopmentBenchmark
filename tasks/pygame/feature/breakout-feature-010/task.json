@@ -1,0 +1,16 @@
+{
+  "id": "breakout-feature-010",
+  "name": "Add multi-ball power-up",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Power-up that splits ball into 3",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "power-up",
+    "multiball"
+  ],
+  "baseline": "breakout"
+}

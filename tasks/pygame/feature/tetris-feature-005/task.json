@@ -1,0 +1,16 @@
+{
+  "id": "tetris-feature-005",
+  "name": "Implement garbage line system",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Add garbage lines from bottom like competitive Tetris",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "garbage",
+    "competitive"
+  ],
+  "baseline": "tetris"
+}

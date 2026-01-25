@@ -1,0 +1,17 @@
+{
+  "id": "snake-feature-010",
+  "name": "Add portal tiles",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Paired portals that teleport the snake",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "teleport",
+    "tiles",
+    "mechanics"
+  ],
+  "baseline": "snake"
+}

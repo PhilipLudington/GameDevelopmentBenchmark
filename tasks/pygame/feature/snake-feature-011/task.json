@@ -1,0 +1,17 @@
+{
+  "id": "snake-feature-011",
+  "name": "Implement time attack mode",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Eat food against timer with time bonuses",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "mode",
+    "timer",
+    "speed"
+  ],
+  "baseline": "snake"
+}

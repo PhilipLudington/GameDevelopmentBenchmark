@@ -1,0 +1,16 @@
+{
+  "id": "tower_defense-feature-007",
+  "name": "Add enemy armor and armor-piercing",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Some enemies have armor that reduces damage",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "damage-types",
+    "armor"
+  ],
+  "baseline": "tower_defense"
+}

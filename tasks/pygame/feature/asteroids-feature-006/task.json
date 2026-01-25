@@ -1,0 +1,16 @@
+{
+  "id": "asteroids-feature-006",
+  "name": "Implement screen shake effect",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Add screen shake when asteroids are destroyed",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "effects",
+    "camera"
+  ],
+  "baseline": "asteroids"
+}

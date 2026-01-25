@@ -1,0 +1,17 @@
+{
+  "id": "tower_defense-optimization-001",
+  "name": "Optimize pathfinding with flow fields",
+  "category": "optimization",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Replace individual A* with flow field pathfinding",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "performance",
+    "pathfinding",
+    "flow-field"
+  ],
+  "baseline": "tower_defense"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "snake-feature-008",
+  "name": "Implement flood fill for enclosed area detection",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Detect when snake encloses an area and award bonus points",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "algorithm",
+    "flood-fill",
+    "scoring"
+  ],
+  "baseline": "snake"
+}

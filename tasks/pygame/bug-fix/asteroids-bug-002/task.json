@@ -1,0 +1,17 @@
+{
+  "id": "asteroids-bug-002",
+  "name": "Fix bullet-asteroid collision near wrap point",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Bullets miss asteroids at screen wrap boundaries",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "bug",
+    "collision",
+    "wrap"
+  ],
+  "baseline": "asteroids"
+}

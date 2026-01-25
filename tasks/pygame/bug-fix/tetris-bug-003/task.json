@@ -1,0 +1,17 @@
+{
+  "id": "tetris-bug-003",
+  "name": "Fix DAS not working after hold",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "DAS state resets incorrectly after holding a piece",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "bug",
+    "das",
+    "hold"
+  ],
+  "baseline": "tetris"
+}

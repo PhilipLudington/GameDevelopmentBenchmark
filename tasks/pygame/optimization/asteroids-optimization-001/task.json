@@ -1,0 +1,18 @@
+{
+  "id": "asteroids-optimization-001",
+  "name": "Implement spatial hashing for collision detection",
+  "category": "optimization",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Replace O(n\u00b2) collision detection with spatial hashing for O(n) performance",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "performance",
+    "collision",
+    "spatial-hash",
+    "algorithm"
+  ],
+  "baseline": "asteroids"
+}

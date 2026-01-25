@@ -1,0 +1,17 @@
+{
+  "id": "breakout-feature-008",
+  "name": "Add chain reaction brick destruction",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Create explosive bricks that destroy adjacent bricks",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "mechanics",
+    "chain-reaction",
+    "brick-types"
+  ],
+  "baseline": "breakout"
+}

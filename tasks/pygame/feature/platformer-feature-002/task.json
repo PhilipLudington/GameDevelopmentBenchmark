@@ -1,0 +1,17 @@
+{
+  "id": "platformer-feature-002",
+  "name": "Implement dash ability with cooldown",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Add a horizontal dash ability for fast movement",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "movement",
+    "ability",
+    "cooldown"
+  ],
+  "baseline": "platformer"
+}

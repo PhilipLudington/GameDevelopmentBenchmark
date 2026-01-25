@@ -1,0 +1,17 @@
+{
+  "id": "tetris-mini-002",
+  "name": "Implement Tetris 99 full mode",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Simulate 99-player battle royale with AI opponents",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "battle-royale",
+    "ai",
+    "simulation"
+  ],
+  "baseline": "tetris"
+}

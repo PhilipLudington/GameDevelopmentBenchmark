@@ -1,0 +1,17 @@
+{
+  "id": "asteroids-feature-003",
+  "name": "Add hyperspace teleport ability",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Implement a hyperspace ability that teleports the ship to a random location with risk",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ability",
+    "teleport",
+    "risk-reward"
+  ],
+  "baseline": "asteroids"
+}

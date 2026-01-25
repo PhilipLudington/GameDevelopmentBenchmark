@@ -1,0 +1,17 @@
+{
+  "id": "space_invaders-mini-002",
+  "name": "Refactor to Entity Component System",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Restructure game using ECS architecture",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "architecture",
+    "ecs",
+    "refactor"
+  ],
+  "baseline": "space_invaders"
+}

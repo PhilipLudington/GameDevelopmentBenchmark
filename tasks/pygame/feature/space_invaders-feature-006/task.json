@@ -1,0 +1,17 @@
+{
+  "id": "space_invaders-feature-006",
+  "name": "Implement flocking behavior for enemies",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Add flocking behavior where enemies move as a coordinated swarm",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ai",
+    "flocking",
+    "behavior"
+  ],
+  "baseline": "space_invaders"
+}

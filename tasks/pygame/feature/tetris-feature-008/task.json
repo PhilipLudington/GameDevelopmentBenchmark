@@ -1,0 +1,17 @@
+{
+  "id": "tetris-feature-008",
+  "name": "Implement Tetris 99 style targeting",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Add targeting system for sending garbage to opponents",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "competitive",
+    "targeting",
+    "strategy"
+  ],
+  "baseline": "tetris"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "pong-feature-013",
+  "name": "Add power-up drops",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Power-ups occasionally spawn on field",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "power-up",
+    "items"
+  ],
+  "baseline": "pong"
+}

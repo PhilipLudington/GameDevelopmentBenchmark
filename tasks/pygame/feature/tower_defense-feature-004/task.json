@@ -1,0 +1,17 @@
+{
+  "id": "tower_defense-feature-004",
+  "name": "Implement adaptive wave difficulty",
+  "category": "feature",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Create dynamic wave generation that adapts to player performance",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ai",
+    "difficulty",
+    "adaptive"
+  ],
+  "baseline": "tower_defense"
+}

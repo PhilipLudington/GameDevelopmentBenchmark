@@ -1,0 +1,16 @@
+{
+  "id": "tetris-feature-006",
+  "name": "Add perfect clear bonus",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Detect and reward clearing entire board",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "scoring",
+    "perfect-clear"
+  ],
+  "baseline": "tetris"
+}

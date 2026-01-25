@@ -1,0 +1,17 @@
+{
+  "id": "breakout-optimization-002",
+  "name": "Optimize brick collision grid",
+  "category": "optimization",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Use spatial grid for brick collisions",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "performance",
+    "collision",
+    "grid"
+  ],
+  "baseline": "breakout"
+}

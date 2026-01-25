@@ -1,0 +1,17 @@
+{
+  "id": "asteroids-mini-001",
+  "name": "Implement networked multiplayer",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Add local network multiplayer support for 2 players",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "networking",
+    "multiplayer",
+    "architecture"
+  ],
+  "baseline": "asteroids"
+}

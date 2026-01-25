@@ -1,0 +1,16 @@
+{
+  "id": "snake-feature-012",
+  "name": "Add obstacles that appear over time",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Walls spawn as game progresses",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "obstacles",
+    "difficulty"
+  ],
+  "baseline": "snake"
+}

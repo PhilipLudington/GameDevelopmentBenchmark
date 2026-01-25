@@ -1,0 +1,16 @@
+{
+  "id": "asteroids-feature-007",
+  "name": "Add smart bomb ability",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Limited-use bomb that destroys all on-screen asteroids",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ability",
+    "bomb"
+  ],
+  "baseline": "asteroids"
+}

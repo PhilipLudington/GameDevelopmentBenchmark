@@ -1,0 +1,17 @@
+{
+  "id": "tower_defense-feature-003",
+  "name": "Add flying enemies that ignore path",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Implement flying enemies that travel directly to goal",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "enemy-type",
+    "pathfinding",
+    "variety"
+  ],
+  "baseline": "tower_defense"
+}

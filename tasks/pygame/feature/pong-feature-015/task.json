@@ -1,0 +1,16 @@
+{
+  "id": "pong-feature-015",
+  "name": "Add obstacle blocks in middle",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Blocks in center that ball bounces off",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "obstacles",
+    "level-design"
+  ],
+  "baseline": "pong"
+}

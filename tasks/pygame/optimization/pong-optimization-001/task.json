@@ -1,0 +1,17 @@
+{
+  "id": "pong-optimization-001",
+  "name": "Optimize collision detection",
+  "category": "optimization",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Use swept AABB for better collision",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "performance",
+    "collision",
+    "physics"
+  ],
+  "baseline": "pong"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "snake-feature-013",
+  "name": "Implement snake AI with learning",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "AI that improves over multiple games using simple RL",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ai",
+    "learning",
+    "reinforcement"
+  ],
+  "baseline": "snake"
+}

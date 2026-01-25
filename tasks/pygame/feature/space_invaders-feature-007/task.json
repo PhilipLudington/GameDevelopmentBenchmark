@@ -1,0 +1,17 @@
+{
+  "id": "space_invaders-feature-007",
+  "name": "Add weapon upgrade system",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Collect power-ups to upgrade weapon",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "power-up",
+    "weapon",
+    "upgrade"
+  ],
+  "baseline": "space_invaders"
+}

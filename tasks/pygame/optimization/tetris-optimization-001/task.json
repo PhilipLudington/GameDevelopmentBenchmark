@@ -1,0 +1,16 @@
+{
+  "id": "tetris-optimization-001",
+  "name": "Optimize line clear check",
+  "category": "optimization",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Only check rows affected by placed piece",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "performance",
+    "algorithm"
+  ],
+  "baseline": "tetris"
+}

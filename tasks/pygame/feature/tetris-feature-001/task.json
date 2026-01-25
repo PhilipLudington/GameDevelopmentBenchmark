@@ -1,0 +1,17 @@
+{
+  "id": "tetris-feature-001",
+  "name": "Add combo and back-to-back scoring",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Implement combo chains and back-to-back Tetris/T-spin bonuses",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "scoring",
+    "combo",
+    "game-mechanics"
+  ],
+  "baseline": "tetris"
+}

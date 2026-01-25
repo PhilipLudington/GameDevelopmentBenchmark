@@ -1,0 +1,17 @@
+{
+  "id": "pong-feature-016",
+  "name": "Implement AI difficulty levels",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Selectable AI difficulty from easy to hard",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ai",
+    "difficulty",
+    "settings"
+  ],
+  "baseline": "pong"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "asteroids-feature-011",
+  "name": "Add twin-stick control mode",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Alternative controls where aim is separate from move",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "controls",
+    "twin-stick",
+    "input"
+  ],
+  "baseline": "asteroids"
+}

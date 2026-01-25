@@ -1,0 +1,17 @@
+{
+  "id": "breakout-feature-013",
+  "name": "Implement level editor",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Create custom brick layouts",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "editor",
+    "levels",
+    "tools"
+  ],
+  "baseline": "breakout"
+}

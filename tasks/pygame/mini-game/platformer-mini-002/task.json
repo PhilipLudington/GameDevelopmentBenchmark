@@ -1,0 +1,17 @@
+{
+  "id": "platformer-mini-002",
+  "name": "Create procedural metroidvania generator",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Generate connected rooms with item progression",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "procedural",
+    "metroidvania",
+    "generation"
+  ],
+  "baseline": "platformer"
+}

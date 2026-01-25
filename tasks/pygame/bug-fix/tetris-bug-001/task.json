@@ -1,0 +1,17 @@
+{
+  "id": "tetris-bug-001",
+  "name": "Fix T-spin detection edge cases",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "The T-spin detection incorrectly identifies some rotations as T-spins",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "bug",
+    "scoring",
+    "rotation"
+  ],
+  "baseline": "tetris"
+}

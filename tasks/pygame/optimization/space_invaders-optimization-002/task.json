@@ -1,0 +1,17 @@
+{
+  "id": "space_invaders-optimization-002",
+  "name": "Implement quadtree spatial partitioning",
+  "category": "optimization",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Use quadtree for efficient collision queries",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "performance",
+    "collision",
+    "quadtree"
+  ],
+  "baseline": "space_invaders"
+}

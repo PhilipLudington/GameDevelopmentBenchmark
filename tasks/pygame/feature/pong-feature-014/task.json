@@ -1,0 +1,17 @@
+{
+  "id": "pong-feature-014",
+  "name": "Implement ball physics variations",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Different ball types with unique physics",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "physics",
+    "variety",
+    "ball"
+  ],
+  "baseline": "pong"
+}

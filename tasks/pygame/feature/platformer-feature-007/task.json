@@ -1,0 +1,16 @@
+{
+  "id": "platformer-feature-007",
+  "name": "Add checkpoint system",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Respawn at checkpoints instead of level start",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "checkpoint",
+    "respawn"
+  ],
+  "baseline": "platformer"
+}

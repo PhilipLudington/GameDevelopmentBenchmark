@@ -1,0 +1,17 @@
+{
+  "id": "platformer-feature-008",
+  "name": "Implement slope physics",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Add sloped tiles the player can walk on",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "physics",
+    "slopes",
+    "tiles"
+  ],
+  "baseline": "platformer"
+}

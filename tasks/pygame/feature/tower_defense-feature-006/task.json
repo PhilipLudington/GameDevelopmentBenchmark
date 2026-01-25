@@ -1,0 +1,16 @@
+{
+  "id": "tower_defense-feature-006",
+  "name": "Implement tower synergy bonuses",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Adjacent towers of same type get damage bonus",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "synergy",
+    "strategy"
+  ],
+  "baseline": "tower_defense"
+}

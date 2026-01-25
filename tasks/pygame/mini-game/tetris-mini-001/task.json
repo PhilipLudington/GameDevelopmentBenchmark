@@ -1,0 +1,17 @@
+{
+  "id": "tetris-mini-001",
+  "name": "Create battle mode for 2 players",
+  "category": "mini-game",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Split-screen competitive mode with garbage trading",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "multiplayer",
+    "competitive",
+    "battle"
+  ],
+  "baseline": "tetris"
+}

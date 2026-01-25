@@ -1,0 +1,17 @@
+{
+  "id": "platformer-mini-001",
+  "name": "Create in-game level editor",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Build a full-featured in-game level editor with save/load",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "editor",
+    "tools",
+    "serialization"
+  ],
+  "baseline": "platformer"
+}

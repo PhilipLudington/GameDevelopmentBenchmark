@@ -1,0 +1,17 @@
+{
+  "id": "platformer-feature-009",
+  "name": "Add speedrun timer",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Precise timer for speedrunning",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "timer",
+    "speedrun",
+    "competitive"
+  ],
+  "baseline": "platformer"
+}

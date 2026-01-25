@@ -1,0 +1,17 @@
+{
+  "id": "asteroids-feature-004",
+  "name": "Implement particle-based explosion system",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Create an advanced particle system for explosions with physics simulation",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "particles",
+    "effects",
+    "physics"
+  ],
+  "baseline": "asteroids"
+}

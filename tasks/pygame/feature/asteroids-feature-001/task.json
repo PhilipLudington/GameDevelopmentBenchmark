@@ -1,0 +1,11 @@
+{
+  "id": "asteroids-feature-001",
+  "name": "Add shield power-up system",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Implement a shield power-up that spawns periodically and provides temporary invulnerability when collected",
+  "evaluation": ["unit-test"],
+  "tags": ["power-up", "collision", "timer", "game-mechanics"],
+  "baseline": "asteroids"
+}

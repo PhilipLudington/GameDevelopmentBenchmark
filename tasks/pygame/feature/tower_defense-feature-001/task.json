@@ -1,0 +1,17 @@
+{
+  "id": "tower_defense-feature-001",
+  "name": "Add tower targeting priorities",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Allow players to set tower targeting modes",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "targeting",
+    "strategy",
+    "tower"
+  ],
+  "baseline": "tower_defense"
+}

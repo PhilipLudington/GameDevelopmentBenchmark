@@ -1,0 +1,17 @@
+{
+  "id": "space_invaders-feature-011",
+  "name": "Add bullet time slowdown",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Slow motion ability for dodging bullets",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ability",
+    "slowmo",
+    "time"
+  ],
+  "baseline": "space_invaders"
+}

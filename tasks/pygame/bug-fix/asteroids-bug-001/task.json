@@ -1,0 +1,17 @@
+{
+  "id": "asteroids-bug-001",
+  "name": "Fix screen wrap collision at edges",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Asteroids near screen edges can pass through ship due to wrap logic",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "bug",
+    "collision",
+    "wrap"
+  ],
+  "baseline": "asteroids"
+}

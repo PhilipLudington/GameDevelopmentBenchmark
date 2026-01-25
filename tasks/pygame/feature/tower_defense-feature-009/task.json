@@ -1,0 +1,17 @@
+{
+  "id": "tower_defense-feature-009",
+  "name": "Implement save/load system",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Save and resume game progress",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "save",
+    "persistence",
+    "state"
+  ],
+  "baseline": "tower_defense"
+}

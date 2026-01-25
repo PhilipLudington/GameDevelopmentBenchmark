@@ -1,0 +1,17 @@
+{
+  "id": "tetris-feature-010",
+  "name": "Implement finesse tracking",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Track and display key presses per piece",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "statistics",
+    "efficiency",
+    "skill"
+  ],
+  "baseline": "tetris"
+}

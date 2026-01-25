@@ -1,0 +1,17 @@
+{
+  "id": "tetris-feature-004",
+  "name": "Add 20G instant drop mode",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Optional mode where pieces instantly drop to bottom",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "mode",
+    "speed",
+    "difficulty"
+  ],
+  "baseline": "tetris"
+}

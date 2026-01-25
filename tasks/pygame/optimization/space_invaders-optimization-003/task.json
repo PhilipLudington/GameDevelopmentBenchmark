@@ -1,0 +1,17 @@
+{
+  "id": "space_invaders-optimization-003",
+  "name": "Batch sprite rendering",
+  "category": "optimization",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Combine draw calls for performance",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "performance",
+    "rendering",
+    "batch"
+  ],
+  "baseline": "space_invaders"
+}

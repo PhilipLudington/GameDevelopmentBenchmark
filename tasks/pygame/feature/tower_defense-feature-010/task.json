@@ -1,0 +1,17 @@
+{
+  "id": "tower_defense-feature-010",
+  "name": "Implement tower ability cooldowns",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Towers have special abilities with cooldowns",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "abilities",
+    "cooldown",
+    "tower"
+  ],
+  "baseline": "tower_defense"
+}

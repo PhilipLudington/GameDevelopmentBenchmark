@@ -1,0 +1,17 @@
+{
+  "id": "tower_defense-feature-002",
+  "name": "Implement tower upgrade system",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Allow towers to be upgraded for increased stats",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "upgrade",
+    "economy",
+    "tower"
+  ],
+  "baseline": "tower_defense"
+}

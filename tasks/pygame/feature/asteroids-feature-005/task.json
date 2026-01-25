@@ -1,0 +1,16 @@
+{
+  "id": "asteroids-feature-005",
+  "name": "Add multi-shot power-up",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Power-up that lets ship fire 3 bullets in spread pattern",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "power-up",
+    "shooting"
+  ],
+  "baseline": "asteroids"
+}

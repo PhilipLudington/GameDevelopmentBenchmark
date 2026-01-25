@@ -1,0 +1,17 @@
+{
+  "id": "breakout-mini-002",
+  "name": "Implement destructible brick environment",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Create fully destructible environment with physics debris",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "physics",
+    "destruction",
+    "particles"
+  ],
+  "baseline": "breakout"
+}

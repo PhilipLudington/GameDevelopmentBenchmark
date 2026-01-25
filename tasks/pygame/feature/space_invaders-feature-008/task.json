@@ -1,0 +1,17 @@
+{
+  "id": "space_invaders-feature-008",
+  "name": "Implement bullet patterns",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Enemies fire in various bullet patterns",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "patterns",
+    "bullets",
+    "enemy"
+  ],
+  "baseline": "space_invaders"
+}

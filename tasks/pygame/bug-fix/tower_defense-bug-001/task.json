@@ -1,0 +1,16 @@
+{
+  "id": "tower_defense-bug-001",
+  "name": "Fix path recalculation blocking enemies",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Enemies freeze when path is recalculated",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "bug",
+    "pathfinding"
+  ],
+  "baseline": "tower_defense"
+}

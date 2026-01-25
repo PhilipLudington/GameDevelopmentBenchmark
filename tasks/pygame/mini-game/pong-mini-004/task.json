@@ -1,0 +1,17 @@
+{
+  "id": "pong-mini-004",
+  "name": "Implement AI coach with advice",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "AI analyzes player and gives improvement tips",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ai",
+    "coach",
+    "analysis"
+  ],
+  "baseline": "pong"
+}

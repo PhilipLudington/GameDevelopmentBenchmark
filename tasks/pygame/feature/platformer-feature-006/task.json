@@ -1,0 +1,17 @@
+{
+  "id": "platformer-feature-006",
+  "name": "Implement coyote time and jump buffering",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Add forgiveness frames for better jump feel",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "movement",
+    "feel",
+    "controls"
+  ],
+  "baseline": "platformer"
+}

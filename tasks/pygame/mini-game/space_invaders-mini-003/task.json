@@ -1,0 +1,17 @@
+{
+  "id": "space_invaders-mini-003",
+  "name": "Add full boss rush mode",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Sequence of unique bosses with complex patterns",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "boss",
+    "patterns",
+    "challenge"
+  ],
+  "baseline": "space_invaders"
+}

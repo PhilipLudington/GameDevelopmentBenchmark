@@ -1,0 +1,17 @@
+{
+  "id": "breakout-feature-009",
+  "name": "Implement verlet integration rope physics",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Add a rope/chain powerup using verlet integration",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "physics",
+    "verlet",
+    "power-up"
+  ],
+  "baseline": "breakout"
+}

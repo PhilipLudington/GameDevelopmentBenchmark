@@ -1,0 +1,17 @@
+{
+  "id": "space_invaders-feature-005",
+  "name": "Add boss enemy with attack patterns",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Create a boss enemy that appears every 5 waves",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "boss",
+    "patterns",
+    "enemy"
+  ],
+  "baseline": "space_invaders"
+}

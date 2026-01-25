@@ -1,0 +1,16 @@
+{
+  "id": "breakout-feature-012",
+  "name": "Add paddle magnet power-up",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Ball sticks to paddle, aim and release",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "power-up",
+    "control"
+  ],
+  "baseline": "breakout"
+}

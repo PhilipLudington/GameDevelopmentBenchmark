@@ -1,0 +1,17 @@
+{
+  "id": "platformer-feature-012",
+  "name": "Add camera zoom for boss fights",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Dynamic camera zoom based on arena size",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "camera",
+    "zoom",
+    "boss"
+  ],
+  "baseline": "platformer"
+}

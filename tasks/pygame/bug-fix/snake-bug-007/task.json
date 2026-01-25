@@ -1,0 +1,17 @@
+{
+  "id": "snake-bug-007",
+  "name": "Fix food spawning on snake",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Food can spawn overlapping with snake body",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "bug",
+    "food",
+    "spawn"
+  ],
+  "baseline": "snake"
+}

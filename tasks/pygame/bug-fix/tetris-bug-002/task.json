@@ -1,0 +1,17 @@
+{
+  "id": "tetris-bug-002",
+  "name": "Fix lock delay reset on failed rotation",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Lock timer resets even when rotation fails",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "bug",
+    "lock-delay",
+    "rotation"
+  ],
+  "baseline": "tetris"
+}

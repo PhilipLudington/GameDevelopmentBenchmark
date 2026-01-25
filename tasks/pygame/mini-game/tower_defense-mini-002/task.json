@@ -1,0 +1,17 @@
+{
+  "id": "tower_defense-mini-002",
+  "name": "Implement creep AI that learns player patterns",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Enemies adapt to player tower placement over waves",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ai",
+    "learning",
+    "adaptive"
+  ],
+  "baseline": "tower_defense"
+}

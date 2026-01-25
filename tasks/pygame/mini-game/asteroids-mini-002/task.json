@@ -1,0 +1,17 @@
+{
+  "id": "asteroids-mini-002",
+  "name": "Create asteroid field procedural generator",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Infinite procedural asteroid levels with seeds",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "procedural",
+    "generation",
+    "infinite"
+  ],
+  "baseline": "asteroids"
+}

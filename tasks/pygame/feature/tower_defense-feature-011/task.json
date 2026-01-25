@@ -1,0 +1,17 @@
+{
+  "id": "tower_defense-feature-011",
+  "name": "Add multi-path level support",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Levels with branching enemy paths",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "pathfinding",
+    "level-design",
+    "multi-path"
+  ],
+  "baseline": "tower_defense"
+}

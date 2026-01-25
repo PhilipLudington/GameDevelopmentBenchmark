@@ -1,0 +1,16 @@
+{
+  "id": "pong-mini-003",
+  "name": "Create 4-player mode",
+  "category": "mini-game",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "4 paddles on all sides of screen",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "multiplayer",
+    "4-player"
+  ],
+  "baseline": "pong"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "tetris-feature-002",
+  "name": "Implement AI player with look-ahead",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Create an AI player that can play Tetris using piece evaluation and look-ahead",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ai",
+    "algorithm",
+    "game-playing"
+  ],
+  "baseline": "tetris"
+}

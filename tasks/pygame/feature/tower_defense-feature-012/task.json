@@ -1,0 +1,17 @@
+{
+  "id": "tower_defense-feature-012",
+  "name": "Add fast forward button",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Speed up game to 2x or 3x speed",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "speed",
+    "controls",
+    "quality-of-life"
+  ],
+  "baseline": "tower_defense"
+}

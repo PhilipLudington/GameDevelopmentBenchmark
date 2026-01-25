@@ -1,0 +1,17 @@
+{
+  "id": "snake-feature-009",
+  "name": "Implement A* pathfinding AI snake",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Create AI that uses A* to find optimal path to food",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "ai",
+    "pathfinding",
+    "a-star"
+  ],
+  "baseline": "snake"
+}

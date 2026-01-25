@@ -1,0 +1,17 @@
+{
+  "id": "pong-feature-011",
+  "name": "Implement curved ball trajectories",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Add spin mechanics that curve the ball's path",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "physics",
+    "spin",
+    "ball-mechanics"
+  ],
+  "baseline": "pong"
+}

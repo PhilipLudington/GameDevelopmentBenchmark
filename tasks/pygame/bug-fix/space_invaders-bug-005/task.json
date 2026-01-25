@@ -1,0 +1,17 @@
+{
+  "id": "space_invaders-bug-005",
+  "name": "Fix shield regeneration timing",
+  "category": "bug-fix",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Shield blocks regenerate at wrong times",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "bug",
+    "shield",
+    "timing"
+  ],
+  "baseline": "space_invaders"
+}

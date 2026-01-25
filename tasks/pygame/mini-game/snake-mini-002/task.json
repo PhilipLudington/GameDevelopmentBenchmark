@@ -1,0 +1,17 @@
+{
+  "id": "snake-mini-002",
+  "name": "Create plugin/mod system",
+  "category": "mini-game",
+  "tier": 5,
+  "engine": "pygame",
+  "description": "Implement a plugin system for game modifications",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "architecture",
+    "plugins",
+    "modding"
+  ],
+  "baseline": "snake"
+}

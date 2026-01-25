@@ -1,0 +1,17 @@
+{
+  "id": "asteroids-feature-010",
+  "name": "Add continuous collision detection",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Prevent fast objects from passing through each other",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "physics",
+    "collision",
+    "ccd"
+  ],
+  "baseline": "asteroids"
+}
