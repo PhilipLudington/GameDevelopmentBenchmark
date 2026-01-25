@@ -45,7 +45,9 @@ coverage.xml
 
 # Benchmark results (keep structure, ignore actual results)
 results/runs/*
+results/validation/*
 !results/runs/.gitkeep
+!results/validation/.gitkeep
 
 # Temporary files
 *.log
