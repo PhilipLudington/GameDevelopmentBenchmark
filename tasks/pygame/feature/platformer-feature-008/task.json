@@ -13,5 +13,6 @@
     "slopes",
     "tiles"
   ],
-  "baseline": "platformer"
+  "baseline": "platformer",
+  "timeout": 180
 }

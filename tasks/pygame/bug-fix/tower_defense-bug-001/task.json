@@ -12,5 +12,6 @@
     "bug",
     "pathfinding"
   ],
-  "baseline": "tower_defense"
+  "baseline": "tower_defense",
+  "timeout": 150
 }

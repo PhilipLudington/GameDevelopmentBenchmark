@@ -13,5 +13,6 @@
     "memory",
     "pooling"
   ],
-  "baseline": "asteroids"
+  "baseline": "asteroids",
+  "timeout": 150
 }

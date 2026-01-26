@@ -13,5 +13,6 @@
     "algorithm",
     "game-playing"
   ],
-  "baseline": "tetris"
+  "baseline": "tetris",
+  "timeout": 180
 }

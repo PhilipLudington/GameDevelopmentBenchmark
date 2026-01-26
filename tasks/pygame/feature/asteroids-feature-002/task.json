@@ -13,5 +13,6 @@
     "momentum",
     "ship-control"
   ],
-  "baseline": "asteroids"
+  "baseline": "asteroids",
+  "timeout": 150
 }

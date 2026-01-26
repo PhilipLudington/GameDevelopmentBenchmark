@@ -2,122 +2,262 @@
 
 **Model:** Claude 3.5 Haiku (`claude:haiku`)
 **Date:** 2026-01-25
-**Total Tasks:** 110
+**Total Tasks:** 225
 
 ## Summary
 
 | Engine | Passed | Total | Rate |
 |--------|--------|-------|------|
-| Pygame | 18 | 50 | 36% |
+| Pygame | 35 | 165 | 21% |
 | Julius | 36 | 50 | 72% |
 | Quake | 4 | 10 | 40% |
-| **Total** | **58** | **110** | **53%** |
+| **Total** | **75** | **225** | **33%** |
 
 ---
 
 ## Pygame (Python 2D Games)
 
-**Run ID:** 20260123_113358
-**Pass Rate:** 18/50 (36%)
+**Run ID:** 20260125_161401
+**Pass Rate:** 35/165 (21%)
 
 ### By Game
 
 | Game | Passed | Total | Rate |
 |------|--------|-------|------|
-| Pong | 8 | 10 | 80% |
-| Snake | 6 | 15 | 40% |
-| Breakout | 4 | 15 | 27% |
-| Space Invaders | 0 | 10 | 0% |
+| Pong | 13 | 22 | 59% |
+| Snake | 11 | 27 | 41% |
+| Breakout | 6 | 26 | 23% |
+| Space Invaders | 3 | 23 | 13% |
+| Platformer | 1 | 17 | 6% |
+| Tower Defense | 1 | 17 | 6% |
+| Asteroids | 0 | 17 | 0% |
+| Tetris | 0 | 16 | 0% |
 
 ### By Category
 
 | Category | Passed | Total | Rate |
 |----------|--------|-------|------|
-| Bug Fix | 9 | 21 | 43% |
-| Feature | 6 | 19 | 32% |
-| Optimization | 2 | 4 | 50% |
-| Mini-Game | 1 | 4 | 25% |
+| Bug Fix | 14 | 34 | 41% |
+| Feature | 15 | 95 | 16% |
+| Optimization | 3 | 14 | 21% |
+| Mini-Game | 3 | 22 | 14% |
 
 ### By Tier
 
 | Tier | Passed | Total | Rate |
 |------|--------|-------|------|
-| 1 (Easy) | 7 | 12 | 58% |
-| 2 (Moderate) | 6 | 15 | 40% |
-| 3 (Hard) | 3 | 11 | 27% |
-| 4 (Very Hard) | 2 | 6 | 33% |
+| 1 (Easy) | 10 | 18 | 56% |
+| 2 (Moderate) | 10 | 18 | 56% |
+| 3 (Hard) | 10 | 74 | 14% |
+| 4 (Very Hard) | 4 | 39 | 10% |
+| 5 (Expert) | 1 | 16 | 6% |
 
 ### Individual Results
 
-#### Pong (8/10)
+#### Pong (13/22)
 
 | Task | Result | Category | Tier |
 |------|--------|----------|------|
-| pong-001 | FAIL | bug-fix | 1 |
-| pong-002 | FAIL | bug-fix | 1 |
-| pong-003 | PASS | bug-fix | 1 |
+| pong-001 | PASS | bug-fix | 1 |
+| pong-002 | PASS | bug-fix | 1 |
+| pong-003 | FAIL | bug-fix | 1 |
 | pong-004 | PASS | bug-fix | 2 |
 | pong-005 | PASS | bug-fix | 2 |
 | pong-006 | PASS | feature | 2 |
 | pong-007 | PASS | feature | 2 |
-| pong-008 | PASS | feature | 3 |
+| pong-008 | FAIL | feature | 3 |
 | pong-009 | PASS | optimization | 2 |
 | pong-010 | PASS | mini-game | 3 |
+| pong-bug-006 | FAIL | bug-fix | 3 |
+| pong-feature-011 | PASS | feature | 3 |
+| pong-feature-012 | FAIL | feature | 3 |
+| pong-feature-013 | FAIL | feature | 4 |
+| pong-feature-014 | FAIL | feature | 4 |
+| pong-feature-015 | PASS | feature | 3 |
+| pong-feature-016 | FAIL | feature | 4 |
+| pong-feature-017 | PASS | feature | 3 |
+| pong-mini-002 | FAIL | mini-game | 4 |
+| pong-mini-003 | PASS | mini-game | 3 |
+| pong-mini-004 | FAIL | mini-game | 4 |
+| pong-optimization-001 | PASS | optimization | 3 |
 
-#### Snake (6/15)
+#### Snake (11/27)
 
 | Task | Result | Category | Tier |
 |------|--------|----------|------|
 | snake-001 | FAIL | bug-fix | 1 |
 | snake-002 | FAIL | bug-fix | 1 |
 | snake-003 | PASS | bug-fix | 1 |
-| snake-004 | PASS | bug-fix | 1 |
+| snake-004 | FAIL | bug-fix | 1 |
 | snake-005 | PASS | bug-fix | 1 |
 | snake-006 | PASS | bug-fix | 2 |
+| snake-bug-007 | PASS | bug-fix | 2 |
 | snake-feature-001 | FAIL | feature | 2 |
 | snake-feature-002 | PASS | feature | 1 |
 | snake-feature-003 | FAIL | feature | 2 |
 | snake-feature-004 | FAIL | feature | 2 |
-| snake-feature-005 | FAIL | feature | 3 |
+| snake-feature-005 | PASS | feature | 3 |
 | snake-feature-006 | PASS | feature | 1 |
-| snake-feature-007 | FAIL | feature | 1 |
+| snake-feature-007 | PASS | feature | 1 |
+| snake-feature-008 | FAIL | feature | 3 |
+| snake-feature-009 | FAIL | feature | 3 |
+| snake-feature-010 | FAIL | feature | 3 |
+| snake-feature-011 | FAIL | feature | 4 |
+| snake-feature-012 | PASS | feature | 2 |
+| snake-feature-013 | PASS | feature | 2 |
+| snake-feature-014 | PASS | feature | 2 |
 | snake-mini-001 | FAIL | mini-game | 3 |
+| snake-mini-002 | FAIL | mini-game | 4 |
+| snake-mini-003 | FAIL | mini-game | 4 |
+| snake-mini-004 | FAIL | mini-game | 5 |
 | snake-optimization-001 | FAIL | optimization | 2 |
+| snake-optimization-002 | FAIL | optimization | 3 |
 
-#### Breakout (4/15)
+#### Breakout (6/26)
 
 | Task | Result | Category | Tier |
 |------|--------|----------|------|
-| breakout-001 | FAIL | bug-fix | 1 |
-| breakout-002 | FAIL | bug-fix | 1 |
+| breakout-001 | PASS | bug-fix | 1 |
+| breakout-002 | PASS | bug-fix | 1 |
 | breakout-003 | FAIL | bug-fix | 1 |
 | breakout-004 | PASS | bug-fix | 1 |
 | breakout-005 | PASS | bug-fix | 2 |
 | breakout-006 | FAIL | bug-fix | 1 |
-| breakout-feature-001 | PASS | feature | 3 |
+| breakout-bug-007 | FAIL | bug-fix | 2 |
+| breakout-feature-001 | FAIL | feature | 3 |
 | breakout-feature-002 | FAIL | feature | 2 |
 | breakout-feature-003 | FAIL | feature | 3 |
 | breakout-feature-004 | FAIL | feature | 2 |
 | breakout-feature-005 | FAIL | feature | 1 |
 | breakout-feature-006 | FAIL | feature | 2 |
 | breakout-feature-007 | FAIL | feature | 1 |
+| breakout-feature-008 | FAIL | feature | 3 |
+| breakout-feature-009 | FAIL | feature | 3 |
+| breakout-feature-010 | FAIL | feature | 4 |
+| breakout-feature-011 | FAIL | feature | 4 |
+| breakout-feature-012 | FAIL | feature | 4 |
+| breakout-feature-013 | FAIL | feature | 5 |
+| breakout-feature-014 | FAIL | feature | 5 |
 | breakout-mini-001 | FAIL | mini-game | 3 |
+| breakout-mini-002 | FAIL | mini-game | 4 |
+| breakout-mini-003 | PASS | mini-game | 3 |
 | breakout-optimization-001 | PASS | optimization | 2 |
+| breakout-optimization-002 | FAIL | optimization | 3 |
 
-#### Space Invaders (0/10)
+#### Space Invaders (3/23)
 
 | Task | Result | Category | Tier |
 |------|--------|----------|------|
-| space_invaders-001 | FAIL | bug-fix | 2 |
+| space_invaders-001 | PASS | bug-fix | 2 |
 | space_invaders-002 | FAIL | bug-fix | 3 |
 | space_invaders-003 | FAIL | bug-fix | 2 |
-| space_invaders-004 | FAIL | bug-fix | 2 |
+| space_invaders-004 | PASS | bug-fix | 2 |
+| space_invaders-bug-005 | FAIL | bug-fix | 3 |
 | space_invaders-feature-001 | FAIL | feature | 3 |
 | space_invaders-feature-002 | FAIL | feature | 3 |
 | space_invaders-feature-003 | FAIL | feature | 4 |
-| space_invaders-feature-004 | FAIL | feature | 4 |
+| space_invaders-feature-004 | PASS | feature | 4 |
+| space_invaders-feature-005 | FAIL | feature | 3 |
+| space_invaders-feature-006 | FAIL | feature | 3 |
+| space_invaders-feature-007 | FAIL | feature | 4 |
+| space_invaders-feature-008 | FAIL | feature | 4 |
+| space_invaders-feature-009 | FAIL | feature | 4 |
+| space_invaders-feature-010 | FAIL | feature | 5 |
+| space_invaders-feature-011 | FAIL | feature | 5 |
+| space_invaders-feature-012 | FAIL | feature | 5 |
 | space_invaders-mini-001 | FAIL | mini-game | 4 |
+| space_invaders-mini-002 | FAIL | mini-game | 5 |
+| space_invaders-mini-003 | FAIL | mini-game | 5 |
 | space_invaders-optimization-001 | FAIL | optimization | 3 |
+| space_invaders-optimization-002 | FAIL | optimization | 4 |
+| space_invaders-optimization-003 | FAIL | optimization | 4 |
+
+#### Asteroids (0/17)
+
+| Task | Result | Category | Tier |
+|------|--------|----------|------|
+| asteroids-bug-001 | FAIL | bug-fix | 3 |
+| asteroids-bug-002 | FAIL | bug-fix | 3 |
+| asteroids-feature-001 | FAIL | feature | 3 |
+| asteroids-feature-002 | FAIL | feature | 3 |
+| asteroids-feature-003 | FAIL | feature | 4 |
+| asteroids-feature-004 | FAIL | feature | 4 |
+| asteroids-feature-005 | FAIL | feature | 4 |
+| asteroids-feature-006 | FAIL | feature | 4 |
+| asteroids-feature-007 | FAIL | feature | 4 |
+| asteroids-feature-008 | FAIL | feature | 5 |
+| asteroids-feature-009 | FAIL | feature | 5 |
+| asteroids-feature-010 | FAIL | feature | 5 |
+| asteroids-feature-011 | FAIL | feature | 5 |
+| asteroids-mini-001 | FAIL | mini-game | 4 |
+| asteroids-mini-002 | FAIL | mini-game | 5 |
+| asteroids-optimization-001 | FAIL | optimization | 4 |
+| asteroids-optimization-002 | FAIL | optimization | 4 |
+
+#### Tetris (0/16)
+
+| Task | Result | Category | Tier |
+|------|--------|----------|------|
+| tetris-bug-001 | FAIL | bug-fix | 3 |
+| tetris-bug-002 | FAIL | bug-fix | 3 |
+| tetris-bug-003 | FAIL | bug-fix | 4 |
+| tetris-feature-001 | FAIL | feature | 3 |
+| tetris-feature-002 | FAIL | feature | 3 |
+| tetris-feature-003 | FAIL | feature | 4 |
+| tetris-feature-004 | FAIL | feature | 4 |
+| tetris-feature-005 | FAIL | feature | 4 |
+| tetris-feature-006 | FAIL | feature | 4 |
+| tetris-feature-007 | FAIL | feature | 5 |
+| tetris-feature-008 | FAIL | feature | 5 |
+| tetris-feature-009 | FAIL | feature | 5 |
+| tetris-feature-010 | FAIL | feature | 5 |
+| tetris-mini-001 | FAIL | mini-game | 4 |
+| tetris-mini-002 | FAIL | mini-game | 5 |
+| tetris-optimization-001 | FAIL | optimization | 4 |
+
+#### Platformer (1/17)
+
+| Task | Result | Category | Tier |
+|------|--------|----------|------|
+| platformer-bug-001 | FAIL | bug-fix | 3 |
+| platformer-bug-002 | FAIL | bug-fix | 3 |
+| platformer-feature-001 | PASS | feature | 3 |
+| platformer-feature-002 | FAIL | feature | 3 |
+| platformer-feature-003 | FAIL | feature | 4 |
+| platformer-feature-004 | FAIL | feature | 4 |
+| platformer-feature-005 | FAIL | feature | 4 |
+| platformer-feature-006 | FAIL | feature | 4 |
+| platformer-feature-007 | FAIL | feature | 4 |
+| platformer-feature-008 | FAIL | feature | 5 |
+| platformer-feature-009 | FAIL | feature | 5 |
+| platformer-feature-010 | FAIL | feature | 5 |
+| platformer-feature-011 | FAIL | feature | 5 |
+| platformer-feature-012 | FAIL | feature | 5 |
+| platformer-mini-001 | FAIL | mini-game | 4 |
+| platformer-mini-002 | FAIL | mini-game | 5 |
+| platformer-optimization-001 | FAIL | optimization | 4 |
+
+#### Tower Defense (1/17)
+
+| Task | Result | Category | Tier |
+|------|--------|----------|------|
+| tower_defense-bug-001 | FAIL | bug-fix | 3 |
+| tower_defense-bug-002 | FAIL | bug-fix | 3 |
+| tower_defense-feature-001 | FAIL | feature | 3 |
+| tower_defense-feature-002 | PASS | feature | 3 |
+| tower_defense-feature-003 | FAIL | feature | 4 |
+| tower_defense-feature-004 | FAIL | feature | 4 |
+| tower_defense-feature-005 | FAIL | feature | 4 |
+| tower_defense-feature-006 | FAIL | feature | 4 |
+| tower_defense-feature-007 | FAIL | feature | 4 |
+| tower_defense-feature-008 | FAIL | feature | 5 |
+| tower_defense-feature-009 | FAIL | feature | 5 |
+| tower_defense-feature-010 | FAIL | feature | 5 |
+| tower_defense-feature-011 | FAIL | feature | 5 |
+| tower_defense-feature-012 | FAIL | feature | 5 |
+| tower_defense-mini-001 | FAIL | mini-game | 4 |
+| tower_defense-mini-002 | FAIL | mini-game | 5 |
+| tower_defense-optimization-001 | FAIL | optimization | 4 |
 
 ---
 
@@ -260,17 +400,23 @@
 ### Strengths
 - **Julius Memory Safety:** 79% pass rate on memory bugs (null pointers, buffer overflows, double frees)
 - **Quake Bug Fixes:** 100% pass rate on tier 4-5 bug fixes in complex C engine code
-- **Simple Games:** Pong tasks have 80% pass rate
+- **Simple Games:** Pong tasks have 59% pass rate, Snake 41%
+- **Easy Tiers:** Tier 1-2 tasks show 56% pass rate
 
 ### Weaknesses
-- **Space Invaders:** 0% pass rate - complex game with higher difficulty tasks
+- **New M2 Games:** Asteroids and Tetris have 0% pass rate - complex games with higher difficulty tasks
+- **High-Tier Tasks:** Tier 4-5 tasks show only 8% pass rate (5/55)
+- **Feature Tasks:** 16% pass rate - harder than bug fixes
 - **Quake Features/Optimization:** 0% pass rate on tier 5 feature and optimization tasks
-- **Visual/UI Tasks:** Generally lower pass rates across engines
 
 ### Difficulty Scaling
-- Tier 1-2: Generally good performance (50-85%)
-- Tier 3: Mixed results (27-73%)
-- Tier 4-5: Low pass rates for features/optimization, but reasonable for bug fixes
+- Tier 1-2: Good performance (56%)
+- Tier 3: Mixed results (14%)
+- Tier 4-5: Low pass rates (8%)
+
+### M1 vs M2 Comparison
+- **M1 Tasks (Original 50):** Higher pass rates on original games
+- **M2 Tasks (New 115):** Significantly harder, especially new games (Asteroids, Tetris, Platformer, Tower Defense)
 
 ---
 
@@ -296,6 +442,6 @@ python scripts/run_benchmark.py -m claude:haiku -o results/runs/
 
 | Run ID | Engine | Directory |
 |--------|--------|-----------|
-| 20260123_113358 | Pygame | `results/runs/20260123_113358/` |
+| 20260125_161401 | Pygame | `results/runs/20260125_161401/` |
 | 20260124_163954 | Quake | `results/runs/20260124_163954/` |
 | 20260125_004623 | Julius | `results/runs/20260125_004623/` |

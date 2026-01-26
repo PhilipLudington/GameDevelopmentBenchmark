@@ -13,5 +13,6 @@
     "generation",
     "infinite"
   ],
-  "baseline": "asteroids"
+  "baseline": "asteroids",
+  "timeout": 240
 }

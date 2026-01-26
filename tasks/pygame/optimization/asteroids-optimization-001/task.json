@@ -14,5 +14,6 @@
     "spatial-hash",
     "algorithm"
   ],
-  "baseline": "asteroids"
+  "baseline": "asteroids",
+  "timeout": 180
 }

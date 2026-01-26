@@ -12,5 +12,6 @@
     "statistics",
     "persistence"
   ],
-  "baseline": "tetris"
+  "baseline": "tetris",
+  "timeout": 150
 }

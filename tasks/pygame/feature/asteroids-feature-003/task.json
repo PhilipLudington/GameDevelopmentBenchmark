@@ -13,5 +13,6 @@
     "teleport",
     "risk-reward"
   ],
-  "baseline": "asteroids"
+  "baseline": "asteroids",
+  "timeout": 150
 }

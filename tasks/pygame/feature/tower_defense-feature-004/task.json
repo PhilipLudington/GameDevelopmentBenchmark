@@ -13,5 +13,6 @@
     "difficulty",
     "adaptive"
   ],
-  "baseline": "tower_defense"
+  "baseline": "tower_defense",
+  "timeout": 240
 }

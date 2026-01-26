@@ -13,5 +13,6 @@
     "controls",
     "quality-of-life"
   ],
-  "baseline": "tower_defense"
+  "baseline": "tower_defense",
+  "timeout": 150
 }

@@ -12,5 +12,6 @@
     "performance",
     "rendering"
   ],
-  "baseline": "platformer"
+  "baseline": "platformer",
+  "timeout": 180
 }

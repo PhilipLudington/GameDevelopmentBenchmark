@@ -13,5 +13,6 @@
     "targeting",
     "strategy"
   ],
-  "baseline": "tetris"
+  "baseline": "tetris",
+  "timeout": 180
 }

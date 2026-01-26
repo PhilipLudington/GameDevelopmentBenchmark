@@ -13,5 +13,6 @@
     "collision",
     "wrap"
   ],
-  "baseline": "asteroids"
+  "baseline": "asteroids",
+  "timeout": 150
 }

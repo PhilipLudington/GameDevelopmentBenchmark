@@ -12,5 +12,6 @@
     "garbage",
     "competitive"
   ],
-  "baseline": "tetris"
+  "baseline": "tetris",
+  "timeout": 150
 }

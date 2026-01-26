@@ -12,5 +12,6 @@
     "effects",
     "camera"
   ],
-  "baseline": "asteroids"
+  "baseline": "asteroids",
+  "timeout": 150
 }

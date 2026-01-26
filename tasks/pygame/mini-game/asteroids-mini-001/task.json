@@ -13,5 +13,6 @@
     "multiplayer",
     "architecture"
   ],
-  "baseline": "asteroids"
+  "baseline": "asteroids",
+  "timeout": 240
 }

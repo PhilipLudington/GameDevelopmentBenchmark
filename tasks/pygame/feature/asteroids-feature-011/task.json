@@ -13,5 +13,6 @@
     "twin-stick",
     "input"
   ],
-  "baseline": "asteroids"
+  "baseline": "asteroids",
+  "timeout": 150
 }

@@ -12,5 +12,6 @@
     "power-up",
     "shooting"
   ],
-  "baseline": "asteroids"
+  "baseline": "asteroids",
+  "timeout": 150
 }

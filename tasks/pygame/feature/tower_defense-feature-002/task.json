@@ -13,5 +13,6 @@
     "economy",
     "tower"
   ],
-  "baseline": "tower_defense"
+  "baseline": "tower_defense",
+  "timeout": 150
 }

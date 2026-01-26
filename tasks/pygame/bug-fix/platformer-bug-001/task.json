@@ -13,5 +13,6 @@
     "collision",
     "physics"
   ],
-  "baseline": "platformer"
+  "baseline": "platformer",
+  "timeout": 150
 }

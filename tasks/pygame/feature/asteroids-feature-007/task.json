@@ -12,5 +12,6 @@
     "ability",
     "bomb"
   ],
-  "baseline": "asteroids"
+  "baseline": "asteroids",
+  "timeout": 150
 }

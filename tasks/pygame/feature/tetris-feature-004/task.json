@@ -13,5 +13,6 @@
     "speed",
     "difficulty"
   ],
-  "baseline": "tetris"
+  "baseline": "tetris",
+  "timeout": 150
 }

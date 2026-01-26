@@ -13,5 +13,6 @@
     "feel",
     "controls"
   ],
-  "baseline": "platformer"
+  "baseline": "platformer",
+  "timeout": 150
 }

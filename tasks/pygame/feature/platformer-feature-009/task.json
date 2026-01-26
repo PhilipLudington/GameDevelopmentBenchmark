@@ -13,5 +13,6 @@
     "speedrun",
     "competitive"
   ],
-  "baseline": "platformer"
+  "baseline": "platformer",
+  "timeout": 150
 }

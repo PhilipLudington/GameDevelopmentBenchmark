@@ -5,7 +5,15 @@
   "tier": 3,
   "engine": "pygame",
   "description": "Implement a shield power-up that spawns periodically and provides temporary invulnerability when collected",
-  "evaluation": ["unit-test"],
-  "tags": ["power-up", "collision", "timer", "game-mechanics"],
-  "baseline": "asteroids"
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "power-up",
+    "collision",
+    "timer",
+    "game-mechanics"
+  ],
+  "baseline": "asteroids",
+  "timeout": 150
 }

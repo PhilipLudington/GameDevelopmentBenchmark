@@ -13,5 +13,6 @@
     "behavior-tree",
     "enemy"
   ],
-  "baseline": "platformer"
+  "baseline": "platformer",
+  "timeout": 180
 }

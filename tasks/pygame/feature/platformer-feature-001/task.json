@@ -13,5 +13,6 @@
     "physics",
     "player-control"
   ],
-  "baseline": "platformer"
+  "baseline": "platformer",
+  "timeout": 150
 }

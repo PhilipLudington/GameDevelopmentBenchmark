@@ -13,5 +13,6 @@
     "endless",
     "scaling"
   ],
-  "baseline": "tower_defense"
+  "baseline": "tower_defense",
+  "timeout": 180
 }

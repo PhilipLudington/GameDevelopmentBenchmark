@@ -13,5 +13,6 @@
     "competitive",
     "battle"
   ],
-  "baseline": "tetris"
+  "baseline": "tetris",
+  "timeout": 180
 }

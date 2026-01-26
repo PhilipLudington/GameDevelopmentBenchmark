@@ -13,5 +13,6 @@
     "pathfinding",
     "variety"
   ],
-  "baseline": "tower_defense"
+  "baseline": "tower_defense",
+  "timeout": 180
 }

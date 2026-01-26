@@ -13,5 +13,6 @@
     "metroidvania",
     "generation"
   ],
-  "baseline": "platformer"
+  "baseline": "platformer",
+  "timeout": 240
 }

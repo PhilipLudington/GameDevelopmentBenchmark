@@ -12,5 +12,6 @@
     "scoring",
     "perfect-clear"
   ],
-  "baseline": "tetris"
+  "baseline": "tetris",
+  "timeout": 150
 }

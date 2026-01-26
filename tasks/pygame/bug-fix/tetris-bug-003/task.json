@@ -13,5 +13,6 @@
     "das",
     "hold"
   ],
-  "baseline": "tetris"
+  "baseline": "tetris",
+  "timeout": 150
 }
