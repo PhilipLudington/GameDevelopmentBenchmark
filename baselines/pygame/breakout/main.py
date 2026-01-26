@@ -10,6 +10,7 @@ Features:
 - Lives system
 - Game states (menu, playing, paused, game over, victory)
 - Headless mode support for automated testing
+- Sound effects for game events
 """
 
 import argparse
@@ -67,6 +68,77 @@ BLUE = (0, 100, 255)
 
 # Brick colors by row (from top to bottom)
 BRICK_COLORS = [RED, ORANGE, YELLOW, GREEN, BLUE]
+
+
+def create_beep_sound(frequency: float, duration_ms: int) -> Optional[pygame.mixer.Sound]:
+    """Create a simple beep sound using sine wave synthesis.
+    
+    Args:
+        frequency: Frequency in Hz
+        duration_ms: Duration in milliseconds
+        
+    Returns:
+        pygame.mixer.Sound object or None if synthesis fails
+    """
+    try:
+        import numpy as np
+        
+        sample_rate = 44100
+        n_samples = int(sample_rate * duration_ms / 1000)
+        t = np.linspace(0, duration_ms / 1000, n_samples, False)
+        
+        # Generate sine wave
+        wave = np.sin(2 * np.pi * frequency * t) * 0.3
+        wave = (wave * 32767).astype(np.int16)
+        
+        # Create stereo sound
+        stereo = np.column_stack([wave, wave])
+        sound = pygame.sndarray.make_sound(stereo)
+        return sound
+    except (ImportError, ValueError, TypeError):
+        return None
+
+
+def create_sound_library() -> dict:
+    """Create a library of sounds for game events.
+    
+    Returns:
+        Dictionary mapping event names to pygame.mixer.Sound objects.
+        Returns empty dict if sound creation fails.
+    """
+    sounds = {}
+    
+    # Paddle hit: high pitch beep
+    paddle_sound = create_beep_sound(800, 100)
+    if paddle_sound:
+        sounds['paddle'] = paddle_sound
+    
+    # Brick hit: mid-high pitch beep
+    brick_sound = create_beep_sound(600, 80)
+    if brick_sound:
+        sounds['brick'] = brick_sound
+    
+    # Wall hit: lower pitch beep
+    wall_sound = create_beep_sound(400, 60)
+    if wall_sound:
+        sounds['wall'] = wall_sound
+    
+    # Life lost: sad falling tone
+    life_lost_sound = create_beep_sound(300, 200)
+    if life_lost_sound:
+        sounds['life_lost'] = life_lost_sound
+    
+    # Game over: lower sad tone
+    game_over_sound = create_beep_sound(200, 300)
+    if game_over_sound:
+        sounds['game_over'] = game_over_sound
+    
+    # Victory: high ascending tone
+    victory_sound = create_beep_sound(1000, 300)
+    if victory_sound:
+        sounds['victory'] = victory_sound
+    
+    return sounds
 
 
 class GameState(Enum):
@@ -236,6 +308,16 @@ class Game:
         self.large_font = pygame.font.Font(None, 72)
         self.countdown_font = pygame.font.Font(None, 150)
 
+        # Initialize sound system (only in non-headless mode)
+        self.sounds = {}
+        if not headless:
+            try:
+                pygame.mixer.init()
+                self.sounds = create_sound_library()
+            except pygame.error:
+                # Sound initialization failed, continue without sound
+                pass
+
         # Game objects
         self.paddle = Paddle()
         self.ball = Ball()
@@ -260,6 +342,19 @@ class Game:
         self.on_life_lost: Optional[Callable[[int], None]] = None
 
         self._create_bricks()
+
+    def _play_sound(self, sound_name: str):
+        """Play a sound effect by name.
+        
+        Args:
+            sound_name: Name of the sound to play.
+        """
+        if sound_name in self.sounds and not self.headless:
+            try:
+                self.sounds[sound_name].play()
+            except pygame.error:
+                # Sound playback failed, continue silently
+                pass
 
     def _create_bricks(self):
         """Create the initial grid of bricks."""
@@ -307,6 +402,9 @@ class Game:
         elif new_state == GameState.GAME_OVER:
             if self.score > self.high_score:
                 self.high_score = self.score
+            self._play_sound('game_over')
+        elif new_state == GameState.VICTORY:
+            self._play_sound('victory')
 
     def handle_events(self):
         """Process pygame events."""
@@ -372,19 +470,24 @@ class Game:
         if self.ball.position.x - self.ball.radius <= 0:
             self.ball.position.x = self.ball.radius
             self.ball.bounce_horizontal()
+            self._play_sound('wall')
         elif self.ball.position.x + self.ball.radius >= SCREEN_WIDTH:
             self.ball.position.x = SCREEN_WIDTH - self.ball.radius
             self.ball.bounce_horizontal()
+            self._play_sound('wall')
 
         if self.ball.position.y - self.ball.radius <= 0:
             self.ball.position.y = self.ball.radius
             self.ball.bounce_vertical()
+            self._play_sound('wall')
 
         # Ball fell below paddle
         if self.ball.position.y + self.ball.radius >= SCREEN_HEIGHT:
             self.lives -= 1
             if self.on_life_lost:
                 self.on_life_lost(self.lives)
+
+            self._play_sound('life_lost')
 
             if self.lives <= 0:
                 self.set_state(GameState.GAME_OVER)
@@ -398,6 +501,7 @@ class Game:
             if self.ball.velocity.y > 0:
                 self.ball.position.y = self.paddle.y - self.ball.radius
                 self.ball.bounce_off_paddle(self.paddle)
+                self._play_sound('paddle')
 
         # Brick collisions
         for brick in self.bricks:
@@ -422,6 +526,8 @@ class Game:
                     self.ball.bounce_horizontal()
                 else:
                     self.ball.bounce_vertical()
+
+                self._play_sound('brick')
 
                 # Update score
                 old_score = self.score
