@@ -97,5 +97,104 @@
         ]
       }
     ]
+  },
+  {
+    "run_id": "20260213_194239",
+    "timestamp": "2026-02-14T01:47:36.679014+00:00",
+    "benchmark_version": "0.1.0",
+    "run_dir": "results/runs/20260213_194239",
+    "models": [
+      {
+        "model": "anthropic:claude-sonnet-4-5",
+        "model_version": "claude-sonnet-4-5-20250929",
+        "total": 13,
+        "passed": 0,
+        "failed": 13,
+        "pass_rate": 0.0,
+        "avg_score": 2.4,
+        "avg_time": 22.89,
+        "total_time": 297.62,
+        "tasks": [
+          {
+            "task_id": "breakout-001",
+            "success": false,
+            "score": 0.0,
+            "time": 31.34
+          },
+          {
+            "task_id": "breakout-002",
+            "success": false,
+            "score": 0.0,
+            "time": 22.45
+          },
+          {
+            "task_id": "breakout-003",
+            "success": false,
+            "score": 0.0,
+            "time": 22.08
+          },
+          {
+            "task_id": "breakout-004",
+            "success": false,
+            "score": 0.0,
+            "time": 30.35
+          },
+          {
+            "task_id": "breakout-006",
+            "success": false,
+            "score": 0.0,
+            "time": 22.73
+          },
+          {
+            "task_id": "pong-001",
+            "success": false,
+            "score": 0.0,
+            "time": 24.53
+          },
+          {
+            "task_id": "pong-002",
+            "success": false,
+            "score": 0.0,
+            "time": 19.2
+          },
+          {
+            "task_id": "pong-003",
+            "success": false,
+            "score": 0.0,
+            "time": 27.66
+          },
+          {
+            "task_id": "snake-001",
+            "success": false,
+            "score": 0.0,
+            "time": 19.16
+          },
+          {
+            "task_id": "snake-002",
+            "success": false,
+            "score": 0.1429,
+            "time": 17.35
+          },
+          {
+            "task_id": "snake-003",
+            "success": false,
+            "score": 0.0,
+            "time": 16.52
+          },
+          {
+            "task_id": "snake-004",
+            "success": false,
+            "score": 0.0,
+            "time": 18.58
+          },
+          {
+            "task_id": "snake-005",
+            "success": false,
+            "score": 0.1667,
+            "time": 25.67
+          }
+        ]
+      }
+    ]
   }
 ]
