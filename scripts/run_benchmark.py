@@ -252,6 +252,25 @@ def main(
 
     click.echo(f"\nResults saved to: {output_dir}")
 
+    # Auto-log the run
+    if all_results:
+        from scripts.log_run import summarize_run
+        log_file = Path("results/run-log.json")
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        summary = summarize_run(output_dir)
+        if summary:
+            log: list[dict] = []
+            if log_file.exists():
+                try:
+                    with open(log_file) as f:
+                        log = json.load(f)
+                except (json.JSONDecodeError, IOError):
+                    log = []
+            log.append(summary)
+            with open(log_file, "w") as f:
+                json.dump(log, f, indent=2)
+            click.echo(f"Run logged to: {log_file}")
+
 
 if __name__ == "__main__":
     main()
