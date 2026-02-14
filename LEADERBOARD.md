@@ -7,24 +7,24 @@ Tasks include bug fixes, features, optimizations, mini-games, memory safety, cra
 
 ## Overall Rankings
 
-| Rank | Model | Version | Pass Rate | Passed | Total | Avg Score | Avg Time |
-|-----:|-------|---------|----------:|-------:|------:|----------:|---------:|
-| 🥇 | **anthropic:claude-haiku-4-5** | claude-haiku-4-5-20251001 | 0.0% | 0 | 13 | 5.9% | 9.82s |
-| 🥈 | **anthropic:claude-sonnet-4-5** | claude-sonnet-4-5-20250929 | 0.0% | 0 | 13 | 2.4% | 22.89s |
+| Rank | Model | Version | Pass Rate | Passed | Total | Avg Time | Total Cost | $/Task |
+|-----:|-------|---------|----------:|-------:|------:|---------:|-----------:|-------:|
+| 🥇 | **anthropic:claude-sonnet-4-5** | claude-sonnet-4-5-20250929 | 16.4% | 37 | 225 | 30.7s | $6.83 | $0.0304 |
+| 🥈 | **anthropic:claude-haiku-4-5** | claude-haiku-4-5-20251001 | 0.0% | 0 | 13 | 9.82s | — | — |
 
 ## By Engine
 
 | Model | Pygame | Julius (C) | Quake (C) |
 |-------|-------:|----------:|---------:|
+| **anthropic:claude-sonnet-4-5** | 8.3% | 40.0% | 40.0% |
 | **anthropic:claude-haiku-4-5** | 0.0% | — | — |
-| **anthropic:claude-sonnet-4-5** | 0.0% | — | — |
 
 ## By Category
 
 | Model | Bug Fix | Feature | Optimization | Mini-Game | Memory Safety | Crash Fix | Game Logic | Visual |
 |-------|--------:|--------:|-------------:|----------:|--------------:|----------:|-----------:|-------:|
+| **anthropic:claude-sonnet-4-5** | 15.6% | 6.2% | 5.9% | 23.8% | 36.8% | 40.0% | 57.1% | 14.3% |
 | **anthropic:claude-haiku-4-5** | 0.0% | 0.0% | 0.0% | — | — | — | — | — |
-| **anthropic:claude-sonnet-4-5** | 0.0% | 0.0% | 0.0% | — | — | — | — | — |
 
 ## How to Run
 

@@ -57,6 +57,14 @@ def summarize_run(run_dir: Path) -> dict | None:
         scores = [r.get("score", 0) for r in model_results]
         times = [r.get("elapsed_time", 0) for r in model_results]
 
+        # Accumulate token usage
+        total_input_tokens = 0
+        total_output_tokens = 0
+        for r in model_results:
+            usage = r.get("usage") or {}
+            total_input_tokens += usage.get("input_tokens", 0)
+            total_output_tokens += usage.get("output_tokens", 0)
+
         # Per-task results (compact)
         task_results = []
         for r in model_results:
@@ -80,6 +88,9 @@ def summarize_run(run_dir: Path) -> dict | None:
             "avg_score": round(sum(scores) / total * 100, 1) if total > 0 else 0,
             "avg_time": round(sum(times) / total, 2) if total > 0 else 0,
             "total_time": round(sum(times), 2),
+            "input_tokens": total_input_tokens,
+            "output_tokens": total_output_tokens,
+            "total_tokens": total_input_tokens + total_output_tokens,
             "tasks": task_results,
         })
 

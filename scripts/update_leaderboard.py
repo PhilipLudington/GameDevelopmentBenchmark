@@ -14,6 +14,42 @@ from pathlib import Path
 
 import click
 
+# Pricing per million tokens (input, output) in USD
+MODEL_PRICING = {
+    # Anthropic
+    "claude-sonnet-4-5": (3.0, 15.0),
+    "claude-opus-4-5": (15.0, 75.0),
+    "claude-opus-4-6": (15.0, 75.0),
+    "claude-sonnet-4-20250514": (3.0, 15.0),
+    "claude-haiku-3-5": (0.80, 4.0),
+    "claude-haiku-4-5": (1.0, 5.0),
+    # OpenAI
+    "gpt-4o": (2.5, 10.0),
+    "gpt-4o-mini": (0.15, 0.60),
+    "gpt-4-turbo": (10.0, 30.0),
+    "o1": (15.0, 60.0),
+    "o1-mini": (3.0, 12.0),
+    "o3-mini": (1.10, 4.40),
+    "gpt-4.1": (2.0, 8.0),
+    "gpt-4.1-mini": (0.40, 1.60),
+    "gpt-4.1-nano": (0.10, 0.40),
+}
+
+
+def calculate_cost(model_id: str, input_tokens: int, output_tokens: int) -> float | None:
+    """Calculate cost in USD given model and token counts."""
+    # Try exact match, then prefix match
+    pricing = MODEL_PRICING.get(model_id)
+    if not pricing:
+        for key in MODEL_PRICING:
+            if model_id.startswith(key) or key in model_id:
+                pricing = MODEL_PRICING[key]
+                break
+    if not pricing:
+        return None
+    input_cost, output_cost = pricing
+    return (input_tokens * input_cost + output_tokens * output_cost) / 1_000_000
+
 
 def load_all_results(runs_dir: Path) -> dict[str, dict]:
     """Load individual result files from all run directories.
@@ -21,6 +57,8 @@ def load_all_results(runs_dir: Path) -> dict[str, dict]:
     Returns dict keyed by model_name, each containing:
       - tasks: dict of task_id -> best result
       - runs: list of run timestamps
+      - total_input_tokens: sum of input tokens across all tasks
+      - total_output_tokens: sum of output tokens across all tasks
     """
     models: dict[str, dict] = {}
     
@@ -43,13 +81,24 @@ def load_all_results(runs_dir: Path) -> dict[str, dict]:
             success = result.get("success", False)
             score = result.get("score", 0.0)
             elapsed = result.get("elapsed_time", 0.0)
+            usage = result.get("usage", {})
+            input_tokens = usage.get("input_tokens", 0) if usage else 0
+            output_tokens = usage.get("output_tokens", 0) if usage else 0
             
             version = result.get("model_version") or result.get("metadata", {}).get("model_version")
 
             benchmark_ver = result.get("benchmark_version")
 
             if model_name not in models:
-                models[model_name] = {"tasks": {}, "runs": set(), "run_dir": run_dir.name, "versions": set(), "benchmark_versions": set()}
+                models[model_name] = {
+                    "tasks": {}, 
+                    "runs": set(), 
+                    "run_dir": run_dir.name, 
+                    "versions": set(), 
+                    "benchmark_versions": set(),
+                    "total_input_tokens": 0,
+                    "total_output_tokens": 0,
+                }
             
             models[model_name]["runs"].add(run_dir.name)
             if version:
@@ -60,13 +109,22 @@ def load_all_results(runs_dir: Path) -> dict[str, dict]:
             # Keep best result per task (by success, then score)
             existing = models[model_name]["tasks"].get(task_id)
             if existing is None or (success and not existing["success"]) or (success == existing["success"] and score > existing["score"]):
+                # Subtract old token counts if replacing
+                if existing:
+                    models[model_name]["total_input_tokens"] -= existing.get("input_tokens", 0)
+                    models[model_name]["total_output_tokens"] -= existing.get("output_tokens", 0)
+                
                 models[model_name]["tasks"][task_id] = {
                     "task_id": task_id,
                     "success": success,
                     "score": score,
                     "elapsed_time": elapsed,
                     "run": run_dir.name,
+                    "input_tokens": input_tokens,
+                    "output_tokens": output_tokens,
                 }
+                models[model_name]["total_input_tokens"] += input_tokens
+                models[model_name]["total_output_tokens"] += output_tokens
     
     return models
 
@@ -105,6 +163,12 @@ def build_leaderboard(models: dict, tasks_dir: Path) -> dict:
         avg_score = sum(t["score"] for t in tasks.values()) / total if total > 0 else 0
         avg_time = sum(t["elapsed_time"] for t in tasks.values()) / total if total > 0 else 0
         
+        # Token usage and cost
+        total_input_tokens = data.get("total_input_tokens", 0)
+        total_output_tokens = data.get("total_output_tokens", 0)
+        total_cost = calculate_cost(model_name, total_input_tokens, total_output_tokens)
+        cost_per_task = total_cost / total if total_cost and total > 0 else None
+        
         # Breakdown by engine
         by_engine: dict[str, dict] = {}
         by_category: dict[str, dict] = {}
@@ -141,6 +205,10 @@ def build_leaderboard(models: dict, tasks_dir: Path) -> dict:
             "pass_rate": round(pass_rate, 1),
             "avg_score": round(avg_score * 100, 1),
             "avg_time_seconds": round(avg_time, 2),
+            "total_input_tokens": total_input_tokens,
+            "total_output_tokens": total_output_tokens,
+            "total_cost_usd": round(total_cost, 4) if total_cost else None,
+            "cost_per_task_usd": round(cost_per_task, 4) if cost_per_task else None,
             "num_runs": len(data["runs"]),
             "latest_run": max(data["runs"]),
             "by_engine": by_engine,
@@ -179,28 +247,33 @@ def generate_markdown(leaderboard: dict) -> str:
         "",
         "## Overall Rankings",
         "",
-        "| Rank | Model | Version | Pass Rate | Passed | Total | Avg Score | Avg Time |",
-        "|-----:|-------|---------|----------:|-------:|------:|----------:|---------:|",
+        "| Rank | Model | Version | Pass Rate | Passed | Total | Avg Time | Total Cost | $/Task |",
+        "|-----:|-------|---------|----------:|-------:|------:|---------:|-----------:|-------:|",
     ]
     
     entries = leaderboard["leaderboard"]
     
     if not entries:
-        lines.append("| — | *No results yet* | — | — | — | — | — | — |")
+        lines.append("| — | *No results yet* | — | — | — | — | — | — | — |")
     else:
         for i, entry in enumerate(entries, 1):
             medal = {1: "🥇", 2: "🥈", 3: "🥉"}.get(i, str(i))
             version = entry.get("model_version", "—")
             if isinstance(version, list):
                 version = ", ".join(version)
+            total_cost = entry.get("total_cost_usd")
+            cost_per_task = entry.get("cost_per_task_usd")
+            cost_str = f"${total_cost:.2f}" if total_cost else "—"
+            per_task_str = f"${cost_per_task:.4f}" if cost_per_task else "—"
             lines.append(
                 f"| {medal} | **{entry['model']}** "
                 f"| {version} "
                 f"| {entry['pass_rate']}% "
                 f"| {entry['passed']} "
                 f"| {entry['total_tasks']} "
-                f"| {entry['avg_score']}% "
-                f"| {entry['avg_time_seconds']}s |"
+                f"| {entry['avg_time_seconds']}s "
+                f"| {cost_str} "
+                f"| {per_task_str} |"
             )
     
     # Engine breakdown

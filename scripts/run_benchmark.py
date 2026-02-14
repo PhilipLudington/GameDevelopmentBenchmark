@@ -14,6 +14,41 @@ from evaluation.report import ReportGenerator
 from harness.sandbox import SandboxConfig
 from models.base import create_model, ModelError
 
+# Pricing per million tokens (input, output) in USD
+MODEL_PRICING = {
+    # Anthropic
+    "claude-sonnet-4-5": (3.0, 15.0),
+    "claude-opus-4-5": (15.0, 75.0),
+    "claude-opus-4-6": (15.0, 75.0),
+    "claude-sonnet-4-20250514": (3.0, 15.0),
+    "claude-haiku-3-5": (0.80, 4.0),
+    # OpenAI
+    "gpt-4o": (2.5, 10.0),
+    "gpt-4o-mini": (0.15, 0.60),
+    "gpt-4-turbo": (10.0, 30.0),
+    "o1": (15.0, 60.0),
+    "o1-mini": (3.0, 12.0),
+    "o3-mini": (1.10, 4.40),
+    "gpt-4.1": (2.0, 8.0),
+    "gpt-4.1-mini": (0.40, 1.60),
+    "gpt-4.1-nano": (0.10, 0.40),
+}
+
+
+def calculate_cost(model_id: str, input_tokens: int, output_tokens: int) -> float | None:
+    """Calculate cost in USD given model and token counts."""
+    # Try exact match, then prefix match
+    pricing = MODEL_PRICING.get(model_id)
+    if not pricing:
+        for key in MODEL_PRICING:
+            if model_id.startswith(key):
+                pricing = MODEL_PRICING[key]
+                break
+    if not pricing:
+        return None
+    input_cost, output_cost = pricing
+    return (input_tokens * input_cost + output_tokens * output_cost) / 1_000_000
+
 
 def get_benchmark_version() -> str:
     """Get the benchmark version from package metadata or pyproject.toml."""
@@ -103,14 +138,16 @@ def run_benchmark_for_model(
         model = create_model(model_string)
     except (ValueError, ModelError) as e:
         click.echo(click.style(f"Failed to create model {model_string}: {e}", fg="red"))
-        return 0, 0
+        return 0, 0, 0, 0
 
     if not model.is_available():
         click.echo(click.style(f"Model not available: {model_string}", fg="yellow"))
-        return 0, 0
+        return 0, 0, 0, 0
 
     passed = 0
     failed = 0
+    total_input_tokens = 0
+    total_output_tokens = 0
     sandbox_config = SandboxConfig(timeout=timeout, headless=True)
 
     for i, task_dir in enumerate(tasks, 1):
@@ -133,6 +170,11 @@ def run_benchmark_for_model(
 
         result = runner.run()
 
+        # Accumulate token usage
+        if result.usage:
+            total_input_tokens += result.usage.get("input_tokens", 0)
+            total_output_tokens += result.usage.get("output_tokens", 0)
+
         # Save result
         result_file = output_dir / f"{task_id}_{model_string.replace(':', '_')}.json"
         result_dict = {
@@ -144,6 +186,7 @@ def run_benchmark_for_model(
             "score": result.score,
             "elapsed_time": result.elapsed_time,
             "error": result.error,
+            "usage": result.usage,
             "metadata": result.metadata,
         }
         with open(result_file, "w") as f:
@@ -156,7 +199,7 @@ def run_benchmark_for_model(
             click.echo(click.style(" FAILED", fg="red"))
             failed += 1
 
-    return passed, failed
+    return passed, failed, total_input_tokens, total_output_tokens
 
 
 @click.command()
@@ -223,7 +266,7 @@ def main(
         click.echo(f"\nModel: {model_string}")
         click.echo("-" * 40)
 
-        passed, failed = run_benchmark_for_model(
+        passed, failed, in_tok, out_tok = run_benchmark_for_model(
             model_string=model_string,
             tasks=tasks,
             output_dir=output_dir,
@@ -232,7 +275,12 @@ def main(
             benchmark_version=benchmark_version,
         )
 
-        all_results[model_string] = {"passed": passed, "failed": failed}
+        all_results[model_string] = {
+            "passed": passed,
+            "failed": failed,
+            "input_tokens": in_tok,
+            "output_tokens": out_tok,
+        }
         total = passed + failed
         if total > 0:
             click.echo(f"  Results: {passed}/{total} passed ({100*passed/total:.1f}%)")
@@ -261,10 +309,22 @@ def main(
         passed = results["passed"]
         failed = results["failed"]
         total = passed + failed
+        in_tok = results["input_tokens"]
+        out_tok = results["output_tokens"]
         if total > 0:
             rate = 100 * passed / total
             status = click.style(f"{rate:.1f}%", fg="green" if rate >= 80 else "yellow" if rate >= 50 else "red")
             click.echo(f"  {model_string}: {passed}/{total} ({status})")
+
+            # Token usage and cost
+            if in_tok or out_tok:
+                click.echo(f"    Tokens: {in_tok:,} in / {out_tok:,} out ({in_tok + out_tok:,} total)")
+                model_id = model_string.split(":", 1)[-1] if ":" in model_string else model_string
+                cost = calculate_cost(model_id, in_tok, out_tok)
+                if cost is not None:
+                    click.echo(f"    Cost: ${cost:.4f}")
+                else:
+                    click.echo(f"    Cost: unknown (no pricing for {model_id})")
 
     click.echo(f"\nResults saved to: {output_dir}")
 

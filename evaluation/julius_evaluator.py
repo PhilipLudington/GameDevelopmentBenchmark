@@ -74,6 +74,7 @@ class JuliusEvaluationResult:
     applied_patch: str = ""
     elapsed_time: float = 0.0
     error: Optional[str] = None
+    usage: Optional[Dict[str, int]] = None
     metadata: Dict[str, Any] = field(default_factory=dict)
 
     @property
@@ -419,6 +420,7 @@ class JuliusEvaluator:
                         success=False,
                         model_response=model_result.content,
                         elapsed_time=elapsed,
+                        usage=model_result.usage,
                         error="No fix found in model response (expected complete file or patch)",
                     )
 
@@ -492,6 +494,7 @@ class JuliusEvaluator:
                 model_response=model_result.content,
                 applied_patch=model_patch,
                 elapsed_time=elapsed,
+                usage=model_result.usage,
                 metadata={
                     "model_config": self.model.get_config(),
                     "task_tier": task_config.tier,
@@ -563,6 +566,7 @@ class JuliusEvaluator:
                 success=False,
                 model_response=model_result.content,
                 elapsed_time=elapsed,
+                usage=model_result.usage,
                 error="No patch found in model response",
             )
 
@@ -667,6 +671,7 @@ class JuliusEvaluator:
             model_response=model_result.content,
             applied_patch=model_patch,
             elapsed_time=elapsed,
+            usage=model_result.usage,
             metadata={
                 "model_config": self.model.get_config(),
                 "task_tier": task_config.tier,

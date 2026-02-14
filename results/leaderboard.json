@@ -1,9 +1,127 @@
 {
-  "generated_at": "2026-02-14T01:47:43.151171+00:00",
+  "generated_at": "2026-02-14T19:41:13.041159+00:00",
   "benchmark_version": "0.1.0",
   "total_models": 2,
   "total_tasks_available": 225,
   "leaderboard": [
+    {
+      "model": "anthropic:claude-sonnet-4-5",
+      "model_version": "claude-sonnet-4-5-20250929",
+      "benchmark_version": "0.1.0",
+      "total_tasks": 225,
+      "passed": 37,
+      "failed": 188,
+      "pass_rate": 16.4,
+      "avg_score": 29.7,
+      "avg_time_seconds": 30.7,
+      "total_input_tokens": 42881,
+      "total_output_tokens": 446674,
+      "total_cost_usd": 6.8288,
+      "cost_per_task_usd": 0.0304,
+      "num_runs": 2,
+      "latest_run": "20260213_195519",
+      "by_engine": {
+        "pygame": {
+          "total": 156,
+          "passed": 13,
+          "pass_rate": 8.3
+        },
+        "unknown": {
+          "total": 9,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "julius": {
+          "total": 50,
+          "passed": 20,
+          "pass_rate": 40.0
+        },
+        "quake": {
+          "total": 10,
+          "passed": 4,
+          "pass_rate": 40.0
+        }
+      },
+      "by_category": {
+        "feature": {
+          "total": 96,
+          "passed": 6,
+          "pass_rate": 6.2
+        },
+        "optimization": {
+          "total": 17,
+          "passed": 1,
+          "pass_rate": 5.9
+        },
+        "bug-fix": {
+          "total": 32,
+          "passed": 5,
+          "pass_rate": 15.6
+        },
+        "mini-game": {
+          "total": 21,
+          "passed": 5,
+          "pass_rate": 23.8
+        },
+        "unknown": {
+          "total": 9,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "crash-fix": {
+          "total": 10,
+          "passed": 4,
+          "pass_rate": 40.0
+        },
+        "game-logic": {
+          "total": 14,
+          "passed": 8,
+          "pass_rate": 57.1
+        },
+        "visual": {
+          "total": 7,
+          "passed": 1,
+          "pass_rate": 14.3
+        },
+        "memory-safety": {
+          "total": 19,
+          "passed": 7,
+          "pass_rate": 36.8
+        }
+      },
+      "by_tier": {
+        "0": {
+          "total": 9,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "1": {
+          "total": 15,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "2": {
+          "total": 36,
+          "passed": 9,
+          "pass_rate": 25.0
+        },
+        "3": {
+          "total": 95,
+          "passed": 13,
+          "pass_rate": 13.7
+        },
+        "4": {
+          "total": 48,
+          "passed": 9,
+          "pass_rate": 18.8
+        },
+        "5": {
+          "total": 22,
+          "passed": 6,
+          "pass_rate": 27.3
+        }
+      }
+    },
     {
       "model": "anthropic:claude-haiku-4-5",
       "model_version": "claude-haiku-4-5-20251001",
@@ -14,6 +132,10 @@
       "pass_rate": 0.0,
       "avg_score": 5.9,
       "avg_time_seconds": 9.82,
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "total_cost_usd": null,
+      "cost_per_task_usd": null,
       "num_runs": 1,
       "latest_run": "20260213_193326",
       "by_engine": {
@@ -36,60 +158,6 @@
         },
         "optimization": {
           "total": 1,
-          "passed": 0,
-          "pass_rate": 0.0
-        }
-      },
-      "by_tier": {
-        "1": {
-          "total": 9,
-          "passed": 0,
-          "pass_rate": 0.0
-        },
-        "2": {
-          "total": 3,
-          "passed": 0,
-          "pass_rate": 0.0
-        },
-        "3": {
-          "total": 1,
-          "passed": 0,
-          "pass_rate": 0.0
-        }
-      }
-    },
-    {
-      "model": "anthropic:claude-sonnet-4-5",
-      "model_version": "claude-sonnet-4-5-20250929",
-      "benchmark_version": "0.1.0",
-      "total_tasks": 13,
-      "passed": 0,
-      "failed": 13,
-      "pass_rate": 0.0,
-      "avg_score": 2.4,
-      "avg_time_seconds": 22.89,
-      "num_runs": 1,
-      "latest_run": "20260213_194239",
-      "by_engine": {
-        "pygame": {
-          "total": 13,
-          "passed": 0,
-          "pass_rate": 0.0
-        }
-      },
-      "by_category": {
-        "feature": {
-          "total": 4,
-          "passed": 0,
-          "pass_rate": 0.0
-        },
-        "optimization": {
-          "total": 1,
-          "passed": 0,
-          "pass_rate": 0.0
-        },
-        "bug-fix": {
-          "total": 8,
           "passed": 0,
           "pass_rate": 0.0
         }

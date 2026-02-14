@@ -54,6 +54,7 @@ class EvaluationResult:
     applied_changes: dict[str, str] = field(default_factory=dict)
     elapsed_time: float = 0.0
     error: str | None = None
+    usage: dict[str, int] | None = None
     metadata: dict[str, Any] = field(default_factory=dict)
 
 
@@ -479,10 +480,10 @@ class EvaluationRunner:
                 model_response=model_result.content,
                 applied_changes=changes,
                 elapsed_time=elapsed,
+                usage=model_result.usage,
                 metadata={
                     "model_config": self.model.get_config(),
-                    "model_version": self.model.get_resolved_version() or self.model.get_name(),
-                    "model_version": getattr(model_result, "model", None) or self.model.get_name(),
+                    "model_version": getattr(model_result, "model", None) or self.model.get_resolved_version() or self.model.get_name(),
                     "task_tier": task_config.tier,
                     "task_category": task_config.category,
                     "engine": task_config.engine,
@@ -570,9 +571,10 @@ class EvaluationRunner:
                 model_response=model_result.content,
                 applied_changes=changes,
                 elapsed_time=elapsed,
+                usage=model_result.usage,
                 metadata={
                     "model_config": self.model.get_config(),
-                    "model_version": self.model.get_resolved_version() or self.model.get_name(),
+                    "model_version": getattr(model_result, "model", None) or self.model.get_resolved_version() or self.model.get_name(),
                     "task_tier": task_config.tier,
                     "task_category": task_config.category,
                     "engine": task_config.engine,
@@ -644,10 +646,11 @@ class EvaluationRunner:
             model_response=julius_result.model_response,
             applied_changes={"patch": julius_result.applied_patch} if julius_result.applied_patch else {},
             elapsed_time=elapsed,
+            usage=julius_result.usage if hasattr(julius_result, "usage") else None,
             error=julius_result.error,
             metadata={
                 "model_config": self.model.get_config(),
-                    "model_version": self.model.get_resolved_version() or self.model.get_name(),
+                "model_version": self.model.get_resolved_version() or self.model.get_name(),
                 "task_tier": task_config.tier,
                 "task_category": task_config.category,
                 "engine": task_config.engine,
