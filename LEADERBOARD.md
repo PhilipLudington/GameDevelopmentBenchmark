@@ -12,6 +12,7 @@ Tasks include bug fixes, features, optimizations, mini-games, memory safety, cra
 | 🥇 | **anthropic:claude-haiku-4-5** | claude-haiku-4-5-20251001 | 18.7% | 42 | 225 | 16.9s | $3.64 | $0.0162 |
 | 🥈 | **anthropic:claude-sonnet-4-5** | claude-sonnet-4-5-20250929 | 16.4% | 37 | 225 | 30.7s | $6.83 | $0.0304 |
 | 🥉 | **openai:gpt-4.1-nano** | gpt-4.1-nano-2025-04-14 | 0.9% | 2 | 225 | 9.8s | — | — |
+| 4 | **openai:gpt-5-mini** | openai:gpt-5-mini | 0.0% | 0 | 225 | 0.12s | — | — |
 
 ## By Engine
 
@@ -20,6 +21,7 @@ Tasks include bug fixes, features, optimizations, mini-games, memory safety, cra
 | **anthropic:claude-haiku-4-5** | 10.9% | 44.0% | 30.0% |
 | **anthropic:claude-sonnet-4-5** | 8.3% | 40.0% | 40.0% |
 | **openai:gpt-4.1-nano** | 0.0% | 4.0% | 0.0% |
+| **openai:gpt-5-mini** | 0.0% | 0.0% | 0.0% |
 
 ## By Category
 
@@ -28,6 +30,7 @@ Tasks include bug fixes, features, optimizations, mini-games, memory safety, cra
 | **anthropic:claude-haiku-4-5** | 25.0% | 10.4% | 0.0% | 9.5% | 42.1% | 40.0% | 64.3% | 14.3% |
 | **anthropic:claude-sonnet-4-5** | 15.6% | 6.2% | 5.9% | 23.8% | 36.8% | 40.0% | 57.1% | 14.3% |
 | **openai:gpt-4.1-nano** | 0.0% | 0.0% | 0.0% | 0.0% | 10.5% | 0.0% | 0.0% | 0.0% |
+| **openai:gpt-5-mini** | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
 
 ## How to Run
 
