@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-02-14T20:48:31.440554+00:00",
+  "generated_at": "2026-02-14T21:45:45.003191+00:00",
   "benchmark_version": "0.1.0",
-  "total_models": 2,
+  "total_models": 3,
   "total_tasks_available": 225,
   "leaderboard": [
     {
@@ -237,6 +237,124 @@
           "total": 22,
           "passed": 6,
           "pass_rate": 27.3
+        }
+      }
+    },
+    {
+      "model": "openai:gpt-4.1-nano",
+      "model_version": "gpt-4.1-nano-2025-04-14",
+      "benchmark_version": "0.1.0",
+      "total_tasks": 225,
+      "passed": 2,
+      "failed": 223,
+      "pass_rate": 0.9,
+      "avg_score": 7.2,
+      "avg_time_seconds": 9.8,
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "total_cost_usd": null,
+      "cost_per_task_usd": null,
+      "num_runs": 1,
+      "latest_run": "20260214_150855",
+      "by_engine": {
+        "pygame": {
+          "total": 156,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "quake": {
+          "total": 10,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "julius": {
+          "total": 50,
+          "passed": 2,
+          "pass_rate": 4.0
+        },
+        "unknown": {
+          "total": 9,
+          "passed": 0,
+          "pass_rate": 0.0
+        }
+      },
+      "by_category": {
+        "feature": {
+          "total": 96,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "game-logic": {
+          "total": 14,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "bug-fix": {
+          "total": 32,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "mini-game": {
+          "total": 21,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "visual": {
+          "total": 7,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "memory-safety": {
+          "total": 19,
+          "passed": 2,
+          "pass_rate": 10.5
+        },
+        "optimization": {
+          "total": 17,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "crash-fix": {
+          "total": 10,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "unknown": {
+          "total": 9,
+          "passed": 0,
+          "pass_rate": 0.0
+        }
+      },
+      "by_tier": {
+        "0": {
+          "total": 9,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "1": {
+          "total": 15,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "2": {
+          "total": 36,
+          "passed": 1,
+          "pass_rate": 2.8
+        },
+        "3": {
+          "total": 95,
+          "passed": 1,
+          "pass_rate": 1.1
+        },
+        "4": {
+          "total": 48,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "5": {
+          "total": 22,
+          "passed": 0,
+          "pass_rate": 0.0
         }
       }
     }

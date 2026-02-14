@@ -1570,5 +1570,1379 @@
         ]
       }
     ]
+  },
+  {
+    "run_id": "20260214_150855",
+    "timestamp": "2026-02-14T21:45:40.184256+00:00",
+    "benchmark_version": "0.1.0",
+    "run_dir": "results/runs/20260214_150855",
+    "models": [
+      {
+        "model": "openai:gpt-4.1-nano",
+        "model_version": "gpt-4.1-nano-2025-04-14",
+        "total": 225,
+        "passed": 2,
+        "failed": 223,
+        "pass_rate": 0.9,
+        "avg_score": 7.2,
+        "avg_time": 9.8,
+        "total_time": 2204.57,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "tasks": [
+          {
+            "task_id": "asteroids-bug-001",
+            "success": false,
+            "score": 0.0,
+            "time": 7.5
+          },
+          {
+            "task_id": "asteroids-bug-002",
+            "success": false,
+            "score": 0.0,
+            "time": 5.97
+          },
+          {
+            "task_id": "asteroids-feature-001",
+            "success": false,
+            "score": 0.0,
+            "time": 6.67
+          },
+          {
+            "task_id": "asteroids-feature-002",
+            "success": false,
+            "score": 0.0,
+            "time": 5.28
+          },
+          {
+            "task_id": "asteroids-feature-003",
+            "success": false,
+            "score": 0.0,
+            "time": 9.89
+          },
+          {
+            "task_id": "asteroids-feature-004",
+            "success": false,
+            "score": 0.0,
+            "time": 11.44
+          },
+          {
+            "task_id": "asteroids-feature-005",
+            "success": false,
+            "score": 0.0,
+            "time": 7.02
+          },
+          {
+            "task_id": "asteroids-feature-006",
+            "success": false,
+            "score": 0.0,
+            "time": 5.37
+          },
+          {
+            "task_id": "asteroids-feature-007",
+            "success": false,
+            "score": 0.0,
+            "time": 5.22
+          },
+          {
+            "task_id": "asteroids-feature-008",
+            "success": false,
+            "score": 0.0,
+            "time": 5.43
+          },
+          {
+            "task_id": "asteroids-feature-009",
+            "success": false,
+            "score": 0.0,
+            "time": 5.63
+          },
+          {
+            "task_id": "asteroids-feature-010",
+            "success": false,
+            "score": 0.0,
+            "time": 7.07
+          },
+          {
+            "task_id": "asteroids-feature-011",
+            "success": false,
+            "score": 0.0,
+            "time": 3.22
+          },
+          {
+            "task_id": "asteroids-mini-001",
+            "success": false,
+            "score": 0.0,
+            "time": 13.49
+          },
+          {
+            "task_id": "asteroids-mini-002",
+            "success": false,
+            "score": 0.0,
+            "time": 3.88
+          },
+          {
+            "task_id": "asteroids-optimization-001",
+            "success": false,
+            "score": 0.0,
+            "time": 9.63
+          },
+          {
+            "task_id": "asteroids-optimization-002",
+            "success": false,
+            "score": 0.0,
+            "time": 7.68
+          },
+          {
+            "task_id": "breakout-001",
+            "success": false,
+            "score": 0.0,
+            "time": 9.98
+          },
+          {
+            "task_id": "breakout-002",
+            "success": false,
+            "score": 0.0,
+            "time": 7.43
+          },
+          {
+            "task_id": "breakout-003",
+            "success": false,
+            "score": 0.0,
+            "time": 5.83
+          },
+          {
+            "task_id": "breakout-004",
+            "success": false,
+            "score": 0.0,
+            "time": 8.5
+          },
+          {
+            "task_id": "breakout-005",
+            "success": false,
+            "score": 0.0,
+            "time": 4.8
+          },
+          {
+            "task_id": "breakout-006",
+            "success": false,
+            "score": 0.0,
+            "time": 2.98
+          },
+          {
+            "task_id": "breakout-bug-007",
+            "success": false,
+            "score": 0.0,
+            "time": 4.84
+          },
+          {
+            "task_id": "breakout-feature-001",
+            "success": false,
+            "score": 0.0,
+            "time": 9.85
+          },
+          {
+            "task_id": "breakout-feature-002",
+            "success": false,
+            "score": 0.0,
+            "time": 11.81
+          },
+          {
+            "task_id": "breakout-feature-003",
+            "success": false,
+            "score": 0.0,
+            "time": 14.34
+          },
+          {
+            "task_id": "breakout-feature-004",
+            "success": false,
+            "score": 0.0,
+            "time": 7.21
+          },
+          {
+            "task_id": "breakout-feature-005",
+            "success": false,
+            "score": 0.0,
+            "time": 4.77
+          },
+          {
+            "task_id": "breakout-feature-006",
+            "success": false,
+            "score": 0.0,
+            "time": 8.85
+          },
+          {
+            "task_id": "breakout-feature-007",
+            "success": false,
+            "score": 0.0,
+            "time": 9.28
+          },
+          {
+            "task_id": "breakout-feature-008",
+            "success": false,
+            "score": 0.0,
+            "time": 11.7
+          },
+          {
+            "task_id": "breakout-feature-009",
+            "success": false,
+            "score": 0.0,
+            "time": 16.11
+          },
+          {
+            "task_id": "breakout-feature-010",
+            "success": false,
+            "score": 0.0,
+            "time": 9.26
+          },
+          {
+            "task_id": "breakout-feature-011",
+            "success": false,
+            "score": 0.0,
+            "time": 4.91
+          },
+          {
+            "task_id": "breakout-feature-012",
+            "success": false,
+            "score": 0.0,
+            "time": 5.73
+          },
+          {
+            "task_id": "breakout-feature-013",
+            "success": false,
+            "score": 0.0,
+            "time": 6.56
+          },
+          {
+            "task_id": "breakout-feature-014",
+            "success": false,
+            "score": 0.0,
+            "time": 5.02
+          },
+          {
+            "task_id": "breakout-mini-001",
+            "success": false,
+            "score": 0.0,
+            "time": 8.51
+          },
+          {
+            "task_id": "breakout-mini-002",
+            "success": false,
+            "score": 0.0,
+            "time": 10.52
+          },
+          {
+            "task_id": "breakout-mini-003",
+            "success": false,
+            "score": 0.0,
+            "time": 5.56
+          },
+          {
+            "task_id": "breakout-optimization-001",
+            "success": false,
+            "score": 0.0,
+            "time": 6.55
+          },
+          {
+            "task_id": "breakout-optimization-002",
+            "success": false,
+            "score": 0.0,
+            "time": 8.6
+          },
+          {
+            "task_id": "julius-001",
+            "success": false,
+            "score": 0.2,
+            "time": 5.48
+          },
+          {
+            "task_id": "julius-002",
+            "success": false,
+            "score": 0.2,
+            "time": 2.53
+          },
+          {
+            "task_id": "julius-003",
+            "success": false,
+            "score": 0.2,
+            "time": 3.08
+          },
+          {
+            "task_id": "julius-004",
+            "success": false,
+            "score": 0.0,
+            "time": 5.37
+          },
+          {
+            "task_id": "julius-005",
+            "success": false,
+            "score": 0.2,
+            "time": 2.28
+          },
+          {
+            "task_id": "julius-006",
+            "success": false,
+            "score": 0.2,
+            "time": 5.51
+          },
+          {
+            "task_id": "julius-007",
+            "success": false,
+            "score": 0.6,
+            "time": 1.98
+          },
+          {
+            "task_id": "julius-008",
+            "success": false,
+            "score": 0.6,
+            "time": 2.14
+          },
+          {
+            "task_id": "julius-009",
+            "success": false,
+            "score": 0.6,
+            "time": 2.56
+          },
+          {
+            "task_id": "julius-010",
+            "success": false,
+            "score": 0.2,
+            "time": 4.4
+          },
+          {
+            "task_id": "julius-011",
+            "success": false,
+            "score": 0.8,
+            "time": 1.93
+          },
+          {
+            "task_id": "julius-012",
+            "success": false,
+            "score": 0.0,
+            "time": 3.55
+          },
+          {
+            "task_id": "julius-013",
+            "success": false,
+            "score": 0.0,
+            "time": 2.01
+          },
+          {
+            "task_id": "julius-014",
+            "success": false,
+            "score": 0.8,
+            "time": 2.93
+          },
+          {
+            "task_id": "julius-015",
+            "success": false,
+            "score": 0.8,
+            "time": 2.49
+          },
+          {
+            "task_id": "julius-016",
+            "success": false,
+            "score": 0.0,
+            "time": 2.09
+          },
+          {
+            "task_id": "julius-017",
+            "success": false,
+            "score": 0.0,
+            "time": 1.23
+          },
+          {
+            "task_id": "julius-018",
+            "success": true,
+            "score": 1.0,
+            "time": 1.2
+          },
+          {
+            "task_id": "julius-019",
+            "success": false,
+            "score": 0.8,
+            "time": 4.68
+          },
+          {
+            "task_id": "julius-020",
+            "success": false,
+            "score": 0.8,
+            "time": 3.12
+          },
+          {
+            "task_id": "julius-021",
+            "success": true,
+            "score": 0.8,
+            "time": 1.66
+          },
+          {
+            "task_id": "julius-022",
+            "success": false,
+            "score": 0.8,
+            "time": 1.96
+          },
+          {
+            "task_id": "julius-023",
+            "success": false,
+            "score": 0.0,
+            "time": 3.57
+          },
+          {
+            "task_id": "julius-024",
+            "success": false,
+            "score": 0.0,
+            "time": 2.24
+          },
+          {
+            "task_id": "julius-025",
+            "success": false,
+            "score": 0.0,
+            "time": 2.92
+          },
+          {
+            "task_id": "julius-026",
+            "success": false,
+            "score": 0.8,
+            "time": 3.45
+          },
+          {
+            "task_id": "julius-027",
+            "success": false,
+            "score": 0.0,
+            "time": 1.96
+          },
+          {
+            "task_id": "julius-028",
+            "success": false,
+            "score": 0.8,
+            "time": 2.95
+          },
+          {
+            "task_id": "julius-029",
+            "success": false,
+            "score": 0.0,
+            "time": 2.54
+          },
+          {
+            "task_id": "julius-030",
+            "success": false,
+            "score": 0.8,
+            "time": 2.26
+          },
+          {
+            "task_id": "julius-031",
+            "success": false,
+            "score": 0.8,
+            "time": 2.76
+          },
+          {
+            "task_id": "julius-032",
+            "success": false,
+            "score": 0.0,
+            "time": 3.41
+          },
+          {
+            "task_id": "julius-033",
+            "success": false,
+            "score": 0.0,
+            "time": 1.34
+          },
+          {
+            "task_id": "julius-034",
+            "success": false,
+            "score": 0.0,
+            "time": 1.29
+          },
+          {
+            "task_id": "julius-035",
+            "success": false,
+            "score": 0.0,
+            "time": 1.45
+          },
+          {
+            "task_id": "julius-036",
+            "success": false,
+            "score": 0.0,
+            "time": 2.56
+          },
+          {
+            "task_id": "julius-037",
+            "success": false,
+            "score": 0.8,
+            "time": 2.44
+          },
+          {
+            "task_id": "julius-038",
+            "success": false,
+            "score": 0.8,
+            "time": 2.56
+          },
+          {
+            "task_id": "julius-039",
+            "success": false,
+            "score": 0.0,
+            "time": 2.7
+          },
+          {
+            "task_id": "julius-040",
+            "success": false,
+            "score": 0.0,
+            "time": 1.51
+          },
+          {
+            "task_id": "julius-041",
+            "success": false,
+            "score": 0.8,
+            "time": 2.31
+          },
+          {
+            "task_id": "julius-042",
+            "success": false,
+            "score": 0.0,
+            "time": 1.3
+          },
+          {
+            "task_id": "julius-043",
+            "success": false,
+            "score": 0.0,
+            "time": 2.03
+          },
+          {
+            "task_id": "julius-044",
+            "success": false,
+            "score": 0.0,
+            "time": 1.63
+          },
+          {
+            "task_id": "julius-045",
+            "success": false,
+            "score": 0.0,
+            "time": 1.87
+          },
+          {
+            "task_id": "julius-046",
+            "success": false,
+            "score": 0.0,
+            "time": 0.92
+          },
+          {
+            "task_id": "julius-047",
+            "success": false,
+            "score": 0.0,
+            "time": 0.83
+          },
+          {
+            "task_id": "julius-048",
+            "success": false,
+            "score": 0.0,
+            "time": 1.21
+          },
+          {
+            "task_id": "julius-049",
+            "success": false,
+            "score": 0.0,
+            "time": 1.64
+          },
+          {
+            "task_id": "julius-050",
+            "success": false,
+            "score": 0.0,
+            "time": 0.92
+          },
+          {
+            "task_id": "platformer-bug-001",
+            "success": false,
+            "score": 0.0,
+            "time": 5.72
+          },
+          {
+            "task_id": "platformer-bug-002",
+            "success": false,
+            "score": 0.0,
+            "time": 6.65
+          },
+          {
+            "task_id": "platformer-feature-001",
+            "success": false,
+            "score": 0.0,
+            "time": 7.18
+          },
+          {
+            "task_id": "platformer-feature-002",
+            "success": false,
+            "score": 0.0,
+            "time": 7.18
+          },
+          {
+            "task_id": "platformer-feature-003",
+            "success": false,
+            "score": 0.0,
+            "time": 10.92
+          },
+          {
+            "task_id": "platformer-feature-004",
+            "success": false,
+            "score": 0.0,
+            "time": 9.65
+          },
+          {
+            "task_id": "platformer-feature-005",
+            "success": false,
+            "score": 0.0,
+            "time": 94.75
+          },
+          {
+            "task_id": "platformer-feature-006",
+            "success": false,
+            "score": 0.0,
+            "time": 93.79
+          },
+          {
+            "task_id": "platformer-feature-007",
+            "success": false,
+            "score": 0.0,
+            "time": 93.93
+          },
+          {
+            "task_id": "platformer-feature-008",
+            "success": false,
+            "score": 0.0,
+            "time": 8.81
+          },
+          {
+            "task_id": "platformer-feature-009",
+            "success": false,
+            "score": 0.0,
+            "time": 3.49
+          },
+          {
+            "task_id": "platformer-feature-010",
+            "success": false,
+            "score": 0.0,
+            "time": 93.43
+          },
+          {
+            "task_id": "platformer-feature-011",
+            "success": false,
+            "score": 0.0,
+            "time": 5.88
+          },
+          {
+            "task_id": "platformer-feature-012",
+            "success": false,
+            "score": 0.0,
+            "time": 93.23
+          },
+          {
+            "task_id": "platformer-mini-001",
+            "success": false,
+            "score": 0.0,
+            "time": 10.95
+          },
+          {
+            "task_id": "platformer-mini-002",
+            "success": false,
+            "score": 0.0,
+            "time": 5.69
+          },
+          {
+            "task_id": "platformer-optimization-001",
+            "success": false,
+            "score": 0.0,
+            "time": 8.09
+          },
+          {
+            "task_id": "pong-001",
+            "success": false,
+            "score": 0.0,
+            "time": 6.0
+          },
+          {
+            "task_id": "pong-002",
+            "success": false,
+            "score": 0.0,
+            "time": 3.01
+          },
+          {
+            "task_id": "pong-003",
+            "success": false,
+            "score": 0.0,
+            "time": 6.14
+          },
+          {
+            "task_id": "pong-004",
+            "success": false,
+            "score": 0.0,
+            "time": 5.73
+          },
+          {
+            "task_id": "pong-005",
+            "success": false,
+            "score": 0.0,
+            "time": 6.15
+          },
+          {
+            "task_id": "pong-006",
+            "success": false,
+            "score": 0.0,
+            "time": 4.94
+          },
+          {
+            "task_id": "pong-007",
+            "success": false,
+            "score": 0.0,
+            "time": 6.6
+          },
+          {
+            "task_id": "pong-008",
+            "success": false,
+            "score": 0.0,
+            "time": 12.13
+          },
+          {
+            "task_id": "pong-009",
+            "success": false,
+            "score": 0.0,
+            "time": 2.45
+          },
+          {
+            "task_id": "pong-010",
+            "success": false,
+            "score": 0.0,
+            "time": 10.07
+          },
+          {
+            "task_id": "pong-bug-006",
+            "success": false,
+            "score": 0.0,
+            "time": 94.06
+          },
+          {
+            "task_id": "pong-feature-011",
+            "success": false,
+            "score": 0.0,
+            "time": 98.62
+          },
+          {
+            "task_id": "pong-feature-012",
+            "success": false,
+            "score": 0.0,
+            "time": 11.98
+          },
+          {
+            "task_id": "pong-feature-013",
+            "success": false,
+            "score": 0.0,
+            "time": 8.19
+          },
+          {
+            "task_id": "pong-feature-014",
+            "success": false,
+            "score": 0.0,
+            "time": 3.99
+          },
+          {
+            "task_id": "pong-feature-015",
+            "success": false,
+            "score": 0.0,
+            "time": 4.81
+          },
+          {
+            "task_id": "pong-feature-016",
+            "success": false,
+            "score": 0.0,
+            "time": 5.54
+          },
+          {
+            "task_id": "pong-feature-017",
+            "success": false,
+            "score": 0.0,
+            "time": 7.77
+          },
+          {
+            "task_id": "pong-mini-002",
+            "success": false,
+            "score": 0.0,
+            "time": 10.85
+          },
+          {
+            "task_id": "pong-mini-003",
+            "success": false,
+            "score": 0.0,
+            "time": 6.52
+          },
+          {
+            "task_id": "pong-mini-004",
+            "success": false,
+            "score": 0.0,
+            "time": 4.32
+          },
+          {
+            "task_id": "pong-optimization-001",
+            "success": false,
+            "score": 0.0,
+            "time": 7.99
+          },
+          {
+            "task_id": "quake-001",
+            "success": false,
+            "score": 0.0,
+            "time": 2.92
+          },
+          {
+            "task_id": "quake-002",
+            "success": false,
+            "score": 0.0,
+            "time": 8.29
+          },
+          {
+            "task_id": "quake-003",
+            "success": false,
+            "score": 0.0,
+            "time": 6.55
+          },
+          {
+            "task_id": "quake-004",
+            "success": false,
+            "score": 0.0,
+            "time": 8.39
+          },
+          {
+            "task_id": "quake-feat-001",
+            "success": false,
+            "score": 0.0,
+            "time": 11.37
+          },
+          {
+            "task_id": "quake-feat-002",
+            "success": false,
+            "score": 0.0,
+            "time": 8.49
+          },
+          {
+            "task_id": "quake-feat-003",
+            "success": false,
+            "score": 0.0,
+            "time": 16.69
+          },
+          {
+            "task_id": "quake-opt-001",
+            "success": false,
+            "score": 0.0,
+            "time": 2.97
+          },
+          {
+            "task_id": "quake-opt-002",
+            "success": false,
+            "score": 0.0,
+            "time": 12.49
+          },
+          {
+            "task_id": "quake-opt-003",
+            "success": false,
+            "score": 0.0,
+            "time": 12.64
+          },
+          {
+            "task_id": "snake-001",
+            "success": false,
+            "score": 0.0,
+            "time": 7.11
+          },
+          {
+            "task_id": "snake-002",
+            "success": false,
+            "score": 0.1429,
+            "time": 5.9
+          },
+          {
+            "task_id": "snake-003",
+            "success": false,
+            "score": 0.0,
+            "time": 7.1
+          },
+          {
+            "task_id": "snake-004",
+            "success": false,
+            "score": 0.0,
+            "time": 3.88
+          },
+          {
+            "task_id": "snake-005",
+            "success": false,
+            "score": 0.1667,
+            "time": 5.19
+          },
+          {
+            "task_id": "snake-006",
+            "success": false,
+            "score": 0.0,
+            "time": 6.55
+          },
+          {
+            "task_id": "snake-bug-007",
+            "success": false,
+            "score": 0.0,
+            "time": 5.56
+          },
+          {
+            "task_id": "snake-feature-001",
+            "success": false,
+            "score": 0.0,
+            "time": 7.04
+          },
+          {
+            "task_id": "snake-feature-002",
+            "success": false,
+            "score": 0.1667,
+            "time": 6.44
+          },
+          {
+            "task_id": "snake-feature-003",
+            "success": false,
+            "score": 0.0,
+            "time": 6.67
+          },
+          {
+            "task_id": "snake-feature-004",
+            "success": false,
+            "score": 0.0,
+            "time": 8.21
+          },
+          {
+            "task_id": "snake-feature-005",
+            "success": false,
+            "score": 0.0,
+            "time": 8.28
+          },
+          {
+            "task_id": "snake-feature-006",
+            "success": false,
+            "score": 0.0,
+            "time": 7.66
+          },
+          {
+            "task_id": "snake-feature-007",
+            "success": false,
+            "score": 0.0,
+            "time": 2.38
+          },
+          {
+            "task_id": "snake-feature-008",
+            "success": false,
+            "score": 0.0,
+            "time": 9.21
+          },
+          {
+            "task_id": "snake-feature-009",
+            "success": false,
+            "score": 0.0,
+            "time": 9.42
+          },
+          {
+            "task_id": "snake-feature-010",
+            "success": false,
+            "score": 0.0,
+            "time": 7.58
+          },
+          {
+            "task_id": "snake-feature-011",
+            "success": false,
+            "score": 0.0,
+            "time": 12.39
+          },
+          {
+            "task_id": "snake-feature-012",
+            "success": false,
+            "score": 0.0,
+            "time": 4.44
+          },
+          {
+            "task_id": "snake-feature-013",
+            "success": false,
+            "score": 0.0,
+            "time": 5.07
+          },
+          {
+            "task_id": "snake-feature-014",
+            "success": false,
+            "score": 0.0,
+            "time": 3.79
+          },
+          {
+            "task_id": "snake-mini-001",
+            "success": false,
+            "score": 0.0,
+            "time": 10.52
+          },
+          {
+            "task_id": "snake-mini-002",
+            "success": false,
+            "score": 0.0,
+            "time": 8.43
+          },
+          {
+            "task_id": "snake-mini-003",
+            "success": false,
+            "score": 0.0,
+            "time": 7.37
+          },
+          {
+            "task_id": "snake-mini-004",
+            "success": false,
+            "score": 0.0,
+            "time": 10.43
+          },
+          {
+            "task_id": "snake-optimization-001",
+            "success": false,
+            "score": 0.5,
+            "time": 3.85
+          },
+          {
+            "task_id": "snake-optimization-002",
+            "success": false,
+            "score": 0.0,
+            "time": 9.46
+          },
+          {
+            "task_id": "space_invaders-001",
+            "success": false,
+            "score": 0.0,
+            "time": 6.87
+          },
+          {
+            "task_id": "space_invaders-002",
+            "success": false,
+            "score": 0.0,
+            "time": 6.95
+          },
+          {
+            "task_id": "space_invaders-003",
+            "success": false,
+            "score": 0.0,
+            "time": 5.0
+          },
+          {
+            "task_id": "space_invaders-004",
+            "success": false,
+            "score": 0.0,
+            "time": 9.13
+          },
+          {
+            "task_id": "space_invaders-bug-005",
+            "success": false,
+            "score": 0.0,
+            "time": 6.48
+          },
+          {
+            "task_id": "space_invaders-feature-001",
+            "success": false,
+            "score": 0.0,
+            "time": 14.61
+          },
+          {
+            "task_id": "space_invaders-feature-002",
+            "success": false,
+            "score": 0.0,
+            "time": 11.51
+          },
+          {
+            "task_id": "space_invaders-feature-003",
+            "success": false,
+            "score": 0.0,
+            "time": 11.98
+          },
+          {
+            "task_id": "space_invaders-feature-004",
+            "success": false,
+            "score": 0.0,
+            "time": 12.59
+          },
+          {
+            "task_id": "space_invaders-feature-005",
+            "success": false,
+            "score": 0.0,
+            "time": 13.41
+          },
+          {
+            "task_id": "space_invaders-feature-006",
+            "success": false,
+            "score": 0.0,
+            "time": 6.86
+          },
+          {
+            "task_id": "space_invaders-feature-007",
+            "success": false,
+            "score": 0.0,
+            "time": 6.55
+          },
+          {
+            "task_id": "space_invaders-feature-008",
+            "success": false,
+            "score": 0.0,
+            "time": 30.21
+          },
+          {
+            "task_id": "space_invaders-feature-009",
+            "success": false,
+            "score": 0.0,
+            "time": 3.29
+          },
+          {
+            "task_id": "space_invaders-feature-010",
+            "success": false,
+            "score": 0.0,
+            "time": 12.75
+          },
+          {
+            "task_id": "space_invaders-feature-011",
+            "success": false,
+            "score": 0.0,
+            "time": 5.57
+          },
+          {
+            "task_id": "space_invaders-feature-012",
+            "success": false,
+            "score": 0.0,
+            "time": 3.99
+          },
+          {
+            "task_id": "space_invaders-mini-001",
+            "success": false,
+            "score": 0.0,
+            "time": 15.17
+          },
+          {
+            "task_id": "space_invaders-mini-002",
+            "success": false,
+            "score": 0.0,
+            "time": 97.0
+          },
+          {
+            "task_id": "space_invaders-mini-003",
+            "success": false,
+            "score": 0.0,
+            "time": 6.0
+          },
+          {
+            "task_id": "space_invaders-optimization-001",
+            "success": false,
+            "score": 0.0,
+            "time": 10.85
+          },
+          {
+            "task_id": "space_invaders-optimization-002",
+            "success": false,
+            "score": 0.0,
+            "time": 7.78
+          },
+          {
+            "task_id": "space_invaders-optimization-003",
+            "success": false,
+            "score": 0.0,
+            "time": 2.35
+          },
+          {
+            "task_id": "tetris-bug-001",
+            "success": false,
+            "score": 0.0,
+            "time": 12.27
+          },
+          {
+            "task_id": "tetris-bug-002",
+            "success": false,
+            "score": 0.0,
+            "time": 10.96
+          },
+          {
+            "task_id": "tetris-bug-003",
+            "success": false,
+            "score": 0.0,
+            "time": 15.46
+          },
+          {
+            "task_id": "tetris-feature-001",
+            "success": false,
+            "score": 0.0,
+            "time": 12.7
+          },
+          {
+            "task_id": "tetris-feature-002",
+            "success": false,
+            "score": 0.0,
+            "time": 15.03
+          },
+          {
+            "task_id": "tetris-feature-003",
+            "success": false,
+            "score": 0.0,
+            "time": 16.73
+          },
+          {
+            "task_id": "tetris-feature-004",
+            "success": false,
+            "score": 0.0,
+            "time": 3.36
+          },
+          {
+            "task_id": "tetris-feature-005",
+            "success": false,
+            "score": 0.0,
+            "time": 10.44
+          },
+          {
+            "task_id": "tetris-feature-006",
+            "success": false,
+            "score": 0.0,
+            "time": 10.91
+          },
+          {
+            "task_id": "tetris-feature-007",
+            "success": false,
+            "score": 0.0,
+            "time": 2.39
+          },
+          {
+            "task_id": "tetris-feature-008",
+            "success": false,
+            "score": 0.0,
+            "time": 7.17
+          },
+          {
+            "task_id": "tetris-feature-009",
+            "success": false,
+            "score": 0.0,
+            "time": 7.07
+          },
+          {
+            "task_id": "tetris-feature-010",
+            "success": false,
+            "score": 0.0,
+            "time": 3.58
+          },
+          {
+            "task_id": "tetris-mini-001",
+            "success": false,
+            "score": 0.0,
+            "time": 7.51
+          },
+          {
+            "task_id": "tetris-mini-002",
+            "success": false,
+            "score": 0.0,
+            "time": 9.37
+          },
+          {
+            "task_id": "tetris-optimization-001",
+            "success": false,
+            "score": 0.0,
+            "time": 9.58
+          },
+          {
+            "task_id": "tower_defense-bug-001",
+            "success": false,
+            "score": 0.0,
+            "time": 5.63
+          },
+          {
+            "task_id": "tower_defense-bug-002",
+            "success": false,
+            "score": 0.0,
+            "time": 4.3
+          },
+          {
+            "task_id": "tower_defense-feature-001",
+            "success": false,
+            "score": 0.0,
+            "time": 10.14
+          },
+          {
+            "task_id": "tower_defense-feature-002",
+            "success": false,
+            "score": 0.0,
+            "time": 11.57
+          },
+          {
+            "task_id": "tower_defense-feature-003",
+            "success": false,
+            "score": 0.0,
+            "time": 7.63
+          },
+          {
+            "task_id": "tower_defense-feature-004",
+            "success": false,
+            "score": 0.0,
+            "time": 9.2
+          },
+          {
+            "task_id": "tower_defense-feature-005",
+            "success": false,
+            "score": 0.0,
+            "time": 6.09
+          },
+          {
+            "task_id": "tower_defense-feature-006",
+            "success": false,
+            "score": 0.0,
+            "time": 3.89
+          },
+          {
+            "task_id": "tower_defense-feature-007",
+            "success": false,
+            "score": 0.0,
+            "time": 9.7
+          },
+          {
+            "task_id": "tower_defense-feature-008",
+            "success": false,
+            "score": 0.0,
+            "time": 7.61
+          },
+          {
+            "task_id": "tower_defense-feature-009",
+            "success": false,
+            "score": 0.0,
+            "time": 5.73
+          },
+          {
+            "task_id": "tower_defense-feature-010",
+            "success": false,
+            "score": 0.0,
+            "time": 7.95
+          },
+          {
+            "task_id": "tower_defense-feature-011",
+            "success": false,
+            "score": 0.0,
+            "time": 5.25
+          },
+          {
+            "task_id": "tower_defense-feature-012",
+            "success": false,
+            "score": 0.0,
+            "time": 3.62
+          },
+          {
+            "task_id": "tower_defense-mini-001",
+            "success": false,
+            "score": 0.0,
+            "time": 5.45
+          },
+          {
+            "task_id": "tower_defense-mini-002",
+            "success": false,
+            "score": 0.0,
+            "time": 8.08
+          },
+          {
+            "task_id": "tower_defense-optimization-001",
+            "success": false,
+            "score": 0.0,
+            "time": 10.69
+          }
+        ]
+      }
+    ]
   }
 ]
