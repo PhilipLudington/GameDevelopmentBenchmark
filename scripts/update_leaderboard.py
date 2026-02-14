@@ -46,12 +46,16 @@ def load_all_results(runs_dir: Path) -> dict[str, dict]:
             
             version = result.get("model_version") or result.get("metadata", {}).get("model_version")
 
+            benchmark_ver = result.get("benchmark_version")
+
             if model_name not in models:
-                models[model_name] = {"tasks": {}, "runs": set(), "run_dir": run_dir.name, "versions": set()}
+                models[model_name] = {"tasks": {}, "runs": set(), "run_dir": run_dir.name, "versions": set(), "benchmark_versions": set()}
             
             models[model_name]["runs"].add(run_dir.name)
             if version:
                 models[model_name]["versions"].add(version)
+            if benchmark_ver:
+                models[model_name]["benchmark_versions"].add(benchmark_ver)
             
             # Keep best result per task (by success, then score)
             existing = models[model_name]["tasks"].get(task_id)
@@ -125,10 +129,12 @@ def build_leaderboard(models: dict, tasks_dir: Path) -> dict:
                 v["pass_rate"] = round(v["passed"] / v["total"] * 100, 1) if v["total"] > 0 else 0
         
         versions = sorted(data.get("versions", set()))
+        bench_versions = sorted(data.get("benchmark_versions", set()))
 
         entries.append({
             "model": model_name,
             "model_version": versions[0] if len(versions) == 1 else versions if versions else model_name,
+            "benchmark_version": bench_versions[-1] if bench_versions else "unknown",
             "total_tasks": total,
             "passed": passed,
             "failed": failed,
@@ -145,8 +151,16 @@ def build_leaderboard(models: dict, tasks_dir: Path) -> dict:
     # Sort by pass rate descending, then avg_score
     entries.sort(key=lambda e: (e["pass_rate"], e["avg_score"]), reverse=True)
     
+    # Get latest benchmark version from entries
+    bench_vers = set()
+    for e in entries:
+        bv = e.get("benchmark_version")
+        if bv and bv != "unknown":
+            bench_vers.add(bv)
+
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "benchmark_version": sorted(bench_vers)[-1] if bench_vers else "unknown",
         "total_models": len(entries),
         "total_tasks_available": 225,
         "leaderboard": entries,
@@ -158,7 +172,7 @@ def generate_markdown(leaderboard: dict) -> str:
     lines = [
         "# 🏆 Game Development Benchmark — Leaderboard",
         "",
-        f"*Last updated: {leaderboard['generated_at'][:10]}*",
+        f"*Last updated: {leaderboard['generated_at'][:10]} | Benchmark v{leaderboard.get('benchmark_version', 'unknown')}*",
         "",
         "225 tasks across Pygame (165), Julius/Caesar III (50), and Quake (10).",
         "Tasks include bug fixes, features, optimizations, mini-games, memory safety, crash fixes, and more.",

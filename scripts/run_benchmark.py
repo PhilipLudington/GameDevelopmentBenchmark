@@ -7,11 +7,20 @@ from datetime import datetime
 from pathlib import Path
 
 import click
+import importlib.metadata
 
 from evaluation.runner import EvaluationRunner
 from evaluation.report import ReportGenerator
 from harness.sandbox import SandboxConfig
 from models.base import create_model, ModelError
+
+
+def get_benchmark_version() -> str:
+    """Get the benchmark version from package metadata or pyproject.toml."""
+    try:
+        return importlib.metadata.version("game-development-benchmark")
+    except importlib.metadata.PackageNotFoundError:
+        return "unknown"
 
 
 def discover_tasks(
@@ -76,6 +85,7 @@ def run_benchmark_for_model(
     output_dir: Path,
     timeout: int,
     verbose: bool,
+    benchmark_version: str = "unknown",
 ) -> tuple[int, int]:
     """Run benchmark for a single model.
 
@@ -129,6 +139,7 @@ def run_benchmark_for_model(
             "task_id": result.task_id,
             "model_name": result.model_name,
             "model_version": result.metadata.get("model_version", result.model_name),
+            "benchmark_version": benchmark_version,
             "success": result.success,
             "score": result.score,
             "elapsed_time": result.elapsed_time,
@@ -194,6 +205,9 @@ def main(
         click.echo(click.style("No tasks found", fg="red"))
         sys.exit(1)
 
+    benchmark_version = get_benchmark_version()
+
+    click.echo(f"Benchmark version: {benchmark_version}")
     click.echo(f"Found {len(tasks)} tasks")
     click.echo(f"Models: {', '.join(model)}")
     if engine:
@@ -215,6 +229,7 @@ def main(
             output_dir=output_dir,
             timeout=timeout,
             verbose=verbose,
+            benchmark_version=benchmark_version,
         )
 
         all_results[model_string] = {"passed": passed, "failed": failed}

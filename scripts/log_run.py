@@ -83,9 +83,18 @@ def summarize_run(run_dir: Path) -> dict | None:
             "tasks": task_results,
         })
 
+    # Get benchmark version from any result file
+    benchmark_version = None
+    for r in results:
+        bv = r.get("benchmark_version")
+        if bv:
+            benchmark_version = bv
+            break
+
     return {
         "run_id": run_dir.name,
         "timestamp": datetime.now(timezone.utc).isoformat(),
+        "benchmark_version": benchmark_version or "unknown",
         "run_dir": str(run_dir),
         "models": model_summaries,
     }
