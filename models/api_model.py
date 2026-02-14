@@ -212,12 +212,18 @@ class APIModel(ModelInterface):
 
             # Parse response based on provider
             if self.config.provider in ("openai", "azure"):
-                return self._parse_response_openai(response_data)
+                result = self._parse_response_openai(response_data)
             elif self.config.provider == "anthropic":
-                return self._parse_response_anthropic(response_data)
+                result = self._parse_response_anthropic(response_data)
             else:
                 # Try OpenAI format for custom providers
-                return self._parse_response_openai(response_data)
+                result = self._parse_response_openai(response_data)
+
+            # Capture the actual model version returned by the API
+            if result.model:
+                self.set_resolved_version(result.model)
+
+            return result
 
         except httpx.TimeoutException:
             raise ModelTimeoutError(f"Request timed out after {self.config.timeout}s")

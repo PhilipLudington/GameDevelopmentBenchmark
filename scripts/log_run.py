@@ -41,6 +41,14 @@ def summarize_run(run_dir: Path) -> dict | None:
     for r in results:
         model = r.get("model_name", "unknown")
         by_model.setdefault(model, []).append(r)
+    
+    # Collect resolved versions per model
+    model_versions: dict[str, set] = {}
+    for r in results:
+        model = r.get("model_name", "unknown")
+        version = r.get("model_version") or r.get("metadata", {}).get("model_version")
+        if version:
+            model_versions.setdefault(model, set()).add(version)
 
     model_summaries = []
     for model_name, model_results in by_model.items():
@@ -59,8 +67,12 @@ def summarize_run(run_dir: Path) -> dict | None:
                 "time": round(r.get("elapsed_time", 0), 2),
             })
 
+        # Get resolved version(s) for this model
+        versions = sorted(model_versions.get(model_name, set()))
+
         model_summaries.append({
             "model": model_name,
+            "model_version": versions[0] if len(versions) == 1 else versions if versions else model_name,
             "total": total,
             "passed": passed,
             "failed": total - passed,

@@ -94,6 +94,22 @@ class ModelInterface(ABC):
             **self.config.extra,
         }
 
+    def set_resolved_version(self, version: str) -> None:
+        """Store the actual model version returned by the API.
+
+        Args:
+            version: The model version string from the API response
+        """
+        self._resolved_version = version
+
+    def get_resolved_version(self) -> str | None:
+        """Get the actual model version returned by the API.
+
+        Returns:
+            The resolved version string, or None if not yet resolved
+        """
+        return getattr(self, "_resolved_version", None)
+
 
 class ModelError(Exception):
     """Base exception for model-related errors."""

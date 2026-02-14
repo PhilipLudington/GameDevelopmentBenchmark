@@ -128,6 +128,7 @@ def run_benchmark_for_model(
         result_dict = {
             "task_id": result.task_id,
             "model_name": result.model_name,
+            "model_version": result.metadata.get("model_version", result.model_name),
             "success": result.success,
             "score": result.score,
             "elapsed_time": result.elapsed_time,

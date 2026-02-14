@@ -44,10 +44,14 @@ def load_all_results(runs_dir: Path) -> dict[str, dict]:
             score = result.get("score", 0.0)
             elapsed = result.get("elapsed_time", 0.0)
             
+            version = result.get("model_version") or result.get("metadata", {}).get("model_version")
+
             if model_name not in models:
-                models[model_name] = {"tasks": {}, "runs": set(), "run_dir": run_dir.name}
+                models[model_name] = {"tasks": {}, "runs": set(), "run_dir": run_dir.name, "versions": set()}
             
             models[model_name]["runs"].add(run_dir.name)
+            if version:
+                models[model_name]["versions"].add(version)
             
             # Keep best result per task (by success, then score)
             existing = models[model_name]["tasks"].get(task_id)
@@ -120,8 +124,11 @@ def build_leaderboard(models: dict, tasks_dir: Path) -> dict:
             for k, v in group.items():
                 v["pass_rate"] = round(v["passed"] / v["total"] * 100, 1) if v["total"] > 0 else 0
         
+        versions = sorted(data.get("versions", set()))
+
         entries.append({
             "model": model_name,
+            "model_version": versions[0] if len(versions) == 1 else versions if versions else model_name,
             "total_tasks": total,
             "passed": passed,
             "failed": failed,
@@ -158,19 +165,23 @@ def generate_markdown(leaderboard: dict) -> str:
         "",
         "## Overall Rankings",
         "",
-        "| Rank | Model | Pass Rate | Passed | Total | Avg Score | Avg Time |",
-        "|-----:|-------|----------:|-------:|------:|----------:|---------:|",
+        "| Rank | Model | Version | Pass Rate | Passed | Total | Avg Score | Avg Time |",
+        "|-----:|-------|---------|----------:|-------:|------:|----------:|---------:|",
     ]
     
     entries = leaderboard["leaderboard"]
     
     if not entries:
-        lines.append("| — | *No results yet* | — | — | — | — | — |")
+        lines.append("| — | *No results yet* | — | — | — | — | — | — |")
     else:
         for i, entry in enumerate(entries, 1):
             medal = {1: "🥇", 2: "🥈", 3: "🥉"}.get(i, str(i))
+            version = entry.get("model_version", "—")
+            if isinstance(version, list):
+                version = ", ".join(version)
             lines.append(
                 f"| {medal} | **{entry['model']}** "
+                f"| {version} "
                 f"| {entry['pass_rate']}% "
                 f"| {entry['passed']} "
                 f"| {entry['total_tasks']} "

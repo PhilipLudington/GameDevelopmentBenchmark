@@ -399,6 +399,7 @@ class EvaluationRunner:
             if self.task_config:
                 metadata = {
                     "model_config": self.model.get_config(),
+                    "model_version": self.model.get_resolved_version() or self.model.get_name(),
                     "task_tier": self.task_config.tier,
                     "task_category": self.task_config.category,
                     "engine": self.task_config.engine,
@@ -480,6 +481,8 @@ class EvaluationRunner:
                 elapsed_time=elapsed,
                 metadata={
                     "model_config": self.model.get_config(),
+                    "model_version": self.model.get_resolved_version() or self.model.get_name(),
+                    "model_version": getattr(model_result, "model", None) or self.model.get_name(),
                     "task_tier": task_config.tier,
                     "task_category": task_config.category,
                     "engine": task_config.engine,
@@ -569,6 +572,7 @@ class EvaluationRunner:
                 elapsed_time=elapsed,
                 metadata={
                     "model_config": self.model.get_config(),
+                    "model_version": self.model.get_resolved_version() or self.model.get_name(),
                     "task_tier": task_config.tier,
                     "task_category": task_config.category,
                     "engine": task_config.engine,
@@ -643,6 +647,7 @@ class EvaluationRunner:
             error=julius_result.error,
             metadata={
                 "model_config": self.model.get_config(),
+                    "model_version": self.model.get_resolved_version() or self.model.get_name(),
                 "task_tier": task_config.tier,
                 "task_category": task_config.category,
                 "engine": task_config.engine,
