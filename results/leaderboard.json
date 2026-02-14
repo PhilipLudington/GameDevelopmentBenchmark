@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-02-14T01:35:41.944282+00:00",
+  "benchmark_version": "0.1.0",
+  "total_models": 1,
+  "total_tasks_available": 225,
+  "leaderboard": [
+    {
+      "model": "anthropic:claude-haiku-4-5",
+      "model_version": "claude-haiku-4-5-20251001",
+      "benchmark_version": "0.1.0",
+      "total_tasks": 13,
+      "passed": 0,
+      "failed": 13,
+      "pass_rate": 0.0,
+      "avg_score": 5.9,
+      "avg_time_seconds": 9.82,
+      "num_runs": 1,
+      "latest_run": "20260213_193326",
+      "by_engine": {
+        "pygame": {
+          "total": 13,
+          "passed": 0,
+          "pass_rate": 0.0
+        }
+      },
+      "by_category": {
+        "feature": {
+          "total": 4,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "bug-fix": {
+          "total": 8,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "optimization": {
+          "total": 1,
+          "passed": 0,
+          "pass_rate": 0.0
+        }
+      },
+      "by_tier": {
+        "1": {
+          "total": 9,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "2": {
+          "total": 3,
+          "passed": 0,
+          "pass_rate": 0.0
+        },
+        "3": {
+          "total": 1,
+          "passed": 0,
+          "pass_rate": 0.0
+        }
+      }
+    }
+  ]
+}
