@@ -102,12 +102,27 @@ class APIModel(ModelInterface):
         # Add the main prompt
         messages.append({"role": "user", "content": prompt})
 
-        return {
-            "model": self.config.model_id,
+        # GPT-5+ and reasoning models have different API requirements
+        model_id = self.config.model_id
+        is_new_model = model_id.startswith("gpt-5") or model_id.startswith("o1") or model_id.startswith("o3")
+        
+        request = {
+            "model": model_id,
             "messages": messages,
-            "temperature": self.config.temperature,
-            "max_tokens": self.config.max_tokens,
         }
+        
+        # New models use max_completion_tokens instead of max_tokens
+        if is_new_model:
+            request["max_completion_tokens"] = self.config.max_tokens
+            # GPT-5 mini and reasoning models don't support temperature
+            # Only add temperature if it's not a mini/reasoning model
+            if not ("mini" in model_id or model_id.startswith("o1") or model_id.startswith("o3")):
+                request["temperature"] = self.config.temperature
+        else:
+            request["max_tokens"] = self.config.max_tokens
+            request["temperature"] = self.config.temperature
+        
+        return request
 
     def _build_request_anthropic(self, prompt: str, context: dict[str, Any] | None) -> dict:
         """Build request payload for Anthropic API."""
