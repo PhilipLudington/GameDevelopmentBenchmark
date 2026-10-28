@@ -1,781 +1,246 @@
-# Pygame Benchmark Implementation Plan
+# Game Development Benchmark — Implementation Plan
+
+> **Written for Claude.** Precise for a later session, not easy reading. To review it, ask Claude to explain it in plain words and judge the explanation.
 
 ## Overview
 
-Implement Phase 1 (Pygame) of the Game Development Benchmark, targeting M1 (Proof of Concept: 50 tasks) first, then M2 (Pygame Complete: 200+ tasks).
+A SWE-Bench-style benchmark of game-development tasks for AI models (see `DESIGN.md`).
+225 tasks ship today: Pygame 165 (eight baseline games), Julius / Caesar III 50, Quake 10.
+Four models have full runs on the leaderboard (`LEADERBOARD.md`, Feb 2026).
 
-**Key Decisions:**
-- Model interface: Support both API-based and CLI-based invocation
-- Task sourcing: Synthetic tasks first (controlled, reproducible)
-- First baseline game: Pong (simplest, validates infrastructure)
+This plan was converted to the pipeline format on 2026-10-28. The pre-pipeline plan,
+with its per-task tables, the Julius bug catalogue and the evaluation protocol, is kept
+verbatim in `docs/plan-archive-2026-02.md`; Phases 0–4 below summarise it.
 
----
+Benchmark runs happen on demand on Philip's main machine, the new Mac mini; there is no
+dedicated benchmark machine and no scheduled run
+(`docs/decisions/2026-10-28-runs-on-demand-on-main-machine.md`).
 
-## Directory Structure
+Current status: Phase 5 in progress.
 
-```
-GameDevelopmentBenchmark/
-├── DESIGN.md
-├── PLAN.md
-├── README.md
-├── LICENSE
-├── tasks/
-│   └── pygame/
-│       ├── bug-fix/
-│       │   └── <task-id>/
-│       │       ├── task.json          # Task metadata
-│       │       ├── prompt.md          # Problem statement for AI
-│       │       ├── game/              # Broken game code
-│       │       ├── solution/          # Reference solution (hidden)
-│       │       └── tests/             # Automated tests
-│       ├── feature/
-│       ├── optimization/
-│       └── mini-game/
-├── evaluation/
-│   ├── runner.py                      # Main evaluation harness
-│   ├── test_runner.py                 # Unit/integration test executor
-│   ├── gameplay_bot.py                # Automated gameplay framework
-│   ├── performance.py                 # Performance benchmark runner
-│   └── report.py                      # Results aggregation
-├── harness/
-│   ├── sandbox.py                     # Isolated execution environment
-│   ├── pygame_headless.py             # Headless pygame utilities
-│   └── metrics.py                     # Metric collection
-├── models/
-│   ├── base.py                        # Abstract model interface
-│   ├── api_model.py                   # API-based models (OpenAI, Anthropic)
-│   └── cli_model.py                   # CLI-based models (ollama, llama.cpp, claude)
-├── baselines/
-│   └── pygame/
-│       └── pong/                      # First baseline game
-├── results/
-│   └── runs/                          # Evaluation run outputs (JSON)
-├── leaderboard/
-│   └── index.html                     # Static leaderboard (GitHub Pages)
-├── scripts/
-│   ├── create_task.py                 # Task scaffolding tool
-│   ├── validate_task.py               # Task validation
-│   └── run_benchmark.py               # Full benchmark runner
-├── .github/
-│   └── workflows/
-│       ├── ci.yml                     # PR validation
-│       └── benchmark.yml              # Scheduled benchmark runs
-├── pyproject.toml
-└── requirements.txt
-```
+**Blocks when:** a defect changes a score published on the leaderboard, or stops a full
+benchmark run from completing on the main machine.
+
+**Found issues before the milestone:** Phase 6
 
 ---
 
-## Implementation Phases
+## Phase 0: Core Infrastructure ✅
+**Status:** Complete (2026-01)
 
-### Phase 1.1: Core Infrastructure
+**Goal:** A harness that loads a task, asks a model for a fix, applies it in a sandbox and scores it.
+**Estimated Effort:** 3 weeks (done)
 
-#### 1.1.1 Project Setup
-- [x] Create `pyproject.toml` with project metadata
-- [x] Create `requirements.txt` with dependencies
-- [x] Set up basic directory structure
+### Deliverables
+- Task format and JSON schema (`schemas/`), `scripts/create_task.py`, `scripts/validate_task.py`
+- Model interface: API (OpenAI, Anthropic) and CLI (Claude Code, Ollama, llama.cpp) in `models/`
+- Evaluation harness: `evaluation/runner.py`, `evaluation/test_runner.py`, `harness/sandbox.py`
+- Headless Pygame support and gameplay bots (`harness/pygame_headless.py`, `evaluation/gameplay_bot.py`)
 
-#### 1.1.2 Task Format & Schema
-- [x] Define `task.json` JSON schema:
-  ```json
-  {
-    "id": "pong-collision-001",
-    "name": "Ball passes through paddle",
-    "category": "bug-fix",
-    "tier": 1,
-    "engine": "pygame",
-    "description": "Fix collision detection bug",
-    "evaluation": ["unit-test", "gameplay"],
-    "tags": ["collision", "physics"],
-    "baseline": "pong"
-  }
-  ```
-- [x] Define `prompt.md` template
-- [x] Create JSON schema validation
+### Tasks
+- [x] Project setup, task schema, model interface, evaluation harness, headless Pygame (completed 2026-01)
+- [x] Gameplay bot framework: RandomBot, ScriptedBot, PongBot (completed 2026-01)
 
-#### 1.1.3 Model Interface
-- [x] `models/base.py`: Abstract `ModelInterface` class
-  - `generate(prompt: str, context: dict) -> str`
-  - `get_name() -> str`
-  - `get_config() -> dict`
-- [x] `models/api_model.py`: HTTP API implementation
-  - Support OpenAI, Anthropic, custom endpoints
-  - Configurable via environment variables
-- [x] `models/cli_model.py`: CLI implementation
-  - Support ollama, llama.cpp, claude (Claude Code CLI)
-  - Subprocess management with timeout
-
-#### 1.1.4 Evaluation Harness
-- [x] `evaluation/runner.py`: Main orchestrator
-  - Load task from directory
-  - Invoke model with prompt
-  - Apply generated code to sandbox
-  - Run evaluation phases
-  - Collect results
-- [x] `evaluation/test_runner.py`: pytest executor
-  - Timeout and resource limits
-  - Parse test results
-- [x] `harness/sandbox.py`: Isolated execution
-  - Temp directory management
-  - Dependency installation
-  - Cleanup
-
-#### 1.1.5 Headless Pygame Support
-- [x] `harness/pygame_headless.py`:
-  - SDL_VIDEODRIVER=dummy setup
-  - Mock display surface
-  - Frame capture utilities
-  - Input event injection
-
-### Phase 1.2: First Baseline Game (Pong)
-
-#### 1.2.1 Pong Implementation
-- [x] `baselines/pygame/pong/main.py`: Working Pong game
-  - Two paddles (player + AI)
-  - Ball physics
-  - Scoring system
-  - Game states (menu, playing, game over)
-- [x] Modular structure for easy bug injection
-- [x] Headless mode support
-
-#### 1.2.2 Pong Test Suite
-- [x] Unit tests for game logic
-- [x] Integration tests for gameplay
-- [ ] Gameplay bot that can win
-
-### Phase 1.3: Automated Gameplay Framework
-
-#### 1.3.1 Bot Infrastructure
-- [x] `evaluation/gameplay_bot.py`:
-  ```python
-  class GameplayBot(ABC):
-      def on_frame(self, surface, game_state): ...
-      def get_action(self) -> Action: ...
-      def is_objective_complete(self) -> bool: ...
-  ```
-- [x] `RandomBot`: Random valid actions
-- [x] `ScriptedBot`: Action sequences from file
-- [x] `PongBot`: Rule-based Pong player
-
-#### 1.3.2 Metrics Collection
-- [x] `harness/metrics.py`:
-  - Frame time tracking
-  - Memory profiling
-  - Game event logging
-
-### Phase 1.4: First Tasks (10 Pong tasks)
-
-Create initial task set from Pong baseline:
-
-| ID | Category | Tier | Description | Status |
-|----|----------|------|-------------|--------|
-| pong-001 | bug-fix | 1 | Ball passes through paddle edge | Done |
-| pong-002 | bug-fix | 1 | Score displays wrong player | Done |
-| pong-003 | bug-fix | 1 | Ball stuck after scoring | Done |
-| pong-004 | bug-fix | 2 | AI paddle jitters at boundaries | Done |
-| pong-005 | bug-fix | 2 | Ball angle always same | Done |
-| pong-006 | feature | 2 | Add pause functionality | Done |
-| pong-007 | feature | 2 | Add ball speed increase | Done |
-| pong-008 | feature | 3 | Add power-ups | Done |
-| pong-009 | optimization | 2 | Reduce CPU usage in main loop | Done |
-| pong-010 | mini-game | 3 | Create 4-player variant | Done |
-
-### Phase 1.5: Expand to M1 (50 tasks)
-
-#### Additional Baseline Games
-- [x] Snake baseline (15 tasks complete)
-  - Bug fixes (6):
-    - snake-001: Direction reversal with quick inputs (tier 1)
-    - snake-002: Food spawns on snake body (tier 1)
-    - snake-003: Score not reset on new game (tier 1)
-    - snake-004: Wall collision off by one (tier 1)
-    - snake-005: High score resets when returning to menu (tier 1)
-    - snake-006: Snake grows in wrong direction (tier 2)
-  - Features (7):
-    - snake-feature-001: Speed increase as snake grows (tier 2)
-    - snake-feature-002: Add pause functionality (tier 1)
-    - snake-feature-003: Add wrap-around walls mode (tier 2)
-    - snake-feature-004: Add bonus food with timer (tier 2)
-    - snake-feature-005: Add obstacles on the grid (tier 3)
-    - snake-feature-006: Add length display (tier 1)
-    - snake-feature-007: Add grid toggle (tier 1)
-  - Optimization (1):
-    - snake-optimization-001: Optimize collision detection with set (tier 2)
-  - Mini-game (1):
-    - snake-mini-001: Create two-player snake (tier 3)
-- [x] Breakout baseline (15 tasks complete)
-  - Bug fixes (6):
-    - breakout-001: Ball passes through brick corners (tier 1)
-    - breakout-002: Score callback receives wrong value (tier 1)
-    - breakout-003: Ball stuck in paddle (tier 1)
-    - breakout-004: Lives not resetting on new game (tier 1)
-    - breakout-005: Ball escapes through screen corners (tier 2)
-    - breakout-006: Paddle moves off screen edges (tier 1)
-  - Features (7):
-    - breakout-feature-001: Multi-ball power-up (tier 3)
-    - breakout-feature-002: Paddle width power-up (tier 2)
-    - breakout-feature-003: Multiple levels with patterns (tier 3)
-    - breakout-feature-004: Multi-hit bricks (tier 2)
-    - breakout-feature-005: Sound effects (tier 1)
-    - breakout-feature-006: Ball speed increase (tier 2)
-    - breakout-feature-007: Pause countdown (tier 1)
-  - Optimization (1):
-    - breakout-optimization-001: Optimize collision detection (tier 2)
-  - Mini-game (1):
-    - breakout-mini-001: Two-player cooperative mode (tier 3)
-- [x] Space Invaders baseline (10 tasks complete - higher difficulty)
-  - Bug fixes (4):
-    - space_invaders-001: Bullets pass through aliens at high speed (tier 2) - tunneling bug
-    - space_invaders-002: Alien fleet speed calculation overflow (tier 3) - math/division bug
-    - space_invaders-003: Shield collision not symmetric (tier 2) - erosion direction bug
-    - space_invaders-004: Dead aliens can still shoot (tier 2) - race condition bug
-  - Features (4):
-    - space_invaders-feature-001: Mystery ship bonus (tier 3)
-    - space_invaders-feature-002: Progressive difficulty waves (tier 3)
-    - space_invaders-feature-003: Power-up system (tier 4)
-    - space_invaders-feature-004: Alien formation attack patterns (tier 4)
-  - Optimization (1):
-    - space_invaders-optimization-001: Spatial partitioning collision (tier 3)
-  - Mini-game (1):
-    - space_invaders-mini-001: Two-player cooperative mode (tier 4)
-
-#### Task Distribution (M1):
-| Category     | Tier 1 | Tier 2 | Tier 3 | Tier 4 | Total |
-|--------------|--------|--------|--------|--------|-------|
-| Bug Fix      | 10     | 8      | 5      | 2      | 25    |
-| Feature      | 3      | 5      | 5      | 2      | 15    |
-| Optimization | 0      | 2      | 3      | 0      | 5     |
-| Mini-Game    | 0      | 0      | 3      | 2      | 5     |
-| **Total**    | 13     | 15     | 16     | 6      | **50**|
+### Testing Strategy
+`pytest tests/` passes; a task runs end to end with `mock:solution`.
 
 ---
 
-## Task Creation Workflow
+## Phase 1: Pygame Track ✅
+**Status:** Complete (2026-01-25)
 
-```bash
-# Create new task from baseline
-python scripts/create_task.py \
-  --category bug-fix \
-  --tier 2 \
-  --baseline pong \
-  --id "pong-ball-angle" \
-  --name "Ball angle always same"
+**Goal:** 165 Pygame tasks across bug-fix, feature, optimization and mini-game, on eight baseline games.
+**Estimated Effort:** 4 weeks (done)
 
-# Validate task structure
-python scripts/validate_task.py tasks/pygame/bug-fix/pong-ball-angle/
+### Deliverables
+- Baselines in `baselines/pygame/`: Pong, Snake, Breakout, Space Invaders, Asteroids, Tetris, Platformer, Tower Defense
+- 165 tasks in `tasks/pygame/`
 
-# Run single task evaluation
-python evaluation/runner.py \
-  --task tasks/pygame/bug-fix/pong-ball-angle/ \
-  --model openai:gpt-4 \
-  --output results/runs/
+### Tasks
+- [x] M1: 50 tasks on Pong, Snake, Breakout, Space Invaders (completed 2026-01)
+- [x] M2: four more baselines and 115 more tasks (completed 2026-01-25)
 
-# Run full benchmark
-python scripts/run_benchmark.py \
-  --model openai:gpt-4 \
-  --model anthropic:claude-3 \
-  --model claude:sonnet \
-  --output results/runs/
-```
+### Testing Strategy
+Every task validates with `mock:solution` (reference solution passes, broken code fails).
 
 ---
 
-## Dependencies
+## Phase 2: Quake Track ✅
+**Status:** Complete (2026-01)
 
-```txt
-# Core
-pygame>=2.5.0
-pytest>=7.0.0
-pytest-timeout>=2.0.0
-pytest-json-report>=1.5.0
+**Goal:** 10 expert (tier 4–5) C tasks on the GPL Quake 1 engine.
+**Estimated Effort:** 1 week (done)
 
-# Model interfaces
-httpx>=0.25.0          # API calls
-openai>=1.0.0          # OpenAI SDK
-anthropic>=0.18.0      # Anthropic SDK
+### Deliverables
+- 10 tasks in `tasks/quake/` (4 bug-fix, 3 feature, 3 optimization)
 
-# Evaluation
-psutil>=5.9.0          # Resource monitoring
-pillow>=10.0.0         # Screenshot comparison
+### Tasks
+- [x] Quake bug-fix, feature and optimization tasks with mocked-subsystem test harnesses (completed 2026-01)
 
-# Tools
-jsonschema>=4.0.0      # Task validation
-click>=8.0.0           # CLI tools
-jinja2>=3.0.0          # Report generation
-pyyaml>=6.0.0          # Config files
-```
+### Testing Strategy
+Every task validates with `mock:solution`.
 
 ---
 
-## Verification Plan
+## Phase 3: Julius Track MJ1–MJ2 ✅
+**Status:** Complete (2026-01)
 
-### 1. Infrastructure Verification
-```bash
-# Run harness unit tests
-pytest tests/harness/ -v
+**Goal:** 50 C tasks on Julius (open-source Caesar III), from real historical fixes and synthetic bugs, all runnable without game files.
+**Estimated Effort:** 2 weeks (done)
 
-# Verify headless pygame works
-python -c "from harness.pygame_headless import HeadlessGame; print('OK')"
-```
+### Deliverables
+- `harness/julius_sandbox.py`, `harness/patch_utils.py`, `evaluation/julius_test_runner.py`, `evaluation/asan_parser.py`, `evaluation/julius_evaluator.py`
+- 50 tasks in `tasks/julius/` (memory-safety 19, crash-fix 10, game-logic 14, visual 7)
 
-### 2. Baseline Game Verification
-```bash
-# Run Pong in headless mode
-python baselines/pygame/pong/main.py --headless --frames 100
+### Tasks
+- [x] MJ1: build harness, ASan evaluation, 10 tasks (completed 2026-01)
+- [x] MJ2: 50 tasks, synthetic evaluation without game files (completed 2026-01)
 
-# Run Pong tests
-pytest baselines/pygame/pong/tests/ -v
-```
-
-### 3. End-to-End Task Verification
-```bash
-# Create and validate a task
-python scripts/create_task.py --category bug-fix --tier 1 --baseline pong --id test-001
-
-# Run evaluation with mock model
-python evaluation/runner.py \
-  --task tasks/pygame/bug-fix/test-001/ \
-  --model mock:pass \
-  --verbose
-
-# Verify results JSON generated
-cat results/runs/latest.json | jq .
-```
-
-### 4. CI Verification
-```bash
-# Run CI workflow locally (using act or similar)
-act -j validate
-```
+### Testing Strategy
+Every task validates with `mock:solution`; no task needs Caesar III files.
 
 ---
 
-## Implementation Order
+## Phase 4: First Model Runs and Leaderboard ✅
+**Status:** Complete (2026-02-14)
 
-1. **Week 1: Foundation** ✅
-   - Project setup (pyproject.toml, requirements)
-   - Directory structure
-   - Task JSON schema
-   - Basic sandbox
+**Goal:** Full 225-task runs for the first models, with versions, cost and a generated leaderboard.
+**Estimated Effort:** 1 week (done)
 
-2. **Week 2: Pong Baseline** ✅
-   - Working Pong game
-   - Headless support
-   - Unit tests for Pong
+### Deliverables
+- `scripts/log_run.py` and `results/run-log.json` (persistent run log with model and benchmark versions)
+- `scripts/update_leaderboard.py`, `results/leaderboard.json`, `LEADERBOARD.md`
+- Runs: Claude Haiku 4.5, Claude Sonnet 4.5, GPT-5 mini, GPT-4.1 nano
 
-3. **Week 3: Evaluation Harness** ✅
-   - Model interface (API + CLI)
-   - Test runner
-   - Basic evaluation flow
+### Tasks
+- [x] Run logging, model versioning, cost tracking, leaderboard generation (completed 2026-02-14)
+- [x] Four full model runs (completed 2026-02-14)
 
-4. **Week 4: First Tasks** ✅
-   - 10 Pong-based tasks
-   - Gameplay bot for Pong
-   - End-to-end validation
-
-5. **Week 5: Polish** (Partial)
-   - Basic leaderboard (pending)
-   - Documentation ✅
-
-6. **Weeks 6-8: Scale to M1** (Pending)
-   - Additional baseline games
-   - Expand to 50 tasks
-   - Model baseline runs
+### Testing Strategy
+`LEADERBOARD.md` regenerates from `results/run-log.json`.
 
 ---
 
-## Current Progress
+## Phase 5: Pipeline Setup and New Machine
 
-**Status: 110 tasks across 3 engines (Pygame M1 ✅, Quake ✅, Julius MJ2 ✅)**
+**Goal:** The repo works under the pipeline (CLAUDE.md, gate wrappers, ledgers) and a full benchmark run works on the new Mac mini.
+**Estimated Effort:** 2–3 days, once the new Mac mini is in service (due early November 2026)
 
-- Core infrastructure fully operational
-- **110 tasks created and validated:**
-  - **Pygame (50 tasks):**
-    - 10 Pong tasks
-    - 15 Snake tasks (baseline game + full task suite)
-    - 15 Breakout tasks (baseline game + full task suite)
-    - 10 Space Invaders tasks (baseline game + higher difficulty tasks)
-  - **Quake (10 tasks):** Expert-level C engine tasks (tier 4-5)
-  - **Julius (50 tasks):** Memory-safety, crash-fix, game-logic, and visual bugs (tier 1-4)
-- Four Pygame baseline games fully implemented:
-  - Pong: with test coverage
-  - Snake: 43 unit tests
-  - Breakout: 52 unit tests
-  - Space Invaders: 62 unit tests
-- Evaluation harness working with multiple model providers:
-  - API: OpenAI, Anthropic
-  - CLI: Ollama, llama.cpp, Claude Code
-- Julius track with synthetic evaluation support (no game assets required)
+### Deliverables
+- `CLAUDE.md` at the repo root
+- `.airtower.json`, `run-tests.sh`, `run-build.sh` (gate wrappers, per `~/.claude/docs/airtower.md`)
+- The new Mac mini can run every engine's tasks: Python venv, API keys, C toolchain for Julius and Quake (CMake, SDL2, ASan)
 
-**Baseline Results (Claude Haiku):**
+### Tasks
+- [x] Convert the planning docs to the pipeline format: this PLAN.md, `DEBT.md`, old plan archived to `docs/plan-archive-2026-02.md` (completed 2026-10-28)
+- [x] Rework the plan for the old Mac mini's retirement: drop the dedicated benchmark machine and scheduled runs; runs happen on demand on the new main Mac mini (completed 2026-10-28)
+- [ ] Write `CLAUDE.md`: build and test commands, task layout, how a model run is started, the public-repo rule (nothing private in commits or decision records)
+- [ ] Add `.airtower.json` and the `run-tests.sh` / `run-build.sh` wrappers; the test gate runs `pytest tests/` plus task validation, so it needs no API key
+- [ ] Set up the new Mac mini for benchmark runs: venv from `requirements.txt`, API keys for Anthropic and OpenAI, Julius and Quake build dependencies; prove it with one `mock:solution` pass over all 225 tasks
 
-| Engine | Passed | Total | Rate |
-|--------|--------|-------|------|
-| Pygame | 18 | 50 | 36% |
-| Julius | 36 | 50 | 72% |
-| Quake | 4 | 10 | 40% |
-| **Total** | **58** | **110** | **53%** |
-
-*See [BASELINE.md](BASELINE.md) for detailed per-task results.*
-
-**Pygame Breakdown:**
-- By Game: Pong 80%, Snake 40%, Breakout 27%, Space Invaders 0%
-- By Category: Bug Fix 43%, Feature 32%, Optimization 50%, Mini-Game 25%
-- By Tier: T1 58%, T2 40%, T3 27%, T4 33%
-
-**Quake Breakdown:**
-- Bug Fix (tier 4): 4/4 (100%)
-- Feature (tier 5): 0/3 (0%)
-- Optimization (tier 4-5): 0/3 (0%)
-
-**Julius MJ2 Breakdown:**
-- Memory Safety: 15/19 (79%)
-- Game Logic: 11/14 (79%)
-- Crash Fix: 6/10 (60%)
-- Visual/UI: 4/7 (57%)
-- By Tier: T1 33%, T2 85%, T3 73%, T4 40%
-
-**Recent Completions:**
-1. ✅ Pygame baseline complete (22/50, 44%)
-2. ✅ Quake baseline complete (4/10, 40%)
-3. ✅ Julius MJ2 expansion complete (50 tasks, 100% validated with mock:solution)
-4. ✅ Julius MJ2 baseline complete (36/50, 72%)
-
-**Next Steps:**
-1. Run additional model baselines (Sonnet, GPT-4, etc.)
-2. Expand to Pygame M2 (200+ tasks)
-3. Set up local CI on Mac mini (final step)
+### Testing Strategy
+`run-tests.sh` exits green on the new Mac mini; `scripts/run_benchmark.py -m mock:solution` passes all 225 tasks there.
 
 ---
 
-## Phase 2: Quake 1 Engine Tasks (Expert Difficulty)
+## Phase 6: Leaderboard Credibility
 
-### Overview
+**Goal:** Every score on the leaderboard can be trusted, and the leaderboard includes current strong models.
+**Estimated Effort:** 1–2 weeks (API spend per full run: a few dollars for small models, more for large ones)
 
-Added Quake 1 (id Software GPL release) as a new engine for expert-level tasks. These tasks are significantly harder than Pygame tasks, requiring deep understanding of:
-- 1990s game engine architecture
-- BSP rendering and visibility
-- Memory management (zone allocator)
-- Network prediction
-- Low-level audio mixing
+### Deliverables
+- A written finding on why Haiku 4.5 outscores Sonnet 4.5 and why Pygame pass rates are low (8–11%), with any harness defect filed and fixed
+- Cost shown for every model row, including OpenAI
+- Full runs for current flagship and small models from Anthropic and OpenAI
+- Regenerated `LEADERBOARD.md`
 
-### Quake Task Distribution
+### Tasks
+- [ ] Audit the Feb runs for harness-caused failures: sample failed Pygame tasks for Sonnet 4.5 and Haiku 4.5 and classify each failure (model wrong, output not parsed, patch not applied, timeout, test flake); file each harness defect in `BUG.md`
+- [ ] Find why the two OpenAI rows show no cost when GPT-5 mini pricing exists, and fix the cost path in `scripts/update_leaderboard.py` or the run log
+- [ ] Re-run GPT-5 mini and GPT-4.1 nano if the audit or the 2026-02-14 GPT-5 parameter fix shows their Feb scores are not valid
+- [ ] Choose the current models to add (Anthropic and OpenAI, flagship and small), run each on all 225 tasks, and regenerate `LEADERBOARD.md`
+- [ ] Pong gameplay bot that can win against the built-in AI (left open from the original Phase 1.2.2)
 
-| ID | Category | Tier | Description |
-|----|----------|------|-------------|
-| quake-001 | bug-fix | 4 | BSP node child pointer corruption causes missing geometry |
-| quake-002 | bug-fix | 5 | Zone memory allocator corruption on fragmentation |
-| quake-003 | bug-fix | 5 | Network prediction desync causes player teleportation |
-| quake-004 | bug-fix | 4 | Sound mixing overflow causes audio distortion |
-| quake-opt-001 | optimization | 4 | Optimize PVS decompression for large maps |
-| quake-opt-002 | optimization | 4 | Optimize entity linked list with spatial hash |
-| quake-opt-003 | optimization | 5 | Optimize lightmap interpolation for dynamic lights |
-| quake-feat-001 | feature | 5 | Implement skeletal animation system |
-| quake-feat-002 | feature | 5 | Implement portal-based occlusion culling |
-| quake-feat-003 | feature | 5 | Implement procedural terrain generation |
-
-**Total: 10 Quake tasks (all tier 4-5 expert difficulty)**
-
-### Key Differences from Pygame Tasks
-
-1. **Language**: C instead of Python
-2. **Complexity**: Large codebase (50k+ lines) vs small games
-3. **Architecture**: Systems programming (memory, networking, rendering)
-4. **Testing**: Custom test harnesses that mock Quake subsystems
-5. **Timeout**: 300-600 seconds (vs 120 for Pygame)
-
-### Quake Source Reference
-
-- **Repository:** https://github.com/id-Software/Quake
-- **License:** GPL v2
-- **Key directories:**
-  - `WinQuake/` - Main engine source
-  - `QW/` - QuakeWorld networking
-
-### Task Tier Distribution (Including Quake)
-
-| Category     | Tier 1 | Tier 2 | Tier 3 | Tier 4 | Tier 5 | Total |
-|--------------|--------|--------|--------|--------|--------|-------|
-| Bug Fix      | 10     | 8      | 5      | 4      | 2      | 29    |
-| Feature      | 3      | 5      | 5      | 2      | 3      | 18    |
-| Optimization | 0      | 2      | 3      | 2      | 1      | 8     |
-| Mini-Game    | 0      | 0      | 3      | 2      | 0      | 5     |
-| **Total**    | 13     | 15     | 16     | 10     | 6      | **60**|
+### Testing Strategy
+Each harness defect found has a regression test; every leaderboard row has a version and a cost; the audit's sample shows no unexplained harness failures.
 
 ---
 
-## Phase 3: Julius Track (Systems Programming / Historical Bugs)
+## Phase 7: Julius MJ3 — Full Coverage
 
-### Overview
+**Goal:** 100+ Julius tasks, including visual bugs that need the real game files, run on the new Mac mini.
+**Estimated Effort:** 3–4 weeks
 
-A parallel track using [Julius](https://github.com/bvschaik/julius), the open-source Caesar III reimplementation, to test AI capabilities on:
-- **C systems programming** in a large legacy codebase (2,700+ commits)
-- **Real historical bugs** extracted from git history (SWE-Bench methodology)
-- **Memory safety issues** (double frees, OOB, dangling pointers)
-- **Complex game simulation** (city builder vs arcade games)
+### Deliverables
+- Caesar III game files installed on the new Mac mini (never committed)
+- Screenshot comparison pipeline for visual (J4) tasks
+- 50+ more Julius tasks, including the game-file tasks listed in `docs/plan-archive-2026-02.md` § Bug Categories
+- Julius results compared with the main track and shown on the leaderboard
 
-This provides orthogonal signal to the main track—can models work with existing codebases and debug real-world issues?
-
-### Key Differences from Main Track
-
-| Main Track (Pygame/Quake) | Julius Track |
-|---------------------------|--------------|
-| Python/C synthetic bugs | C historical bugs |
-| Simple 2D games / engine code | Complex city simulation |
-| Injected bugs | Real git commit reversions |
-| Fresh task codebases | 2,700+ commit legacy codebase |
-| Game creation/modification | Bug archaeology |
-
-### Asset Requirements
-
-Julius requires original Caesar III assets to run full gameplay tests:
-
-| Environment | Assets | Scope |
-|-------------|--------|-------|
-| Asset-free mode | None | Memory safety, unit tests only |
-| Local Mac mini CI | Caesar III installed | Full test suite |
-| Benchmark users | Own copy | Full reproduction |
-
-**Policy:** Assets never committed. Local Mac mini CI has assets installed for full coverage.
-
-### Bug Categories
-
-#### J1: Memory Safety (ASan/Valgrind testable)
-| Bug | Commit | Tier | Assets |
-|-----|--------|------|--------|
-| Double free in smacker decoder | `f722d9c` | 3 | No |
-| Dangling pointer on localized_filename | `6603f5d` | 3 | No |
-| Out-of-bounds during invasions | `96c67ee` | 4 | Yes |
-| Out-of-bounds when drawing map | `5876540` | 4 | Yes |
-| Sheep out-of-bounds destination | `5a37aa8` | 3 | No (mocked) |
-
-#### J2: Crash Fixes
-| Bug | Commit | Tier | Assets |
-|-----|--------|------|--------|
-| Carthago freeze during large invasions | Wiki | 5 | Yes |
-| Crash in file save dialog | `24a67bb` | 3 | Yes |
-| Water buildings corrupted on collapse | `6c7ddd4` | 4 | Yes |
-
-#### J3: Game Logic
-| Bug | Commit | Tier | Assets |
-|-----|--------|------|--------|
-| Buildings deleted even when cancel pressed | `392b967` | 2 | Yes |
-| Clone building ignores disallowed buildings | `2c12e32` | 2 | No (unit) |
-| Trees not forming forest on elevation | `2be5a0f` | 3 | Yes |
-| Multiple horn sounds on large invasions | `638fc28` | 3 | Yes |
-| Hotkey config ordering error | #757 | 2 | No |
-
-#### J4: Visual/UI
-| Bug | Commit | Tier | Assets |
-|-----|--------|------|--------|
-| Off-by-one animation offsets | `a1c1a74` | 2 | Yes |
-| Amphitheater spectator offset by 1px | `3791789` | 2 | Yes |
-| Tooltip trailing newline | `f75d681` | 1 | No |
-| Build menu hitbox misplaced | `39f7328` | 3 | Yes |
-
-### Directory Structure
-
-```
-tasks/julius/
-├── memory-safety/
-│   └── j001-smacker-double-free/
-│       ├── task.json           # Metadata, commit ref, difficulty
-│       ├── buggy.patch         # Patch to revert fix
-│       ├── prompt.md           # Bug report for AI
-│       ├── tests/
-│       │   ├── test_crash.c    # ASan test (no assets)
-│       │   └── Makefile
-│       └── solution/
-│           └── fix.patch       # Original fix
-├── crash-fix/
-├── game-logic/
-└── visual/
-
-harness/
-├── julius_sandbox.py           # Clone Julius, apply patches, build
-├── julius_test_runner.py       # Run tests with ASan/Valgrind
-└── patch_utils.py              # Git patch manipulation
-
-evaluation/
-├── julius_evaluator.py         # Scoring logic for Julius tasks
-└── asan_parser.py              # Parse AddressSanitizer output
-```
-
-### Evaluation Protocol
-
-```
-For each task:
-  1. Clone fresh Julius at buggy commit
-  2. Apply buggy.patch to revert fix
-  3. Verify bug exists (test fails or ASan triggers)
-  4. Present code + bug report to AI model
-  5. Apply model's proposed fix (as patch)
-  6. Run test suite with ASan
-  7. Score:
-     - Compiles: 1 point
-     - No new ASan errors: 1 point
-     - Test passes: 2 points
-     - Matches original fix structure (bonus): 1 point
-```
-
-### Infrastructure Required
-
-#### 3.1 Julius Build Harness
-- [x] `harness/julius_sandbox.py`:
-  - Clone Julius repo at specific commit
-  - Apply/revert patches
-  - Build with CMake + ASan flags
-  - Manage build cache for performance
-- [x] `harness/patch_utils.py`:
-  - Parse unified diff format
-  - Apply model output as patch
-  - Validate patch applies cleanly
-
-#### 3.2 Julius Test Runner
-- [x] `evaluation/julius_test_runner.py`:
-  - Run compiled test binaries
-  - Capture ASan output
-  - Parse test results
-  - Handle timeout for freeze bugs
-- [x] `evaluation/asan_parser.py`:
-  - Parse AddressSanitizer reports
-  - Categorize error types
-  - Extract stack traces
-
-#### 3.3 Julius Evaluator
-- [x] `evaluation/julius_evaluator.py`:
-  - Scoring logic per evaluation protocol
-  - Patch similarity comparison
-  - Integration with main benchmark runner
-
-### Milestones
-
-#### MJ1: Proof of Concept (10 tasks) - **Complete** ✅
-- [x] Julius build harness working
-- [x] ASan-based evaluation operational
-- [x] Integration with main benchmark runner
-- [x] 10 tasks created (10/10 done)
-- [x] All tasks validated (fixed code passes, buggy code fails)
-- [x] No assets required for any task
-- [x] Baseline results: Claude Haiku 80% (8/10)
-
-**Task list for MJ1:**
-| ID | Bug | Commit | Tier | Status |
-|----|-----|--------|------|--------|
-| julius-001 | Double free in smacker decoder | `f722d9c` | 3 | ✅ Done |
-| julius-002 | Dangling pointer localized_filename | `6603f5d` | 3 | ✅ Done |
-| julius-003 | Sheep OOB destination | `5a37aa8` | 3 | ✅ Done |
-| julius-004 | Tooltip trailing newline | `f75d681` | 1 | ✅ Done |
-| julius-005 | Hotkey config ordering | `pr758` | 2 | ✅ Done |
-| julius-006 | Clone building validation | `2c12e32` | 2 | ✅ Done |
-| julius-007 | Buffer overflow in filename handling | `synthetic` | 3 | ✅ Done |
-| julius-008 | Integer overflow in resource calc | `synthetic` | 3 | ✅ Done |
-| julius-009 | Null pointer dereference in building | `synthetic` | 2 | ✅ Done |
-| julius-010 | Use-after-free in UI callback | `synthetic` | 4 | ✅ Done |
-
-#### MJ2: Core Test Suite (50 tasks) - **Complete** ✅
-- [x] 50 tasks across all categories (memory-safety, crash-fix, game-logic, visual)
-- [x] All tasks are asset-free (standalone tests with stubs)
-- [x] Synthetic evaluation support added to infrastructure
-- [x] 100% validation pass rate with mock:solution
-- [x] Integration with main benchmark runner
-
-#### MJ3: Full Coverage (100+ tasks)
-- [ ] 100+ tasks including visual bugs (J4)
+### Tasks
+- [ ] Install Caesar III game files on the new Mac mini and document the expected path in `CLAUDE.md`; tasks that need them skip cleanly when the files are absent
 - [ ] Screenshot comparison pipeline
-- [ ] Cross-reference with main track metrics
-- [ ] Public leaderboard integration
+- [ ] Reach 100+ Julius tasks, including visual (J4) tasks
+- [ ] Cross-reference Julius results with the main track metrics
+- [ ] Julius breakdown on the public leaderboard
 
-### Implementation Order
-
-1. **Julius Infrastructure** ✅
-   - [x] Clone and build Julius locally
-   - [x] Verify ASan builds work
-   - [x] Create `julius_sandbox.py` with basic clone/build
-   - [x] Create `patch_utils.py` for patch manipulation
-
-2. **First Bug Extraction** ✅
-   - [x] Identify commit `f722d9c` (smacker double free)
-   - [x] Create `buggy.patch` by reversing the fix
-   - [x] Write minimal test that triggers the bug
-   - [x] Verify test passes on fixed code, fails on buggy
-
-3. **Test Harness** ✅
-   - [x] Create `julius_test_runner.py`
-   - [x] Create `asan_parser.py`
-   - [x] End-to-end test: buggy → model fix → evaluate (tests/evaluation/test_julius_evaluator.py)
-
-4. **MJ1 Tasks** ✅
-   - [x] julius-001: Double free in smacker decoder (f722d9c)
-   - [x] julius-002: Dangling pointer localized_filename (6603f5d)
-   - [x] julius-003: Sheep OOB destination (5a37aa8)
-   - [x] julius-004: Tooltip trailing newline (f75d681)
-   - [x] julius-005: Hotkey config ordering (pr758)
-   - [x] julius-006: Clone building validation (2c12e32)
-   - [x] julius-007: Buffer overflow in filename handling (synthetic)
-   - [x] julius-008: Integer overflow in resource calc (synthetic)
-   - [x] julius-009: Null pointer dereference in building (synthetic)
-   - [x] julius-010: Use-after-free in UI callback (synthetic)
-   - [x] All tasks work without assets
-
-5. **Integration** ✅
-   - [x] Add `engine: julius` to task schema
-   - [x] Update `run_benchmark.py` to discover Julius tasks
-   - [x] Update `evaluation/runner.py` with Julius dispatch
-
-### Task Tier Distribution (Current: 110 tasks)
-
-| Engine | Category     | Tier 1 | Tier 2 | Tier 3 | Tier 4 | Tier 5 | Total |
-|--------|--------------|--------|--------|--------|--------|--------|-------|
-| Pygame | Bug Fix      | 10     | 8      | 5      | 2      | 0      | 25    |
-| Pygame | Feature      | 3      | 5      | 5      | 2      | 0      | 15    |
-| Pygame | Optimization | 0      | 2      | 3      | 0      | 0      | 5     |
-| Pygame | Mini-Game    | 0      | 0      | 3      | 2      | 0      | 5     |
-| Quake  | Bug Fix      | 0      | 0      | 0      | 2      | 2      | 4     |
-| Quake  | Feature      | 0      | 0      | 0      | 0      | 3      | 3     |
-| Quake  | Optimization | 0      | 0      | 0      | 2      | 1      | 3     |
-| Julius | Memory Safety| 1      | 5      | 9      | 4      | 0      | 19    |
-| Julius | Crash Fix    | 0      | 4      | 4      | 2      | 0      | 10    |
-| Julius | Game Logic   | 0      | 8      | 6      | 0      | 0      | 14    |
-| Julius | Visual/UI    | 2      | 5      | 0      | 0      | 0      | 7     |
-| **Total** |           | **16** | **37** | **35** | **14** | **6**  | **110**|
-
-*Julius MJ2 complete: 50 tasks across memory-safety, crash-fix, game-logic, and visual categories.*
-
-### References
-
-- [Julius GitHub](https://github.com/bvschaik/julius)
-- [Augustus GitHub](https://github.com/Keriew/augustus) (fork with more fixes)
-- [Caesar 3 Bugs Wiki](https://github.com/bvschaik/julius/wiki/Caesar-3-bugs)
-- [Improvements Wiki](https://github.com/bvschaik/julius/wiki/Improvements-from-Caesar-3)
-- [SWE-Bench](https://www.swebench.com/) - Methodology inspiration
+### Testing Strategy
+Every new task validates with `mock:solution` on the new Mac mini; game-file tasks skip, not fail, on a machine without the files.
 
 ---
 
-## Phase 4: Local CI & Reporting (Final)
+## Phase 8: On-Demand Runs and Leaderboard Hosting
 
-*This phase is intentionally last - to be implemented after model baselines and M2 expansion.*
+**Goal:** One command runs the benchmark on the main machine and publishes the result to a hosted leaderboard.
+**Estimated Effort:** 1 week
 
-### Local Mac Mini CI
+### Deliverables
+- A runner script that takes a model list, runs the full benchmark, logs the run and regenerates the leaderboard
+- Results archived under `results/` with the run log
+- `leaderboard/index.html` built from `results/leaderboard.json` and hosted on GitHub Pages
 
-Running CI locally on a Mac mini instead of GitHub Actions to enable:
-- Full Julius test suite with Caesar III assets
-- Longer benchmark runs without GitHub timeout limits
-- GPU access for future engine expansions
+### Tasks
+- [ ] On-demand runner script that replaces the one-off `run_remaining.sh` / `run_sonnet45.sh` (see `DEBT.md`)
+- [ ] Results collection and archival under `results/`
+- [ ] Task validation on commit (pre-push hook)
+- [ ] `leaderboard/index.html`: static results page (placeholder exists)
+- [ ] Host the leaderboard on GitHub Pages
 
-#### Infrastructure
-- [ ] Set up dedicated Mac mini for benchmark runs
-- [ ] Install Caesar III assets for Julius full test coverage
-- [ ] Create local runner script with scheduling
-- [ ] Set up results collection and archival
+### Testing Strategy
+A run started with one command on the new Mac mini ends with an updated `results/run-log.json`, `LEADERBOARD.md` and hosted page.
 
-#### Automation
-- [ ] Task validation on commit (pre-push hook or cron)
-- [ ] Scheduled benchmark runs (weekly/on-demand)
-- [ ] Results upload to results/ directory
-- [ ] Notification on completion (email/webhook)
+---
 
-### Leaderboard
-- [ ] `leaderboard/index.html`: Static results display (placeholder exists)
-- [x] `evaluation/report.py`: Generate JSON results
-- [ ] Host leaderboard (GitHub Pages or local server)
+## Phase 9: Hardening & Debt
+
+**Goal:** Clear every deferred bug and every open debt entry.
+**Estimated Effort:** depends on the ledgers
+
+### Deliverables
+- `BUG.md` with no entry marked Deferred
+- `DEBT.md` with no open entry
+
+### Tasks
+- [x] Fix every `BUG.md` entry marked Deferred
+- [ ] Pay every open `DEBT.md` entry
+
+### Testing Strategy
+Both ledgers have no open entries; `run-tests.sh` is green.
+
+---
+
+## Risk Register
+
+| Risk | Impact | Likelihood | Mitigation |
+|------|--------|------------|------------|
+| Benchmark runs slow down Philip's main machine | Medium | High | Runs are on demand, started when the machine is free |
+| Harness defects make published scores wrong | High | Medium | Phase 6 audit before any new model is added |
+| API cost of full runs on flagship models | Medium | Medium | Price a run from `results/run-log.json` before starting it |
+| Caesar III files unavailable or not redistributable | Medium | Low | Game-file tasks skip cleanly; files never committed |
+| Older C toolchain needs (Quake, Julius) break on the new macOS | Medium | Medium | Phase 5 proves all 225 tasks with `mock:solution` first |
+
+## Timeline
+
+Phase 5 → Phase 6 → Phase 7 and Phase 8 (either order) → Phase 9.
+Phase 5's machine tasks wait for the new Mac mini.
+Beyond this plan, the README Roadmap names Godot and Unity/Unreal tracks; neither is planned yet.
