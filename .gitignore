@@ -74,5 +74,5 @@ credentials.json
 # Sandbox temp directories
 gdb_sandbox_*/
 
-# Pipeline session handoff (never committed)
+# Pipeline save point (never committed)
 /RESUME.md
