@@ -53,8 +53,10 @@ Each task is `tasks/<engine>/<category>/<task-id>/`:
 
 - `task.json`: metadata, checked against `schemas/`
 - `prompt.md`: what the model is asked to do
-- `game/`: the broken or incomplete code the model starts from
-- `solution/`: the reference solution
+- `game/`: the broken or incomplete code the model starts from (Pygame and Quake tasks)
+- `buggy.patch`: in place of `game/` in Julius tasks, the change that breaks the Julius
+  source the sandbox builds
+- `solution/`: the reference solution (`solution/fix.patch` in Julius tasks)
 - `tests/`: the tests that score the model's change
 
 Engines and categories:
