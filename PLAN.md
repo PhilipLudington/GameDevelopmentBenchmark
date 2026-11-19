@@ -26,6 +26,11 @@ benchmark run from completing on the main machine.
 ## Next Up
 
 - [ ] Task validation — Bug 1: `scripts/validate_task.py` rejects 99 of 225 shipped tasks (Julius patch-only layout and schema nulls, underscore ids, empty Pong solutions) (blocks Phase 5: `run-tests.sh`, whose test gate runs task validation) (found: write CLAUDE.md 2026-11-18, Bug 1)
+  The 99 undercount the disagreements: `validate()` stops at the first schema error, and a full error list adds 31 Julius tasks whose `category` (`crash-fix`, `game-logic`, `visual`) is not in the schema enum, 10 Pygame tasks with a `space_invaders` tag the tag pattern rejects, and 40 (not 10) `"commit": "synthetic"` tasks (code: `scripts/validate_task.py:48` `validate`; `schemas/task_schema.json`)
+  The Julius categories `crash-fix`, `game-logic` and `visual` are this repo's categories, so the schema's category enum is what is short (rule: `CLAUDE.md` § Task layout)
+  `"commit": "synthetic"` stays in the tasks: `mock:solution` and the Julius evaluator pick the patch path on that exact string (code: `models/cli_model.py:132`; `evaluation/julius_evaluator.py:210`)
+  The empty Pong `solution/` folders are untracked, so a fresh clone has no `solution/` there and those 9 tasks have no reference solution at all (code: `git ls-files tasks/pygame/bug-fix/pong-002`)
+  Verified by: BUG.md Bug 1's steps to reproduce — answer key: its **Expected** 0 (rule: `rules/plan-format.md` § Verified by)
 
 ---
 
