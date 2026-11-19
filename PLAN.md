@@ -23,6 +23,10 @@ benchmark run from completing on the main machine.
 
 **Found issues before the milestone:** Phase 6
 
+## Next Up
+
+- [ ] Task validation — Bug 1: `scripts/validate_task.py` rejects 99 of 225 shipped tasks (Julius patch-only layout and schema nulls, underscore ids, empty Pong solutions) (blocks Phase 5: `run-tests.sh`, whose test gate runs task validation) (found: write CLAUDE.md 2026-11-18, Bug 1)
+
 ---
 
 ## Phase 0: Core Infrastructure ✅
@@ -134,7 +138,17 @@ Every task validates with `mock:solution`; no task needs Caesar III files.
 ### Tasks
 - [x] Convert the planning docs to the pipeline format: this PLAN.md, `DEBT.md`, old plan archived to `docs/plan-archive-2026-02.md` (completed 2026-10-28)
 - [x] Rework the plan for the old Mac mini's retirement: drop the dedicated benchmark machine and scheduled runs; runs happen on demand on the new main Mac mini (completed 2026-10-28)
-- [ ] Write `CLAUDE.md`: build and test commands, task layout, how a model run is started, the public-repo rule (nothing private in commits or decision records)
+- [x] Write `CLAUDE.md`: build and test commands, task layout, how a model run is started, the public-repo rule (nothing private in commits or decision records)
+  It describes the repo as it is when written: raw commands now, and the next task (wrappers) adds the AirTower "use the wrappers" section (rule: `~/.claude/docs/airtower.md` § Claude Code Integration; PLAN.md order)
+  Build is the Python install, `pip install -r requirements.txt` then `pip install -e .` in `venv/`; there is no compile step, and Julius and Quake C code is built per task inside the sandbox (code: `README.md` Quick Start; `harness/julius_sandbox.py`)
+  Tests are `pytest tests/` (code: `pyproject.toml` `testpaths`); task validation is `scripts/validate_task.py <task dir>`, one folder per call, looped over `tasks/*/*/*/` (225 folders; the README's `tasks/*/*/*/*/` is one level too deep) (code: `scripts/validate_task.py` `main`)
+  Task layout is `tasks/<engine>/<category>/<task-id>/` with `task.json`, `prompt.md`, `game/`, `solution/`, `tests/` (code: `tasks/`); baselines in `baselines/pygame/` (code)
+  A run is `python scripts/run_benchmark.py -m <provider:model>` with its `--engine`/`--category`/`--tier` filters, then `scripts/log_run.py <run dir>` and `scripts/update_leaderboard.py` (code: those scripts' `main`); keys come from `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` in the environment, and no key file path is named (code: `models/api_model.py`; rule: public repo below)
+  Paid model runs start only when Philip asks for one; a session's own runs use `mock:*` providers (`mock:solution`, `mock:pass`) (rule: `docs/decisions/2026-10-28-runs-on-demand-on-main-machine.md`, runs started by hand, unattended spend rejected)
+  The public-repo rule covers every committed file and decision record: nothing private (money, health, other people, client terms), no local secret paths, and the Caesar III game files are never committed (rule: `~/.claude/rules/decision-format.md` § Public repos; `gh repo view` reads PUBLIC; Phase 7 deliverables); push and CI rules are left to the global `CLAUDE.md` and Debt 2 (rule: global `CLAUDE.md` § Commits and pushes)
+  Verified by: each command in `CLAUDE.md` run as written succeeds (`pytest tests/` collects, a `validate_task.py` loop finds 225 folders, `run_benchmark.py --help` lists the flags named) — answer key: `pyproject.toml`, the scripts' click options and `decision-format.md` § Public repos, none written by this task
+  (completed 2026-11-18)
+  Reviewed: 2026-11-18 0920e97a (gaps 8, Philip 0)
 - [ ] Add `.airtower.json` and the `run-tests.sh` / `run-build.sh` wrappers; the test gate runs `pytest tests/` plus task validation, so it needs no API key
 - [ ] Set up the new Mac mini for benchmark runs: venv from `requirements.txt`, API keys for Anthropic and OpenAI, Julius and Quake build dependencies; prove it with one `mock:solution` pass over all 225 tasks
 
