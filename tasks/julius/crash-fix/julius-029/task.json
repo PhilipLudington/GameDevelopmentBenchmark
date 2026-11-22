@@ -23,7 +23,6 @@
     "src/figure/route.c"
   ],
   "requires_assets": false,
-  "expected_asan_error": null,
   "difficulty_factors": [
     "Understanding pathfinding algorithm",
     "Identifying missing termination condition",

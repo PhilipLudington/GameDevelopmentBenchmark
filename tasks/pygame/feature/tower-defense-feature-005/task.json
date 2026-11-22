@@ -1,0 +1,18 @@
+{
+  "id": "tower-defense-feature-005",
+  "name": "Add slow tower type",
+  "category": "feature",
+  "tier": 3,
+  "engine": "pygame",
+  "description": "Tower that slows enemies instead of damaging",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "tower",
+    "slow",
+    "status-effect"
+  ],
+  "baseline": "tower_defense",
+  "timeout": 150
+}

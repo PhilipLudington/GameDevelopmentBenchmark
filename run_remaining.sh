@@ -33,21 +33,21 @@ snake-feature-005 snake-feature-006 snake-feature-007 snake-feature-008
 snake-feature-009 snake-feature-010 snake-feature-011 snake-feature-012
 snake-feature-013 snake-feature-014 snake-mini-001 snake-mini-002
 snake-mini-003 snake-mini-004 snake-optimization-001 snake-optimization-002
-space_invaders-feature-001 space_invaders-feature-002 space_invaders-feature-003
-space_invaders-feature-004 space_invaders-feature-005 space_invaders-feature-006
-space_invaders-feature-007 space_invaders-feature-008 space_invaders-feature-009
-space_invaders-feature-010 space_invaders-feature-011 space_invaders-feature-012
-space_invaders-mini-001 space_invaders-mini-002 space_invaders-mini-003
-space_invaders-optimization-001 space_invaders-optimization-002 space_invaders-optimization-003
+space-invaders-feature-001 space-invaders-feature-002 space-invaders-feature-003
+space-invaders-feature-004 space-invaders-feature-005 space-invaders-feature-006
+space-invaders-feature-007 space-invaders-feature-008 space-invaders-feature-009
+space-invaders-feature-010 space-invaders-feature-011 space-invaders-feature-012
+space-invaders-mini-001 space-invaders-mini-002 space-invaders-mini-003
+space-invaders-optimization-001 space-invaders-optimization-002 space-invaders-optimization-003
 tetris-feature-001 tetris-feature-002 tetris-feature-003 tetris-feature-004
 tetris-feature-005 tetris-feature-006 tetris-feature-007 tetris-feature-008
 tetris-feature-009 tetris-feature-010 tetris-mini-001 tetris-mini-002
 tetris-optimization-001
-tower_defense-feature-001 tower_defense-feature-002 tower_defense-feature-003
-tower_defense-feature-004 tower_defense-feature-005 tower_defense-feature-006
-tower_defense-feature-007 tower_defense-feature-008 tower_defense-feature-009
-tower_defense-feature-010 tower_defense-feature-011 tower_defense-feature-012
-tower_defense-mini-001 tower_defense-mini-002 tower_defense-optimization-001
+tower-defense-feature-001 tower-defense-feature-002 tower-defense-feature-003
+tower-defense-feature-004 tower-defense-feature-005 tower-defense-feature-006
+tower-defense-feature-007 tower-defense-feature-008 tower-defense-feature-009
+tower-defense-feature-010 tower-defense-feature-011 tower-defense-feature-012
+tower-defense-mini-001 tower-defense-mini-002 tower-defense-optimization-001
 )
 
 MODEL="anthropic:claude-sonnet-4-5"

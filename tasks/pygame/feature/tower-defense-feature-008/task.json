@@ -1,0 +1,18 @@
+{
+  "id": "tower-defense-feature-008",
+  "name": "Implement infinite mode",
+  "category": "feature",
+  "tier": 4,
+  "engine": "pygame",
+  "description": "Endless waves with scaling difficulty",
+  "evaluation": [
+    "unit-test"
+  ],
+  "tags": [
+    "mode",
+    "endless",
+    "scaling"
+  ],
+  "baseline": "tower_defense",
+  "timeout": 180
+}

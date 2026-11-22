@@ -200,7 +200,7 @@ def main(
     # Set default tags
     tags = list(tag) if tag else []
     if baseline:
-        tags.append(baseline)
+        tags.append(baseline.replace("_", "-"))
     tags.append(category)
 
     # Determine evaluation methods based on category

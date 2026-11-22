@@ -25,7 +25,23 @@ benchmark run from completing on the main machine.
 
 ## Next Up
 
-- [ ] Task validation — Bug 1: `scripts/validate_task.py` rejects 99 of 225 shipped tasks (Julius patch-only layout and schema nulls, underscore ids, empty Pong solutions) (blocks Phase 5: `run-tests.sh`, whose test gate runs task validation) (found: write CLAUDE.md 2026-11-18, Bug 1)
+- [x] Task validation — Bug 1: `scripts/validate_task.py` rejects 99 of 225 shipped tasks (Julius patch-only layout and schema nulls, underscore ids, empty Pong solutions) (blocks Phase 5: `run-tests.sh`, whose test gate runs task validation) (found: write CLAUDE.md 2026-11-18, Bug 1)
+  The 99 undercount the disagreements: `validate()` stops at the first schema error, and a full error list adds 31 Julius tasks whose `category` (`crash-fix`, `game-logic`, `visual`) is not in the schema enum, 10 Pygame tasks with a `space_invaders` tag the tag pattern rejects, and 40 (not 10) `"commit": "synthetic"` tasks (code: `scripts/validate_task.py:48` `validate`; `schemas/task_schema.json`)
+  The Julius categories `crash-fix`, `game-logic` and `visual` are this repo's categories, so the schema's category enum is what is short (rule: `CLAUDE.md` § Task layout)
+  `"commit": "synthetic"` stays in the tasks: `mock:solution` and the Julius evaluator pick the patch path on that exact string (code: `models/cli_model.py:132`; `evaluation/julius_evaluator.py:210`)
+  The empty Pong `solution/` folders are untracked, so a fresh clone has no `solution/` there and those 9 tasks have no reference solution at all (code: `git ls-files tasks/pygame/bug-fix/pong-002`)
+  The rules are right and the shipped tasks change to fit, except that `commit` keeps `"synthetic"` (Philip, 2026-11-22; rule: `DESIGN.md` § Task Validation Rules, `docs/decisions/2026-11-22-task-rules-are-the-truth.md`)
+  Rename the 40 underscore ids and their folders to hyphens (`space_invaders-…` → `space-invaders-…`, `tower_defense-…` → `tower-defense-…`) everywhere: task files and tests, `BASELINE.md`, `run_remaining.sh`, the task generators, `results/run-log.json` and the raw run folders in `results/runs/`, rewritten in place with no map; the `space_invaders` tag becomes `space-invaders` (Philip, 2026-11-22)
+  Delete `"expected_asan_error": null` from the 34 Julius tasks (Philip, 2026-11-22)
+  The schema's `commit` accepts a hex hash or exactly `"synthetic"` (Philip, 2026-11-22)
+  A Julius task requires `buggy.patch` and `solution/fix.patch` and has no `game/`; a missing patch fails validation (Philip, 2026-11-22)
+  The gate runs plain validation; `--strict` waits for every task to have a reference solution (Philip, 2026-11-22)
+  Add the check that a task's `id` equals its folder name and fix the 9 Snake tasks that break it (Philip, 2026-11-22)
+  Only delete the local empty Pong `solution/` folders; the 9 Pong solutions are their own Phase 5 task (Philip, 2026-11-22)
+  The validator's tests include broken tasks that must fail: a Pygame task with no `game/`, a Julius task with no patch (Philip, 2026-11-22; rule: `DESIGN.md` § Task Validation Rules)
+  Verified by: BUG.md Bug 1's steps to reproduce — answer key: its **Expected** 0 (rule: `rules/plan-format.md` § Verified by); and each broken-task case `DESIGN.md` § Task Validation Rules names fails validation — answer key: that section
+  (completed 2026-11-22)
+  Reviewed: 2026-11-22 41d8331d (gaps 11, Philip 7)
 
 ---
 

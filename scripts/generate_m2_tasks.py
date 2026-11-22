@@ -318,7 +318,7 @@ Build a comprehensive level editor that allows creating, editing, and playing cu
     # ============= TOWER DEFENSE TASKS =============
     # Tier 3 Feature
     {
-        "id": "tower_defense-feature-001",
+        "id": "tower-defense-feature-001",
         "name": "Add tower targeting priorities",
         "category": "feature",
         "tier": 3,
@@ -339,7 +339,7 @@ Implement selectable targeting modes for towers.
     },
     # Tier 3 Feature
     {
-        "id": "tower_defense-feature-002",
+        "id": "tower-defense-feature-002",
         "name": "Implement tower upgrade system",
         "category": "feature",
         "tier": 3,
@@ -360,7 +360,7 @@ Add an upgrade system that allows improving tower stats.
     },
     # Tier 4 Algorithm
     {
-        "id": "tower_defense-feature-003",
+        "id": "tower-defense-feature-003",
         "name": "Add flying enemies that ignore path",
         "category": "feature",
         "tier": 4,
@@ -381,7 +381,7 @@ Create flying enemies that travel directly toward the goal, ignoring the path.
     },
     # Tier 4 Optimization
     {
-        "id": "tower_defense-optimization-001",
+        "id": "tower-defense-optimization-001",
         "name": "Optimize pathfinding with flow fields",
         "category": "optimization",
         "tier": 4,
@@ -402,7 +402,7 @@ Replace per-enemy A* pathfinding with a single flow field that all enemies follo
     },
     # Tier 5 AI
     {
-        "id": "tower_defense-feature-004",
+        "id": "tower-defense-feature-004",
         "name": "Implement adaptive wave difficulty",
         "category": "feature",
         "tier": 5,
@@ -490,7 +490,7 @@ Implement a modular plugin system that allows extending game functionality.
     # ============= SPACE INVADERS TASKS (extending existing) =============
     # Tier 3 Feature
     {
-        "id": "space_invaders-feature-005",
+        "id": "space-invaders-feature-005",
         "name": "Add boss enemy with attack patterns",
         "category": "feature",
         "tier": 3,
@@ -511,7 +511,7 @@ Create a boss enemy with multiple attack patterns that challenges the player.
     },
     # Tier 4 Algorithm
     {
-        "id": "space_invaders-feature-006",
+        "id": "space-invaders-feature-006",
         "name": "Implement flocking behavior for enemies",
         "category": "feature",
         "tier": 4,
@@ -532,7 +532,7 @@ Replace grid-based movement with flocking behavior for more organic enemy moveme
     },
     # Tier 4 Optimization
     {
-        "id": "space_invaders-optimization-002",
+        "id": "space-invaders-optimization-002",
         "name": "Implement quadtree spatial partitioning",
         "category": "optimization",
         "tier": 4,
@@ -553,7 +553,7 @@ Implement a quadtree data structure for efficient spatial queries and collision 
     },
     # Tier 5 Architecture
     {
-        "id": "space_invaders-mini-002",
+        "id": "space-invaders-mini-002",
         "name": "Refactor to Entity Component System",
         "category": "mini-game",
         "tier": 5,

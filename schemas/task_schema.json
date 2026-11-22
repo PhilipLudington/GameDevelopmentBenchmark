@@ -19,7 +19,7 @@
     },
     "category": {
       "type": "string",
-      "enum": ["bug-fix", "feature", "optimization", "mini-game", "memory-safety"],
+      "enum": ["bug-fix", "feature", "optimization", "mini-game", "memory-safety", "crash-fix", "game-logic", "visual"],
       "description": "Task category"
     },
     "tier": {
@@ -125,8 +125,8 @@
     },
     "commit": {
       "type": "string",
-      "pattern": "^[a-f0-9]+$",
-      "description": "Git commit hash for Julius/git-based tasks"
+      "pattern": "^([a-f0-9]+|synthetic)$",
+      "description": "Git commit hash for Julius/git-based tasks, or exactly \"synthetic\" for a generated Julius task"
     },
     "requires_assets": {
       "type": "boolean",

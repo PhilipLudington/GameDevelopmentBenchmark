@@ -23,7 +23,6 @@
     "src/building/construction.c"
   ],
   "requires_assets": false,
-  "expected_asan_error": null,
   "difficulty_factors": [
     "Understanding building placement flow",
     "Tracing fund deduction logic",

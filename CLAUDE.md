@@ -44,8 +44,8 @@ for task in tasks/*/*/*/; do
 done
 ```
 
-The README's loop, `tasks/*/*/*/*/`, is one level too deep and validates nothing. Today
-99 of the 225 tasks fail validation (`BUG.md` Bug 1).
+The README's loop, `tasks/*/*/*/*/`, is one level too deep and validates nothing. Every
+shipped task must pass; the rules a task must meet are `DESIGN.md` § Task Validation Rules.
 
 ## Task layout
 
