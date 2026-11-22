@@ -91,6 +91,7 @@ def _run(tree: Path, *args: str):
     env["ENV_DUMP"] = str(tree / "env-dump.txt")
     env["ANTHROPIC_API_KEY"] = "sk-test-anthropic"
     env["OPENAI_API_KEY"] = "sk-test-openai"
+    env["AZURE_OPENAI_API_KEY"] = "sk-test-azure"
     return subprocess.run(
         ["bash", str(tree / "run-tests.sh"), *args],
         env=env, capture_output=True, text=True, timeout=120,
@@ -128,6 +129,7 @@ def test_the_test_run_never_sees_the_api_keys(tmp_path):
     dump = (tree / "env-dump.txt").read_text()
     assert "sk-test-anthropic" not in dump
     assert "sk-test-openai" not in dump
+    assert "sk-test-azure" not in dump
 
 
 def test_a_filtered_run_never_writes_the_results_file(tmp_path):
