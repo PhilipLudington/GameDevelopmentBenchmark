@@ -165,7 +165,19 @@ Every task validates with `mock:solution`; no task needs Caesar III files.
   Verified by: each command in `CLAUDE.md` run as written succeeds (`pytest tests/` collects, a `validate_task.py` loop finds 225 folders, `run_benchmark.py --help` lists the flags named) — answer key: `pyproject.toml`, the scripts' click options and `decision-format.md` § Public repos, none written by this task
   (completed 2026-11-18)
   Reviewed: 2026-11-18 0920e97a (gaps 8, Philip 0)
-- [ ] Add `.airtower.json` and the `run-tests.sh` / `run-build.sh` wrappers; the test gate runs `pytest tests/` plus task validation, so it needs no API key
+- [x] Add `.airtower.json` and the `run-tests.sh` / `run-build.sh` wrappers; the test gate runs `pytest tests/` plus task validation, so it needs no API key
+  The task validation is the pytest suite's own sweep, which runs plain `validate_task.py` on every shipped task, so `run-tests.sh` runs `pytest tests/` once and no separate loop; one suite, one results file (code: `tests/scripts/test_validate_task.py:175` `test_every_shipped_task_validates`; rule: `DESIGN.md` § Task Validation Rules, plain validation)
+  `run-build.sh` is a read-only health check, never the venv setup: it byte-compiles the packaged code, imports the packages and runs `pip check`; setup stays the one-time `CLAUDE.md` § Build commands (rule: `CLAUDE.md` § Build, "Set up the virtual environment once")
+  A build warning is a Python warning raised while compiling or importing; a compile, import or `pip check` failure is an error (rule: `~/.claude/docs/airtower.md` § Build Status Integration, `errors`/`warnings`)
+  Both wrappers run the venv's Python; with no `venv/` they fail with a message naming the `CLAUDE.md` § Build setup commands and write a red results file (rule: `CLAUDE.md` § Build and § Tests run from `venv/`)
+  `.test-results.json` counts `passed` and `failed` from pytest's own report, `total` is their sum, skipped tests are in neither, and a run that collects no test or ends with a pytest error is red (rule: `~/.claude/docs/airtower.md` § Test Status Integration, the results fields) (builder's choice: no test run reads red)
+  `run-tests.sh --filter <pattern>` passes the pattern to pytest's `-k` and never writes `.test-results.json` (rule: `~/.claude/docs/airtower.md` § `--filter`; `/continue-plan` 4b, single-test filter)
+  The wrapper unsets `ANTHROPIC_API_KEY` and `OPENAI_API_KEY` for the test run, so no test can reach a paid API (builder's choice)
+  `.test-results.json` and `.build-results.json` go in `.gitignore` (builder's choice)
+  `CLAUDE.md` § Build and § Tests say to use the wrappers, per the AirTower example entry (rule: `~/.claude/docs/airtower.md` § Claude Code Integration; this phase's CLAUDE.md task)
+  Verified by: `./run-tests.sh` exits 0 and writes `.test-results.json` with the four fields, its `passed`/`failed` equal to pytest's own summary line for the same run, and a broken shipped task makes it exit non-zero with `failed` > 0; `./run-build.sh` exits 0 and writes `.build-results.json` with the four fields and `success: true` — answer key: `~/.claude/docs/airtower.md` § Test Status Integration and § Build Status Integration, and pytest's summary line
+  (completed 2026-11-22)
+  Reviewed: 2026-11-22 7279eeab (gaps 10, Philip 0)
 - [ ] Write reference solutions for the 9 Pong tasks with none (`pong-002` to `pong-010`), so `mock:solution` can answer every task; due before the Phase 5 `mock:solution` proof (decided 2026-11-22, `docs/decisions/2026-11-22-task-rules-are-the-truth.md`)
 - [ ] Set up the new Mac mini for benchmark runs: venv from `requirements.txt`, API keys for Anthropic and OpenAI, Julius and Quake build dependencies; prove it with one `mock:solution` pass over all 225 tasks
 

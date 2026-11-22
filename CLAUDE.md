@@ -29,14 +29,32 @@ Julius and Quake tasks are C. Their code is built per task inside the sandbox
 (`harness/julius_sandbox.py`, `harness/c_sandbox.py`), so a machine running them needs
 CMake, SDL2 and a compiler with AddressSanitizer.
 
-## Tests
+After setup, always check the build through the AirTower wrapper:
 
 ```bash
-venv/bin/pytest tests/
+./run-build.sh
 ```
 
-`pyproject.toml` sets `testpaths = ["tests"]`. Task validation checks one task folder per
-call, so loop over all 225:
+It byte-compiles the code, imports every module and runs `pip check`, and writes
+`.build-results.json`. It never installs anything. Do NOT run these checks directly; use
+the wrapper so the AirTower badge stays current.
+
+## Tests
+
+Always run the tests through the AirTower wrapper:
+
+```bash
+./run-tests.sh                     # the gate: the whole suite, writes .test-results.json
+./run-tests.sh --filter <pattern>  # only the tests pytest's -k <pattern> selects
+```
+
+Do NOT run `pytest` directly; use the wrapper so the AirTower badge stays current. A
+filtered run never writes `.test-results.json`. The wrapper runs `pytest tests/` in the
+venv with `ANTHROPIC_API_KEY` and `OPENAI_API_KEY` unset, so no test reaches a paid API.
+
+The suite includes task validation: `tests/scripts/test_validate_task.py` validates every
+shipped task. By hand, task validation checks one task folder per call, so loop over all
+225:
 
 ```bash
 for task in tasks/*/*/*/; do
