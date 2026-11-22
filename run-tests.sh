@@ -8,10 +8,10 @@
 #   ./run-tests.sh --filter <pattern>  only the tests pytest's -k <pattern> selects;
 #                                      never writes or removes .test-results.json
 #
-# ANTHROPIC_API_KEY and OPENAI_API_KEY are unset for the whole wrapper, so no test can
-# reach a paid API.
+# ANTHROPIC_API_KEY, OPENAI_API_KEY and AZURE_OPENAI_API_KEY (every key models/ reads)
+# are unset for the whole wrapper, so no test can reach a paid API.
 set -uo pipefail
-unset ANTHROPIC_API_KEY OPENAI_API_KEY
+unset ANTHROPIC_API_KEY OPENAI_API_KEY AZURE_OPENAI_API_KEY
 
 cd "$(dirname "$0")" || exit 1
 

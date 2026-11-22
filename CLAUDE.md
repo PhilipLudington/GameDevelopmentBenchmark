@@ -50,7 +50,7 @@ Always run the tests through the AirTower wrapper:
 
 Do NOT run `pytest` directly; use the wrapper so the AirTower badge stays current. A
 filtered run never writes `.test-results.json`. The wrapper runs `pytest tests/` in the
-venv with `ANTHROPIC_API_KEY` and `OPENAI_API_KEY` unset, so no test reaches a paid API.
+venv with `ANTHROPIC_API_KEY`, `OPENAI_API_KEY` and `AZURE_OPENAI_API_KEY` unset, so no test reaches a paid API.
 
 The suite includes task validation: `tests/scripts/test_validate_task.py` validates every
 shipped task. By hand, task validation checks one task folder per call, so loop over all
