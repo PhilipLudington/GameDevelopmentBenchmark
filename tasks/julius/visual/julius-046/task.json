@@ -24,7 +24,6 @@
     "src/figure/figure_draw.c"
   ],
   "requires_assets": false,
-  "expected_asan_error": null,
   "difficulty_factors": [
     "Understanding isometric coordinate systems",
     "Identifying incorrect tile offset multipliers",

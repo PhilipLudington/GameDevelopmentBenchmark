@@ -1232,139 +1232,139 @@
             "time": 15.19
           },
           {
-            "task_id": "space_invaders-001",
+            "task_id": "space-invaders-001",
             "success": false,
             "score": 0.0,
             "time": 13.21
           },
           {
-            "task_id": "space_invaders-002",
+            "task_id": "space-invaders-002",
             "success": false,
             "score": 0.0,
             "time": 15.24
           },
           {
-            "task_id": "space_invaders-003",
+            "task_id": "space-invaders-003",
             "success": false,
             "score": 0.0,
             "time": 17.74
           },
           {
-            "task_id": "space_invaders-004",
+            "task_id": "space-invaders-004",
             "success": false,
             "score": 0.0,
             "time": 16.47
           },
           {
-            "task_id": "space_invaders-bug-005",
+            "task_id": "space-invaders-bug-005",
             "success": true,
             "score": 1.0,
             "time": 17.81
           },
           {
-            "task_id": "space_invaders-feature-001",
+            "task_id": "space-invaders-feature-001",
             "success": false,
             "score": 0.0,
             "time": 20.38
           },
           {
-            "task_id": "space_invaders-feature-002",
+            "task_id": "space-invaders-feature-002",
             "success": false,
             "score": 0.0,
             "time": 23.62
           },
           {
-            "task_id": "space_invaders-feature-003",
+            "task_id": "space-invaders-feature-003",
             "success": false,
             "score": 0.0,
             "time": 21.87
           },
           {
-            "task_id": "space_invaders-feature-004",
+            "task_id": "space-invaders-feature-004",
             "success": false,
             "score": 0.0,
             "time": 18.84
           },
           {
-            "task_id": "space_invaders-feature-005",
+            "task_id": "space-invaders-feature-005",
             "success": false,
             "score": 0.0,
             "time": 34.91
           },
           {
-            "task_id": "space_invaders-feature-006",
+            "task_id": "space-invaders-feature-006",
             "success": false,
             "score": 0.0,
             "time": 30.11
           },
           {
-            "task_id": "space_invaders-feature-007",
+            "task_id": "space-invaders-feature-007",
             "success": false,
             "score": 0.0,
             "time": 18.02
           },
           {
-            "task_id": "space_invaders-feature-008",
+            "task_id": "space-invaders-feature-008",
             "success": false,
             "score": 0.0,
             "time": 16.59
           },
           {
-            "task_id": "space_invaders-feature-009",
+            "task_id": "space-invaders-feature-009",
             "success": false,
             "score": 0.0,
             "time": 13.04
           },
           {
-            "task_id": "space_invaders-feature-010",
+            "task_id": "space-invaders-feature-010",
             "success": false,
             "score": 0.0,
             "time": 16.85
           },
           {
-            "task_id": "space_invaders-feature-011",
+            "task_id": "space-invaders-feature-011",
             "success": true,
             "score": 1.0,
             "time": 13.49
           },
           {
-            "task_id": "space_invaders-feature-012",
+            "task_id": "space-invaders-feature-012",
             "success": false,
             "score": 0.0,
             "time": 16.46
           },
           {
-            "task_id": "space_invaders-mini-001",
+            "task_id": "space-invaders-mini-001",
             "success": false,
             "score": 0.0,
             "time": 25.09
           },
           {
-            "task_id": "space_invaders-mini-002",
+            "task_id": "space-invaders-mini-002",
             "success": false,
             "score": 0.0,
             "time": 24.57
           },
           {
-            "task_id": "space_invaders-mini-003",
+            "task_id": "space-invaders-mini-003",
             "success": false,
             "score": 0.0,
             "time": 23.15
           },
           {
-            "task_id": "space_invaders-optimization-001",
+            "task_id": "space-invaders-optimization-001",
             "success": false,
             "score": 0.0,
             "time": 18.08
           },
           {
-            "task_id": "space_invaders-optimization-002",
+            "task_id": "space-invaders-optimization-002",
             "success": false,
             "score": 0.0,
             "time": 37.09
           },
           {
-            "task_id": "space_invaders-optimization-003",
+            "task_id": "space-invaders-optimization-003",
             "success": false,
             "score": 0.0,
             "time": 14.95
@@ -1466,103 +1466,103 @@
             "time": 14.15
           },
           {
-            "task_id": "tower_defense-bug-001",
+            "task_id": "tower-defense-bug-001",
             "success": false,
             "score": 0.0,
             "time": 10.14
           },
           {
-            "task_id": "tower_defense-bug-002",
+            "task_id": "tower-defense-bug-002",
             "success": false,
             "score": 0.0,
             "time": 16.91
           },
           {
-            "task_id": "tower_defense-feature-001",
+            "task_id": "tower-defense-feature-001",
             "success": false,
             "score": 0.0,
             "time": 23.76
           },
           {
-            "task_id": "tower_defense-feature-002",
+            "task_id": "tower-defense-feature-002",
             "success": false,
             "score": 0.0,
             "time": 30.2
           },
           {
-            "task_id": "tower_defense-feature-003",
+            "task_id": "tower-defense-feature-003",
             "success": false,
             "score": 0.0,
             "time": 27.55
           },
           {
-            "task_id": "tower_defense-feature-004",
+            "task_id": "tower-defense-feature-004",
             "success": false,
             "score": 0.0,
             "time": 27.34
           },
           {
-            "task_id": "tower_defense-feature-005",
+            "task_id": "tower-defense-feature-005",
             "success": false,
             "score": 0.0,
             "time": 13.77
           },
           {
-            "task_id": "tower_defense-feature-006",
+            "task_id": "tower-defense-feature-006",
             "success": false,
             "score": 0.0,
             "time": 23.1
           },
           {
-            "task_id": "tower_defense-feature-007",
+            "task_id": "tower-defense-feature-007",
             "success": false,
             "score": 0.0,
             "time": 19.85
           },
           {
-            "task_id": "tower_defense-feature-008",
+            "task_id": "tower-defense-feature-008",
             "success": true,
             "score": 1.0,
             "time": 21.88
           },
           {
-            "task_id": "tower_defense-feature-009",
+            "task_id": "tower-defense-feature-009",
             "success": true,
             "score": 1.0,
             "time": 12.56
           },
           {
-            "task_id": "tower_defense-feature-010",
+            "task_id": "tower-defense-feature-010",
             "success": false,
             "score": 0.0,
             "time": 20.51
           },
           {
-            "task_id": "tower_defense-feature-011",
+            "task_id": "tower-defense-feature-011",
             "success": false,
             "score": 0.0,
             "time": 17.19
           },
           {
-            "task_id": "tower_defense-feature-012",
+            "task_id": "tower-defense-feature-012",
             "success": false,
             "score": 0.0,
             "time": 5.47
           },
           {
-            "task_id": "tower_defense-mini-001",
+            "task_id": "tower-defense-mini-001",
             "success": true,
             "score": 1.0,
             "time": 29.79
           },
           {
-            "task_id": "tower_defense-mini-002",
+            "task_id": "tower-defense-mini-002",
             "success": false,
             "score": 0.0,
             "time": 26.97
           },
           {
-            "task_id": "tower_defense-optimization-001",
+            "task_id": "tower-defense-optimization-001",
             "success": false,
             "score": 0.0,
             "time": 26.68
@@ -2606,139 +2606,139 @@
             "time": 9.46
           },
           {
-            "task_id": "space_invaders-001",
+            "task_id": "space-invaders-001",
             "success": false,
             "score": 0.0,
             "time": 6.87
           },
           {
-            "task_id": "space_invaders-002",
+            "task_id": "space-invaders-002",
             "success": false,
             "score": 0.0,
             "time": 6.95
           },
           {
-            "task_id": "space_invaders-003",
+            "task_id": "space-invaders-003",
             "success": false,
             "score": 0.0,
             "time": 5.0
           },
           {
-            "task_id": "space_invaders-004",
+            "task_id": "space-invaders-004",
             "success": false,
             "score": 0.0,
             "time": 9.13
           },
           {
-            "task_id": "space_invaders-bug-005",
+            "task_id": "space-invaders-bug-005",
             "success": false,
             "score": 0.0,
             "time": 6.48
           },
           {
-            "task_id": "space_invaders-feature-001",
+            "task_id": "space-invaders-feature-001",
             "success": false,
             "score": 0.0,
             "time": 14.61
           },
           {
-            "task_id": "space_invaders-feature-002",
+            "task_id": "space-invaders-feature-002",
             "success": false,
             "score": 0.0,
             "time": 11.51
           },
           {
-            "task_id": "space_invaders-feature-003",
+            "task_id": "space-invaders-feature-003",
             "success": false,
             "score": 0.0,
             "time": 11.98
           },
           {
-            "task_id": "space_invaders-feature-004",
+            "task_id": "space-invaders-feature-004",
             "success": false,
             "score": 0.0,
             "time": 12.59
           },
           {
-            "task_id": "space_invaders-feature-005",
+            "task_id": "space-invaders-feature-005",
             "success": false,
             "score": 0.0,
             "time": 13.41
           },
           {
-            "task_id": "space_invaders-feature-006",
+            "task_id": "space-invaders-feature-006",
             "success": false,
             "score": 0.0,
             "time": 6.86
           },
           {
-            "task_id": "space_invaders-feature-007",
+            "task_id": "space-invaders-feature-007",
             "success": false,
             "score": 0.0,
             "time": 6.55
           },
           {
-            "task_id": "space_invaders-feature-008",
+            "task_id": "space-invaders-feature-008",
             "success": false,
             "score": 0.0,
             "time": 30.21
           },
           {
-            "task_id": "space_invaders-feature-009",
+            "task_id": "space-invaders-feature-009",
             "success": false,
             "score": 0.0,
             "time": 3.29
           },
           {
-            "task_id": "space_invaders-feature-010",
+            "task_id": "space-invaders-feature-010",
             "success": false,
             "score": 0.0,
             "time": 12.75
           },
           {
-            "task_id": "space_invaders-feature-011",
+            "task_id": "space-invaders-feature-011",
             "success": false,
             "score": 0.0,
             "time": 5.57
           },
           {
-            "task_id": "space_invaders-feature-012",
+            "task_id": "space-invaders-feature-012",
             "success": false,
             "score": 0.0,
             "time": 3.99
           },
           {
-            "task_id": "space_invaders-mini-001",
+            "task_id": "space-invaders-mini-001",
             "success": false,
             "score": 0.0,
             "time": 15.17
           },
           {
-            "task_id": "space_invaders-mini-002",
+            "task_id": "space-invaders-mini-002",
             "success": false,
             "score": 0.0,
             "time": 97.0
           },
           {
-            "task_id": "space_invaders-mini-003",
+            "task_id": "space-invaders-mini-003",
             "success": false,
             "score": 0.0,
             "time": 6.0
           },
           {
-            "task_id": "space_invaders-optimization-001",
+            "task_id": "space-invaders-optimization-001",
             "success": false,
             "score": 0.0,
             "time": 10.85
           },
           {
-            "task_id": "space_invaders-optimization-002",
+            "task_id": "space-invaders-optimization-002",
             "success": false,
             "score": 0.0,
             "time": 7.78
           },
           {
-            "task_id": "space_invaders-optimization-003",
+            "task_id": "space-invaders-optimization-003",
             "success": false,
             "score": 0.0,
             "time": 2.35
@@ -2840,103 +2840,103 @@
             "time": 9.58
           },
           {
-            "task_id": "tower_defense-bug-001",
+            "task_id": "tower-defense-bug-001",
             "success": false,
             "score": 0.0,
             "time": 5.63
           },
           {
-            "task_id": "tower_defense-bug-002",
+            "task_id": "tower-defense-bug-002",
             "success": false,
             "score": 0.0,
             "time": 4.3
           },
           {
-            "task_id": "tower_defense-feature-001",
+            "task_id": "tower-defense-feature-001",
             "success": false,
             "score": 0.0,
             "time": 10.14
           },
           {
-            "task_id": "tower_defense-feature-002",
+            "task_id": "tower-defense-feature-002",
             "success": false,
             "score": 0.0,
             "time": 11.57
           },
           {
-            "task_id": "tower_defense-feature-003",
+            "task_id": "tower-defense-feature-003",
             "success": false,
             "score": 0.0,
             "time": 7.63
           },
           {
-            "task_id": "tower_defense-feature-004",
+            "task_id": "tower-defense-feature-004",
             "success": false,
             "score": 0.0,
             "time": 9.2
           },
           {
-            "task_id": "tower_defense-feature-005",
+            "task_id": "tower-defense-feature-005",
             "success": false,
             "score": 0.0,
             "time": 6.09
           },
           {
-            "task_id": "tower_defense-feature-006",
+            "task_id": "tower-defense-feature-006",
             "success": false,
             "score": 0.0,
             "time": 3.89
           },
           {
-            "task_id": "tower_defense-feature-007",
+            "task_id": "tower-defense-feature-007",
             "success": false,
             "score": 0.0,
             "time": 9.7
           },
           {
-            "task_id": "tower_defense-feature-008",
+            "task_id": "tower-defense-feature-008",
             "success": false,
             "score": 0.0,
             "time": 7.61
           },
           {
-            "task_id": "tower_defense-feature-009",
+            "task_id": "tower-defense-feature-009",
             "success": false,
             "score": 0.0,
             "time": 5.73
           },
           {
-            "task_id": "tower_defense-feature-010",
+            "task_id": "tower-defense-feature-010",
             "success": false,
             "score": 0.0,
             "time": 7.95
           },
           {
-            "task_id": "tower_defense-feature-011",
+            "task_id": "tower-defense-feature-011",
             "success": false,
             "score": 0.0,
             "time": 5.25
           },
           {
-            "task_id": "tower_defense-feature-012",
+            "task_id": "tower-defense-feature-012",
             "success": false,
             "score": 0.0,
             "time": 3.62
           },
           {
-            "task_id": "tower_defense-mini-001",
+            "task_id": "tower-defense-mini-001",
             "success": false,
             "score": 0.0,
             "time": 5.45
           },
           {
-            "task_id": "tower_defense-mini-002",
+            "task_id": "tower-defense-mini-002",
             "success": false,
             "score": 0.0,
             "time": 8.08
           },
           {
-            "task_id": "tower_defense-optimization-001",
+            "task_id": "tower-defense-optimization-001",
             "success": false,
             "score": 0.0,
             "time": 10.69
@@ -3980,139 +3980,139 @@
             "time": 0.11
           },
           {
-            "task_id": "space_invaders-001",
+            "task_id": "space-invaders-001",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-002",
+            "task_id": "space-invaders-002",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-003",
+            "task_id": "space-invaders-003",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-004",
+            "task_id": "space-invaders-004",
             "success": false,
             "score": 0.0,
             "time": 0.18
           },
           {
-            "task_id": "space_invaders-bug-005",
+            "task_id": "space-invaders-bug-005",
             "success": false,
             "score": 0.0,
             "time": 0.07
           },
           {
-            "task_id": "space_invaders-feature-001",
+            "task_id": "space-invaders-feature-001",
             "success": false,
             "score": 0.0,
             "time": 0.17
           },
           {
-            "task_id": "space_invaders-feature-002",
+            "task_id": "space-invaders-feature-002",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-feature-003",
+            "task_id": "space-invaders-feature-003",
             "success": false,
             "score": 0.0,
             "time": 0.07
           },
           {
-            "task_id": "space_invaders-feature-004",
+            "task_id": "space-invaders-feature-004",
             "success": false,
             "score": 0.0,
             "time": 0.08
           },
           {
-            "task_id": "space_invaders-feature-005",
+            "task_id": "space-invaders-feature-005",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-feature-006",
+            "task_id": "space-invaders-feature-006",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-feature-007",
+            "task_id": "space-invaders-feature-007",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-feature-008",
+            "task_id": "space-invaders-feature-008",
             "success": false,
             "score": 0.0,
             "time": 0.11
           },
           {
-            "task_id": "space_invaders-feature-009",
+            "task_id": "space-invaders-feature-009",
             "success": false,
             "score": 0.0,
             "time": 0.14
           },
           {
-            "task_id": "space_invaders-feature-010",
+            "task_id": "space-invaders-feature-010",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-feature-011",
+            "task_id": "space-invaders-feature-011",
             "success": false,
             "score": 0.0,
             "time": 0.21
           },
           {
-            "task_id": "space_invaders-feature-012",
+            "task_id": "space-invaders-feature-012",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "space_invaders-mini-001",
+            "task_id": "space-invaders-mini-001",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "space_invaders-mini-002",
+            "task_id": "space-invaders-mini-002",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-mini-003",
+            "task_id": "space-invaders-mini-003",
             "success": false,
             "score": 0.0,
             "time": 0.07
           },
           {
-            "task_id": "space_invaders-optimization-001",
+            "task_id": "space-invaders-optimization-001",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-optimization-002",
+            "task_id": "space-invaders-optimization-002",
             "success": false,
             "score": 0.0,
             "time": 0.11
           },
           {
-            "task_id": "space_invaders-optimization-003",
+            "task_id": "space-invaders-optimization-003",
             "success": false,
             "score": 0.0,
             "time": 0.09
@@ -4214,103 +4214,103 @@
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-bug-001",
+            "task_id": "tower-defense-bug-001",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-bug-002",
+            "task_id": "tower-defense-bug-002",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "tower_defense-feature-001",
+            "task_id": "tower-defense-feature-001",
             "success": false,
             "score": 0.0,
             "time": 0.18
           },
           {
-            "task_id": "tower_defense-feature-002",
+            "task_id": "tower-defense-feature-002",
             "success": false,
             "score": 0.0,
             "time": 0.07
           },
           {
-            "task_id": "tower_defense-feature-003",
+            "task_id": "tower-defense-feature-003",
             "success": false,
             "score": 0.0,
             "time": 0.07
           },
           {
-            "task_id": "tower_defense-feature-004",
+            "task_id": "tower-defense-feature-004",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-feature-005",
+            "task_id": "tower-defense-feature-005",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "tower_defense-feature-006",
+            "task_id": "tower-defense-feature-006",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "tower_defense-feature-007",
+            "task_id": "tower-defense-feature-007",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "tower_defense-feature-008",
+            "task_id": "tower-defense-feature-008",
             "success": false,
             "score": 0.0,
             "time": 0.12
           },
           {
-            "task_id": "tower_defense-feature-009",
+            "task_id": "tower-defense-feature-009",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-feature-010",
+            "task_id": "tower-defense-feature-010",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-feature-011",
+            "task_id": "tower-defense-feature-011",
             "success": false,
             "score": 0.0,
             "time": 0.07
           },
           {
-            "task_id": "tower_defense-feature-012",
+            "task_id": "tower-defense-feature-012",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-mini-001",
+            "task_id": "tower-defense-mini-001",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-mini-002",
+            "task_id": "tower-defense-mini-002",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-optimization-001",
+            "task_id": "tower-defense-optimization-001",
             "success": false,
             "score": 0.0,
             "time": 0.12
@@ -5354,139 +5354,139 @@
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-001",
+            "task_id": "space-invaders-001",
             "success": false,
             "score": 0.0,
             "time": 0.08
           },
           {
-            "task_id": "space_invaders-002",
+            "task_id": "space-invaders-002",
             "success": false,
             "score": 0.0,
             "time": 0.08
           },
           {
-            "task_id": "space_invaders-003",
+            "task_id": "space-invaders-003",
             "success": false,
             "score": 0.0,
             "time": 0.08
           },
           {
-            "task_id": "space_invaders-004",
+            "task_id": "space-invaders-004",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-bug-005",
+            "task_id": "space-invaders-bug-005",
             "success": false,
             "score": 0.0,
             "time": 0.14
           },
           {
-            "task_id": "space_invaders-feature-001",
+            "task_id": "space-invaders-feature-001",
             "success": false,
             "score": 0.0,
             "time": 0.08
           },
           {
-            "task_id": "space_invaders-feature-002",
+            "task_id": "space-invaders-feature-002",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-feature-003",
+            "task_id": "space-invaders-feature-003",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-feature-004",
+            "task_id": "space-invaders-feature-004",
             "success": false,
             "score": 0.0,
             "time": 0.07
           },
           {
-            "task_id": "space_invaders-feature-005",
+            "task_id": "space-invaders-feature-005",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "space_invaders-feature-006",
+            "task_id": "space-invaders-feature-006",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-feature-007",
+            "task_id": "space-invaders-feature-007",
             "success": false,
             "score": 0.0,
             "time": 0.19
           },
           {
-            "task_id": "space_invaders-feature-008",
+            "task_id": "space-invaders-feature-008",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-feature-009",
+            "task_id": "space-invaders-feature-009",
             "success": false,
             "score": 0.0,
             "time": 0.21
           },
           {
-            "task_id": "space_invaders-feature-010",
+            "task_id": "space-invaders-feature-010",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-feature-011",
+            "task_id": "space-invaders-feature-011",
             "success": false,
             "score": 0.0,
             "time": 0.42
           },
           {
-            "task_id": "space_invaders-feature-012",
+            "task_id": "space-invaders-feature-012",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-mini-001",
+            "task_id": "space-invaders-mini-001",
             "success": false,
             "score": 0.0,
             "time": 0.11
           },
           {
-            "task_id": "space_invaders-mini-002",
+            "task_id": "space-invaders-mini-002",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "space_invaders-mini-003",
+            "task_id": "space-invaders-mini-003",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "space_invaders-optimization-001",
+            "task_id": "space-invaders-optimization-001",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "space_invaders-optimization-002",
+            "task_id": "space-invaders-optimization-002",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "space_invaders-optimization-003",
+            "task_id": "space-invaders-optimization-003",
             "success": false,
             "score": 0.0,
             "time": 0.09
@@ -5588,103 +5588,103 @@
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-bug-001",
+            "task_id": "tower-defense-bug-001",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-bug-002",
+            "task_id": "tower-defense-bug-002",
             "success": false,
             "score": 0.0,
             "time": 0.15
           },
           {
-            "task_id": "tower_defense-feature-001",
+            "task_id": "tower-defense-feature-001",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "tower_defense-feature-002",
+            "task_id": "tower-defense-feature-002",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "tower_defense-feature-003",
+            "task_id": "tower-defense-feature-003",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "tower_defense-feature-004",
+            "task_id": "tower-defense-feature-004",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-feature-005",
+            "task_id": "tower-defense-feature-005",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-feature-006",
+            "task_id": "tower-defense-feature-006",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-feature-007",
+            "task_id": "tower-defense-feature-007",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-feature-008",
+            "task_id": "tower-defense-feature-008",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-feature-009",
+            "task_id": "tower-defense-feature-009",
             "success": false,
             "score": 0.0,
             "time": 0.08
           },
           {
-            "task_id": "tower_defense-feature-010",
+            "task_id": "tower-defense-feature-010",
             "success": false,
             "score": 0.0,
             "time": 0.28
           },
           {
-            "task_id": "tower_defense-feature-011",
+            "task_id": "tower-defense-feature-011",
             "success": false,
             "score": 0.0,
             "time": 0.09
           },
           {
-            "task_id": "tower_defense-feature-012",
+            "task_id": "tower-defense-feature-012",
             "success": false,
             "score": 0.0,
             "time": 0.21
           },
           {
-            "task_id": "tower_defense-mini-001",
+            "task_id": "tower-defense-mini-001",
             "success": false,
             "score": 0.0,
             "time": 0.07
           },
           {
-            "task_id": "tower_defense-mini-002",
+            "task_id": "tower-defense-mini-002",
             "success": false,
             "score": 0.0,
             "time": 0.1
           },
           {
-            "task_id": "tower_defense-optimization-001",
+            "task_id": "tower-defense-optimization-001",
             "success": false,
             "score": 0.0,
             "time": 0.08
@@ -6728,139 +6728,139 @@
             "time": 35.15
           },
           {
-            "task_id": "space_invaders-001",
+            "task_id": "space-invaders-001",
             "success": false,
             "score": 0.0,
             "time": 41.13
           },
           {
-            "task_id": "space_invaders-002",
+            "task_id": "space-invaders-002",
             "success": false,
             "score": 0.0,
             "time": 26.93
           },
           {
-            "task_id": "space_invaders-003",
+            "task_id": "space-invaders-003",
             "success": false,
             "score": 0.0,
             "time": 20.98
           },
           {
-            "task_id": "space_invaders-004",
+            "task_id": "space-invaders-004",
             "success": false,
             "score": 0.0,
             "time": 29.08
           },
           {
-            "task_id": "space_invaders-bug-005",
+            "task_id": "space-invaders-bug-005",
             "success": false,
             "score": 0.0,
             "time": 17.61
           },
           {
-            "task_id": "space_invaders-feature-001",
+            "task_id": "space-invaders-feature-001",
             "success": false,
             "score": 0.0,
             "time": 34.61
           },
           {
-            "task_id": "space_invaders-feature-002",
+            "task_id": "space-invaders-feature-002",
             "success": false,
             "score": 0.0,
             "time": 25.27
           },
           {
-            "task_id": "space_invaders-feature-003",
+            "task_id": "space-invaders-feature-003",
             "success": false,
             "score": 0.0,
             "time": 38.53
           },
           {
-            "task_id": "space_invaders-feature-004",
+            "task_id": "space-invaders-feature-004",
             "success": false,
             "score": 0.0,
             "time": 36.9
           },
           {
-            "task_id": "space_invaders-feature-005",
+            "task_id": "space-invaders-feature-005",
             "success": false,
             "score": 0.0,
             "time": 42.63
           },
           {
-            "task_id": "space_invaders-feature-006",
+            "task_id": "space-invaders-feature-006",
             "success": false,
             "score": 0.0,
             "time": 39.04
           },
           {
-            "task_id": "space_invaders-feature-007",
+            "task_id": "space-invaders-feature-007",
             "success": false,
             "score": 0.0,
             "time": 18.51
           },
           {
-            "task_id": "space_invaders-feature-008",
+            "task_id": "space-invaders-feature-008",
             "success": false,
             "score": 0.0,
             "time": 22.07
           },
           {
-            "task_id": "space_invaders-feature-009",
+            "task_id": "space-invaders-feature-009",
             "success": false,
             "score": 0.0,
             "time": 17.55
           },
           {
-            "task_id": "space_invaders-feature-010",
+            "task_id": "space-invaders-feature-010",
             "success": false,
             "score": 0.0,
             "time": 17.72
           },
           {
-            "task_id": "space_invaders-feature-011",
+            "task_id": "space-invaders-feature-011",
             "success": false,
             "score": 0.0,
             "time": 19.63
           },
           {
-            "task_id": "space_invaders-feature-012",
+            "task_id": "space-invaders-feature-012",
             "success": false,
             "score": 0.0,
             "time": 16.11
           },
           {
-            "task_id": "space_invaders-mini-001",
+            "task_id": "space-invaders-mini-001",
             "success": false,
             "score": 0.0,
             "time": 55.62
           },
           {
-            "task_id": "space_invaders-mini-002",
+            "task_id": "space-invaders-mini-002",
             "success": false,
             "score": 0.0,
             "time": 40.55
           },
           {
-            "task_id": "space_invaders-mini-003",
+            "task_id": "space-invaders-mini-003",
             "success": false,
             "score": 0.0,
             "time": 11.96
           },
           {
-            "task_id": "space_invaders-optimization-001",
+            "task_id": "space-invaders-optimization-001",
             "success": false,
             "score": 0.0,
             "time": 26.52
           },
           {
-            "task_id": "space_invaders-optimization-002",
+            "task_id": "space-invaders-optimization-002",
             "success": false,
             "score": 0.0,
             "time": 29.19
           },
           {
-            "task_id": "space_invaders-optimization-003",
+            "task_id": "space-invaders-optimization-003",
             "success": false,
             "score": 0.0,
             "time": 16.79
@@ -6962,103 +6962,103 @@
             "time": 36.65
           },
           {
-            "task_id": "tower_defense-bug-001",
+            "task_id": "tower-defense-bug-001",
             "success": false,
             "score": 0.0,
             "time": 40.01
           },
           {
-            "task_id": "tower_defense-bug-002",
+            "task_id": "tower-defense-bug-002",
             "success": false,
             "score": 0.0,
             "time": 15.01
           },
           {
-            "task_id": "tower_defense-feature-001",
+            "task_id": "tower-defense-feature-001",
             "success": false,
             "score": 0.0,
             "time": 26.46
           },
           {
-            "task_id": "tower_defense-feature-002",
+            "task_id": "tower-defense-feature-002",
             "success": false,
             "score": 0.0,
             "time": 21.94
           },
           {
-            "task_id": "tower_defense-feature-003",
+            "task_id": "tower-defense-feature-003",
             "success": false,
             "score": 0.0,
             "time": 39.2
           },
           {
-            "task_id": "tower_defense-feature-004",
+            "task_id": "tower-defense-feature-004",
             "success": false,
             "score": 0.0,
             "time": 43.85
           },
           {
-            "task_id": "tower_defense-feature-005",
+            "task_id": "tower-defense-feature-005",
             "success": false,
             "score": 0.0,
             "time": 19.64
           },
           {
-            "task_id": "tower_defense-feature-006",
+            "task_id": "tower-defense-feature-006",
             "success": false,
             "score": 0.0,
             "time": 31.74
           },
           {
-            "task_id": "tower_defense-feature-007",
+            "task_id": "tower-defense-feature-007",
             "success": false,
             "score": 0.0,
             "time": 32.05
           },
           {
-            "task_id": "tower_defense-feature-008",
+            "task_id": "tower-defense-feature-008",
             "success": false,
             "score": 0.0,
             "time": 20.59
           },
           {
-            "task_id": "tower_defense-feature-009",
+            "task_id": "tower-defense-feature-009",
             "success": false,
             "score": 0.0,
             "time": 9.77
           },
           {
-            "task_id": "tower_defense-feature-010",
+            "task_id": "tower-defense-feature-010",
             "success": false,
             "score": 0.0,
             "time": 26.8
           },
           {
-            "task_id": "tower_defense-feature-011",
+            "task_id": "tower-defense-feature-011",
             "success": false,
             "score": 0.0,
             "time": 19.79
           },
           {
-            "task_id": "tower_defense-feature-012",
+            "task_id": "tower-defense-feature-012",
             "success": false,
             "score": 0.0,
             "time": 16.67
           },
           {
-            "task_id": "tower_defense-mini-001",
+            "task_id": "tower-defense-mini-001",
             "success": false,
             "score": 0.0,
             "time": 17.41
           },
           {
-            "task_id": "tower_defense-mini-002",
+            "task_id": "tower-defense-mini-002",
             "success": false,
             "score": 0.0,
             "time": 19.56
           },
           {
-            "task_id": "tower_defense-optimization-001",
+            "task_id": "tower-defense-optimization-001",
             "success": false,
             "score": 0.0,
             "time": 38.13

@@ -7,7 +7,6 @@ from pathlib import Path
 
 import click
 import jsonschema
-from jsonschema import validate, ValidationError
 
 
 def get_schema_path() -> Path:
@@ -45,13 +44,23 @@ def validate_task_json(task_dir: Path) -> list[str]:
 
     try:
         schema = load_schema()
-        validate(instance=task_data, schema=schema)
-    except ValidationError as e:
+    except FileNotFoundError as e:
+        errors.append(str(e))
+        return errors
+
+    # Report every schema error, not only the first one.
+    validator = jsonschema.Draft7Validator(schema)
+    for e in sorted(validator.iter_errors(task_data), key=lambda e: list(map(str, e.path))):
         errors.append(f"Schema validation error: {e.message}")
         if e.path:
             errors.append(f"  at path: {'.'.join(str(p) for p in e.path)}")
-    except FileNotFoundError as e:
-        errors.append(str(e))
+
+    # A task's id must equal its folder name (DESIGN.md § Task Validation Rules).
+    folder_name = task_dir.resolve().name
+    if isinstance(task_data, dict) and task_data.get("id") != folder_name:
+        errors.append(
+            f"Task id {task_data.get('id')!r} does not match its folder name {folder_name!r}"
+        )
 
     return errors
 
@@ -67,6 +76,26 @@ def get_task_language(task_dir: Path) -> str:
         except (json.JSONDecodeError, KeyError):
             pass
     return "python"
+
+
+def get_task_engine(task_dir: Path) -> str:
+    """Determine the game engine for this task (pygame when task.json does not say)."""
+    task_json_path = task_dir / "task.json"
+    if task_json_path.exists():
+        try:
+            with open(task_json_path) as f:
+                task_data = json.load(f)
+                if isinstance(task_data, dict):
+                    return task_data.get("engine", "pygame")
+        except json.JSONDecodeError:
+            pass
+    return "pygame"
+
+
+# Julius tasks ship as patches against the Julius source the sandbox builds,
+# with no game/ folder (DESIGN.md § Task Validation Rules).
+PATCH_ENGINES = {"julius"}
+JULIUS_PATCHES = ["buggy.patch", "solution/fix.patch"]
 
 
 def get_file_extensions(language: str) -> list[str]:
@@ -99,18 +128,20 @@ def validate_task_structure(task_dir: Path) -> list[str]:
         if not (task_dir / filename).exists():
             errors.append(f"Missing required file: {filename}")
 
-    # Required directories
-    required_dirs = ["game"]
-    for dirname in required_dirs:
-        dir_path = task_dir / dirname
-        if not dir_path.exists():
-            errors.append(f"Missing required directory: {dirname}/")
-        elif not dir_path.is_dir():
-            errors.append(f"Expected directory but found file: {dirname}")
-
-    # Check game directory has source files for the appropriate language
     game_dir = task_dir / "game"
-    if game_dir.exists() and game_dir.is_dir():
+    if get_task_engine(task_dir) in PATCH_ENGINES:
+        # Patch layout: both patches required, and no game/ folder.
+        for patch in JULIUS_PATCHES:
+            if not (task_dir / patch).is_file():
+                errors.append(f"Missing required file: {patch}")
+        if game_dir.exists():
+            errors.append("Julius task must not have a game/ directory (it ships as patches)")
+    elif not game_dir.exists():
+        errors.append("Missing required directory: game/")
+    elif not game_dir.is_dir():
+        errors.append("Expected directory but found file: game")
+    else:
+        # Check game directory has source files for the appropriate language
         source_files = []
         for ext in extensions:
             source_files.extend(game_dir.glob(f"*{ext}"))
@@ -165,6 +196,10 @@ def validate_solution(task_dir: Path) -> list[str]:
 
     if not solution_dir.is_dir():
         errors.append("solution should be a directory")
+        return errors
+
+    # A patch-layout task's solution is solution/fix.patch, checked with the layout.
+    if get_task_engine(task_dir) in PATCH_ENGINES:
         return errors
 
     # Determine language for this task

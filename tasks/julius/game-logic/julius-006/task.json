@@ -13,7 +13,6 @@
   "commit": "2c12e32",
   "files_to_modify": ["src/scenario/building.c"],
   "requires_assets": false,
-  "expected_asan_error": null,
   "difficulty_factors": [
     "Understanding building hierarchy (types vs groups)",
     "Recognizing incomplete validation logic",

@@ -148,29 +148,29 @@
 
 | Task | Result | Category | Tier |
 |------|--------|----------|------|
-| space_invaders-001 | PASS | bug-fix | 2 |
-| space_invaders-002 | FAIL | bug-fix | 3 |
-| space_invaders-003 | FAIL | bug-fix | 2 |
-| space_invaders-004 | PASS | bug-fix | 2 |
-| space_invaders-bug-005 | FAIL | bug-fix | 3 |
-| space_invaders-feature-001 | FAIL | feature | 3 |
-| space_invaders-feature-002 | FAIL | feature | 3 |
-| space_invaders-feature-003 | FAIL | feature | 4 |
-| space_invaders-feature-004 | PASS | feature | 4 |
-| space_invaders-feature-005 | FAIL | feature | 3 |
-| space_invaders-feature-006 | FAIL | feature | 3 |
-| space_invaders-feature-007 | FAIL | feature | 4 |
-| space_invaders-feature-008 | FAIL | feature | 4 |
-| space_invaders-feature-009 | FAIL | feature | 4 |
-| space_invaders-feature-010 | FAIL | feature | 5 |
-| space_invaders-feature-011 | FAIL | feature | 5 |
-| space_invaders-feature-012 | FAIL | feature | 5 |
-| space_invaders-mini-001 | FAIL | mini-game | 4 |
-| space_invaders-mini-002 | FAIL | mini-game | 5 |
-| space_invaders-mini-003 | FAIL | mini-game | 5 |
-| space_invaders-optimization-001 | FAIL | optimization | 3 |
-| space_invaders-optimization-002 | FAIL | optimization | 4 |
-| space_invaders-optimization-003 | FAIL | optimization | 4 |
+| space-invaders-001 | PASS | bug-fix | 2 |
+| space-invaders-002 | FAIL | bug-fix | 3 |
+| space-invaders-003 | FAIL | bug-fix | 2 |
+| space-invaders-004 | PASS | bug-fix | 2 |
+| space-invaders-bug-005 | FAIL | bug-fix | 3 |
+| space-invaders-feature-001 | FAIL | feature | 3 |
+| space-invaders-feature-002 | FAIL | feature | 3 |
+| space-invaders-feature-003 | FAIL | feature | 4 |
+| space-invaders-feature-004 | PASS | feature | 4 |
+| space-invaders-feature-005 | FAIL | feature | 3 |
+| space-invaders-feature-006 | FAIL | feature | 3 |
+| space-invaders-feature-007 | FAIL | feature | 4 |
+| space-invaders-feature-008 | FAIL | feature | 4 |
+| space-invaders-feature-009 | FAIL | feature | 4 |
+| space-invaders-feature-010 | FAIL | feature | 5 |
+| space-invaders-feature-011 | FAIL | feature | 5 |
+| space-invaders-feature-012 | FAIL | feature | 5 |
+| space-invaders-mini-001 | FAIL | mini-game | 4 |
+| space-invaders-mini-002 | FAIL | mini-game | 5 |
+| space-invaders-mini-003 | FAIL | mini-game | 5 |
+| space-invaders-optimization-001 | FAIL | optimization | 3 |
+| space-invaders-optimization-002 | FAIL | optimization | 4 |
+| space-invaders-optimization-003 | FAIL | optimization | 4 |
 
 #### Asteroids (0/17)
 
@@ -241,23 +241,23 @@
 
 | Task | Result | Category | Tier |
 |------|--------|----------|------|
-| tower_defense-bug-001 | FAIL | bug-fix | 3 |
-| tower_defense-bug-002 | FAIL | bug-fix | 3 |
-| tower_defense-feature-001 | FAIL | feature | 3 |
-| tower_defense-feature-002 | PASS | feature | 3 |
-| tower_defense-feature-003 | FAIL | feature | 4 |
-| tower_defense-feature-004 | FAIL | feature | 4 |
-| tower_defense-feature-005 | FAIL | feature | 4 |
-| tower_defense-feature-006 | FAIL | feature | 4 |
-| tower_defense-feature-007 | FAIL | feature | 4 |
-| tower_defense-feature-008 | FAIL | feature | 5 |
-| tower_defense-feature-009 | FAIL | feature | 5 |
-| tower_defense-feature-010 | FAIL | feature | 5 |
-| tower_defense-feature-011 | FAIL | feature | 5 |
-| tower_defense-feature-012 | FAIL | feature | 5 |
-| tower_defense-mini-001 | FAIL | mini-game | 4 |
-| tower_defense-mini-002 | FAIL | mini-game | 5 |
-| tower_defense-optimization-001 | FAIL | optimization | 4 |
+| tower-defense-bug-001 | FAIL | bug-fix | 3 |
+| tower-defense-bug-002 | FAIL | bug-fix | 3 |
+| tower-defense-feature-001 | FAIL | feature | 3 |
+| tower-defense-feature-002 | PASS | feature | 3 |
+| tower-defense-feature-003 | FAIL | feature | 4 |
+| tower-defense-feature-004 | FAIL | feature | 4 |
+| tower-defense-feature-005 | FAIL | feature | 4 |
+| tower-defense-feature-006 | FAIL | feature | 4 |
+| tower-defense-feature-007 | FAIL | feature | 4 |
+| tower-defense-feature-008 | FAIL | feature | 5 |
+| tower-defense-feature-009 | FAIL | feature | 5 |
+| tower-defense-feature-010 | FAIL | feature | 5 |
+| tower-defense-feature-011 | FAIL | feature | 5 |
+| tower-defense-feature-012 | FAIL | feature | 5 |
+| tower-defense-mini-001 | FAIL | mini-game | 4 |
+| tower-defense-mini-002 | FAIL | mini-game | 5 |
+| tower-defense-optimization-001 | FAIL | optimization | 4 |
 
 ---
 

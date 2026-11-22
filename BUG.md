@@ -2,9 +2,9 @@
 
 > **Written for Claude.** Precise for a later session, not easy reading. To review it, ask Claude to explain it in plain words and judge the explanation.
 
-## [ ] Bug 1: Task validation rejects 99 of the 225 shipped tasks
+## [x] Bug 1: Task validation rejects 99 of the 225 shipped tasks
 
-**Status:** Open
+**Status:** Fixed
 
 **System:** task validation — `scripts/validate_task.py`, `schemas/task_schema.json`, the tasks' `task.json` and `solution/` folders
 
@@ -26,3 +26,7 @@ Which side is wrong (the validator and schema, or the tasks) is not yet decided 
 **Verified by:** the steps to reproduce above — answer key: **Expected** (`rules/plan-format.md` § Verified by)
 
 **Found by:** writing `CLAUDE.md` (Phase 5), 2026-11-18, while running its validation loop as written.
+
+**Fix:** The tasks were changed to fit the rules (Philip, 2026-11-22, `DESIGN.md` § Task Validation Rules). `scripts/validate_task.py` reports every schema error, checks that a task's `id` equals its folder name, and checks each engine's layout: Julius needs `buggy.patch` and `solution/fix.patch` and no `game/`, every other engine needs `game/`. `schemas/task_schema.json` adds the Julius categories `crash-fix`, `game-logic` and `visual`, and its `commit` takes a hex hash or exactly `"synthetic"`. The 40 underscore ids and their folders were renamed to hyphens everywhere (tasks, `BASELINE.md`, `run_remaining.sh`, the generators, `results/run-log.json`, the local raw run folders), along with the `space_invaders` tag. The 9 Snake folders whose names differed from their ids were renamed to the ids. `expected_asan_error: null` was deleted from 34 Julius tasks, and the empty local Pong `solution/` folders were removed.
+
+**Test:** `tests/scripts/test_validate_task.py`

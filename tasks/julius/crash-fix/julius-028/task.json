@@ -23,7 +23,6 @@
     "src/city/resource.c"
   ],
   "requires_assets": false,
-  "expected_asan_error": null,
   "difficulty_factors": [
     "Understanding resource calculations",
     "Identifying unsafe division",
