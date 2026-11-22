@@ -110,7 +110,7 @@ def get_file_extensions(language: str) -> list[str]:
     return extensions.get(language, [".py"])
 
 
-def validate_task_structure(task_dir: Path) -> list[str]:
+def validate_task_structure(task_dir: Path) -> tuple[list[str], list[str]]:
     """Validate the task directory structure.
 
     Returns a list of validation errors (empty if valid).
