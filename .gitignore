@@ -43,6 +43,10 @@ coverage.xml
 *.cover
 .hypothesis/
 
+# AirTower results (written by run-tests.sh and run-build.sh)
+.test-results.json
+.build-results.json
+
 # Benchmark results (keep structure, ignore actual results)
 results/runs/*
 results/validation/*
