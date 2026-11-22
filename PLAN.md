@@ -150,6 +150,7 @@ Every task validates with `mock:solution`; no task needs Caesar III files.
   (completed 2026-11-18)
   Reviewed: 2026-11-18 0920e97a (gaps 8, Philip 0)
 - [ ] Add `.airtower.json` and the `run-tests.sh` / `run-build.sh` wrappers; the test gate runs `pytest tests/` plus task validation, so it needs no API key
+- [ ] Write reference solutions for the 9 Pong tasks with none (`pong-002` to `pong-010`), so `mock:solution` can answer every task; due before the Phase 5 `mock:solution` proof (decided 2026-11-22, `docs/decisions/2026-11-22-task-rules-are-the-truth.md`)
 - [ ] Set up the new Mac mini for benchmark runs: venv from `requirements.txt`, API keys for Anthropic and OpenAI, Julius and Quake build dependencies; prove it with one `mock:solution` pass over all 225 tasks
 
 ### Testing Strategy

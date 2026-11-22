@@ -255,6 +255,31 @@ Translate working game from one engine to another.
   - Working baseline (for regression tasks)
   - At least one automated verification method
 
+### Task Validation Rules
+`schemas/task_schema.json` and `scripts/validate_task.py` define a valid task. When a
+shipped task and the rules disagree, the rules are right and the task is changed to fit
+(Philip, 2026-11-22, `docs/decisions/2026-11-22-task-rules-are-the-truth.md`).
+
+- **Ids:** lowercase letters, digits and hyphens only (`^[a-z0-9-]+$`), and a task's
+  `id` must equal its folder name. A task renamed to fit is renamed everywhere: its
+  folder, its tests, the docs and scripts that name it, the task generators, and the
+  published history (`results/run-log.json` and the raw run folders in `results/runs/`).
+  History is rewritten in place, with no old-to-new map kept; git keeps the old copy.
+- **Optional fields are left out, never `null`:** a Julius task with no expected
+  AddressSanitizer error has no `expected_asan_error` key.
+- **The one exception, `commit`:** a hex commit hash or exactly `"synthetic"`.
+  `mock:solution` and the Julius evaluator need that word to tell a generated Julius task
+  from one taken from real Julius history.
+- **Layout per engine:**
+  - Pygame and Quake: `game/` holds the starting code.
+  - Julius: `buggy.patch` and `solution/fix.patch`, with no `game/`. A Julius task
+    missing either patch fails validation.
+- **The checks must still fail bad tasks:** the validator's tests include broken tasks
+  that must fail (for example a Pygame task with no `game/`, or a Julius task with no
+  patch), so a gate that passes everything cannot go unnoticed.
+- **Strictness:** the test gate runs plain validation. `--strict` (warnings become
+  failures) joins the gate once every task has a reference solution.
+
 ---
 
 ## Infrastructure (Cost-Conscious)
