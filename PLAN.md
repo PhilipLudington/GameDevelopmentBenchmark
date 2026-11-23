@@ -179,6 +179,9 @@ Every task validates with `mock:solution`; no task needs Caesar III files.
   (completed 2026-11-22)
   Reviewed: 2026-11-22 7279eeab (gaps 10, Philip 0)
 - [ ] Write reference solutions for the 9 Pong tasks with none (`pong-002` to `pong-010`), so `mock:solution` can answer every task; due before the Phase 5 `mock:solution` proof (decided 2026-11-22, `docs/decisions/2026-11-22-task-rules-are-the-truth.md`)
+  A task's score counts its unit tests only: the gameplay and performance phases return `not_implemented` and `calculate_score` skips them, so a solution is correct when it passes the task's unit tests (code: `evaluation/runner.py:320-330`, `:353-363`)
+  Once the 9 solutions land every task has a reference solution, so this item adds `--strict` to the gate's validation sweep (rule: `DESIGN.md` § Task Validation Rules, Strictness; `docs/decisions/2026-11-22-task-rules-are-the-truth.md` § What it does not settle)
+  Each solution is a full-file `solution/main.py`, as `pong-001` ships, matching the Pygame runner's full-file reply format (builder's choice; code: `tasks/pygame/bug-fix/pong-001/solution/main.py`, `evaluation/runner.py:171-180`)
 - [ ] Set up the new Mac mini for benchmark runs: venv from `requirements.txt`, API keys for Anthropic and OpenAI, Julius and Quake build dependencies; prove it with one `mock:solution` pass over all 225 tasks
 
 ### Testing Strategy
